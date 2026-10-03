@@ -38,23 +38,18 @@
                 #f7f6f2;
         }
 
-
         .container {
             max-width: 1050px;
             margin: auto;
             padding: 35px 20px 70px;
         }
 
-
-        /* =========================
-           網站名稱
-        ========================= */
+        /* 網站名稱 */
 
         .brand {
             text-align: center;
             margin-bottom: 35px;
         }
-
 
         .brand-main {
             font-size: 24px;
@@ -62,22 +57,15 @@
             letter-spacing: 2px;
         }
 
-
         .brand-line {
             width: 45px;
             height: 3px;
-
             background: #6f7d68;
-
             margin: 12px auto 0;
-
             border-radius: 10px;
         }
 
-
-        /* =========================
-           主視覺
-        ========================= */
+        /* 主視覺 */
 
         .hero {
             position: relative;
@@ -94,7 +82,6 @@
             box-shadow:
                 0 20px 60px rgba(0, 0, 0, 0.07);
         }
-
 
         /* 左上裝飾 */
 
@@ -116,7 +103,6 @@
             opacity: 0.7;
         }
 
-
         /* 右下裝飾 */
 
         .hero::after {
@@ -137,16 +123,12 @@
             opacity: 0.7;
         }
 
-
         .hero-content {
             position: relative;
             z-index: 2;
         }
 
-
-        /* =========================
-           小標籤
-        ========================= */
+        /* 小標籤 */
 
         .tag {
             display: inline-block;
@@ -168,40 +150,31 @@
             margin-bottom: 28px;
         }
 
-
-        /* =========================
-           主標
-        ========================= */
+        /* 主標題 */
 
         h1 {
             margin: 0 auto;
 
             max-width: 760px;
 
-            font-size: 44px;
+            font-size: 42px;
 
-            line-height: 1.45;
+            line-height: 1.5;
 
             letter-spacing: 1px;
 
             font-weight: 600;
         }
 
-
-        /* 「目標」特殊顯示 */
+        /* 綠色強調文字 */
 
         .highlight {
             color: #66745f;
 
-            font-weight: 800;
-
-            position: relative;
+            font-weight: 700;
         }
 
-
-        /* =========================
-           說明文字
-        ========================= */
+        /* 說明文字 */
 
         .description {
             margin: 28px auto 0;
@@ -217,10 +190,7 @@
             letter-spacing: 0.3px;
         }
 
-
-        /* =========================
-           開始試算按鈕
-        ========================= */
+        /* 開始試算按鈕 */
 
         .start-button {
             position: relative;
@@ -262,13 +232,12 @@
                 background 0.25s;
         }
 
-
         .start-button span {
             font-size: 21px;
 
-            transition: transform 0.25s;
+            transition:
+                transform 0.25s;
         }
-
 
         .start-button:hover {
             transform: translateY(-4px);
@@ -279,15 +248,11 @@
                 0 15px 30px rgba(47, 57, 48, 0.3);
         }
 
-
         .start-button:hover span {
             transform: translateX(5px);
         }
 
-
-        /* =========================
-           三個特色
-        ========================= */
+        /* 三個功能介紹 */
 
         .features {
             display: grid;
@@ -299,7 +264,6 @@
 
             margin-top: 25px;
         }
-
 
         .feature {
             background: rgba(255, 255, 255, 0.9);
@@ -318,14 +282,12 @@
                 box-shadow 0.2s;
         }
 
-
         .feature:hover {
             transform: translateY(-4px);
 
             box-shadow:
                 0 12px 35px rgba(0, 0, 0, 0.07);
         }
-
 
         .feature-icon {
             width: 55px;
@@ -345,13 +307,11 @@
             font-size: 25px;
         }
 
-
         .feature h3 {
             margin: 0 0 10px;
 
             font-size: 17px;
         }
-
 
         .feature p {
             margin: 0;
@@ -363,10 +323,7 @@
             line-height: 1.8;
         }
 
-
-        /* =========================
-           手機版
-        ========================= */
+        /* 手機版 */
 
         @media (max-width: 700px) {
 
@@ -374,23 +331,19 @@
                 padding: 25px 15px 45px;
             }
 
-
             .brand {
                 margin-bottom: 25px;
             }
 
-
             .brand-main {
                 font-size: 20px;
             }
-
 
             .hero {
                 padding: 65px 22px 60px;
 
                 border-radius: 24px;
             }
-
 
             h1 {
                 font-size: 27px;
@@ -400,7 +353,6 @@
                 letter-spacing: 0.5px;
             }
 
-
             .description {
                 font-size: 13px;
 
@@ -408,7 +360,6 @@
 
                 margin-top: 22px;
             }
-
 
             .start-button {
                 margin-top: 30px;
@@ -418,18 +369,15 @@
                 max-width: 260px;
             }
 
-
             .features {
                 grid-template-columns: 1fr;
 
                 gap: 14px;
             }
 
-
             .feature {
                 padding: 25px 20px;
             }
-
         }
 
     </style>
@@ -439,13 +387,9 @@
 
 <body>
 
-
     <div class="container">
 
-
-        <!-- =========================
-             網站名稱
-        ========================= -->
+        <!-- 網站名稱 -->
 
         <div class="brand">
 
@@ -458,64 +402,65 @@
         </div>
 
 
-        <!-- =========================
-             主視覺
-        ========================= -->
+        <!-- 主區塊 -->
 
         <section class="hero">
 
-
             <div class="hero-content">
 
+                <!-- 小標籤 -->
 
                 <div class="tag">
                     ✦ 財務自由試算工具
                 </div>
 
 
+                <!-- 主標題 -->
+
                 <h1>
 
-                    讓自由，不只是想像，
-
-                    <br>
-
-                    而是一個可以計算的
+                    讓自由，不只是想像
 
                     <br>
 
                     <span class="highlight">
-                        目標。
+                        而是可以計算的目標
                     </span>
 
                 </h1>
 
 
+                <!-- 說明 -->
+
                 <p class="description">
 
                     ✍️ 輸入你的財務資料，試算退休需要多少資產，
+
                     <br>
+
                     以及按照目前的儲蓄與投資速度，大約何時能達成。
 
                 </p>
 
 
+                <!-- 開始試算 -->
+
                 <a href="#" class="start-button">
 
                     開始試算
 
-                    <span>→</span>
+                    <span>
+                        →
+                    </span>
 
                 </a>
-
 
             </div>
 
         </section>
 
 
-        <!-- =========================
-             功能特色
-        ========================= -->
+        <!-- 三個功能 -->
 
         <div class="features">
 
@@ -576,9 +521,7 @@
 
         </div>
 
-
     </div>
-
 
 </body>
 
