@@ -1,11 +1,19 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F6F2E9">
+  <meta name="description" content="自由倒數｜試算工具">
   <title>自由倒數｜試算工具</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     :root {
       --bg: #F6F2E9;
       --paper: #FFFDF8;
@@ -25,17 +33,16 @@
 
       --text: #2D3934;
       --muted: #748078;
-      --border: rgba(83, 111, 97, 0.14);
-    }
 
-    * {
-      box-sizing: border-box;
+      --border: rgba(83, 111, 97, 0.14);
+
+      --shadow:
+        0 16px 38px rgba(59, 76, 67, 0.09),
+        0 3px 10px rgba(59, 76, 67, 0.04);
     }
 
     html,
     body {
-      margin: 0;
-      padding: 0;
       min-height: 100%;
     }
 
@@ -50,34 +57,31 @@
 
       background:
         radial-gradient(
-          circle at 10% 10%,
-          rgba(228, 238, 231, 0.65),
-          transparent 30%
-        ),
-        radial-gradient(
-          circle at 90% 85%,
-          rgba(245, 231, 217, 0.55),
-          transparent 28%
+          circle at 92% 4%,
+          rgba(218, 231, 222, 0.7) 0,
+          rgba(218, 231, 222, 0.25) 12%,
+          transparent 27%
         ),
         var(--bg);
 
       color: var(--text);
-      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
     }
 
     .page {
       position: relative;
-      width: 100%;
-      max-width: 720px;
       min-height: 100vh;
-      margin: 0 auto;
-      padding: 28px 20px 20px;
-      display: flex;
-      flex-direction: column;
       overflow: hidden;
     }
 
-    /* Decorative circles */
+    /* ------------------------------
+       裝飾
+    ------------------------------ */
+
     .decor {
       position: absolute;
       border-radius: 50%;
@@ -89,136 +93,16 @@
       width: 150px;
       height: 150px;
       top: -70px;
-      right: -60px;
-      background: rgba(94, 128, 107, 0.08);
+      right: -55px;
+      background: rgba(204, 222, 211, 0.48);
     }
 
     .decor-2 {
-      width: 100px;
-      height: 100px;
-      top: 43%;
-      left: -65px;
-      background: rgba(82, 114, 122, 0.07);
+      width: 90px;
+      height: 90px;
+      left: -45px;
+      bottom: 80px;
+      background: rgba(239, 224, 205, 0.5);
     }
 
-    .decor-3 {
-      width: 120px;
-      height: 120px;
-      bottom: -55px;
-      right: -45px;
-      background: rgba(154, 110, 77, 0.07);
-    }
-
-    .content {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* Brand */
-    .brand {
-      text-align: center;
-      margin-bottom: 18px;
-    }
-
-    .brand-title {
-      margin: 0;
-      color: var(--green-dark);
-      font-size: clamp(22px, 6vw, 28px);
-      font-weight: 800;
-      letter-spacing: 0.04em;
-    }
-
-    /* Main hero card */
-    .hero-card {
-      position: relative;
-      overflow: hidden;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255, 253, 248, 0.98),
-          rgba(250, 247, 239, 0.96)
-        );
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      padding: 30px 24px 26px;
-      text-align: center;
-
-      box-shadow:
-        0 16px 40px rgba(65, 83, 72, 0.10),
-        0 3px 10px rgba(65, 83, 72, 0.05);
-
-      margin-bottom: 18px;
-    }
-
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      top: -105px;
-      right: -70px;
-      background: rgba(94, 128, 107, 0.07);
-    }
-
-    .hero-card::after {
-      content: "";
-      position: absolute;
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      bottom: -85px;
-      left: -65px;
-      background: rgba(82, 114, 122, 0.05);
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 1;
-    }
-
-    .fire-label {
-      display: inline-block;
-      margin-bottom: 12px;
-      color: var(--green);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-    }
-
-    .slogan {
-      margin: 0;
-      color: var(--green-dark);
-      font-size: clamp(27px, 7.5vw, 38px);
-      line-height: 1.35;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-    }
-
-    .slogan .highlight {
-      color: var(--green);
-    }
-
-    .description {
-      margin: 18px auto 22px;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.85;
-      letter-spacing: 0.04em;
-    }
-
-    /* Main button */
-    .start-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-
-      min-height: 52px;
-      padding: 0 25px;
-
-      border-radius: 17px;
-      background: var(--green-dark);
-      color: #ffffff;
-
-      text-decoration: none;
-      font-size: 16
+    .decor
