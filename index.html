@@ -12,6 +12,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
             font-family:
@@ -35,13 +39,16 @@
                     transparent 35%
                 ),
                 #f7f6f2;
-
-            min-height: 100vh;
         }
 
         button,
-        input {
+        input,
+        select {
             font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
         }
 
         .container {
@@ -51,8 +58,16 @@
         }
 
         /* =========================
-           網站名稱
+           共用
         ========================= */
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
 
         .brand {
             text-align: center;
@@ -73,84 +88,252 @@
             border-radius: 10px;
         }
 
-        /* =========================
-           頁面切換
-        ========================= */
-
-        .page {
-            display: none;
-            animation: pageFade 0.4s ease;
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        .page.active {
+        .page-tag {
+            display: inline-block;
+            padding: 8px 17px;
+            border-radius: 30px;
+            background: #edf0eb;
+            color: #66705f;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 18px;
+        }
+
+        .page-title {
+            margin: 0;
+            font-size: 34px;
+            line-height: 1.5;
+            font-weight: 650;
+            letter-spacing: 1px;
+        }
+
+        .page-subtitle {
+            margin: 12px auto 0;
+            max-width: 620px;
+            color: #7c7c7c;
+            font-size: 14px;
+            line-height: 1.9;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 28px;
+            padding: 30px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.055);
+            margin-bottom: 20px;
+        }
+
+        .section-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-card::before {
+            content: "";
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #edf1eb;
+            top: -75px;
+            right: -45px;
+            opacity: 0.75;
+        }
+
+        .section-title {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0 0 7px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .section-description {
+            position: relative;
+            z-index: 1;
+            margin: 0 0 22px;
+            color: #858585;
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .field {
+            margin-bottom: 22px;
+        }
+
+        .field:last-child {
+            margin-bottom: 0;
+        }
+
+        .field-label {
+            display: block;
+            margin-bottom: 9px;
+            font-size: 15px;
+            font-weight: 650;
+        }
+
+        .field-hint {
+            display: block;
+            margin-top: 7px;
+            color: #999;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .text-input,
+        .date-input,
+        .money-input {
+            width: 100%;
+            height: 50px;
+            border: 1px solid #e1e3de;
+            border-radius: 15px;
+            background: #fafbf9;
+            color: #303030;
+            padding: 0 16px;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .text-input:focus,
+        .date-input:focus,
+        .money-input:focus {
+            border-color: #899b83;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(111, 125, 104, 0.09);
+        }
+
+        .money-input {
+            text-align: right;
+        }
+
+        .money-wrap {
+            position: relative;
+        }
+
+        .money-wrap::before {
+            content: "NT$";
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+            font-size: 13px;
+            z-index: 2;
+        }
+
+        .money-wrap .money-input {
+            padding-left: 52px;
+        }
+
+        .radio-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .choice {
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .choice input {
+            display: none;
+        }
+
+        .choice label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 50px;
+            padding: 10px 14px;
+            border: 1px solid #e0e3de;
+            border-radius: 15px;
+            background: #fafbf9;
+            color: #555;
+            font-size: 14px;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .choice input:checked + label {
+            border-color: #73866d;
+            background: #edf2eb;
+            color: #52644d;
+            font-weight: 650;
+            box-shadow: 0 4px 14px rgba(83, 111, 77, 0.08);
+        }
+
+        .error-message {
+            display: none;
+            margin-top: 7px;
+            color: #b15f59;
+            font-size: 12px;
+        }
+
+        .has-error .text-input,
+        .has-error .date-input {
+            border-color: #c7837e;
+        }
+
+        .has-error .error-message {
             display: block;
         }
 
-        @keyframes pageFade {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .age-box {
+            margin-top: 10px;
+            padding: 13px 16px;
+            border-radius: 14px;
+            background: #f2f4ef;
+            color: #5f6d5a;
+            font-size: 13px;
+            font-weight: 600;
         }
 
         /* =========================
-           首頁主視覺
+           首頁
         ========================= */
 
         .hero {
             position: relative;
             overflow: hidden;
-
             background: rgba(255, 255, 255, 0.9);
-
             border-radius: 30px;
-
             padding: 85px 30px 80px;
-
             text-align: center;
-
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.07);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.07);
         }
 
         .hero::before {
             content: "";
-
             position: absolute;
-
             width: 260px;
             height: 260px;
-
             background: #e8eee7;
-
             border-radius: 50%;
-
             top: -130px;
             left: -100px;
-
             opacity: 0.7;
         }
 
         .hero::after {
             content: "";
-
             position: absolute;
-
             width: 220px;
             height: 220px;
-
             background: #eee8dc;
-
             border-radius: 50%;
-
             right: -90px;
             bottom: -100px;
-
             opacity: 0.7;
         }
 
@@ -161,736 +344,561 @@
 
         .tag {
             display: inline-block;
-
             padding: 8px 18px;
-
             border-radius: 30px;
-
             background: #edf0eb;
-
             color: #66705f;
-
             font-size: 14px;
             font-weight: 500;
-
             letter-spacing: 1px;
-
             margin-bottom: 28px;
         }
 
-        h1 {
+        .hero h1 {
             margin: 0 auto;
-
             max-width: 760px;
-
             font-size: 42px;
-
             line-height: 1.5;
-
             letter-spacing: 1px;
-
             font-weight: 600;
         }
 
         .highlight {
             color: #536f4d;
-
             font-weight: 800;
-
-            text-shadow:
-                0 1px 1px rgba(83, 111, 77, 0.08);
+            text-shadow: 0 1px 1px rgba(83, 111, 77, 0.08);
         }
 
         .description {
             margin: 28px auto 0;
-
             max-width: 620px;
-
             color: #777;
-
             font-size: 15px;
-
             line-height: 2;
-
             letter-spacing: 0.3px;
         }
 
         .start-button {
             position: relative;
-
             display: inline-flex;
-
             align-items: center;
             justify-content: center;
-
             gap: 12px;
-
             margin-top: 38px;
-
             padding: 17px 32px;
-
             min-width: 190px;
-
-            border: none;
-
+            border: 0;
             border-radius: 50px;
-
             background: #2f3930;
-
             color: white;
-
             font-size: 17px;
             font-weight: 600;
-
             letter-spacing: 1px;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 10px 25px rgba(47, 57, 48, 0.25);
-
-            transition:
-                transform 0.25s,
-                box-shadow 0.25s,
-                background 0.25s;
-        }
-
-        .start-button span {
-            font-size: 21px;
-
-            transition:
-                transform 0.25s;
+            box-shadow: 0 10px 25px rgba(47, 57, 48, 0.25);
+            transition: 0.25s;
         }
 
         .start-button:hover {
             transform: translateY(-4px);
-
             background: #3d4a3e;
-
-            box-shadow:
-                0 15px 30px rgba(47, 57, 48, 0.3);
+            box-shadow: 0 15px 30px rgba(47, 57, 48, 0.3);
         }
-
-        .start-button:hover span {
-            transform: translateX(5px);
-        }
-
-        /* =========================
-           首頁三個功能
-        ========================= */
 
         .features {
             display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
-
             margin-top: 25px;
         }
 
         .feature {
             background: rgba(255, 255, 255, 0.9);
-
             border-radius: 22px;
-
             padding: 30px 22px;
-
             text-align: center;
-
-            box-shadow:
-                0 8px 30px rgba(0, 0, 0, 0.04);
-
-            transition:
-                transform 0.2s,
-                box-shadow 0.2s;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+            transition: 0.2s;
         }
 
         .feature:hover {
             transform: translateY(-4px);
-
-            box-shadow:
-                0 12px 35px rgba(0, 0, 0, 0.07);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
         }
 
         .feature-icon {
             width: 55px;
             height: 55px;
-
             display: flex;
-
             align-items: center;
             justify-content: center;
-
             margin: 0 auto 18px;
-
             border-radius: 16px;
-
             background: #f0f2ed;
-
             font-size: 25px;
         }
 
         .feature h3 {
             margin: 0 0 10px;
-
             font-size: 17px;
         }
 
         .feature p {
             margin: 0;
-
             color: #888;
-
             font-size: 13px;
-
             line-height: 1.8;
         }
 
         /* =========================
-           第二頁
+           頁面導航
         ========================= */
 
-        .form-card {
-            position: relative;
-
-            overflow: hidden;
-
-            background: rgba(255, 255, 255, 0.94);
-
-            border-radius: 30px;
-
-            padding: 55px 45px 50px;
-
-            box-shadow:
-                0 20px 60px rgba(0, 0, 0, 0.07);
-        }
-
-        .form-card::before {
-            content: "";
-
-            position: absolute;
-
-            width: 220px;
-            height: 220px;
-
-            background: #e8eee7;
-
-            border-radius: 50%;
-
-            top: -120px;
-            right: -80px;
-
-            opacity: 0.65;
-        }
-
-        .form-card::after {
-            content: "";
-
-            position: absolute;
-
-            width: 180px;
-            height: 180px;
-
-            background: #eee8dc;
-
-            border-radius: 50%;
-
-            bottom: -100px;
-            left: -70px;
-
-            opacity: 0.55;
-        }
-
-        .form-content {
-            position: relative;
-            z-index: 2;
-
-            max-width: 680px;
-
-            margin: 0 auto;
-        }
-
-        .step-label {
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 8px;
-
-            padding: 7px 15px;
-
-            background: #edf0eb;
-
-            color: #66705f;
-
-            border-radius: 30px;
-
-            font-size: 13px;
-
-            letter-spacing: 1px;
-
-            margin-bottom: 22px;
-        }
-
-        .step-number {
-            width: 22px;
-            height: 22px;
-
-            display: inline-flex;
-
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 50%;
-
-            background: #6f7d68;
-
-            color: white;
-
-            font-size: 12px;
-
-            font-weight: 700;
-        }
-
-        .form-title {
-            margin: 0;
-
-            font-size: 35px;
-
-            line-height: 1.45;
-
-            font-weight: 650;
-
-            letter-spacing: 1px;
-        }
-
-        .form-subtitle {
-            margin: 14px 0 38px;
-
-            color: #777;
-
-            font-size: 15px;
-
-            line-height: 1.8;
-        }
-
-        .field {
-            margin-bottom: 28px;
-        }
-
-        .field-label {
-            display: block;
-
-            margin-bottom: 10px;
-
-            font-size: 15px;
-
-            font-weight: 650;
-
-            letter-spacing: 0.5px;
-        }
-
-        .field-input {
-            width: 100%;
-
-            padding: 16px 18px;
-
-            border: 1px solid #dedfd9;
-
-            border-radius: 15px;
-
-            background: #fafaf8;
-
-            color: #242424;
-
-            font-size: 16px;
-
-            outline: none;
-
-            transition:
-                border-color 0.2s,
-                box-shadow 0.2s,
-                background 0.2s;
-        }
-
-        .field-input:focus {
-            background: white;
-
-            border-color: #87947f;
-
-            box-shadow:
-                0 0 0 4px rgba(111, 125, 104, 0.10);
-        }
-
-        .field-hint {
-            margin-top: 8px;
-
-            color: #777;
-
-            font-size: 13px;
-        }
-
-        .field-hint.special {
-            color: #66705f;
-
-            font-weight: 500;
-        }
-
-        /* 日期輸入 */
-
-        .date-wrapper {
-            position: relative;
-        }
-
-        .date-input {
-            appearance: none;
-            -webkit-appearance: none;
-
-            width: 100%;
-
-            padding: 16px 50px 16px 18px;
-
-            border: 1px solid #dedfd9;
-
-            border-radius: 15px;
-
-            background: #fafaf8;
-
-            color: #242424;
-
-            font-size: 16px;
-
-            outline: none;
-
-            cursor: pointer;
-        }
-
-        .date-input:focus {
-            background: white;
-
-            border-color: #87947f;
-
-            box-shadow:
-                0 0 0 4px rgba(111, 125, 104, 0.10);
-        }
-
-        .date-icon {
-            position: absolute;
-
-            right: 18px;
-            top: 50%;
-
-            transform: translateY(-50%);
-
-            font-size: 20px;
-
-            pointer-events: none;
-        }
-
-        /* 年齡 */
-
-        .age-box {
+        .page-actions {
             display: flex;
-
-            align-items: center;
-
-            gap: 13px;
-
-            padding: 15px 18px;
-
-            margin-top: 12px;
-
-            border-radius: 15px;
-
-            background: #f0f3ee;
-
-            color: #4d5b48;
-        }
-
-        .age-icon {
-            width: 38px;
-            height: 38px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            background: white;
-
-            border-radius: 12px;
-
-            font-size: 19px;
-        }
-
-        .age-text {
-            font-size: 14px;
-
-            color: #66705f;
-        }
-
-        .age-value {
-            font-size: 18px;
-
-            font-weight: 700;
-
-            color: #40513d;
-        }
-
-        /* 是否扶養 */
-
-        .choice-group {
-            display: grid;
-
-            grid-template-columns: 1fr 1fr;
-
-            gap: 14px;
-        }
-
-        .choice {
-            position: relative;
-        }
-
-        .choice input {
-            position: absolute;
-
-            opacity: 0;
-
-            pointer-events: none;
-        }
-
-        .choice label {
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            min-height: 58px;
-
-            padding: 12px 18px;
-
-            border: 1px solid #dedfd9;
-
-            border-radius: 15px;
-
-            background: #fafaf8;
-
-            color: #555;
-
-            font-size: 15px;
-
-            cursor: pointer;
-
-            transition:
-                all 0.2s;
-        }
-
-        .choice label:hover {
-            border-color: #aab3a5;
-
-            background: #f7f8f5;
-        }
-
-        .choice input:checked + label {
-            border-color: #6f7d68;
-
-            background: #edf1eb;
-
-            color: #40513d;
-
-            font-weight: 650;
-
-            box-shadow:
-                0 0 0 3px rgba(111, 125, 104, 0.10);
-        }
-
-        /* 扶養人數 */
-
-        .dependent-section {
-            margin-top: 18px;
-
-            padding: 20px;
-
-            border-radius: 17px;
-
-            background: #f7f7f3;
-
-            animation: slideDown 0.25s ease;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-6px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .dependent-label {
-            display: block;
-
-            margin-bottom: 12px;
-
-            font-size: 14px;
-
-            font-weight: 650;
-
-            color: #555;
-        }
-
-        .counter {
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 22px;
-        }
-
-        .counter-button {
-            width: 44px;
-            height: 44px;
-
-            border: 1px solid #d5d8d0;
-
-            border-radius: 50%;
-
-            background: white;
-
-            color: #52604e;
-
-            font-size: 22px;
-
-            cursor: pointer;
-
-            transition:
-                transform 0.15s,
-                background 0.15s;
-        }
-
-        .counter-button:hover {
-            background: #edf0eb;
-        }
-
-        .counter-button:active {
-            transform: scale(0.94);
-        }
-
-        .counter-value {
-            min-width: 65px;
-
-            text-align: center;
-
-            font-size: 25px;
-
-            font-weight: 700;
-
-            color: #3f4d3b;
-        }
-
-        .counter-unit {
-            font-size: 14px;
-
-            color: #777;
-
-            margin-left: -15px;
-        }
-
-        /* 第二頁底部 */
-
-        .form-actions {
-            display: flex;
-
-            align-items: center;
-
             justify-content: space-between;
-
+            align-items: center;
             gap: 15px;
+            margin-top: 25px;
+        }
 
-            margin-top: 40px;
-
-            padding-top: 28px;
-
-            border-top: 1px solid #eeeeea;
+        .back-button,
+        .next-button,
+        .reset-button {
+            border: 0;
+            border-radius: 50px;
+            min-height: 50px;
+            padding: 0 24px;
+            font-size: 14px;
+            font-weight: 650;
+            transition: 0.2s;
         }
 
         .back-button {
-            padding: 14px 20px;
-
-            border: none;
-
-            background: transparent;
-
-            color: #777;
-
-            font-size: 14px;
-
-            cursor: pointer;
-
-            border-radius: 12px;
-
-            transition:
-                background 0.2s,
-                color 0.2s;
+            background: #eceeea;
+            color: #596255;
         }
 
         .back-button:hover {
-            background: #f2f2ee;
-
-            color: #444;
+            background: #e1e4df;
         }
 
         .next-button {
-            display: inline-flex;
-
-            align-items: center;
-            justify-content: center;
-
-            gap: 10px;
-
-            min-width: 150px;
-
-            padding: 15px 25px;
-
-            border: none;
-
-            border-radius: 50px;
-
             background: #2f3930;
-
             color: white;
-
-            font-size: 15px;
-
-            font-weight: 600;
-
-            letter-spacing: 0.5px;
-
-            cursor: pointer;
-
-            box-shadow:
-                0 8px 20px rgba(47, 57, 48, 0.22);
-
-            transition:
-                transform 0.2s,
-                background 0.2s,
-                box-shadow 0.2s;
+            box-shadow: 0 8px 20px rgba(47, 57, 48, 0.2);
         }
 
         .next-button:hover {
-            transform: translateY(-3px);
-
+            transform: translateY(-2px);
             background: #3d4a3e;
+        }
 
-            box-shadow:
-                0 12px 25px rgba(47, 57, 48, 0.28);
+        .reset-button {
+            background: transparent;
+            color: #999;
+            font-size: 12px;
+            padding: 0 10px;
+        }
+
+        .reset-button:hover {
+            color: #a65c57;
+        }
+
+        .save-status {
+            text-align: center;
+            margin-top: 14px;
+            color: #8a9386;
+            font-size: 12px;
+        }
+
+        /* =========================
+           第三頁
+        ========================= */
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 22px;
+        }
+
+        .summary-box {
+            padding: 20px;
+            border-radius: 20px;
+            background: #f4f5f1;
+        }
+
+        .summary-label {
+            color: #858585;
+            font-size: 12px;
+            margin-bottom: 7px;
+        }
+
+        .summary-value {
+            color: #4f604b;
+            font-size: 24px;
+            font-weight: 750;
+        }
+
+        .summary-value.dark {
+            color: #303630;
+        }
+
+        .input-mode {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .mode-button {
+            flex: 1;
+            min-height: 45px;
+            border: 1px solid #e1e4df;
+            border-radius: 13px;
+            background: #fafbf9;
+            color: #777;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .mode-button.active {
+            border-color: #899b83;
+            background: #edf2eb;
+            color: #53654e;
+        }
+
+        .detail-area {
+            display: none;
+            padding: 18px;
+            border-radius: 18px;
+            background: #f6f7f4;
+            margin-top: 12px;
+        }
+
+        .detail-area.show {
+            display: block;
+        }
+
+        .detail-row {
+            display: grid;
+            grid-template-columns: 1fr 160px;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .detail-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-name {
+            color: #666;
+            font-size: 13px;
+        }
+
+        .detail-total {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e5df;
+            display: flex;
+            justify-content: space-between;
+            color: #596653;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .asset-item {
+            padding: 17px;
+            border-radius: 17px;
+            background: #f7f8f5;
+            border: 1px solid #eceee9;
+        }
+
+        .asset-item .field-label {
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .property-options {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .property-option {
+            flex: 1;
+            min-width: 110px;
+        }
+
+        .property-option input {
+            display: none;
+        }
+
+        .property-option label {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 48px;
+            padding: 8px 14px;
+            border: 1px solid #e0e3de;
+            border-radius: 14px;
+            background: #fafbf9;
+            color: #666;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .property-option input:checked + label {
+            border-color: #7d9176;
+            background: #edf2eb;
+            color: #53654e;
+            font-weight: 650;
+        }
+
+        .property-fields {
+            display: none;
+        }
+
+        .property-fields.show {
+            display: block;
+        }
+
+        .property-card {
+            padding: 18px;
+            border-radius: 18px;
+            background: #f6f7f4;
+            margin-bottom: 12px;
+        }
+
+        .property-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .property-card-title {
+            margin-bottom: 12px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #5a6655;
+        }
+
+        .property-card .field {
+            margin-bottom: 15px;
+        }
+
+        .property-card .field:last-child {
+            margin-bottom: 0;
+        }
+
+        .debt-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .debt-item {
+            padding: 17px;
+            border-radius: 17px;
+            background: #f7f8f5;
+            border: 1px solid #eceee9;
+        }
+
+        .debt-item-title {
+            margin-bottom: 13px;
+            font-size: 14px;
+            font-weight: 700;
+            color: #5e665b;
+        }
+
+        .debt-item .field {
+            margin-bottom: 12px;
+        }
+
+        .debt-item .field:last-child {
+            margin-bottom: 0;
+        }
+
+        .financial-result {
+            position: relative;
+            overflow: hidden;
+            padding: 28px;
+            border-radius: 26px;
+            background: #e9eee7;
+            margin-top: 20px;
+        }
+
+        .financial-result::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: #f4f0e7;
+            right: -75px;
+            bottom: -95px;
+        }
+
+        .result-title {
+            position: relative;
+            z-index: 2;
+            color: #687362;
+            font-size: 13px;
+            font-weight: 650;
+            letter-spacing: 1px;
+        }
+
+        .net-worth {
+            position: relative;
+            z-index: 2;
+            margin-top: 6px;
+            color: #3f4e3c;
+            font-size: 34px;
+            font-weight: 800;
+        }
+
+        .result-note {
+            position: relative;
+            z-index: 2;
+            margin-top: 8px;
+            color: #788074;
+            font-size: 12px;
+        }
+
+        .financial-mini-grid {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .mini-result {
+            padding: 15px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.55);
+        }
+
+        .mini-result-label {
+            color: #858c82;
+            font-size: 11px;
+            margin-bottom: 5px;
+        }
+
+        .mini-result-value {
+            color: #4e5c4a;
+            font-size: 16px;
+            font-weight: 750;
+        }
+
+        /* =========================
+           繼續填寫視窗
+        ========================= */
+
+        .modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(35, 42, 36, 0.42);
+            backdrop-filter: blur(5px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal-backdrop.show {
+            display: flex;
+        }
+
+        .modal {
+            width: 100%;
+            max-width: 430px;
+            background: #fff;
+            border-radius: 28px;
+            padding: 32px 26px 25px;
+            text-align: center;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.18);
+        }
+
+        .modal-icon {
+            width: 62px;
+            height: 62px;
+            margin: 0 auto 17px;
+            border-radius: 20px;
+            background: #edf2eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .modal h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .modal p {
+            margin: 12px 0 24px;
+            color: #858585;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            min-height: 48px;
+            border-radius: 14px;
+            border: 0;
+            font-weight: 650;
+        }
+
+        .continue-btn {
+            background: #2f3930;
+            color: white;
+        }
+
+        .restart-btn {
+            background: #eceeea;
+            color: #626a60;
+        }
+
+        /* =========================
+           Toast
+        ========================= */
+
+        .toast {
+            position: fixed;
+            left: 50%;
+            bottom: 25px;
+            transform: translate(-50%, 20px);
+            background: #303a31;
+            color: white;
+            padding: 12px 19px;
+            border-radius: 50px;
+            font-size: 12px;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.3s;
+            z-index: 1200;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translate(-50%, 0);
         }
 
         /* =========================
@@ -913,37 +921,29 @@
 
             .hero {
                 padding: 65px 22px 60px;
-
                 border-radius: 24px;
             }
 
-            h1 {
+            .hero h1 {
                 font-size: 27px;
-
                 line-height: 1.55;
-
                 letter-spacing: 0.5px;
             }
 
             .description {
                 font-size: 13px;
-
                 line-height: 1.9;
-
                 margin-top: 22px;
             }
 
             .start-button {
                 margin-top: 30px;
-
                 width: 85%;
-
                 max-width: 260px;
             }
 
             .features {
                 grid-template-columns: 1fr;
-
                 gap: 14px;
             }
 
@@ -951,48 +951,48 @@
                 padding: 25px 20px;
             }
 
-            /* 第二頁手機 */
-
-            .form-card {
-                padding: 38px 22px 30px;
-
-                border-radius: 24px;
+            .page-title {
+                font-size: 27px;
             }
 
-            .form-title {
-                font-size: 28px;
-
-                line-height: 1.5;
-            }
-
-            .form-subtitle {
+            .page-subtitle {
                 font-size: 13px;
-
-                margin-bottom: 30px;
             }
 
-            .field {
-                margin-bottom: 24px;
+            .card {
+                padding: 22px 18px;
+                border-radius: 23px;
             }
 
-            .choice-group {
-                gap: 10px;
+            .summary-grid {
+                grid-template-columns: 1fr;
             }
 
-            .choice label {
-                min-height: 54px;
-
-                font-size: 14px;
+            .asset-grid,
+            .debt-grid {
+                grid-template-columns: 1fr;
             }
 
-            .form-actions {
-                margin-top: 30px;
-
-                padding-top: 22px;
+            .detail-row {
+                grid-template-columns: 1fr 125px;
             }
 
+            .financial-mini-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-actions {
+                flex-wrap: wrap;
+            }
+
+            .back-button,
             .next-button {
-                min-width: 135px;
+                flex: 1;
+            }
+
+            .reset-button {
+                width: 100%;
+                order: 3;
             }
         }
     </style>
@@ -1001,267 +1001,1255 @@
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <!-- =========================
-             網站名稱
-        ========================= -->
+    <!-- =========================
+         網站名稱
+    ========================= -->
 
-        <div class="brand">
+    <div class="brand">
+        <div class="brand-main">
+            自由倒數｜財務自由試算
+        </div>
 
-            <div class="brand-main">
-                自由倒數｜財務自由試算
+        <div class="brand-line"></div>
+    </div>
+
+
+    <!-- =========================
+         第一頁｜首頁
+    ========================= -->
+
+    <section id="pageHome" class="page active">
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="tag">
+                    ✦ 財務自由試算工具
+                </div>
+
+                <h1>
+                    讓自由，不只是想像
+                    <br>
+
+                    <span class="highlight">
+                        而是可以計算的目標 🎯
+                    </span>
+                </h1>
+
+                <p class="description">
+                    ✍️ 輸入你的財務資料，試算退休需要多少資產，
+                    <br>
+                    以及按照目前的儲蓄與投資速度，大約何時能達成。
+                </p>
+
+                <button
+                    type="button"
+                    class="start-button"
+                    id="startButton"
+                >
+                    開始試算
+                    <span>→</span>
+                </button>
+
             </div>
 
-            <div class="brand-line"></div>
+        </section>
+
+
+        <div class="features">
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    找到你的自由目標
+                </h3>
+
+                <p>
+                    試算需要累積多少資產，
+                    才能支撐你想要的生活。
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📈
+                </div>
+
+                <h3>
+                    看見資產成長
+                </h3>
+
+                <p>
+                    根據目前資產、投入金額
+                    與預期報酬率進行推估。
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    ⏳
+                </div>
+
+                <h3>
+                    開始你的自由倒數
+                </h3>
+
+                <p>
+                    看看按照目前的速度，
+                    大約何時可以達成目標。
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         第二頁｜基本資料
+    ========================= -->
+
+    <section id="pageBasic" class="page">
+
+        <div class="page-header">
+
+            <div class="page-tag">
+                01｜基本資料
+            </div>
+
+            <h1 class="page-title">
+                先認識一下現在的你
+            </h1>
+
+            <p class="page-subtitle">
+                輸入幾個基本資料，開始探索你的未來
+            </p>
 
         </div>
 
 
-        <!-- =====================================================
-             第一頁｜首頁
-        ===================================================== -->
+        <div class="card">
 
-        <main id="pageHome" class="page active">
+            <!-- 姓名 -->
 
-            <section class="hero">
+            <div
+                class="field"
+                id="nameField"
+            >
 
-                <div class="hero-content">
+                <label class="field-label">
+                    姓名／暱稱
+                </label>
 
-                    <div class="tag">
-                        ✦ 財務自由試算工具
+                <input
+                    type="text"
+                    id="userName"
+                    class="text-input"
+                    placeholder="請輸入姓名或暱稱"
+                    maxlength="30"
+                >
+
+                <span class="field-hint">
+                    ✨ 之後會出現在你的專屬結果中
+                </span>
+
+                <div class="error-message">
+                    請輸入姓名或暱稱
+                </div>
+
+            </div>
+
+
+            <!-- 出生年月日 -->
+
+            <div
+                class="field"
+                id="birthField"
+            >
+
+                <label class="field-label">
+                    出生年月日
+                </label>
+
+                <input
+                    type="date"
+                    id="birthDate"
+                    class="date-input"
+                    value="1994-01-01"
+                >
+
+                <div
+                    class="age-box"
+                    id="ageDisplay"
+                >
+                    🎂 目前年齡：32 歲
+                </div>
+
+                <div class="error-message">
+                    請選擇出生年月日
+                </div>
+
+            </div>
+
+
+            <!-- 扶養狀況 -->
+
+            <div
+                class="field"
+                id="dependentField"
+            >
+
+                <label class="field-label">
+                    目前是否有需要扶養的家人？
+                </label>
+
+                <div class="radio-row">
+
+                    <div class="choice">
+
+                        <input
+                            type="radio"
+                            name="hasDependents"
+                            id="dependentsNo"
+                            value="no"
+                            checked
+                        >
+
+                        <label for="dependentsNo">
+                            沒有
+                        </label>
+
                     </div>
 
 
-                    <h1>
+                    <div class="choice">
 
-                        讓自由，不只是想像
+                        <input
+                            type="radio"
+                            name="hasDependents"
+                            id="dependentsYes"
+                            value="yes"
+                        >
 
-                        <br>
+                        <label for="dependentsYes">
+                            有
+                        </label>
 
-                        <span class="highlight">
-                            而是可以計算的目標 🎯
-                        </span>
+                    </div>
 
-                    </h1>
+                </div>
+
+                <span class="field-hint">
+                    💡 只計算目前實際需要你負擔生活費用的家人
+                </span>
+
+            </div>
 
 
-                    <p class="description">
+            <!-- 扶養人數 -->
 
-                        ✍️ 輸入你的財務資料，試算退休需要多少資產，
+            <div
+                class="field"
+                id="dependentCountField"
+                style="display:none;"
+            >
 
-                        <br>
+                <label class="field-label">
+                    目前扶養人數
+                </label>
 
-                        以及按照目前的儲蓄與投資速度，大約何時能達成。
-
-                    </p>
-
+                <div style="
+                    display:flex;
+                    align-items:center;
+                    gap:12px;
+                ">
 
                     <button
                         type="button"
-                        class="start-button"
-                        id="startButton"
+                        id="minusDependent"
+                        style="
+                            width:48px;
+                            height:48px;
+                            border:0;
+                            border-radius:14px;
+                            background:#eceeea;
+                            color:#596255;
+                            font-size:22px;
+                        "
                     >
+                        −
+                    </button>
 
-                        開始試算
+                    <div
+                        id="dependentCount"
+                        style="
+                            min-width:55px;
+                            text-align:center;
+                            font-size:20px;
+                            font-weight:700;
+                            color:#52604e;
+                        "
+                    >
+                        1
+                    </div>
 
-                        <span>
-                            →
-                        </span>
-
+                    <button
+                        type="button"
+                        id="plusDependent"
+                        style="
+                            width:48px;
+                            height:48px;
+                            border:0;
+                            border-radius:14px;
+                            background:#eceeea;
+                            color:#596255;
+                            font-size:22px;
+                        "
+                    >
+                        ＋
                     </button>
 
                 </div>
 
-            </section>
-
-
-            <!-- 三個功能 -->
-
-            <div class="features">
-
-
-                <div class="feature">
-
-                    <div class="feature-icon">
-                        🎯
-                    </div>
-
-                    <h3>
-                        找到你的自由目標
-                    </h3>
-
-                    <p>
-                        試算需要累積多少資產，
-                        才能支撐你想要的生活。
-                    </p>
-
+                <div class="error-message">
+                    請確認扶養人數
                 </div>
-
-
-                <div class="feature">
-
-                    <div class="feature-icon">
-                        📈
-                    </div>
-
-                    <h3>
-                        看見資產成長
-                    </h3>
-
-                    <p>
-                        根據目前資產、投入金額
-                        與預期報酬率進行推估。
-                    </p>
-
-                </div>
-
-
-                <div class="feature">
-
-                    <div class="feature-icon">
-                        ⏳
-                    </div>
-
-                    <h3>
-                        開始你的自由倒數
-                    </h3>
-
-                    <p>
-                        看看按照目前的速度，
-                        大約何時可以達成目標。
-                    </p>
-
-                </div>
-
 
             </div>
 
-        </main>
+        </div>
 
 
-        <!-- =====================================================
-             第二頁｜基本資料
-        ===================================================== -->
+        <div class="page-actions">
 
-        <main id="pageBasic" class="page">
+            <button
+                type="button"
+                class="back-button"
+                id="basicBackButton"
+            >
+                ← 上一步
+            </button>
 
-            <section class="form-card">
+            <button
+                type="button"
+                class="next-button"
+                id="basicNextButton"
+            >
+                下一步 →
+            </button>
 
-                <div class="form-content">
+            <button
+                type="button"
+                class="reset-button"
+                id="resetButtonBasic"
+            >
+                重新開始
+            </button>
 
+        </div>
 
-                    <!-- 步驟 -->
+        <div class="save-status">
+            ✓ 資料會自動保存，重新整理也不會消失
+        </div>
 
-                    <div class="step-label">
-
-                        <span class="step-number">
-                            1
-                        </span>
-
-                        基本資料
-
-                    </div>
-
-
-                    <!-- 標題 -->
-
-                    <h1 class="form-title">
-
-                        先認識一下現在的你
-
-                    </h1>
-
-
-                    <p class="form-subtitle">
-
-                        輸入幾個基本資料，開始探索你的未來
-
-                    </p>
+    </section>
 
 
-                    <!-- =====================
-                         姓名
-                    ====================== -->
+    <!-- =========================
+         第三頁｜財務資料
+    ========================= -->
 
-                    <div class="field">
+    <section id="pageFinance" class="page">
 
-                        <label
-                            class="field-label"
-                            for="userName"
-                        >
-                            姓名／暱稱
-                        </label>
+        <div class="page-header">
 
+            <div class="page-tag">
+                02｜財務資料
+            </div>
+
+            <h1 class="page-title">
+                先看看，你現在的財務狀況
+            </h1>
+
+            <p class="page-subtitle">
+                不用很精準，先填入目前大概的數字就可以
+            </p>
+
+        </div>
+
+
+        <!-- =====================
+             每月收入
+        ====================== -->
+
+        <div class="card section-card">
+
+            <h2 class="section-title">
+                💰 每月平均收入
+            </h2>
+
+            <p class="section-description">
+                如果收入不固定，可以填「近一年平均每月收入」
+            </p>
+
+
+            <div class="input-mode">
+
+                <button
+                    type="button"
+                    class="mode-button active"
+                    data-mode="income"
+                    data-value="total"
+                >
+                    直接填總額
+                </button>
+
+                <button
+                    type="button"
+                    class="mode-button"
+                    data-mode="income"
+                    data-value="detail"
+                >
+                    展開細項
+                </button>
+
+            </div>
+
+
+            <div id="incomeTotalArea">
+
+                <div class="field">
+
+                    <label class="field-label">
+                        每月平均總收入
+                    </label>
+
+                    <div class="money-wrap">
 
                         <input
-                            id="userName"
-                            class="field-input"
-                            type="text"
-                            placeholder="請輸入姓名或暱稱"
-                            maxlength="30"
+                            type="number"
+                            id="incomeTotal"
+                            class="money-input"
+                            min="0"
+                            step="100"
+                            placeholder="例如 50000"
                         >
-
-
-                        <div class="field-hint special">
-                            ✨ 之後會出現在你的專屬結果中
-                        </div>
 
                     </div>
 
+                </div>
 
-                    <!-- =====================
-                         出生年月日
-                    ====================== -->
+            </div>
 
-                    <div class="field">
 
-                        <label
-                            class="field-label"
-                            for="birthDate"
+            <div
+                id="incomeDetailArea"
+                class="detail-area"
+            >
+
+                <div class="detail-row">
+
+                    <div class="detail-name">
+                        薪資／工作收入
+                    </div>
+
+                    <div class="money-wrap">
+
+                        <input
+                            type="number"
+                            id="incomeSalary"
+                            class="money-input"
+                            min="0"
+                            step="100"
+                            placeholder="0"
                         >
-                            出生年月日
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <div class="detail-name">
+                        獎金／佣金
+                    </div>
+
+                    <div class="money-wrap">
+
+                        <input
+                            type="number"
+                            id="incomeBonus"
+                            class="money-input"
+                            min="0"
+                            step="100"
+                            placeholder="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <div class="detail-name">
+                        股票／ETF／基金配息
+                    </div>
+
+                    <div class="money-wrap">
+
+                        <input
+                            type="number"
+                            id="incomeDividend"
+                            class="money-input"
+                            min="0"
+                            step="100"
+                            placeholder="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <div class="detail-name">
+                        活存／定存利息
+                    </div>
+
+                    <div class="money-wrap">
+
+                        <input
+                            type="number"
+                            id="incomeInterest"
+                            class="money-input"
+                            min="0"
+                            step="100"
+                            placeholder="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <div class="detail-name">
+                        其他投資收入
+                    </div>
+
+                    <div class="money-wrap">
+
+                        <input
+                            type="number"
+                            id="incomeInvestment"
+                            class="money-input"
+                            min="0"
+                            step="100"
+                            placeholder="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <div class="detail-name">
+                        租金收入
+                    </div>
+
+                    <div class="money-wrap">
+
+                        <input
+                            type="number"
+                            id="incomeRent"
+                            class="money-input"
+                            min="0"
+                            step="100"
+                            placeholder="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-row">
+
+                    <div class="detail-name">
+                        其他收入
+                    </div>
+
+                    <div class="money-wrap">
+
+                        <input
+                            type="number"
+                            id="incomeOther"
+                            class="money-input"
+                            min="0"
+                            step="100"
+                            placeholder="0"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="detail-total">
+
+                    <span>
+                        細項加總
+                    </span>
+
+                    <span id="incomeDetailTotal">
+                        NT$ 0
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             每月支出
+        ====================== -->
+
+        <div class="card section-card">
+
+            <h2 class="section-title">
+                💳 每月支出
+            </h2>
+
+            <p class="section-description">
+                可以直接填一個總額，也可以展開細項讓系統幫你加總
+            </p>
+
+
+            <!-- 固定支出 -->
+
+            <div class="field">
+
+                <label class="field-label">
+                    每月固定支出
+                </label>
+
+                <div class="input-mode">
+
+                    <button
+                        type="button"
+                        class="mode-button active"
+                        data-mode="fixed"
+                        data-value="total"
+                    >
+                        直接填總額
+                    </button>
+
+                    <button
+                        type="button"
+                        class="mode-button"
+                        data-mode="fixed"
+                        data-value="detail"
+                    >
+                        展開細項
+                    </button>
+
+                </div>
+
+
+                <div id="fixedTotalArea">
+
+                    <div class="money-wrap">
+
+                        <input
+                            type="number"
+                            id="fixedTotal"
+                            class="money-input"
+                            min="0"
+                            step="100"
+                            placeholder="例如 15000"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="fixedDetailArea"
+                    class="detail-area"
+                >
+
+                    <div class="detail-row">
+                        <div class="detail-name">電信費</div>
+                        <div class="money-wrap">
+                            <input type="number" id="fixedPhone" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">水電瓦斯</div>
+                        <div class="money-wrap">
+                            <input type="number" id="fixedUtilities" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">房租／居住費</div>
+                        <div class="money-wrap">
+                            <input type="number" id="fixedRent" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">稅金</div>
+                        <div class="money-wrap">
+                            <input type="number" id="fixedTax" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">保險</div>
+                        <div class="money-wrap">
+                            <input type="number" id="fixedInsurance" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">孝親費</div>
+                        <div class="money-wrap">
+                            <input type="number" id="fixedParents" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">訂閱費</div>
+                        <div class="money-wrap">
+                            <input type="number" id="fixedSubscription" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">其他固定支出</div>
+                        <div class="money-wrap">
+                            <input type="number" id="fixedOther" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-total">
+                        <span>細項加總</span>
+                        <span id="fixedDetailTotal">NT$ 0</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 生活支出 -->
+
+            <div class="field">
+
+                <label class="field-label">
+                    每月生活支出
+                </label>
+
+                <div class="input-mode">
+
+                    <button
+                        type="button"
+                        class="mode-button active"
+                        data-mode="living"
+                        data-value="total"
+                    >
+                        直接填總額
+                    </button>
+
+                    <button
+                        type="button"
+                        class="mode-button"
+                        data-mode="living"
+                        data-value="detail"
+                    >
+                        展開細項
+                    </button>
+
+                </div>
+
+
+                <div id="livingTotalArea">
+
+                    <div class="money-wrap">
+
+                        <input
+                            type="number"
+                            id="livingTotal"
+                            class="money-input"
+                            min="0"
+                            step="100"
+                            placeholder="例如 20000"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="livingDetailArea"
+                    class="detail-area"
+                >
+
+                    <div class="detail-row">
+                        <div class="detail-name">餐飲</div>
+                        <div class="money-wrap">
+                            <input type="number" id="livingFood" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">交通</div>
+                        <div class="money-wrap">
+                            <input type="number" id="livingTransport" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="field-hint" style="margin-top:-4px;margin-bottom:12px;">
+                        🚗 包含加油、充電、停車、捷運、公車、火車、計程車、叫車等交通費
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">治裝／購物</div>
+                        <div class="money-wrap">
+                            <input type="number" id="livingShopping" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">娛樂</div>
+                        <div class="money-wrap">
+                            <input type="number" id="livingEntertainment" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">旅遊</div>
+                        <div class="money-wrap">
+                            <input type="number" id="livingTravel" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">其他生活支出</div>
+                        <div class="money-wrap">
+                            <input type="number" id="livingOther" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-total">
+                        <span>細項加總</span>
+                        <span id="livingDetailTotal">NT$ 0</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 貸款支出 -->
+
+            <div class="field">
+
+                <label class="field-label">
+                    每月貸款支出
+                </label>
+
+                <div class="input-mode">
+
+                    <button
+                        type="button"
+                        class="mode-button active"
+                        data-mode="loan"
+                        data-value="total"
+                    >
+                        直接填總額
+                    </button>
+
+                    <button
+                        type="button"
+                        class="mode-button"
+                        data-mode="loan"
+                        data-value="detail"
+                    >
+                        展開細項
+                    </button>
+
+                </div>
+
+
+                <div id="loanTotalArea">
+
+                    <div class="money-wrap">
+
+                        <input
+                            type="number"
+                            id="loanTotal"
+                            class="money-input"
+                            min="0"
+                            step="100"
+                            placeholder="例如 30000"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="loanDetailArea"
+                    class="detail-area"
+                >
+
+                    <div class="detail-row">
+                        <div class="detail-name">房貸</div>
+                        <div class="money-wrap">
+                            <input type="number" id="loanMortgage" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">信貸／個人貸款</div>
+                        <div class="money-wrap">
+                            <input type="number" id="loanPersonal" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">車貸</div>
+                        <div class="money-wrap">
+                            <input type="number" id="loanCar" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-row">
+                        <div class="detail-name">其他貸款</div>
+                        <div class="money-wrap">
+                            <input type="number" id="loanOther" class="money-input" min="0" step="100" placeholder="0">
+                        </div>
+                    </div>
+
+                    <div class="detail-total">
+                        <span>細項加總</span>
+                        <span id="loanDetailTotal">NT$ 0</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 支出總結 -->
+
+            <div class="summary-grid">
+
+                <div class="summary-box">
+
+                    <div class="summary-label">
+                        每月總支出
+                    </div>
+
+                    <div
+                        class="summary-value dark"
+                        id="monthlyExpenseDisplay"
+                    >
+                        NT$ 0
+                    </div>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <div class="summary-label">
+                        每月可支配餘額
+                    </div>
+
+                    <div
+                        class="summary-value"
+                        id="disposableDisplay"
+                    >
+                        NT$ 0
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             目前資產
+        ====================== -->
+
+        <div class="card section-card">
+
+            <h2 class="section-title">
+                🏦 目前資產
+            </h2>
+
+            <p class="section-description">
+                請填「目前大約值多少」，不用填當初投入多少
+            </p>
+
+
+            <div class="asset-grid">
+
+                <div class="asset-item">
+
+                    <label class="field-label">
+                        現金
+                    </label>
+
+                    <div class="money-wrap">
+                        <input type="number" id="assetCash" class="money-input" min="0" step="1000" placeholder="0">
+                    </div>
+
+                </div>
+
+
+                <div class="asset-item">
+
+                    <label class="field-label">
+                        活存
+                    </label>
+
+                    <div class="money-wrap">
+                        <input type="number" id="assetSavings" class="money-input" min="0" step="1000" placeholder="0">
+                    </div>
+
+                </div>
+
+
+                <div class="asset-item">
+
+                    <label class="field-label">
+                        定存
+                    </label>
+
+                    <div class="money-wrap">
+                        <input type="number" id="assetFixedDeposit" class="money-input" min="0" step="1000" placeholder="0">
+                    </div>
+
+                </div>
+
+
+                <div class="asset-item">
+
+                    <label class="field-label">
+                        股票
+                    </label>
+
+                    <div class="money-wrap">
+                        <input type="number" id="assetStocks" class="money-input" min="0" step="1000" placeholder="0">
+                    </div>
+
+                </div>
+
+
+                <div class="asset-item">
+
+                    <label class="field-label">
+                        ETF
+                    </label>
+
+                    <div class="money-wrap">
+                        <input type="number" id="assetETF" class="money-input" min="0" step="1000" placeholder="0">
+                    </div>
+
+                </div>
+
+
+                <div class="asset-item">
+
+                    <label class="field-label">
+                        基金
+                    </label>
+
+                    <div class="money-wrap">
+                        <input type="number" id="assetFunds" class="money-input" min="0" step="1000" placeholder="0">
+                    </div>
+
+                </div>
+
+
+                <div class="asset-item">
+
+                    <label class="field-label">
+                        其他投資資產
+                    </label>
+
+                    <div class="money-wrap">
+                        <input type="number" id="assetOtherInvestment" class="money-input" min="0" step="1000" placeholder="0">
+                    </div>
+
+                </div>
+
+
+                <div class="asset-item">
+
+                    <label class="field-label">
+                        保單價值準備金
+                    </label>
+
+                    <div class="money-wrap">
+                        <input type="number" id="assetInsurance" class="money-input" min="0" step="1000" placeholder="0">
+                    </div>
+
+                    <span class="field-hint">
+                        💡 以目前保單價值準備金估算
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- 房地產 -->
+
+            <div
+                class="field"
+                style="margin-top:25px;"
+            >
+
+                <label class="field-label">
+                    🏠 房地產
+                </label>
+
+                <span class="field-hint" style="margin-bottom:12px;">
+                    房地產請填目前估計市值，不是當初購買價格
+                </span>
+
+
+                <div class="property-options">
+
+                    <div class="property-option">
+
+                        <input
+                            type="radio"
+                            name="propertyType"
+                            id="propertyNone"
+                            value="none"
+                            checked
+                        >
+
+                        <label for="propertyNone">
+                            沒有
                         </label>
 
+                    </div>
 
-                        <div class="date-wrapper">
 
-                            <input
-                                id="birthDate"
-                                class="date-input"
-                                type="date"
-                                value="1994-01-01"
-                                min="1900-01-01"
-                            >
+                    <div class="property-option">
 
-                            <span class="date-icon">
-                                📅
-                            </span>
+                        <input
+                            type="radio"
+                            name="propertyType"
+                            id="propertySelf"
+                            value="self"
+                        >
 
+                        <label for="propertySelf">
+                            自住
+                        </label>
+
+                    </div>
+
+
+                    <div class="property-option">
+
+                        <input
+                            type="radio"
+                            name="propertyType"
+                            id="propertyInvestment"
+                            value="investment"
+                        >
+
+                        <label for="propertyInvestment">
+                            投資
+                        </label>
+
+                    </div>
+
+
+                    <div class="property-option">
+
+                        <input
+                            type="radio"
+                            name="propertyType"
+                            id="propertyBoth"
+                            value="both"
+                        >
+
+                        <label for="propertyBoth">
+                            兩者皆有
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 自住房 -->
+
+                <div
+                    id="selfPropertyArea"
+                    class="property-fields"
+                >
+
+                    <div class="property-card">
+
+                        <div class="property-card-title">
+                            🏡 自住房
                         </div>
 
+                        <div class="field">
 
-                        <!-- 年齡 -->
+                            <label class="field-label">
+                                目前估計市值
+                            </label>
 
-                        <div class="age-box">
+                            <div class="money-wrap">
 
-                            <div class="age-icon">
-                                🎂
-                            </div>
-
-
-                            <div>
-
-                                <div class="age-text">
-                                    目前年齡
-                                </div>
-
-                                <div
-                                    id="ageValue"
-                                    class="age-value"
+                                <input
+                                    type="number"
+                                    id="propertySelfValue"
+                                    class="money-input"
+                                    min="0"
+                                    step="10000"
+                                    placeholder="例如 10000000"
                                 >
-                                    32 歲
-                                </div>
 
                             </div>
 
@@ -1269,501 +2257,2349 @@
 
                     </div>
 
+                </div>
 
-                    <!-- =====================
-                         扶養家人
-                    ====================== -->
+
+                <!-- 投資房產 -->
+
+                <div
+                    id="investmentPropertyArea"
+                    class="property-fields"
+                >
+
+                    <div class="property-card">
+
+                        <div class="property-card-title">
+                            🏢 投資房產
+                        </div>
+
+                        <div class="field">
+
+                            <label class="field-label">
+                                目前估計市值
+                            </label>
+
+                            <div class="money-wrap">
+
+                                <input
+                                    type="number"
+                                    id="propertyInvestmentValue"
+                                    class="money-input"
+                                    min="0"
+                                    step="10000"
+                                    placeholder="例如 8000000"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="field">
+
+                            <label class="field-label">
+                                每月租金收入
+                            </label>
+
+                            <div class="money-wrap">
+
+                                <input
+                                    type="number"
+                                    id="propertyRentIncome"
+                                    class="money-input"
+                                    min="0"
+                                    step="100"
+                                    placeholder="例如 25000"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-box" style="margin-top:20px;">
+
+                <div class="summary-label">
+                    目前總資產
+                </div>
+
+                <div
+                    class="summary-value"
+                    id="totalAssetsDisplay"
+                >
+                    NT$ 0
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             負債
+        ====================== -->
+
+        <div class="card section-card">
+
+            <h2 class="section-title">
+                💳 目前負債
+            </h2>
+
+            <p class="section-description">
+                「剩餘負債」用來計算淨資產；「每月還款」會計入每月支出
+            </p>
+
+
+            <div class="debt-grid">
+
+                <!-- 房貸 -->
+
+                <div class="debt-item">
+
+                    <div class="debt-item-title">
+                        🏠 房貸
+                    </div>
 
                     <div class="field">
 
                         <label class="field-label">
-                            目前是否有需要扶養的家人？
+                            剩餘貸款
                         </label>
 
-
-                        <div class="choice-group">
-
-
-                            <div class="choice">
-
-                                <input
-                                    type="radio"
-                                    name="dependents"
-                                    id="dependentNo"
-                                    value="no"
-                                    checked
-                                >
-
-                                <label for="dependentNo">
-                                    沒有
-                                </label>
-
-                            </div>
-
-
-                            <div class="choice">
-
-                                <input
-                                    type="radio"
-                                    name="dependents"
-                                    id="dependentYes"
-                                    value="yes"
-                                >
-
-                                <label for="dependentYes">
-                                    有
-                                </label>
-
-                            </div>
-
-
-                        </div>
-
-
-                        <!-- 有扶養才顯示 -->
-
-                        <div
-                            id="dependentSection"
-                            class="dependent-section"
-                            style="display: none;"
-                        >
-
-                            <label class="dependent-label">
-                                目前扶養人數
-                            </label>
-
-
-                            <div class="counter">
-
-
-                                <button
-                                    type="button"
-                                    class="counter-button"
-                                    id="minusButton"
-                                >
-                                    −
-                                </button>
-
-
-                                <div
-                                    id="dependentCount"
-                                    class="counter-value"
-                                >
-                                    1
-                                </div>
-
-
-                                <span class="counter-unit">
-                                    人
-                                </span>
-
-
-                                <button
-                                    type="button"
-                                    class="counter-button"
-                                    id="plusButton"
-                                >
-                                    ＋
-                                </button>
-
-
-                            </div>
-
+                        <div class="money-wrap">
+                            <input
+                                type="number"
+                                id="debtMortgageBalance"
+                                class="money-input"
+                                min="0"
+                                step="1000"
+                                placeholder="0"
+                            >
                         </div>
 
                     </div>
 
 
-                    <!-- =====================
-                         按鈕
-                    ====================== -->
+                    <div class="field">
 
-                    <div class="form-actions">
+                        <label class="field-label">
+                            每月還款
+                        </label>
 
-
-                        <button
-                            type="button"
-                            class="back-button"
-                            id="backButton"
-                        >
-                            ← 回到首頁
-                        </button>
-
-
-                        <button
-                            type="button"
-                            class="next-button"
-                            id="nextButton"
-                        >
-
-                            下一步
-
-                            <span>
-                                →
-                            </span>
-
-                        </button>
-
+                        <div class="money-wrap">
+                            <input
+                                type="number"
+                                id="debtMortgagePayment"
+                                class="money-input"
+                                min="0"
+                                step="100"
+                                placeholder="0"
+                            >
+                        </div>
 
                     </div>
-
 
                 </div>
 
-            </section>
 
-        </main>
+                <!-- 信貸 -->
+
+                <div class="debt-item">
+
+                    <div class="debt-item-title">
+                        💰 信貸／個人貸款
+                    </div>
+
+                    <div class="field">
+
+                        <label class="field-label">
+                            剩餘貸款
+                        </label>
+
+                        <div class="money-wrap">
+                            <input
+                                type="number"
+                                id="debtPersonalBalance"
+                                class="money-input"
+                                min="0"
+                                step="1000"
+                                placeholder="0"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label class="field-label">
+                            每月還款
+                        </label>
+
+                        <div class="money-wrap">
+                            <input
+                                type="number"
+                                id="debtPersonalPayment"
+                                class="money-input"
+                                min="0"
+                                step="100"
+                                placeholder="0"
+                            >
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 車貸 -->
+
+                <div class="debt-item">
+
+                    <div class="debt-item-title">
+                        🚗 車貸
+                    </div>
+
+                    <div class="field">
+
+                        <label class="field-label">
+                            剩餘貸款
+                        </label>
+
+                        <div class="money-wrap">
+                            <input
+                                type="number"
+                                id="debtCarBalance"
+                                class="money-input"
+                                min="0"
+                                step="1000"
+                                placeholder="0"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label class="field-label">
+                            每月還款
+                        </label>
+
+                        <div class="money-wrap">
+                            <input
+                                type="number"
+                                id="debtCarPayment"
+                                class="money-input"
+                                min="0"
+                                step="100"
+                                placeholder="0"
+                            >
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 其他 -->
+
+                <div class="debt-item">
+
+                    <div class="debt-item-title">
+                        📄 其他貸款
+                    </div>
+
+                    <div class="field">
+
+                        <label class="field-label">
+                            剩餘貸款
+                        </label>
+
+                        <div class="money-wrap">
+                            <input
+                                type="number"
+                                id="debtOtherBalance"
+                                class="money-input"
+                                min="0"
+                                step="1000"
+                                placeholder="0"
+                            >
+                        </div>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label class="field-label">
+                            每月還款
+                        </label>
+
+                        <div class="money-wrap">
+                            <input
+                                type="number"
+                                id="debtOtherPayment"
+                                class="money-input"
+                                min="0"
+                                step="100"
+                                placeholder="0"
+                            >
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-grid">
+
+                <div class="summary-box">
+
+                    <div class="summary-label">
+                        總負債
+                    </div>
+
+                    <div
+                        class="summary-value dark"
+                        id="totalDebtDisplay"
+                    >
+                        NT$ 0
+                    </div>
+
+                </div>
+
+
+                <div class="summary-box">
+
+                    <div class="summary-label">
+                        每月貸款還款
+                    </div>
+
+                    <div
+                        class="summary-value dark"
+                        id="monthlyLoanDisplay"
+                    >
+                        NT$ 0
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- 財務結果 -->
+
+            <div class="financial-result">
+
+                <div class="result-title">
+                    ✦ 你的目前財務基準點
+                </div>
+
+                <div
+                    class="net-worth"
+                    id="netWorthDisplay"
+                >
+                    NT$ 0
+                </div>
+
+                <div class="result-note">
+                    目前淨資產＝總資產－總負債
+                </div>
+
+
+                <div class="financial-mini-grid">
+
+                    <div class="mini-result">
+
+                        <div class="mini-result-label">
+                            每月總收入
+                        </div>
+
+                        <div
+                            class="mini-result-value"
+                            id="resultIncome"
+                        >
+                            NT$ 0
+                        </div>
+
+                    </div>
+
+
+                    <div class="mini-result">
+
+                        <div class="mini-result-label">
+                            每月總支出
+                        </div>
+
+                        <div
+                            class="mini-result-value"
+                            id="resultExpense"
+                        >
+                            NT$ 0
+                        </div>
+
+                    </div>
+
+
+                    <div class="mini-result">
+
+                        <div class="mini-result-label">
+                            每月可支配餘額
+                        </div>
+
+                        <div
+                            class="mini-result-value"
+                            id="resultDisposable"
+                        >
+                            NT$ 0
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="page-actions">
+
+            <button
+                type="button"
+                class="back-button"
+                id="financeBackButton"
+            >
+                ← 上一步
+            </button>
+
+            <button
+                type="button"
+                class="next-button"
+                id="financeNextButton"
+            >
+                下一步 →
+            </button>
+
+            <button
+                type="button"
+                class="reset-button"
+                id="resetButtonFinance"
+            >
+                重新開始
+            </button>
+
+        </div>
+
+
+        <div class="save-status">
+            ✓ 財務資料會自動保存
+        </div>
+
+    </section>
+
+</div>
+
+
+<!-- =========================
+     繼續填寫 Modal
+========================= -->
+
+<div
+    class="modal-backdrop"
+    id="resumeModal"
+>
+
+    <div class="modal">
+
+        <div class="modal-icon">
+            👋
+        </div>
+
+        <h2>
+            歡迎回來
+        </h2>
+
+        <p>
+            我們有找到你上次填寫的資料。<br>
+            要繼續上次的試算，還是重新開始？
+        </p>
+
+        <div class="modal-actions">
+
+            <button
+                type="button"
+                class="restart-btn"
+                id="modalRestart"
+            >
+                重新開始
+            </button>
+
+            <button
+                type="button"
+                class="continue-btn"
+                id="modalContinue"
+            >
+                繼續填寫
+            </button>
+
+        </div>
 
     </div>
 
-
-    <!-- =====================================================
-         JavaScript
-    ===================================================== -->
-
-    <script>
-
-        /* =========================
-           頁面
-        ========================= */
-
-        const pageHome =
-            document.getElementById("pageHome");
-
-        const pageBasic =
-            document.getElementById("pageBasic");
+</div>
 
 
-        const startButton =
-            document.getElementById("startButton");
+<!-- =========================
+     確認重新開始 Modal
+========================= -->
 
-        const backButton =
-            document.getElementById("backButton");
+<div
+    class="modal-backdrop"
+    id="confirmResetModal"
+>
 
+    <div class="modal">
 
-        const nextButton =
-            document.getElementById("nextButton");
+        <div class="modal-icon">
+            🔄
+        </div>
 
+        <h2>
+            要重新開始嗎？
+        </h2>
 
-        /* =========================
-           基本資料
-        ========================= */
+        <p>
+            重新開始後，目前已填寫的資料會被清除。
+        </p>
 
-        const userName =
-            document.getElementById("userName");
+        <div class="modal-actions">
 
+            <button
+                type="button"
+                class="restart-btn"
+                id="cancelReset"
+            >
+                先不要
+            </button>
 
-        const birthDate =
-            document.getElementById("birthDate");
+            <button
+                type="button"
+                class="continue-btn"
+                id="confirmReset"
+            >
+                確定重新開始
+            </button>
 
+        </div>
 
-        const ageValue =
-            document.getElementById("ageValue");
+    </div>
 
-
-        const dependentNo =
-            document.getElementById("dependentNo");
-
-
-        const dependentYes =
-            document.getElementById("dependentYes");
-
-
-        const dependentSection =
-            document.getElementById("dependentSection");
-
-
-        const dependentCount =
-            document.getElementById("dependentCount");
-
-
-        const minusButton =
-            document.getElementById("minusButton");
-
-
-        const plusButton =
-            document.getElementById("plusButton");
+</div>
 
 
-        /* =========================
-           預設資料
-        ========================= */
+<div
+    class="toast"
+    id="toast"
+>
+    資料已保存
+</div>
 
-        let dependentNumber = 1;
+
+<script>
+
+    /* =========================================================
+       基本設定
+    ========================================================= */
+
+    const STORAGE_KEY = "freedomCountdownData";
+
+    const defaultData = {
+        currentPage: 1,
+
+        basic: {
+            name: "",
+            birthDate: "1994-01-01",
+            hasDependents: "no",
+            dependentCount: 1
+        },
+
+        finance: {
+            incomeMode: "total",
+
+            incomeTotal: 0,
+            incomeSalary: 0,
+            incomeBonus: 0,
+            incomeDividend: 0,
+            incomeInterest: 0,
+            incomeInvestment: 0,
+            incomeRent: 0,
+            incomeOther: 0,
+
+            fixedMode: "total",
+            fixedTotal: 0,
+            fixedPhone: 0,
+            fixedUtilities: 0,
+            fixedRent: 0,
+            fixedTax: 0,
+            fixedInsurance: 0,
+            fixedParents: 0,
+            fixedSubscription: 0,
+            fixedOther: 0,
+
+            livingMode: "total",
+            livingTotal: 0,
+            livingFood: 0,
+            livingTransport: 0,
+            livingShopping: 0,
+            livingEntertainment: 0,
+            livingTravel: 0,
+            livingOther: 0,
+
+            loanMode: "total",
+            loanTotal: 0,
+            loanMortgage: 0,
+            loanPersonal: 0,
+            loanCar: 0,
+            loanOther: 0,
+
+            assetCash: 0,
+            assetSavings: 0,
+            assetFixedDeposit: 0,
+            assetStocks: 0,
+            assetETF: 0,
+            assetFunds: 0,
+            assetOtherInvestment: 0,
+            assetInsurance: 0,
+
+            propertyType: "none",
+            propertySelfValue: 0,
+            propertyInvestmentValue: 0,
+            propertyRentIncome: 0,
+
+            debtMortgageBalance: 0,
+            debtMortgagePayment: 0,
+            debtPersonalBalance: 0,
+            debtPersonalPayment: 0,
+            debtCarBalance: 0,
+            debtCarPayment: 0,
+            debtOtherBalance: 0,
+            debtOtherPayment: 0
+        }
+    };
 
 
-        /* =========================
-           顯示第二頁
-        ========================= */
+    let appData = loadData();
 
-        function showBasicPage() {
 
-            pageHome.classList.remove("active");
+    /* =========================================================
+       工具
+    ========================================================= */
 
-            pageBasic.classList.add("active");
+    function deepMerge(target, source) {
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+        const output = {
+            ...target
+        };
 
+        if (!source) {
+            return output;
         }
 
-
-        /* =========================
-           顯示首頁
-        ========================= */
-
-        function showHomePage() {
-
-            pageBasic.classList.remove("active");
-
-            pageHome.classList.add("active");
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-
-        }
-
-
-        /* =========================
-           開始試算
-        ========================= */
-
-        startButton.addEventListener(
-            "click",
-            function () {
-
-                showBasicPage();
-
-            }
-        );
-
-
-        /* =========================
-           回首頁
-        ========================= */
-
-        backButton.addEventListener(
-            "click",
-            function () {
-
-                showHomePage();
-
-            }
-        );
-
-
-        /* =========================
-           計算目前年齡
-        ========================= */
-
-        function calculateAge() {
-
-            const birthday =
-                new Date(birthDate.value);
-
-            const today =
-                new Date();
-
-
-            if (isNaN(birthday.getTime())) {
-
-                ageValue.textContent =
-                    "請選擇生日";
-
-                return;
-
-            }
-
-
-            let age =
-                today.getFullYear()
-                -
-                birthday.getFullYear();
-
-
-            const monthDifference =
-                today.getMonth()
-                -
-                birthday.getMonth();
-
-
-            const dayDifference =
-                today.getDate()
-                -
-                birthday.getDate();
-
+        Object.keys(source).forEach(key => {
 
             if (
-                monthDifference < 0
-                ||
-                (
-                    monthDifference === 0
-                    &&
-                    dayDifference < 0
-                )
+                source[key] &&
+                typeof source[key] === "object" &&
+                !Array.isArray(source[key])
             ) {
 
-                age--;
+                output[key] = deepMerge(
+                    target[key] || {},
+                    source[key]
+                );
+
+            } else {
+
+                output[key] = source[key];
 
             }
 
+        });
 
-            ageValue.textContent =
-                age + " 歲";
+        return output;
+    }
+
+
+    function loadData() {
+
+        try {
+
+            const saved = localStorage.getItem(STORAGE_KEY);
+
+            if (!saved) {
+                return JSON.parse(JSON.stringify(defaultData));
+            }
+
+            return deepMerge(
+                JSON.parse(JSON.stringify(defaultData)),
+                JSON.parse(saved)
+            );
+
+        } catch (error) {
+
+            return JSON.parse(JSON.stringify(defaultData));
+
+        }
+
+    }
+
+
+    function saveData() {
+
+        try {
+
+            localStorage.setItem(
+                STORAGE_KEY,
+                JSON.stringify(appData)
+            );
+
+            updateSaveStatus();
+
+        } catch (error) {
+
+            console.log("資料保存失敗", error);
+
+        }
+
+    }
+
+
+    function updateSaveStatus() {
+
+        const statuses =
+            document.querySelectorAll(".save-status");
+
+        statuses.forEach(status => {
+
+            status.textContent =
+                "✓ 已自動保存 " +
+                new Date().toLocaleTimeString("zh-TW", {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                });
+
+        });
+
+    }
+
+
+    function money(value) {
+
+        const number = Number(value) || 0;
+
+        return "NT$ " +
+            number.toLocaleString("zh-TW");
+
+    }
+
+
+    function value(id) {
+
+        const element = document.getElementById(id);
+
+        if (!element) {
+            return 0;
+        }
+
+        return Number(element.value) || 0;
+
+    }
+
+
+    function setValue(id, number) {
+
+        const element = document.getElementById(id);
+
+        if (!element) {
+            return;
+        }
+
+        element.value =
+            number === 0 ? "" : number;
+
+    }
+
+
+    function showToast(message) {
+
+        const toast =
+            document.getElementById("toast");
+
+        toast.textContent = message;
+
+        toast.classList.add("show");
+
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 1800);
+
+    }
+
+
+    /* =========================================================
+       頁面切換
+    ========================================================= */
+
+    function showPage(pageNumber, save = true) {
+
+        document
+            .querySelectorAll(".page")
+            .forEach(page => {
+                page.classList.remove("active");
+            });
+
+
+        if (pageNumber === 1) {
+
+            document
+                .getElementById("pageHome")
+                .classList.add("active");
 
         }
 
 
-        /* =========================
-           生日變更
-        ========================= */
+        if (pageNumber === 2) {
 
-        birthDate.addEventListener(
-            "change",
-            calculateAge
-        );
+            document
+                .getElementById("pageBasic")
+                .classList.add("active");
 
-
-        /* =========================
-           扶養狀況
-        ========================= */
-
-        dependentNo.addEventListener(
-            "change",
-            function () {
-
-                if (dependentNo.checked) {
-
-                    dependentSection.style.display =
-                        "none";
-
-                }
-
-            }
-        );
+        }
 
 
-        dependentYes.addEventListener(
-            "change",
-            function () {
+        if (pageNumber === 3) {
 
-                if (dependentYes.checked) {
+            document
+                .getElementById("pageFinance")
+                .classList.add("active");
 
-                    dependentSection.style.display =
-                        "block";
+            calculateAllFinance();
 
-                }
-
-            }
-        );
+        }
 
 
-        /* =========================
-           扶養人數－
-        ========================= */
+        appData.currentPage = pageNumber;
 
-        minusButton.addEventListener(
-            "click",
-            function () {
+        if (save) {
+            saveData();
+        }
 
-                if (dependentNumber > 1) {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
 
-                    dependentNumber--;
-
-                    dependentCount.textContent =
-                        dependentNumber;
-
-                }
-
-            }
-        );
+    }
 
 
-        /* =========================
-           扶養人數＋
-        ========================= */
+    /* =========================================================
+       首頁
+    ========================================================= */
 
-        plusButton.addEventListener(
-            "click",
-            function () {
+    document
+        .getElementById("startButton")
+        .addEventListener("click", () => {
 
-                if (dependentNumber < 20) {
+            showPage(2);
 
-                    dependentNumber++;
-
-                    dependentCount.textContent =
-                        dependentNumber;
-
-                }
-
-            }
-        );
+        });
 
 
-        /* =========================
-           下一步
-           
-           現階段先保留資料，
-           第三頁完成後再接續。
-        ========================= */
+    /* =========================================================
+       第二頁｜基本資料
+    ========================================================= */
 
-        nextButton.addEventListener(
-            "click",
-            function () {
+    const userName =
+        document.getElementById("userName");
 
-                const data = {
+    const birthDate =
+        document.getElementById("birthDate");
 
-                    name:
-                        userName.value.trim(),
+    const ageDisplay =
+        document.getElementById("ageDisplay");
 
-                    birthDate:
-                        birthDate.value,
+    const dependentCount =
+        document.getElementById("dependentCount");
 
-                    age:
-                        ageValue.textContent,
-
-                    hasDependents:
-                        dependentYes.checked,
-
-                    dependentCount:
-                        dependentYes.checked
-                            ? dependentNumber
-                            : 0
-
-                };
+    const dependentCountField =
+        document.getElementById("dependentCountField");
 
 
-                /*
-                 * 暫存資料
-                 * 第三頁製作時會直接使用
-                 */
+    function calculateAge() {
 
-                localStorage.setItem(
-                    "freedomCountdownBasicData",
-                    JSON.stringify(data)
-                );
+        if (!birthDate.value) {
+
+            ageDisplay.textContent =
+                "🎂 請選擇出生年月日";
+
+            return;
+
+        }
+
+        const birth =
+            new Date(
+                birthDate.value + "T00:00:00"
+            );
+
+        const today =
+            new Date();
+
+        let age =
+            today.getFullYear() -
+            birth.getFullYear();
+
+        const monthDifference =
+            today.getMonth() -
+            birth.getMonth();
+
+        if (
+            monthDifference < 0 ||
+            (
+                monthDifference === 0 &&
+                today.getDate() < birth.getDate()
+            )
+        ) {
+
+            age--;
+
+        }
+
+        if (age < 0) {
+
+            ageDisplay.textContent =
+                "🎂 請確認出生年月日";
+
+            return;
+
+        }
+
+        ageDisplay.textContent =
+            `🎂 目前年齡：${age} 歲`;
+
+    }
 
 
-                alert(
-                    "基本資料已完成！\n\n下一步將進入財務資料。"
-                );
+    function updateDependentUI() {
 
-            }
-        );
+        const selected =
+            document.querySelector(
+                'input[name="hasDependents"]:checked'
+            );
+
+        const hasDependents =
+            selected ? selected.value : "no";
 
 
-        /* =========================
-           初始化年齡
-        ========================= */
+        if (hasDependents === "yes") {
+
+            dependentCountField.style.display =
+                "block";
+
+        } else {
+
+            dependentCountField.style.display =
+                "none";
+
+        }
+
+    }
+
+
+    function syncBasicToData() {
+
+        const selected =
+            document.querySelector(
+                'input[name="hasDependents"]:checked'
+            );
+
+        appData.basic.name =
+            userName.value.trim();
+
+        appData.basic.birthDate =
+            birthDate.value;
+
+        appData.basic.hasDependents =
+            selected ? selected.value : "no";
+
+        appData.basic.dependentCount =
+            Number(dependentCount.textContent) || 1;
+
+    }
+
+
+    function restoreBasicData() {
+
+        userName.value =
+            appData.basic.name || "";
+
+        birthDate.value =
+            appData.basic.birthDate ||
+            "1994-01-01";
+
+
+        if (
+            appData.basic.hasDependents === "yes"
+        ) {
+
+            document.getElementById(
+                "dependentsYes"
+            ).checked = true;
+
+        } else {
+
+            document.getElementById(
+                "dependentsNo"
+            ).checked = true;
+
+        }
+
+
+        dependentCount.textContent =
+            Math.max(
+                1,
+                Number(
+                    appData.basic.dependentCount
+                ) || 1
+            );
+
+
+        updateDependentUI();
 
         calculateAge();
 
-    </script>
+    }
+
+
+    userName.addEventListener("input", () => {
+
+        document
+            .getElementById("nameField")
+            .classList.remove("has-error");
+
+        syncBasicToData();
+        saveData();
+
+    });
+
+
+    birthDate.addEventListener("change", () => {
+
+        document
+            .getElementById("birthField")
+            .classList.remove("has-error");
+
+        calculateAge();
+
+        syncBasicToData();
+        saveData();
+
+    });
+
+
+    document
+        .querySelectorAll(
+            'input[name="hasDependents"]'
+        )
+        .forEach(input => {
+
+            input.addEventListener("change", () => {
+
+                updateDependentUI();
+
+                syncBasicToData();
+                saveData();
+
+            });
+
+        });
+
+
+    document
+        .getElementById("minusDependent")
+        .addEventListener("click", () => {
+
+            let count =
+                Number(dependentCount.textContent) || 1;
+
+            count =
+                Math.max(1, count - 1);
+
+            dependentCount.textContent =
+                count;
+
+            syncBasicToData();
+            saveData();
+
+        });
+
+
+    document
+        .getElementById("plusDependent")
+        .addEventListener("click", () => {
+
+            let count =
+                Number(dependentCount.textContent) || 1;
+
+            count =
+                Math.min(20, count + 1);
+
+            dependentCount.textContent =
+                count;
+
+            syncBasicToData();
+            saveData();
+
+        });
+
+
+    function validateBasicForm() {
+
+        let valid = true;
+
+        const nameField =
+            document.getElementById("nameField");
+
+        const birthField =
+            document.getElementById("birthField");
+
+        nameField.classList.remove("has-error");
+        birthField.classList.remove("has-error");
+
+
+        if (!userName.value.trim()) {
+
+            nameField.classList.add("has-error");
+
+            valid = false;
+
+        }
+
+
+        if (!birthDate.value) {
+
+            birthField.classList.add("has-error");
+
+            valid = false;
+
+        }
+
+
+        syncBasicToData();
+        saveData();
+
+
+        if (!valid) {
+
+            const firstError =
+                document.querySelector(
+                    ".has-error"
+                );
+
+            if (firstError) {
+
+                firstError.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            }
+
+        }
+
+        return valid;
+
+    }
+
+
+    document
+        .getElementById("basicNextButton")
+        .addEventListener("click", () => {
+
+            if (!validateBasicForm()) {
+                return;
+            }
+
+            showPage(3);
+
+        });
+
+
+    document
+        .getElementById("basicBackButton")
+        .addEventListener("click", () => {
+
+            syncBasicToData();
+
+            showPage(1);
+
+        });
+
+
+    /* =========================================================
+       第三頁｜模式切換
+    ========================================================= */
+
+    function setupModeButtons() {
+
+        document
+            .querySelectorAll(".mode-button")
+            .forEach(button => {
+
+                button.addEventListener("click", () => {
+
+                    const mode =
+                        button.dataset.mode;
+
+                    const selectedValue =
+                        button.dataset.value;
+
+
+                    document
+                        .querySelectorAll(
+                            `.mode-button[data-mode="${mode}"]`
+                        )
+                        .forEach(item => {
+
+                            item.classList.remove(
+                                "active"
+                            );
+
+                        });
+
+
+                    button.classList.add("active");
+
+
+                    const totalArea =
+                        document.getElementById(
+                            mode + "TotalArea"
+                        );
+
+                    const detailArea =
+                        document.getElementById(
+                            mode + "DetailArea"
+                        );
+
+
+                    if (selectedValue === "detail") {
+
+                        totalArea.style.display =
+                            "none";
+
+                        detailArea.classList.add(
+                            "show"
+                        );
+
+                    } else {
+
+                        totalArea.style.display =
+                            "block";
+
+                        detailArea.classList.remove(
+                            "show"
+                        );
+
+                    }
+
+
+                    appData.finance[
+                        mode + "Mode"
+                    ] = selectedValue;
+
+                    calculateAllFinance();
+                    saveData();
+
+                });
+
+            });
+
+    }
+
+
+    /* =========================================================
+       第三頁｜收入計算
+    ========================================================= */
+
+    const incomeDetailIds = [
+        "incomeSalary",
+        "incomeBonus",
+        "incomeDividend",
+        "incomeInterest",
+        "incomeInvestment",
+        "incomeRent",
+        "incomeOther"
+    ];
+
+
+    function calculateIncome() {
+
+        const detailTotal =
+            incomeDetailIds.reduce(
+                (sum, id) =>
+                    sum + value(id),
+                0
+            );
+
+
+        document.getElementById(
+            "incomeDetailTotal"
+        ).textContent =
+            money(detailTotal);
+
+
+        if (
+            appData.finance.incomeMode ===
+            "detail"
+        ) {
+
+            return detailTotal;
+
+        }
+
+        return value("incomeTotal");
+
+    }
+
+
+    /* =========================================================
+       第三頁｜支出計算
+    ========================================================= */
+
+    const fixedDetailIds = [
+        "fixedPhone",
+        "fixedUtilities",
+        "fixedRent",
+        "fixedTax",
+        "fixedInsurance",
+        "fixedParents",
+        "fixedSubscription",
+        "fixedOther"
+    ];
+
+
+    const livingDetailIds = [
+        "livingFood",
+        "livingTransport",
+        "livingShopping",
+        "livingEntertainment",
+        "livingTravel",
+        "livingOther"
+    ];
+
+
+    const loanDetailIds = [
+        "loanMortgage",
+        "loanPersonal",
+        "loanCar",
+        "loanOther"
+    ];
+
+
+    function sumFields(ids) {
+
+        return ids.reduce(
+            (sum, id) =>
+                sum + value(id),
+            0
+        );
+
+    }
+
+
+    function calculateFixed() {
+
+        const total =
+            sumFields(fixedDetailIds);
+
+        document.getElementById(
+            "fixedDetailTotal"
+        ).textContent =
+            money(total);
+
+
+        return appData.finance.fixedMode === "detail"
+            ? total
+            : value("fixedTotal");
+
+    }
+
+
+    function calculateLiving() {
+
+        const total =
+            sumFields(livingDetailIds);
+
+        document.getElementById(
+            "livingDetailTotal"
+        ).textContent =
+            money(total);
+
+
+        return appData.finance.livingMode === "detail"
+            ? total
+            : value("livingTotal");
+
+    }
+
+
+    function calculateLoan() {
+
+        const total =
+            sumFields(loanDetailIds);
+
+        document.getElementById(
+            "loanDetailTotal"
+        ).textContent =
+            money(total);
+
+
+        return appData.finance.loanMode === "detail"
+            ? total
+            : value("loanTotal");
+
+    }
+
+
+    /* =========================================================
+       第三頁｜資產計算
+    ========================================================= */
+
+    const assetIds = [
+        "assetCash",
+        "assetSavings",
+        "assetFixedDeposit",
+        "assetStocks",
+        "assetETF",
+        "assetFunds",
+        "assetOtherInvestment",
+        "assetInsurance"
+    ];
+
+
+    function calculateAssets() {
+
+        let total =
+            sumFields(assetIds);
+
+
+        const propertyType =
+            document.querySelector(
+                'input[name="propertyType"]:checked'
+            );
+
+
+        const type =
+            propertyType
+                ? propertyType.value
+                : "none";
+
+
+        if (
+            type === "self" ||
+            type === "both"
+        ) {
+
+            total +=
+                value("propertySelfValue");
+
+        }
+
+
+        if (
+            type === "investment" ||
+            type === "both"
+        ) {
+
+            total +=
+                value("propertyInvestmentValue");
+
+        }
+
+
+        document.getElementById(
+            "totalAssetsDisplay"
+        ).textContent =
+            money(total);
+
+
+        return total;
+
+    }
+
+
+    /* =========================================================
+       第三頁｜負債計算
+    ========================================================= */
+
+    const debtBalanceIds = [
+        "debtMortgageBalance",
+        "debtPersonalBalance",
+        "debtCarBalance",
+        "debtOtherBalance"
+    ];
+
+
+    const debtPaymentIds = [
+        "debtMortgagePayment",
+        "debtPersonalPayment",
+        "debtCarPayment",
+        "debtOtherPayment"
+    ];
+
+
+    function calculateDebt() {
+
+        const totalDebt =
+            sumFields(debtBalanceIds);
+
+
+        const monthlyPayment =
+            sumFields(debtPaymentIds);
+
+
+        document.getElementById(
+            "totalDebtDisplay"
+        ).textContent =
+            money(totalDebt);
+
+
+        document.getElementById(
+            "monthlyLoanDisplay"
+        ).textContent =
+            money(monthlyPayment);
+
+
+        return {
+            totalDebt,
+            monthlyPayment
+        };
+
+    }
+
+
+    /* =========================================================
+       第三頁｜總計
+    ========================================================= */
+
+    function calculateAllFinance() {
+
+        const income =
+            calculateIncome();
+
+        const fixed =
+            calculateFixed();
+
+        const living =
+            calculateLiving();
+
+        const loan =
+            calculateLoan();
+
+        const assets =
+            calculateAssets();
+
+        const debt =
+            calculateDebt();
+
+
+        const totalExpense =
+            fixed +
+            living +
+            debt.monthlyPayment;
+
+
+        const disposable =
+            income -
+            totalExpense;
+
+
+        const netWorth =
+            assets -
+            debt.totalDebt;
+
+
+        document.getElementById(
+            "monthlyExpenseDisplay"
+        ).textContent =
+            money(totalExpense);
+
+
+        document.getElementById(
+            "disposableDisplay"
+        ).textContent =
+            money(disposable);
+
+
+        document.getElementById(
+            "netWorthDisplay"
+        ).textContent =
+            money(netWorth);
+
+
+        document.getElementById(
+            "resultIncome"
+        ).textContent =
+            money(income);
+
+
+        document.getElementById(
+            "resultExpense"
+        ).textContent =
+            money(totalExpense);
+
+
+        document.getElementById(
+            "resultDisposable"
+        ).textContent =
+            money(disposable);
+
+
+        syncFinanceToData();
+
+    }
+
+
+    /* =========================================================
+       房產 UI
+    ========================================================= */
+
+    function updatePropertyUI() {
+
+        const selected =
+            document.querySelector(
+                'input[name="propertyType"]:checked'
+            );
+
+
+        const type =
+            selected
+                ? selected.value
+                : "none";
+
+
+        const selfArea =
+            document.getElementById(
+                "selfPropertyArea"
+            );
+
+        const investmentArea =
+            document.getElementById(
+                "investmentPropertyArea"
+            );
+
+
+        selfArea.classList.remove("show");
+        investmentArea.classList.remove("show");
+
+
+        if (
+            type === "self" ||
+            type === "both"
+        ) {
+
+            selfArea.classList.add("show");
+
+        }
+
+
+        if (
+            type === "investment" ||
+            type === "both"
+        ) {
+
+            investmentArea.classList.add(
+                "show"
+            );
+
+        }
+
+
+        calculateAllFinance();
+        saveData();
+
+    }
+
+
+    document
+        .querySelectorAll(
+            'input[name="propertyType"]'
+        )
+        .forEach(input => {
+
+            input.addEventListener(
+                "change",
+                updatePropertyUI
+            );
+
+        });
+
+
+    /* =========================================================
+       財務資料同步
+    ========================================================= */
+
+    function syncFinanceToData() {
+
+        const f =
+            appData.finance;
+
+
+        f.incomeTotal =
+            value("incomeTotal");
+
+        f.incomeSalary =
+            value("incomeSalary");
+
+        f.incomeBonus =
+            value("incomeBonus");
+
+        f.incomeDividend =
+            value("incomeDividend");
+
+        f.incomeInterest =
+            value("incomeInterest");
+
+        f.incomeInvestment =
+            value("incomeInvestment");
+
+        f.incomeRent =
+            value("incomeRent");
+
+        f.incomeOther =
+            value("incomeOther");
+
+
+        f.fixedTotal =
+            value("fixedTotal");
+
+        f.fixedPhone =
+            value("fixedPhone");
+
+        f.fixedUtilities =
+            value("fixedUtilities");
+
+        f.fixedRent =
+            value("fixedRent");
+
+        f.fixedTax =
+            value("fixedTax");
+
+        f.fixedInsurance =
+            value("fixedInsurance");
+
+        f.fixedParents =
+            value("fixedParents");
+
+        f.fixedSubscription =
+            value("fixedSubscription");
+
+        f.fixedOther =
+            value("fixedOther");
+
+
+        f.livingTotal =
+            value("livingTotal");
+
+        f.livingFood =
+            value("livingFood");
+
+        f.livingTransport =
+            value("livingTransport");
+
+        f.livingShopping =
+            value("livingShopping");
+
+        f.livingEntertainment =
+            value("livingEntertainment");
+
+        f.livingTravel =
+            value("livingTravel");
+
+        f.livingOther =
+            value("livingOther");
+
+
+        f.loanTotal =
+            value("loanTotal");
+
+        f.loanMortgage =
+            value("loanMortgage");
+
+        f.loanPersonal =
+            value("loanPersonal");
+
+        f.loanCar =
+            value("loanCar");
+
+        f.loanOther =
+            value("loanOther");
+
+
+        assetIds.forEach(id => {
+
+            f[id] =
+                value(id);
+
+        });
+
+
+        f.propertySelfValue =
+            value("propertySelfValue");
+
+        f.propertyInvestmentValue =
+            value("propertyInvestmentValue");
+
+        f.propertyRentIncome =
+            value("propertyRentIncome");
+
+
+        debtBalanceIds.forEach(id => {
+
+            f[id] =
+                value(id);
+
+        });
+
+
+        debtPaymentIds.forEach(id => {
+
+            f[id] =
+                value(id);
+
+        });
+
+
+        const propertyType =
+            document.querySelector(
+                'input[name="propertyType"]:checked'
+            );
+
+
+        f.propertyType =
+            propertyType
+                ? propertyType.value
+                : "none";
+
+    }
+
+
+    /* =========================================================
+       財務資料恢復
+    ========================================================= */
+
+    function restoreFinanceData() {
+
+        const f =
+            appData.finance;
+
+
+        /* 收入 */
+
+        setValue(
+            "incomeTotal",
+            f.incomeTotal
+        );
+
+        setValue(
+            "incomeSalary",
+            f.incomeSalary
+        );
+
+        setValue(
+            "incomeBonus",
+            f.incomeBonus
+        );
+
+        setValue(
+            "incomeDividend",
+            f.incomeDividend
+        );
+
+        setValue(
+            "incomeInterest",
+            f.incomeInterest
+        );
+
+        setValue(
+            "incomeInvestment",
+            f.incomeInvestment
+        );
+
+        setValue(
+            "incomeRent",
+            f.incomeRent
+        );
+
+        setValue(
+            "incomeOther",
+            f.incomeOther
+        );
+
+
+        /* 固定支出 */
+
+        setValue(
+            "fixedTotal",
+            f.fixedTotal
+        );
+
+        fixedDetailIds.forEach(id => {
+
+            setValue(
+                id,
+                f[id]
+            );
+
+        });
+
+
+        /* 生活支出 */
+
+        setValue(
+            "livingTotal",
+            f.livingTotal
+        );
+
+        livingDetailIds.forEach(id => {
+
+            setValue(
+                id,
+                f[id]
+            );
+
+        });
+
+
+        /* 貸款 */
+
+        setValue(
+            "loanTotal",
+            f.loanTotal
+        );
+
+        loanDetailIds.forEach(id => {
+
+            setValue(
+                id,
+                f[id]
+            );
+
+        });
+
+
+        /* 資產 */
+
+        assetIds.forEach(id => {
+
+            setValue(
+                id,
+                f[id]
+            );
+
+        });
+
+
+        /* 房產 */
+
+        setValue(
+            "propertySelfValue",
+            f.propertySelfValue
+        );
+
+        setValue(
+            "propertyInvestmentValue",
+            f.propertyInvestmentValue
+        );
+
+        setValue(
+            "propertyRentIncome",
+            f.propertyRentIncome
+        );
+
+
+        /* 負債 */
+
+        debtBalanceIds.forEach(id => {
+
+            setValue(
+                id,
+                f[id]
+            );
+
+        });
+
+
+        debtPaymentIds.forEach(id => {
+
+            setValue(
+                id,
+                f[id]
+            );
+
+        });
+
+
+        /* 模式 */
+
+        document
+            .querySelectorAll(".mode-button")
+            .forEach(button => {
+
+                const mode =
+                    button.dataset.mode;
+
+                const selected =
+                    button.dataset.value ===
+                    f[mode + "Mode"];
+
+
+                button.classList.toggle(
+                    "active",
+                    selected
+                );
+
+            });
+
+
+        [
+            "income",
+            "fixed",
+            "living",
+            "loan"
+        ].forEach(mode => {
+
+            const currentMode =
+                f[mode + "Mode"];
+
+
+            const totalArea =
+                document.getElementById(
+                    mode + "TotalArea"
+                );
+
+            const detailArea =
+                document.getElementById(
+                    mode + "DetailArea"
+                );
+
+
+            if (
+                currentMode === "detail"
+            ) {
+
+                totalArea.style.display =
+                    "none";
+
+                detailArea.classList.add(
+                    "show"
+                );
+
+            } else {
+
+                totalArea.style.display =
+                    "block";
+
+                detailArea.classList.remove(
+                    "show"
+                );
+
+            }
+
+        });
+
+
+        /* 房產類型 */
+
+        const propertyRadio =
+            document.querySelector(
+                `input[name="propertyType"][value="${f.propertyType}"]`
+            );
+
+
+        if (propertyRadio) {
+
+            propertyRadio.checked =
+                true;
+
+        }
+
+
+        updatePropertyUI();
+
+        calculateAllFinance();
+
+    }
+
+
+    /* =========================================================
+       所有財務欄位即時保存
+    ========================================================= */
+
+    const allFinanceInputs =
+        document.querySelectorAll(
+            "#pageFinance input"
+        );
+
+
+    allFinanceInputs.forEach(input => {
+
+        input.addEventListener(
+            "input",
+            () => {
+
+                calculateAllFinance();
+                saveData();
+
+            }
+        );
+
+    });
+
+
+    /* =========================================================
+       第三頁上一頁
+    ========================================================= */
+
+    document
+        .getElementById("financeBackButton")
+        .addEventListener("click", () => {
+
+            syncFinanceToData();
+            saveData();
+
+            showPage(2);
+
+        });
+
+
+    /* =========================================================
+       第三頁下一步
+       第四頁完成後再接
+    ========================================================= */
+
+    document
+        .getElementById("financeNextButton")
+        .addEventListener("click", () => {
+
+            syncFinanceToData();
+            saveData();
+
+            showToast(
+                "第三頁資料已保存 ✓"
+            );
+
+        });
+
+
+    /* =========================================================
+       重新開始
+    ========================================================= */
+
+    let resetSource = "page";
+
+
+    function openResetModal(source = "page") {
+
+        resetSource = source;
+
+        document
+            .getElementById("confirmResetModal")
+            .classList.add("show");
+
+    }
+
+
+    function closeResetModal() {
+
+        document
+            .getElementById("confirmResetModal")
+            .classList.remove("show");
+
+    }
+
+
+    document
+        .getElementById("resetButtonBasic")
+        .addEventListener(
+            "click",
+            () => openResetModal("page")
+        );
+
+
+    document
+        .getElementById("resetButtonFinance")
+        .addEventListener(
+            "click",
+            () => openResetModal("page")
+        );
+
+
+    document
+        .getElementById("cancelReset")
+        .addEventListener(
+            "click",
+            closeResetModal
+        );
+
+
+    document
+        .getElementById("confirmReset")
+        .addEventListener("click", () => {
+
+            localStorage.removeItem(
+                STORAGE_KEY
+            );
+
+            appData =
+                JSON.parse(
+                    JSON.stringify(defaultData)
+                );
+
+
+            closeResetModal();
+
+            restoreBasicData();
+            restoreFinanceData();
+
+            showPage(1);
+
+            showToast(
+                "已重新開始 ✨"
+            );
+
+        });
+
+
+    /* =========================================================
+       回訪使用者
+    ========================================================= */
+
+    function hasSavedProgress() {
+
+        try {
+
+            return Boolean(
+                localStorage.getItem(
+                    STORAGE_KEY
+                )
+            );
+
+        } catch (error) {
+
+            return false;
+
+        }
+
+    }
+
+
+    function openResumeModal() {
+
+        document
+            .getElementById("resumeModal")
+            .classList.add("show");
+
+    }
+
+
+    function closeResumeModal() {
+
+        document
+            .getElementById("resumeModal")
+            .classList.remove("show");
+
+    }
+
+
+    document
+        .getElementById("modalContinue")
+        .addEventListener("click", () => {
+
+            closeResumeModal();
+
+            showPage(
+                appData.currentPage || 1,
+                false
+            );
+
+        });
+
+
+    document
+        .getElementById("modalRestart")
+        .addEventListener("click", () => {
+
+            closeResumeModal();
+
+            openResetModal("modal");
+
+        });
+
+
+    /* =========================================================
+       初始化
+    ========================================================= */
+
+    setupModeButtons();
+
+    restoreBasicData();
+
+    restoreFinanceData();
+
+
+    if (hasSavedProgress()) {
+
+        setTimeout(() => {
+
+            openResumeModal();
+
+        }, 350);
+
+    } else {
+
+        showPage(1, false);
+
+    }
+
+
+    /* =========================================================
+       離開頁面前再保存一次
+    ========================================================= */
+
+    window.addEventListener(
+        "beforeunload",
+        () => {
+
+            syncBasicToData();
+            syncFinanceToData();
+            saveData();
+
+        }
+    );
+
+</script>
 
 </body>
-
 </html>
