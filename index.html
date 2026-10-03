@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f7f5ef">
-  <meta name="description" content="自由倒數｜財務自由試算工具">
+  <meta name="theme-color" content="#F6F2E9">
+  <meta name="description" content="自由倒數｜試算工具">
   <title>自由倒數｜試算工具</title>
 
   <style>
@@ -15,16 +15,30 @@
     }
 
     :root {
-      --bg: #f7f5ef;
-      --card: #ffffff;
-      --green-dark: #315c4a;
-      --green: #4f8069;
-      --green-light: #e6f0ea;
-      --green-soft: #eef5f0;
-      --text: #26352f;
-      --text-light: #6f7d76;
-      --line: #dce6e0;
-      --shadow: 0 10px 30px rgba(55, 76, 66, 0.08);
+      --bg: #F6F2E9;
+      --paper: #FFFDF8;
+
+      --green-dark: #29483B;
+      --green: #5E806B;
+      --green-soft: #E4EEE7;
+
+      --blue-soft: #E5EEF0;
+      --blue-text: #52727A;
+
+      --peach-soft: #F5E7D9;
+      --peach-text: #9A6E4D;
+
+      --gold-soft: #F2EBD5;
+      --gold-text: #8B7540;
+
+      --text: #2D3934;
+      --muted: #748078;
+
+      --border: rgba(83, 111, 97, 0.14);
+
+      --shadow:
+        0 16px 38px rgba(59, 76, 67, 0.09),
+        0 3px 10px rgba(59, 76, 67, 0.04);
     }
 
     html,
@@ -40,368 +54,696 @@
         "PingFang TC",
         "Microsoft JhengHei",
         sans-serif;
-      background: var(--bg);
+
+      background:
+        radial-gradient(
+          circle at 92% 4%,
+          rgba(218, 231, 222, 0.7) 0,
+          rgba(218, 231, 222, 0.25) 12%,
+          transparent 27%
+        ),
+        var(--bg);
+
       color: var(--text);
       -webkit-font-smoothing: antialiased;
     }
 
-    button,
     a {
-      font-family: inherit;
+      color: inherit;
     }
 
     .page {
       position: relative;
       min-height: 100vh;
-      min-height: 100svh;
       overflow: hidden;
-      display: flex;
-      justify-content: center;
     }
 
-    /* 裝飾圓 */
-    .circle {
+    /* ------------------------------
+       裝飾
+    ------------------------------ */
+
+    .decor {
       position: absolute;
       border-radius: 50%;
       pointer-events: none;
       z-index: 0;
     }
 
-    .circle.one {
+    .decor-1 {
       width: 150px;
       height: 150px;
-      background: #e6f0ea;
-      top: -75px;
+      top: -70px;
       right: -55px;
+      background: rgba(204, 222, 211, 0.48);
     }
 
-    .circle.two {
-      width: 95px;
-      height: 95px;
-      background: #edf3ee;
-      bottom: 70px;
+    .decor-2 {
+      width: 90px;
+      height: 90px;
       left: -45px;
+      bottom: 80px;
+      background: rgba(239, 224, 205, 0.5);
     }
 
-    .circle.three {
-      width: 42px;
-      height: 42px;
-      background: #dfece5;
-      top: 23%;
-      left: 7%;
+    .decor-3 {
+      width: 34px;
+      height: 34px;
+      left: 8%;
+      top: 22%;
+      background: rgba(221, 233, 225, 0.75);
     }
 
     .container {
       position: relative;
       z-index: 1;
+
       width: 100%;
       max-width: 720px;
+
       min-height: 100vh;
-      min-height: 100svh;
-      padding: 30px 18px 22px;
+
+      margin: 0 auto;
+
+      padding:
+        28px
+        18px
+        20px;
+
       display: flex;
       flex-direction: column;
     }
 
-    /* 頂部 */
+    /* ------------------------------
+       品牌
+    ------------------------------ */
+
     .brand {
       text-align: center;
-      margin-top: 2px;
     }
 
     .brand-title {
-      font-size: clamp(20px, 5.4vw, 27px);
-      font-weight: 800;
-      letter-spacing: 0.04em;
       color: var(--green-dark);
+
+      font-size: clamp(20px, 5.4vw, 27px);
+
+      font-weight: 800;
+
+      letter-spacing: 0.04em;
+
       line-height: 1.3;
     }
 
-    .brand-subtitle {
-      margin-top: 9px;
-      font-size: clamp(13px, 3.4vw, 15px);
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      color: var(--green);
-      line-height: 1.4;
-    }
+    /* ------------------------------
+       主卡
+    ------------------------------ */
 
-    /* 主標題 */
-    .hero {
-      text-align: center;
-      margin-top: clamp(34px, 8vh, 58px);
-    }
+    .hero-card {
+      position: relative;
 
-    .hero h1 {
-      font-size: clamp(27px, 7.3vw, 38px);
-      line-height: 1.35;
-      font-weight: 800;
-      letter-spacing: 0.02em;
-      color: var(--green-dark);
-    }
+      margin-top: clamp(24px, 5vh, 38px);
 
-    .hero-description {
-      margin: 17px auto 0;
-      max-width: 500px;
-      font-size: clamp(15px, 4vw, 17px);
-      line-height: 1.9;
-      color: var(--text-light);
-      letter-spacing: 0.02em;
-    }
+      padding:
+        clamp(25px, 6vw, 40px)
+        clamp(18px, 5vw, 36px)
+        clamp(26px, 6vw, 38px);
 
-    /* 三張特色卡 */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: clamp(28px, 6vh, 42px);
-    }
+      border-radius: 28px;
 
-    .feature-card {
-      min-width: 0;
-      background: var(--card);
-      border: 1px solid rgba(220, 230, 224, 0.9);
-      border-radius: 18px;
-      padding: 17px 9px 16px;
-      text-align: center;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 252, 0.98),
+          rgba(251, 250, 243, 0.98)
+        );
+
+      border: 1px solid rgba(100, 126, 112, 0.16);
+
       box-shadow: var(--shadow);
+
+      text-align: center;
+
+      overflow: hidden;
     }
 
-    .feature-icon {
-      width: 40px;
-      height: 40px;
-      margin: 0 auto 10px;
+    .hero-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 130px;
+      height: 130px;
+
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--green-soft);
-      font-size: 21px;
+
+      top: -65px;
+      right: -45px;
+
+      background: rgba(221, 235, 225, 0.65);
     }
 
-    .feature-title {
-      font-size: clamp(14px, 3.7vw, 17px);
-      line-height: 1.4;
-      font-weight: 800;
+    .hero-card::after {
+      content: "";
+
+      position: absolute;
+
+      width: 75px;
+      height: 75px;
+
+      border-radius: 50%;
+
+      bottom: -38px;
+      left: -22px;
+
+      background: rgba(244, 230, 211, 0.48);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .fire-label {
+      display: inline-block;
+
+      color: var(--green);
+
+      font-size: clamp(13px, 3.4vw, 15px);
+
+      font-weight: 700;
+
+      letter-spacing: 0.19em;
+
+      margin-bottom: 19px;
+    }
+
+    .slogan {
       color: var(--green-dark);
-      white-space: nowrap;
+
+      font-size: clamp(26px, 7.1vw, 38px);
+
+      font-weight: 850;
+
+      line-height: 1.42;
+
+      letter-spacing: 0.015em;
     }
 
-    .feature-text {
-      margin-top: 8px;
-      font-size: clamp(11px, 3vw, 13px);
-      line-height: 1.65;
-      color: var(--text-light);
-      word-break: keep-all;
+    .slogan .highlight {
+      color: #4E876C;
+
+      display: inline-block;
     }
 
-    /* 開始按鈕 */
-    .start-area {
-      display: flex;
-      justify-content: center;
-      margin-top: clamp(28px, 5vh, 40px);
+    .description {
+      margin-top: 19px;
+
+      color: var(--muted);
+
+      font-size: clamp(14px, 3.8vw, 17px);
+
+      line-height: 1.85;
+
+      letter-spacing: 0.02em;
     }
+
+    /* ------------------------------
+       開始按鈕
+    ------------------------------ */
 
     .start-button {
       display: inline-flex;
+
       align-items: center;
       justify-content: center;
-      min-width: 210px;
-      min-height: 50px;
-      padding: 12px 24px;
-      border: 0;
+
+      margin-top: 27px;
+
+      min-width: 225px;
+      min-height: 52px;
+
+      padding: 13px 25px;
+
       border-radius: 999px;
-      background: var(--green);
+
+      background:
+        linear-gradient(
+          135deg,
+          #5D806A,
+          #466C58
+        );
+
       color: #ffffff;
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
+
       text-decoration: none;
-      box-shadow: 0 8px 20px rgba(79, 128, 105, 0.22);
+
+      font-size: 16px;
+
+      font-weight: 750;
+
+      letter-spacing: 0.04em;
+
+      box-shadow:
+        0 9px 20px rgba(68, 104, 84, 0.2);
+
       transition:
         transform 0.18s ease,
-        box-shadow 0.18s ease,
-        background 0.18s ease;
+        box-shadow 0.18s ease;
     }
 
     .start-button:hover {
-      background: var(--green-dark);
-      transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(79, 128, 105, 0.25);
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 12px 25px rgba(68, 104, 84, 0.25);
     }
 
     .start-button:active {
       transform: translateY(1px);
-      box-shadow: 0 5px 12px rgba(79, 128, 105, 0.18);
     }
 
-    /* 頁尾 */
+    /* ------------------------------
+       三張功能卡
+    ------------------------------ */
+
+    .features {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 10px;
+
+      margin-top: 15px;
+    }
+
+    .feature-card {
+      min-width: 0;
+
+      border-radius: 21px;
+
+      padding:
+        17px 8px
+        18px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+
+      box-shadow:
+        0 9px 24px rgba(65, 82, 73, 0.07);
+
+      transition:
+        transform 0.18s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .feature-card.current {
+      background: #F1F6F2;
+    }
+
+    .feature-card.goal {
+      background: #FBF2E9;
+    }
+
+    .feature-card.future {
+      background: #F7F3E4;
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+
+      margin:
+        0 auto
+        10px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      font-size: 21px;
+    }
+
+    .current .feature-icon {
+      background: var(--green-soft);
+    }
+
+    .goal .feature-icon {
+      background: var(--peach-soft);
+    }
+
+    .future .feature-icon {
+      background: var(--gold-soft);
+    }
+
+    .feature-title {
+      font-size: clamp(14px, 3.7vw, 17px);
+
+      line-height: 1.4;
+
+      font-weight: 800;
+
+      white-space: nowrap;
+    }
+
+    .current .feature-title {
+      color: var(--green-dark);
+    }
+
+    .goal .feature-title {
+      color: var(--peach-text);
+    }
+
+    .future .feature-title {
+      color: var(--gold-text);
+    }
+
+    .feature-text {
+      margin-top: 8px;
+
+      font-size: clamp(10.5px, 2.9vw, 13px);
+
+      line-height: 1.65;
+
+      color: var(--muted);
+
+      word-break: keep-all;
+    }
+
+    /* ------------------------------
+       Footer
+    ------------------------------ */
+
     .footer {
       margin-top: auto;
-      padding-top: 25px;
+
+      padding-top: 18px;
+
       text-align: center;
-      color: #87948e;
+
+      color: #89938D;
+
       font-size: 12px;
-      letter-spacing: 0.04em;
+
+      letter-spacing: 0.05em;
     }
 
-    /* 小螢幕 */
+    /* ------------------------------
+       小手機
+    ------------------------------ */
+
     @media (max-width: 380px) {
+
       .container {
-        padding-left: 13px;
-        padding-right: 13px;
-        padding-top: 24px;
+        padding:
+          22px
+          12px
+          15px;
       }
 
-      .features {
-        gap: 7px;
+      .hero-card {
+        margin-top: 20px;
+
+        padding:
+          23px
+          13px
+          26px;
+
+        border-radius: 24px;
       }
 
-      .feature-card {
-        border-radius: 16px;
-        padding-left: 6px;
-        padding-right: 6px;
+      .fire-label {
+        margin-bottom: 15px;
+
+        letter-spacing: 0.14em;
       }
 
-      .feature-icon {
-        width: 36px;
-        height: 36px;
-        font-size: 19px;
+      .slogan {
+        font-size: 24px;
       }
 
-      .feature-text {
-        font-size: 10.5px;
-        line-height: 1.6;
-      }
+      .description {
+        margin-top: 15px;
 
-      .start-area {
-        margin-top: 23px;
+        font-size: 13.5px;
+
+        line-height: 1.75;
       }
 
       .start-button {
-        min-width: 190px;
-      }
-    }
+        margin-top: 22px;
 
-    /* 較大的螢幕 */
-    @media (min-width: 600px) {
-      .container {
-        padding-left: 30px;
-        padding-right: 30px;
+        min-width: 205px;
+
+        min-height: 49px;
+
+        font-size: 15px;
       }
 
       .features {
-        gap: 16px;
+        gap: 6px;
+
+        margin-top: 12px;
       }
 
       .feature-card {
-        padding: 22px 15px 20px;
+        padding:
+          14px 5px
+          15px;
+
+        border-radius: 18px;
+      }
+
+      .feature-icon {
+        width: 37px;
+        height: 37px;
+
+        margin-bottom: 8px;
+
+        font-size: 19px;
+      }
+
+      .feature-title {
+        font-size: 13px;
+      }
+
+      .feature-text {
+        font-size: 10px;
+
+        line-height: 1.55;
+      }
+
+      .footer {
+        padding-top: 13px;
+      }
+    }
+
+    /* ------------------------------
+       較大螢幕
+    ------------------------------ */
+
+    @media (min-width: 600px) {
+
+      .container {
+        padding:
+          34px
+          30px
+          22px;
+      }
+
+      .features {
+        gap: 14px;
+      }
+
+      .feature-card {
+        padding:
+          20px
+          12px
+          21px;
       }
 
       .feature-icon {
         width: 46px;
         height: 46px;
+
         font-size: 23px;
       }
     }
 
-    /* 避免手機橫向時版面過高 */
+    /* ------------------------------
+       螢幕高度較小
+    ------------------------------ */
+
     @media (max-height: 700px) {
+
       .container {
-        padding-top: 20px;
-        padding-bottom: 15px;
+        padding-top: 19px;
       }
 
-      .hero {
-        margin-top: 25px;
+      .hero-card {
+        margin-top: 18px;
+
+        padding-top: 21px;
+        padding-bottom: 23px;
       }
 
-      .hero-description {
+      .fire-label {
+        margin-bottom: 12px;
+      }
+
+      .description {
         margin-top: 12px;
-        line-height: 1.7;
+
+        line-height: 1.65;
+      }
+
+      .start-button {
+        margin-top: 18px;
       }
 
       .features {
-        margin-top: 22px;
+        margin-top: 10px;
       }
 
-      .start-area {
-        margin-top: 20px;
+      .feature-card {
+        padding-top: 12px;
+        padding-bottom: 13px;
       }
 
-      .footer {
-        padding-top: 15px;
+      .feature-icon {
+        margin-bottom: 6px;
+      }
+    }
+
+    /* 減少動畫 */
+    @media (prefers-reduced-motion: reduce) {
+
+      .start-button,
+      .feature-card {
+        transition: none;
       }
     }
   </style>
 </head>
 
 <body>
+
   <main class="page">
 
-    <div class="circle one"></div>
-    <div class="circle two"></div>
-    <div class="circle three"></div>
+    <div class="decor decor-1"></div>
+    <div class="decor decor-2"></div>
+    <div class="decor decor-3"></div>
 
     <div class="container">
 
-      <!-- 品牌 -->
+      <!-- 網站名稱 -->
       <header class="brand">
-        <div class="brand-title">自由倒數｜試算工具</div>
-        <div class="brand-subtitle">F I R E・人生規劃</div>
+        <div class="brand-title">
+          自由倒數｜試算工具
+        </div>
       </header>
 
-      <!-- 主視覺 -->
-      <section class="hero">
-        <h1>提早過，你真正想過的生活</h1>
 
-        <p class="hero-description">
-          從現在的財務狀況出發，<br>
-          設定你想要的自由生活，<br>
-          看看距離目標還有多遠。
-        </p>
+      <!-- 首頁主卡 -->
+      <section class="hero-card">
+
+        <div class="hero-content">
+
+          <div class="fire-label">
+            F I R E・人生規劃
+          </div>
+
+          <h1 class="slogan">
+            提早過，<br class="mobile-break">
+            <span class="highlight">
+              你真正想過的生活
+            </span>
+          </h1>
+
+          <p class="description">
+            從現在的財務狀況出發，<br>
+            設定你想要的自由生活，<br>
+            看看距離目標還有多遠。
+          </p>
+
+          <a
+            class="start-button"
+            href="basic.html"
+          >
+            開始我的自由倒數 →
+          </a>
+
+        </div>
+
       </section>
 
-      <!-- 三個特色 -->
+
+      <!-- 三個規劃步驟 -->
       <section class="features">
 
-        <article class="feature-card">
-          <div class="feature-icon">🧭</div>
-          <h2 class="feature-title">看見現在</h2>
+        <article class="feature-card current">
+
+          <div class="feature-icon">
+            🧭
+          </div>
+
+          <h2 class="feature-title">
+            看見現在
+          </h2>
+
           <p class="feature-text">
             整理收入、<br>
             支出、資產<br>
             與負債
           </p>
+
         </article>
 
-        <article class="feature-card">
-          <div class="feature-icon">🎯</div>
-          <h2 class="feature-title">設定目標</h2>
+
+        <article class="feature-card goal">
+
+          <div class="feature-icon">
+            🎯
+          </div>
+
+          <h2 class="feature-title">
+            設定目標
+          </h2>
+
           <p class="feature-text">
             找到屬於你<br>
             的自由數字
           </p>
+
         </article>
 
-        <article class="feature-card">
-          <div class="feature-icon">⏳</div>
-          <h2 class="feature-title">開始倒數</h2>
+
+        <article class="feature-card future">
+
+          <div class="feature-icon">
+            🚀
+          </div>
+
+          <h2 class="feature-title">
+            規劃未來
+          </h2>
+
           <p class="feature-text">
-            看看距離<br>
-            自由還有<br>
-            多久
+            預估資產<br>
+            成長與自由<br>
+            進度
           </p>
+
         </article>
 
       </section>
 
-      <!-- 開始 -->
-      <div class="start-area">
-        <a class="start-button" href="basic.html">
-          開始你的自由規劃 →
-        </a>
-      </div>
 
       <!-- 頁尾 -->
       <footer class="footer">
@@ -409,6 +751,8 @@
       </footer>
 
     </div>
+
   </main>
+
 </body>
 </html>
