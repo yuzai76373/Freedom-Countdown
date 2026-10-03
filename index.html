@@ -8,7 +8,6 @@
     <title>自由倒數｜財務自由試算</title>
 
     <style>
-
         * {
             box-sizing: border-box;
         }
@@ -36,6 +35,13 @@
                     transparent 35%
                 ),
                 #f7f6f2;
+
+            min-height: 100vh;
+        }
+
+        button,
+        input {
+            font-family: inherit;
         }
 
         .container {
@@ -44,7 +50,9 @@
             padding: 35px 20px 70px;
         }
 
-        /* 網站名稱 */
+        /* =========================
+           網站名稱
+        ========================= */
 
         .brand {
             text-align: center;
@@ -65,7 +73,34 @@
             border-radius: 10px;
         }
 
-        /* 主視覺 */
+        /* =========================
+           頁面切換
+        ========================= */
+
+        .page {
+            display: none;
+            animation: pageFade 0.4s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageFade {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           首頁主視覺
+        ========================= */
 
         .hero {
             position: relative;
@@ -82,8 +117,6 @@
             box-shadow:
                 0 20px 60px rgba(0, 0, 0, 0.07);
         }
-
-        /* 左上裝飾 */
 
         .hero::before {
             content: "";
@@ -102,8 +135,6 @@
 
             opacity: 0.7;
         }
-
-        /* 右下裝飾 */
 
         .hero::after {
             content: "";
@@ -128,8 +159,6 @@
             z-index: 2;
         }
 
-        /* 小標籤 */
-
         .tag {
             display: inline-block;
 
@@ -142,15 +171,12 @@
             color: #66705f;
 
             font-size: 14px;
-
             font-weight: 500;
 
             letter-spacing: 1px;
 
             margin-bottom: 28px;
         }
-
-        /* 主標題 */
 
         h1 {
             margin: 0 auto;
@@ -166,15 +192,14 @@
             font-weight: 600;
         }
 
-        /* 綠色強調文字 */
+        .highlight {
+            color: #536f4d;
 
-     .highlight {
-    color: #536f4d;
-    font-weight: 800;
-    text-shadow: 0 1px 1px rgba(83, 111, 77, 0.08);
-}
+            font-weight: 800;
 
-        /* 說明文字 */
+            text-shadow:
+                0 1px 1px rgba(83, 111, 77, 0.08);
+        }
 
         .description {
             margin: 28px auto 0;
@@ -190,15 +215,12 @@
             letter-spacing: 0.3px;
         }
 
-        /* 開始試算按鈕 */
-
         .start-button {
             position: relative;
 
             display: inline-flex;
 
             align-items: center;
-
             justify-content: center;
 
             gap: 12px;
@@ -209,19 +231,20 @@
 
             min-width: 190px;
 
+            border: none;
+
             border-radius: 50px;
 
             background: #2f3930;
 
             color: white;
 
-            text-decoration: none;
-
             font-size: 17px;
-
             font-weight: 600;
 
             letter-spacing: 1px;
+
+            cursor: pointer;
 
             box-shadow:
                 0 10px 25px rgba(47, 57, 48, 0.25);
@@ -252,7 +275,9 @@
             transform: translateX(5px);
         }
 
-        /* 三個功能介紹 */
+        /* =========================
+           首頁三個功能
+        ========================= */
 
         .features {
             display: grid;
@@ -323,7 +348,554 @@
             line-height: 1.8;
         }
 
-        /* 手機版 */
+        /* =========================
+           第二頁
+        ========================= */
+
+        .form-card {
+            position: relative;
+
+            overflow: hidden;
+
+            background: rgba(255, 255, 255, 0.94);
+
+            border-radius: 30px;
+
+            padding: 55px 45px 50px;
+
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.07);
+        }
+
+        .form-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 220px;
+            height: 220px;
+
+            background: #e8eee7;
+
+            border-radius: 50%;
+
+            top: -120px;
+            right: -80px;
+
+            opacity: 0.65;
+        }
+
+        .form-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            background: #eee8dc;
+
+            border-radius: 50%;
+
+            bottom: -100px;
+            left: -70px;
+
+            opacity: 0.55;
+        }
+
+        .form-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 680px;
+
+            margin: 0 auto;
+        }
+
+        .step-label {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 7px 15px;
+
+            background: #edf0eb;
+
+            color: #66705f;
+
+            border-radius: 30px;
+
+            font-size: 13px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 22px;
+        }
+
+        .step-number {
+            width: 22px;
+            height: 22px;
+
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: #6f7d68;
+
+            color: white;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .form-title {
+            margin: 0;
+
+            font-size: 35px;
+
+            line-height: 1.45;
+
+            font-weight: 650;
+
+            letter-spacing: 1px;
+        }
+
+        .form-subtitle {
+            margin: 14px 0 38px;
+
+            color: #777;
+
+            font-size: 15px;
+
+            line-height: 1.8;
+        }
+
+        .field {
+            margin-bottom: 28px;
+        }
+
+        .field-label {
+            display: block;
+
+            margin-bottom: 10px;
+
+            font-size: 15px;
+
+            font-weight: 650;
+
+            letter-spacing: 0.5px;
+        }
+
+        .field-input {
+            width: 100%;
+
+            padding: 16px 18px;
+
+            border: 1px solid #dedfd9;
+
+            border-radius: 15px;
+
+            background: #fafaf8;
+
+            color: #242424;
+
+            font-size: 16px;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s,
+                box-shadow 0.2s,
+                background 0.2s;
+        }
+
+        .field-input:focus {
+            background: white;
+
+            border-color: #87947f;
+
+            box-shadow:
+                0 0 0 4px rgba(111, 125, 104, 0.10);
+        }
+
+        .field-hint {
+            margin-top: 8px;
+
+            color: #777;
+
+            font-size: 13px;
+        }
+
+        .field-hint.special {
+            color: #66705f;
+
+            font-weight: 500;
+        }
+
+        /* 日期輸入 */
+
+        .date-wrapper {
+            position: relative;
+        }
+
+        .date-input {
+            appearance: none;
+            -webkit-appearance: none;
+
+            width: 100%;
+
+            padding: 16px 50px 16px 18px;
+
+            border: 1px solid #dedfd9;
+
+            border-radius: 15px;
+
+            background: #fafaf8;
+
+            color: #242424;
+
+            font-size: 16px;
+
+            outline: none;
+
+            cursor: pointer;
+        }
+
+        .date-input:focus {
+            background: white;
+
+            border-color: #87947f;
+
+            box-shadow:
+                0 0 0 4px rgba(111, 125, 104, 0.10);
+        }
+
+        .date-icon {
+            position: absolute;
+
+            right: 18px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            font-size: 20px;
+
+            pointer-events: none;
+        }
+
+        /* 年齡 */
+
+        .age-box {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 15px 18px;
+
+            margin-top: 12px;
+
+            border-radius: 15px;
+
+            background: #f0f3ee;
+
+            color: #4d5b48;
+        }
+
+        .age-icon {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: white;
+
+            border-radius: 12px;
+
+            font-size: 19px;
+        }
+
+        .age-text {
+            font-size: 14px;
+
+            color: #66705f;
+        }
+
+        .age-value {
+            font-size: 18px;
+
+            font-weight: 700;
+
+            color: #40513d;
+        }
+
+        /* 是否扶養 */
+
+        .choice-group {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 14px;
+        }
+
+        .choice {
+            position: relative;
+        }
+
+        .choice input {
+            position: absolute;
+
+            opacity: 0;
+
+            pointer-events: none;
+        }
+
+        .choice label {
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            min-height: 58px;
+
+            padding: 12px 18px;
+
+            border: 1px solid #dedfd9;
+
+            border-radius: 15px;
+
+            background: #fafaf8;
+
+            color: #555;
+
+            font-size: 15px;
+
+            cursor: pointer;
+
+            transition:
+                all 0.2s;
+        }
+
+        .choice label:hover {
+            border-color: #aab3a5;
+
+            background: #f7f8f5;
+        }
+
+        .choice input:checked + label {
+            border-color: #6f7d68;
+
+            background: #edf1eb;
+
+            color: #40513d;
+
+            font-weight: 650;
+
+            box-shadow:
+                0 0 0 3px rgba(111, 125, 104, 0.10);
+        }
+
+        /* 扶養人數 */
+
+        .dependent-section {
+            margin-top: 18px;
+
+            padding: 20px;
+
+            border-radius: 17px;
+
+            background: #f7f7f3;
+
+            animation: slideDown 0.25s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-6px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .dependent-label {
+            display: block;
+
+            margin-bottom: 12px;
+
+            font-size: 14px;
+
+            font-weight: 650;
+
+            color: #555;
+        }
+
+        .counter {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 22px;
+        }
+
+        .counter-button {
+            width: 44px;
+            height: 44px;
+
+            border: 1px solid #d5d8d0;
+
+            border-radius: 50%;
+
+            background: white;
+
+            color: #52604e;
+
+            font-size: 22px;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.15s,
+                background 0.15s;
+        }
+
+        .counter-button:hover {
+            background: #edf0eb;
+        }
+
+        .counter-button:active {
+            transform: scale(0.94);
+        }
+
+        .counter-value {
+            min-width: 65px;
+
+            text-align: center;
+
+            font-size: 25px;
+
+            font-weight: 700;
+
+            color: #3f4d3b;
+        }
+
+        .counter-unit {
+            font-size: 14px;
+
+            color: #777;
+
+            margin-left: -15px;
+        }
+
+        /* 第二頁底部 */
+
+        .form-actions {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            margin-top: 40px;
+
+            padding-top: 28px;
+
+            border-top: 1px solid #eeeeea;
+        }
+
+        .back-button {
+            padding: 14px 20px;
+
+            border: none;
+
+            background: transparent;
+
+            color: #777;
+
+            font-size: 14px;
+
+            cursor: pointer;
+
+            border-radius: 12px;
+
+            transition:
+                background 0.2s,
+                color 0.2s;
+        }
+
+        .back-button:hover {
+            background: #f2f2ee;
+
+            color: #444;
+        }
+
+        .next-button {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 10px;
+
+            min-width: 150px;
+
+            padding: 15px 25px;
+
+            border: none;
+
+            border-radius: 50px;
+
+            background: #2f3930;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: 600;
+
+            letter-spacing: 0.5px;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 20px rgba(47, 57, 48, 0.22);
+
+            transition:
+                transform 0.2s,
+                background 0.2s,
+                box-shadow 0.2s;
+        }
+
+        .next-button:hover {
+            transform: translateY(-3px);
+
+            background: #3d4a3e;
+
+            box-shadow:
+                0 12px 25px rgba(47, 57, 48, 0.28);
+        }
+
+        /* =========================
+           手機版
+        ========================= */
 
         @media (max-width: 700px) {
 
@@ -378,10 +950,52 @@
             .feature {
                 padding: 25px 20px;
             }
+
+            /* 第二頁手機 */
+
+            .form-card {
+                padding: 38px 22px 30px;
+
+                border-radius: 24px;
+            }
+
+            .form-title {
+                font-size: 28px;
+
+                line-height: 1.5;
+            }
+
+            .form-subtitle {
+                font-size: 13px;
+
+                margin-bottom: 30px;
+            }
+
+            .field {
+                margin-bottom: 24px;
+            }
+
+            .choice-group {
+                gap: 10px;
+            }
+
+            .choice label {
+                min-height: 54px;
+
+                font-size: 14px;
+            }
+
+            .form-actions {
+                margin-top: 30px;
+
+                padding-top: 22px;
+            }
+
+            .next-button {
+                min-width: 135px;
+            }
         }
-
     </style>
-
 </head>
 
 
@@ -389,7 +1003,9 @@
 
     <div class="container">
 
-        <!-- 網站名稱 -->
+        <!-- =========================
+             網站名稱
+        ========================= -->
 
         <div class="brand">
 
@@ -402,126 +1018,751 @@
         </div>
 
 
-        <!-- 主區塊 -->
+        <!-- =====================================================
+             第一頁｜首頁
+        ===================================================== -->
 
-        <section class="hero">
+        <main id="pageHome" class="page active">
 
-            <div class="hero-content">
+            <section class="hero">
 
-                <!-- 小標籤 -->
+                <div class="hero-content">
 
-                <div class="tag">
-                    ✦ 財務自由試算工具
+                    <div class="tag">
+                        ✦ 財務自由試算工具
+                    </div>
+
+
+                    <h1>
+
+                        讓自由，不只是想像
+
+                        <br>
+
+                        <span class="highlight">
+                            而是可以計算的目標 🎯
+                        </span>
+
+                    </h1>
+
+
+                    <p class="description">
+
+                        ✍️ 輸入你的財務資料，試算退休需要多少資產，
+
+                        <br>
+
+                        以及按照目前的儲蓄與投資速度，大約何時能達成。
+
+                    </p>
+
+
+                    <button
+                        type="button"
+                        class="start-button"
+                        id="startButton"
+                    >
+
+                        開始試算
+
+                        <span>
+                            →
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- 三個功能 -->
+
+            <div class="features">
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🎯
+                    </div>
+
+                    <h3>
+                        找到你的自由目標
+                    </h3>
+
+                    <p>
+                        試算需要累積多少資產，
+                        才能支撐你想要的生活。
+                    </p>
+
                 </div>
 
 
-                <!-- 主標題 -->
+                <div class="feature">
 
-                <h1>
+                    <div class="feature-icon">
+                        📈
+                    </div>
 
-                    讓自由，不只是想像
+                    <h3>
+                        看見資產成長
+                    </h3>
 
-                    <br>
+                    <p>
+                        根據目前資產、投入金額
+                        與預期報酬率進行推估。
+                    </p>
 
-                   <span class="highlight">
-    而是可以計算的目標 🎯
-</span>
-
-                </h1>
-
-
-                <!-- 說明 -->
-
-                <p class="description">
-
-                    ✍️ 輸入你的財務資料，試算退休需要多少資產，
-
-                    <br>
-
-                    以及按照目前的儲蓄與投資速度，大約何時能達成。
-
-                </p>
-
-
-                <!-- 開始試算 -->
-
-                <a href="#" class="start-button">
-
-                    開始試算
-
-                    <span>
-                        →
-                    </span>
-
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- 三個功能 -->
-
-        <div class="features">
-
-
-            <div class="feature">
-
-                <div class="feature-icon">
-                    🎯
                 </div>
 
-                <h3>
-                    找到你的自由目標
-                </h3>
 
-                <p>
-                    試算需要累積多少資產，
-                    才能支撐你想要的生活。
-                </p>
+                <div class="feature">
 
-            </div>
+                    <div class="feature-icon">
+                        ⏳
+                    </div>
 
+                    <h3>
+                        開始你的自由倒數
+                    </h3>
 
-            <div class="feature">
+                    <p>
+                        看看按照目前的速度，
+                        大約何時可以達成目標。
+                    </p>
 
-                <div class="feature-icon">
-                    📈
                 </div>
 
-                <h3>
-                    看見資產成長
-                </h3>
-
-                <p>
-                    根據目前資產、投入金額
-                    與預期報酬率進行推估。
-                </p>
 
             </div>
 
+        </main>
 
-            <div class="feature">
 
-                <div class="feature-icon">
-                    ⏳
+        <!-- =====================================================
+             第二頁｜基本資料
+        ===================================================== -->
+
+        <main id="pageBasic" class="page">
+
+            <section class="form-card">
+
+                <div class="form-content">
+
+
+                    <!-- 步驟 -->
+
+                    <div class="step-label">
+
+                        <span class="step-number">
+                            1
+                        </span>
+
+                        基本資料
+
+                    </div>
+
+
+                    <!-- 標題 -->
+
+                    <h1 class="form-title">
+
+                        先認識一下現在的你
+
+                    </h1>
+
+
+                    <p class="form-subtitle">
+
+                        輸入幾個基本資料，開始探索你的未來
+
+                    </p>
+
+
+                    <!-- =====================
+                         姓名
+                    ====================== -->
+
+                    <div class="field">
+
+                        <label
+                            class="field-label"
+                            for="userName"
+                        >
+                            姓名／暱稱
+                        </label>
+
+
+                        <input
+                            id="userName"
+                            class="field-input"
+                            type="text"
+                            placeholder="請輸入姓名或暱稱"
+                            maxlength="30"
+                        >
+
+
+                        <div class="field-hint special">
+                            ✨ 之後會出現在你的專屬結果中
+                        </div>
+
+                    </div>
+
+
+                    <!-- =====================
+                         出生年月日
+                    ====================== -->
+
+                    <div class="field">
+
+                        <label
+                            class="field-label"
+                            for="birthDate"
+                        >
+                            出生年月日
+                        </label>
+
+
+                        <div class="date-wrapper">
+
+                            <input
+                                id="birthDate"
+                                class="date-input"
+                                type="date"
+                                value="1994-01-01"
+                                min="1900-01-01"
+                            >
+
+                            <span class="date-icon">
+                                📅
+                            </span>
+
+                        </div>
+
+
+                        <!-- 年齡 -->
+
+                        <div class="age-box">
+
+                            <div class="age-icon">
+                                🎂
+                            </div>
+
+
+                            <div>
+
+                                <div class="age-text">
+                                    目前年齡
+                                </div>
+
+                                <div
+                                    id="ageValue"
+                                    class="age-value"
+                                >
+                                    32 歲
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =====================
+                         扶養家人
+                    ====================== -->
+
+                    <div class="field">
+
+                        <label class="field-label">
+                            目前是否有需要扶養的家人？
+                        </label>
+
+
+                        <div class="choice-group">
+
+
+                            <div class="choice">
+
+                                <input
+                                    type="radio"
+                                    name="dependents"
+                                    id="dependentNo"
+                                    value="no"
+                                    checked
+                                >
+
+                                <label for="dependentNo">
+                                    沒有
+                                </label>
+
+                            </div>
+
+
+                            <div class="choice">
+
+                                <input
+                                    type="radio"
+                                    name="dependents"
+                                    id="dependentYes"
+                                    value="yes"
+                                >
+
+                                <label for="dependentYes">
+                                    有
+                                </label>
+
+                            </div>
+
+
+                        </div>
+
+
+                        <!-- 有扶養才顯示 -->
+
+                        <div
+                            id="dependentSection"
+                            class="dependent-section"
+                            style="display: none;"
+                        >
+
+                            <label class="dependent-label">
+                                目前扶養人數
+                            </label>
+
+
+                            <div class="counter">
+
+
+                                <button
+                                    type="button"
+                                    class="counter-button"
+                                    id="minusButton"
+                                >
+                                    −
+                                </button>
+
+
+                                <div
+                                    id="dependentCount"
+                                    class="counter-value"
+                                >
+                                    1
+                                </div>
+
+
+                                <span class="counter-unit">
+                                    人
+                                </span>
+
+
+                                <button
+                                    type="button"
+                                    class="counter-button"
+                                    id="plusButton"
+                                >
+                                    ＋
+                                </button>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =====================
+                         按鈕
+                    ====================== -->
+
+                    <div class="form-actions">
+
+
+                        <button
+                            type="button"
+                            class="back-button"
+                            id="backButton"
+                        >
+                            ← 回到首頁
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="next-button"
+                            id="nextButton"
+                        >
+
+                            下一步
+
+                            <span>
+                                →
+                            </span>
+
+                        </button>
+
+
+                    </div>
+
+
                 </div>
 
-                <h3>
-                    開始你的自由倒數
-                </h3>
+            </section>
 
-                <p>
-                    看看按照目前的速度，
-                    大約何時可以達成目標。
-                </p>
-
-            </div>
-
-
-        </div>
+        </main>
 
     </div>
+
+
+    <!-- =====================================================
+         JavaScript
+    ===================================================== -->
+
+    <script>
+
+        /* =========================
+           頁面
+        ========================= */
+
+        const pageHome =
+            document.getElementById("pageHome");
+
+        const pageBasic =
+            document.getElementById("pageBasic");
+
+
+        const startButton =
+            document.getElementById("startButton");
+
+        const backButton =
+            document.getElementById("backButton");
+
+
+        const nextButton =
+            document.getElementById("nextButton");
+
+
+        /* =========================
+           基本資料
+        ========================= */
+
+        const userName =
+            document.getElementById("userName");
+
+
+        const birthDate =
+            document.getElementById("birthDate");
+
+
+        const ageValue =
+            document.getElementById("ageValue");
+
+
+        const dependentNo =
+            document.getElementById("dependentNo");
+
+
+        const dependentYes =
+            document.getElementById("dependentYes");
+
+
+        const dependentSection =
+            document.getElementById("dependentSection");
+
+
+        const dependentCount =
+            document.getElementById("dependentCount");
+
+
+        const minusButton =
+            document.getElementById("minusButton");
+
+
+        const plusButton =
+            document.getElementById("plusButton");
+
+
+        /* =========================
+           預設資料
+        ========================= */
+
+        let dependentNumber = 1;
+
+
+        /* =========================
+           顯示第二頁
+        ========================= */
+
+        function showBasicPage() {
+
+            pageHome.classList.remove("active");
+
+            pageBasic.classList.add("active");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* =========================
+           顯示首頁
+        ========================= */
+
+        function showHomePage() {
+
+            pageBasic.classList.remove("active");
+
+            pageHome.classList.add("active");
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+
+
+        /* =========================
+           開始試算
+        ========================= */
+
+        startButton.addEventListener(
+            "click",
+            function () {
+
+                showBasicPage();
+
+            }
+        );
+
+
+        /* =========================
+           回首頁
+        ========================= */
+
+        backButton.addEventListener(
+            "click",
+            function () {
+
+                showHomePage();
+
+            }
+        );
+
+
+        /* =========================
+           計算目前年齡
+        ========================= */
+
+        function calculateAge() {
+
+            const birthday =
+                new Date(birthDate.value);
+
+            const today =
+                new Date();
+
+
+            if (isNaN(birthday.getTime())) {
+
+                ageValue.textContent =
+                    "請選擇生日";
+
+                return;
+
+            }
+
+
+            let age =
+                today.getFullYear()
+                -
+                birthday.getFullYear();
+
+
+            const monthDifference =
+                today.getMonth()
+                -
+                birthday.getMonth();
+
+
+            const dayDifference =
+                today.getDate()
+                -
+                birthday.getDate();
+
+
+            if (
+                monthDifference < 0
+                ||
+                (
+                    monthDifference === 0
+                    &&
+                    dayDifference < 0
+                )
+            ) {
+
+                age--;
+
+            }
+
+
+            ageValue.textContent =
+                age + " 歲";
+
+        }
+
+
+        /* =========================
+           生日變更
+        ========================= */
+
+        birthDate.addEventListener(
+            "change",
+            calculateAge
+        );
+
+
+        /* =========================
+           扶養狀況
+        ========================= */
+
+        dependentNo.addEventListener(
+            "change",
+            function () {
+
+                if (dependentNo.checked) {
+
+                    dependentSection.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+        dependentYes.addEventListener(
+            "change",
+            function () {
+
+                if (dependentYes.checked) {
+
+                    dependentSection.style.display =
+                        "block";
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           扶養人數－
+        ========================= */
+
+        minusButton.addEventListener(
+            "click",
+            function () {
+
+                if (dependentNumber > 1) {
+
+                    dependentNumber--;
+
+                    dependentCount.textContent =
+                        dependentNumber;
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           扶養人數＋
+        ========================= */
+
+        plusButton.addEventListener(
+            "click",
+            function () {
+
+                if (dependentNumber < 20) {
+
+                    dependentNumber++;
+
+                    dependentCount.textContent =
+                        dependentNumber;
+
+                }
+
+            }
+        );
+
+
+        /* =========================
+           下一步
+           
+           現階段先保留資料，
+           第三頁完成後再接續。
+        ========================= */
+
+        nextButton.addEventListener(
+            "click",
+            function () {
+
+                const data = {
+
+                    name:
+                        userName.value.trim(),
+
+                    birthDate:
+                        birthDate.value,
+
+                    age:
+                        ageValue.textContent,
+
+                    hasDependents:
+                        dependentYes.checked,
+
+                    dependentCount:
+                        dependentYes.checked
+                            ? dependentNumber
+                            : 0
+
+                };
+
+
+                /*
+                 * 暫存資料
+                 * 第三頁製作時會直接使用
+                 */
+
+                localStorage.setItem(
+                    "freedomCountdownBasicData",
+                    JSON.stringify(data)
+                );
+
+
+                alert(
+                    "基本資料已完成！\n\n下一步將進入財務資料。"
+                );
+
+            }
+        );
+
+
+        /* =========================
+           初始化年齡
+        ========================= */
+
+        calculateAge();
+
+    </script>
 
 </body>
 
