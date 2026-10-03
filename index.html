@@ -105,4 +105,657 @@
       background: rgba(239, 224, 205, 0.5);
     }
 
-    .decor
+    .decor-3 {
+      width: 34px;
+      height: 34px;
+      left: 8%;
+      top: 22%;
+      background: rgba(221, 233, 225, 0.75);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+
+      width: 100%;
+      max-width: 720px;
+
+      min-height: 100vh;
+
+      margin: 0 auto;
+
+      padding:
+        28px
+        18px
+        20px;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ------------------------------
+       品牌
+    ------------------------------ */
+
+    .brand {
+      text-align: center;
+    }
+
+    .brand-title {
+      color: var(--green-dark);
+
+      font-size: clamp(20px, 5.4vw, 27px);
+
+      font-weight: 800;
+
+      letter-spacing: 0.04em;
+
+      line-height: 1.3;
+    }
+
+    /* ------------------------------
+       主卡
+    ------------------------------ */
+
+    .hero-card {
+      position: relative;
+
+      margin-top: clamp(24px, 5vh, 38px);
+
+      padding:
+        clamp(25px, 6vw, 40px)
+        clamp(18px, 5vw, 36px)
+        clamp(26px, 6vw, 38px);
+
+      border-radius: 28px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 252, 0.98),
+          rgba(251, 250, 243, 0.98)
+        );
+
+      border: 1px solid rgba(100, 126, 112, 0.16);
+
+      box-shadow: var(--shadow);
+
+      text-align: center;
+
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 130px;
+      height: 130px;
+
+      border-radius: 50%;
+
+      top: -65px;
+      right: -45px;
+
+      background: rgba(221, 235, 225, 0.65);
+    }
+
+    .hero-card::after {
+      content: "";
+
+      position: absolute;
+
+      width: 75px;
+      height: 75px;
+
+      border-radius: 50%;
+
+      bottom: -38px;
+      left: -22px;
+
+      background: rgba(244, 230, 211, 0.48);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .fire-label {
+      display: inline-block;
+
+      color: var(--green);
+
+      font-size: clamp(13px, 3.4vw, 15px);
+
+      font-weight: 700;
+
+      letter-spacing: 0.19em;
+
+      margin-bottom: 19px;
+    }
+
+    .slogan {
+      color: var(--green-dark);
+
+      font-size: clamp(26px, 7.1vw, 38px);
+
+      font-weight: 850;
+
+      line-height: 1.42;
+
+      letter-spacing: 0.015em;
+    }
+
+    .slogan .highlight {
+      color: #4E876C;
+
+      display: inline-block;
+    }
+
+    .description {
+      margin-top: 19px;
+
+      color: var(--muted);
+
+      font-size: clamp(14px, 3.8vw, 17px);
+
+      line-height: 1.85;
+
+      letter-spacing: 0.02em;
+    }
+
+    /* ------------------------------
+       開始按鈕
+    ------------------------------ */
+
+    .start-button {
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      margin-top: 27px;
+
+      min-width: 225px;
+      min-height: 52px;
+
+      padding: 13px 25px;
+
+      border-radius: 999px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #5D806A,
+          #466C58
+        );
+
+      color: #ffffff;
+
+      text-decoration: none;
+
+      font-size: 16px;
+
+      font-weight: 750;
+
+      letter-spacing: 0.04em;
+
+      box-shadow:
+        0 9px 20px rgba(68, 104, 84, 0.2);
+
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .start-button:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 12px 25px rgba(68, 104, 84, 0.25);
+    }
+
+    .start-button:active {
+      transform: translateY(1px);
+    }
+
+    /* ------------------------------
+       三張功能卡
+    ------------------------------ */
+
+    .features {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 10px;
+
+      margin-top: 15px;
+    }
+
+    .feature-card {
+      min-width: 0;
+
+      border-radius: 21px;
+
+      padding:
+        17px 8px
+        18px;
+
+      text-align: center;
+
+      border: 1px solid var(--border);
+
+      box-shadow:
+        0 9px 24px rgba(65, 82, 73, 0.07);
+
+      transition:
+        transform 0.18s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .feature-card.current {
+      background: #F1F6F2;
+    }
+
+    .feature-card.goal {
+      background: #FBF2E9;
+    }
+
+    .feature-card.future {
+      background: #F7F3E4;
+    }
+
+    .feature-icon {
+      width: 42px;
+      height: 42px;
+
+      margin:
+        0 auto
+        10px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      font-size: 21px;
+    }
+
+    .current .feature-icon {
+      background: var(--green-soft);
+    }
+
+    .goal .feature-icon {
+      background: var(--peach-soft);
+    }
+
+    .future .feature-icon {
+      background: var(--gold-soft);
+    }
+
+    .feature-title {
+      font-size: clamp(14px, 3.7vw, 17px);
+
+      line-height: 1.4;
+
+      font-weight: 800;
+
+      white-space: nowrap;
+    }
+
+    .current .feature-title {
+      color: var(--green-dark);
+    }
+
+    .goal .feature-title {
+      color: var(--peach-text);
+    }
+
+    .future .feature-title {
+      color: var(--gold-text);
+    }
+
+    .feature-text {
+      margin-top: 8px;
+
+      font-size: clamp(10.5px, 2.9vw, 13px);
+
+      line-height: 1.65;
+
+      color: var(--muted);
+
+      word-break: keep-all;
+    }
+
+    /* ------------------------------
+       Footer
+       往上移，避免首頁需要滑動
+    ------------------------------ */
+
+    .footer {
+      margin-top: 14px;
+
+      padding-top: 0;
+
+      text-align: center;
+
+      color: #89938D;
+
+      font-size: 12px;
+
+      letter-spacing: 0.05em;
+    }
+
+    /* ------------------------------
+       小手機
+    ------------------------------ */
+
+    @media (max-width: 380px) {
+
+      .container {
+        padding:
+          22px
+          12px
+          15px;
+      }
+
+      .hero-card {
+        margin-top: 20px;
+
+        padding:
+          23px
+          13px
+          26px;
+
+        border-radius: 24px;
+      }
+
+      .fire-label {
+        margin-bottom: 15px;
+
+        letter-spacing: 0.14em;
+      }
+
+      .slogan {
+        font-size: 24px;
+      }
+
+      .description {
+        margin-top: 15px;
+
+        font-size: 13.5px;
+
+        line-height: 1.75;
+      }
+
+      .start-button {
+        margin-top: 22px;
+
+        min-width: 205px;
+
+        min-height: 49px;
+
+        font-size: 15px;
+      }
+
+      .features {
+        gap: 6px;
+
+        margin-top: 12px;
+      }
+
+      .feature-card {
+        padding:
+          14px 5px
+          15px;
+
+        border-radius: 18px;
+      }
+
+      .feature-icon {
+        width: 37px;
+        height: 37px;
+
+        margin-bottom: 8px;
+
+        font-size: 19px;
+      }
+
+      .feature-title {
+        font-size: 13px;
+      }
+
+      .feature-text {
+        font-size: 10px;
+
+        line-height: 1.55;
+      }
+
+      .footer {
+        margin-top: 10px;
+        padding-top: 0;
+      }
+    }
+
+    /* ------------------------------
+       較大螢幕
+    ------------------------------ */
+
+    @media (min-width: 600px) {
+
+      .container {
+        padding:
+          34px
+          30px
+          22px;
+      }
+
+      .features {
+        gap: 14px;
+      }
+
+      .feature-card {
+        padding:
+          20px
+          12px
+          21px;
+      }
+
+      .feature-icon {
+        width: 46px;
+        height: 46px;
+
+        font-size: 23px;
+      }
+    }
+
+    /* ------------------------------
+       螢幕高度較小
+    ------------------------------ */
+
+    @media (max-height: 700px) {
+
+      .container {
+        padding-top: 19px;
+      }
+
+      .hero-card {
+        margin-top: 18px;
+
+        padding-top: 21px;
+        padding-bottom: 23px;
+      }
+
+      .fire-label {
+        margin-bottom: 12px;
+      }
+
+      .description {
+        margin-top: 12px;
+
+        line-height: 1.65;
+      }
+
+      .start-button {
+        margin-top: 18px;
+      }
+
+      .features {
+        margin-top: 10px;
+      }
+
+      .feature-card {
+        padding-top: 12px;
+        padding-bottom: 13px;
+      }
+
+      .feature-icon {
+        margin-bottom: 6px;
+      }
+
+      .footer {
+        margin-top: 9px;
+      }
+    }
+
+    /* 減少動畫 */
+    @media (prefers-reduced-motion: reduce) {
+
+      .start-button,
+      .feature-card {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <div class="decor decor-1"></div>
+    <div class="decor decor-2"></div>
+    <div class="decor decor-3"></div>
+
+    <div class="container">
+
+      <!-- 網站名稱 -->
+      <header class="brand">
+        <div class="brand-title">
+          自由倒數｜試算工具
+        </div>
+      </header>
+
+
+      <!-- 首頁主卡 -->
+      <section class="hero-card">
+
+        <div class="hero-content">
+
+          <div class="fire-label">
+            F I R E・人生規劃
+          </div>
+
+          <h1 class="slogan">
+            提早過，<br class="mobile-break">
+            <span class="highlight">
+              你真正想過的生活
+            </span>
+          </h1>
+
+          <p class="description">
+            從現在的財務狀況出發，<br>
+            設定你想要的自由生活，<br>
+            看看距離目標還有多遠。
+          </p>
+
+          <a
+            class="start-button"
+            href="basic.html"
+          >
+            開始我的自由倒數 →
+          </a>
+
+        </div>
+
+      </section>
+
+
+      <!-- 三個規劃步驟 -->
+      <section class="features">
+
+        <article class="feature-card current">
+
+          <div class="feature-icon">
+            🧭
+          </div>
+
+          <h2 class="feature-title">
+            看見現在
+          </h2>
+
+          <p class="feature-text">
+            整理財務現況
+          </p>
+
+        </article>
+
+
+        <article class="feature-card goal">
+
+          <div class="feature-icon">
+            🎯
+          </div>
+
+          <h2 class="feature-title">
+            設定目標
+          </h2>
+
+          <p class="feature-text">
+            找到屬於你<br>
+            的自由數字
+          </p>
+
+        </article>
+
+
+        <article class="feature-card future">
+
+          <div class="feature-icon">
+            🚀
+          </div>
+
+          <h2 class="feature-title">
+            規劃未來
+          </h2>
+
+          <p class="feature-text">
+            預估未來<br>
+            進度
+          </p>
+
+        </article>
+
+      </section>
+
+
+      <!-- 頁尾 -->
+      <footer class="footer">
+        © 2026 TY Chen
+      </footer>
+
+    </div>
+
+  </main>
+
+</body>
+</html>
