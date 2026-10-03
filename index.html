@@ -8,6 +8,7 @@
     <title>自由倒數｜財務自由試算</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -24,10 +25,19 @@
             color: #242424;
 
             background:
-                radial-gradient(circle at 15% 15%, #e8eee8 0%, transparent 35%),
-                radial-gradient(circle at 85% 10%, #eee8dc 0%, transparent 35%),
+                radial-gradient(
+                    circle at 15% 15%,
+                    #e8eee8 0%,
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 85% 10%,
+                    #eee8dc 0%,
+                    transparent 35%
+                ),
                 #f7f6f2;
         }
+
 
         .container {
             max-width: 1050px;
@@ -37,7 +47,7 @@
 
 
         /* =========================
-           Logo / 網站名稱
+           網站名稱
         ========================= */
 
         .brand {
@@ -45,30 +55,35 @@
             margin-bottom: 35px;
         }
 
+
         .brand-main {
             font-size: 24px;
             font-weight: 700;
             letter-spacing: 2px;
         }
 
+
         .brand-line {
             width: 45px;
             height: 3px;
+
             background: #6f7d68;
+
             margin: 12px auto 0;
+
             border-radius: 10px;
         }
 
 
         /* =========================
-           主區塊
+           主視覺
         ========================= */
 
         .hero {
             position: relative;
             overflow: hidden;
 
-            background: rgba(255, 255, 255, 0.88);
+            background: rgba(255, 255, 255, 0.9);
 
             border-radius: 30px;
 
@@ -81,7 +96,7 @@
         }
 
 
-        /* 裝飾光暈 */
+        /* 左上裝飾 */
 
         .hero::before {
             content: "";
@@ -100,6 +115,9 @@
 
             opacity: 0.7;
         }
+
+
+        /* 右下裝飾 */
 
         .hero::after {
             content: "";
@@ -126,7 +144,9 @@
         }
 
 
-        /* 小標籤 */
+        /* =========================
+           小標籤
+        ========================= */
 
         .tag {
             display: inline-block;
@@ -149,7 +169,9 @@
         }
 
 
-        /* 主標 */
+        /* =========================
+           主標
+        ========================= */
 
         h1 {
             margin: 0 auto;
@@ -158,20 +180,28 @@
 
             font-size: 44px;
 
-            line-height: 1.35;
+            line-height: 1.45;
 
-            letter-spacing: 2px;
+            letter-spacing: 1px;
 
-            font-weight: 700;
+            font-weight: 600;
         }
 
+
+        /* 「目標」特殊顯示 */
 
         .highlight {
             color: #66745f;
+
+            font-weight: 800;
+
+            position: relative;
         }
 
 
-        /* 說明 */
+        /* =========================
+           說明文字
+        ========================= */
 
         .description {
             margin: 28px auto 0;
@@ -256,11 +286,10 @@
 
 
         /* =========================
-           三個功能
+           三個特色
         ========================= */
 
         .features {
-
             display: grid;
 
             grid-template-columns:
@@ -273,7 +302,6 @@
 
 
         .feature {
-
             background: rgba(255, 255, 255, 0.9);
 
             border-radius: 22px;
@@ -292,7 +320,6 @@
 
 
         .feature:hover {
-
             transform: translateY(-4px);
 
             box-shadow:
@@ -301,7 +328,6 @@
 
 
         .feature-icon {
-
             width: 55px;
             height: 55px;
 
@@ -321,7 +347,6 @@
 
 
         .feature h3 {
-
             margin: 0 0 10px;
 
             font-size: 17px;
@@ -329,7 +354,6 @@
 
 
         .feature p {
-
             margin: 0;
 
             color: #888;
@@ -350,13 +374,16 @@
                 padding: 25px 15px 45px;
             }
 
+
             .brand {
                 margin-bottom: 25px;
             }
 
+
             .brand-main {
                 font-size: 20px;
             }
+
 
             .hero {
                 padding: 65px 22px 60px;
@@ -364,13 +391,15 @@
                 border-radius: 24px;
             }
 
+
             h1 {
-                font-size: 30px;
+                font-size: 27px;
 
-                line-height: 1.45;
+                line-height: 1.55;
 
-                letter-spacing: 1px;
+                letter-spacing: 0.5px;
             }
+
 
             .description {
                 font-size: 13px;
@@ -380,6 +409,7 @@
                 margin-top: 22px;
             }
 
+
             .start-button {
                 margin-top: 30px;
 
@@ -388,16 +418,20 @@
                 max-width: 260px;
             }
 
+
             .features {
                 grid-template-columns: 1fr;
 
                 gap: 14px;
             }
 
+
             .feature {
                 padding: 25px 20px;
             }
+
         }
+
     </style>
 
 </head>
@@ -405,10 +439,13 @@
 
 <body>
 
+
     <div class="container">
 
 
-        <!-- 網站名稱 -->
+        <!-- =========================
+             網站名稱
+        ========================= -->
 
         <div class="brand">
 
@@ -421,9 +458,12 @@
         </div>
 
 
-        <!-- 主視覺 -->
+        <!-- =========================
+             主視覺
+        ========================= -->
 
         <section class="hero">
+
 
             <div class="hero-content">
 
@@ -435,10 +475,16 @@
 
                 <h1>
 
-                    讓自由，不只是想像，<br>
+                    讓自由，不只是想像，
+
+                    <br>
+
+                    而是一個可以計算的
+
+                    <br>
 
                     <span class="highlight">
-                        而是一個可以計算的目標。
+                        目標。
                     </span>
 
                 </h1>
@@ -467,7 +513,9 @@
         </section>
 
 
-        <!-- 功能特色 -->
+        <!-- =========================
+             功能特色
+        ========================= -->
 
         <div class="features">
 
@@ -530,6 +578,7 @@
 
 
     </div>
+
 
 </body>
 
