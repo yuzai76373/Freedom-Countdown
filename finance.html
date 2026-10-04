@@ -19,10 +19,6 @@
       --line: #E6E0D5;
       --white: #FFFFFF;
 
-      --age-bg: #F4E9CF;
-      --age-border: #E4D4A9;
-      --age-text: #765F32;
-
       --danger-bg: #F7E5E0;
       --danger-text: #9A5145;
 
@@ -101,11 +97,10 @@
       font-size: clamp(32px, 8vw, 42px);
       line-height: 1.18;
       font-weight: 800;
-      letter-spacing: 0.02em;
     }
 
     .hero-intro {
-      margin: 20px 0 0;
+      margin-top: 20px;
     }
 
     .hero-intro-main {
@@ -120,7 +115,6 @@
       margin: 5px 0 0;
       color: var(--muted);
       font-size: 15px;
-      line-height: 1.7;
     }
 
     /* =========================
@@ -146,7 +140,7 @@
     .section-title {
       margin: 0;
       color: var(--green-dark);
-      font-size: 21px;
+      font-size: 22px;
       font-weight: 800;
       line-height: 1.4;
     }
@@ -158,7 +152,7 @@
     }
 
     /* =========================
-       切換按鈕
+       切換
     ========================= */
 
     .mode-switch {
@@ -180,7 +174,6 @@
       font-size: 15px;
       font-weight: 700;
       cursor: pointer;
-      transition: 0.2s ease;
     }
 
     .mode-button.active {
@@ -190,21 +183,70 @@
     }
 
     /* =========================
-       表單
+       收入卡片
     ========================= */
 
-    .field-grid {
+    .income-panel {
+      display: none;
+    }
+
+    .income-panel.active {
+      display: block;
+    }
+
+    .income-card-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
     }
 
-    .field {
+    .income-card {
       min-width: 0;
+      padding: 19px 16px;
+      background: #FFFEFB;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow-small);
     }
 
-    .field.full {
-      grid-column: 1 / -1;
+    .income-card-title {
+      margin: 0 0 15px;
+      color: var(--green-dark);
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .detail-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .detail-income-card {
+      padding: 19px 16px;
+      background: #FFFEFB;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow-small);
+    }
+
+    .detail-income-card-title {
+      margin: 0 0 15px;
+      color: var(--green-dark);
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    .detail-income-card .field + .field {
+      margin-top: 12px;
+    }
+
+    /* =========================
+       表單
+    ========================= */
+
+    .field {
+      min-width: 0;
     }
 
     .field-label {
@@ -213,19 +255,6 @@
       color: var(--text);
       font-size: 16px;
       font-weight: 700;
-    }
-
-    .field-help {
-      margin: -2px 0 7px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-    }
-
-    .input-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
     }
 
     .text-input {
@@ -239,7 +268,7 @@
       color: var(--green-dark);
       font-size: 17px;
       font-weight: 600;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      transition: 0.2s ease;
     }
 
     .text-input:focus {
@@ -256,6 +285,12 @@
       text-align: right;
     }
 
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
     .percent-input {
       padding-right: 38px;
       text-align: right;
@@ -266,32 +301,13 @@
       right: 14px;
       color: var(--green-dark);
       font-size: 17px;
-      font-weight: 700;
+      font-weight: 800;
       pointer-events: none;
     }
 
     /* =========================
-       收入
+       結果
     ========================= */
-
-    .income-panel {
-      display: none;
-    }
-
-    .income-panel.active {
-      display: block;
-    }
-
-    .sub-heading {
-      margin: 20px 0 12px;
-      color: var(--green-dark);
-      font-size: 18px;
-      font-weight: 800;
-    }
-
-    .sub-heading:first-child {
-      margin-top: 0;
-    }
 
     .result-box {
       margin-top: 18px;
@@ -304,7 +320,7 @@
     .result-title {
       margin: 0 0 11px;
       color: var(--green-dark);
-      font-size: 15px;
+      font-size: 16px;
       font-weight: 800;
     }
 
@@ -327,7 +343,7 @@
 
     .result-value {
       color: var(--green-dark);
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
       text-align: right;
       white-space: nowrap;
@@ -344,11 +360,11 @@
     }
 
     .result-row.total .result-value {
-      font-size: 21px;
+      font-size: 22px;
     }
 
     /* =========================
-       負債卡片
+       負債
     ========================= */
 
     .card-grid {
@@ -360,7 +376,6 @@
     .mini-card {
       display: flex;
       flex-direction: column;
-      min-width: 0;
       height: 100%;
       padding: 16px;
       background: #FFFEFB;
@@ -403,6 +418,12 @@
       font-weight: 800;
     }
 
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
     .dependent-help {
       display: none;
       margin-top: 6px;
@@ -412,48 +433,8 @@
     }
 
     /* =========================
-       資產
-    ========================= */
-
-    .asset-card {
-      position: relative;
-      padding: 17px;
-      background: #FFFEFB;
-      border: 1px solid var(--line);
-      border-radius: 17px;
-    }
-
-    .asset-card-title {
-      margin: 0 0 13px;
-      color: var(--green-dark);
-      font-size: 18px;
-      font-weight: 800;
-    }
-
-    .asset-card .field + .field {
-      margin-top: 12px;
-    }
-
-    .rate-label {
-      margin-bottom: 6px;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-    }
-
-    .rate-example {
-      margin: -2px 0 6px;
-      color: var(--muted);
-      font-size: 12px;
-    }
-
-    /* =========================
        現金流
     ========================= */
-
-    .cashflow-box {
-      background: var(--paper);
-    }
 
     .cashflow-main {
       margin-top: 16px;
@@ -494,10 +475,6 @@
       background: rgba(139, 117, 64, 0.18);
     }
 
-    .cashflow-result {
-      padding-top: 4px;
-    }
-
     .cashflow-result .cashflow-label {
       font-size: 17px;
       font-weight: 800;
@@ -512,7 +489,37 @@
     }
 
     /* =========================
-       報酬率
+       資產
+    ========================= */
+
+    .asset-card {
+      min-width: 0;
+      padding: 17px;
+      background: #FFFEFB;
+      border: 1px solid var(--line);
+      border-radius: 17px;
+    }
+
+    .asset-card-title {
+      margin: 0 0 13px;
+      color: var(--green-dark);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .asset-card .field + .field {
+      margin-top: 12px;
+    }
+
+    .rate-label {
+      margin-bottom: 6px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       加權報酬率
     ========================= */
 
     .weighted-return {
@@ -521,7 +528,6 @@
       padding: 17px;
       border-radius: 16px;
       background: var(--green-soft);
-      text-align: center;
     }
 
     .weighted-return.show {
@@ -531,14 +537,24 @@
     .weighted-label {
       color: var(--muted);
       font-size: 14px;
+      text-align: center;
     }
 
     .weighted-value {
       margin-top: 2px;
       color: var(--green-dark);
       font-size: 30px;
-      line-height: 1.3;
       font-weight: 800;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .weighted-detail {
+      margin-top: 8px;
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.7;
+      text-align: center;
     }
 
     /* =========================
@@ -617,36 +633,33 @@
       display: flex;
       align-items: center;
       gap: 7px;
-      min-width: 0;
     }
 
     .legend-dot {
-      flex: 0 0 9px;
       width: 9px;
       height: 9px;
+      flex: 0 0 9px;
       border-radius: 50%;
     }
 
     .legend-percent {
       color: var(--green-dark);
       font-weight: 800;
-      white-space: nowrap;
     }
 
     .chart-empty {
       color: var(--muted);
       font-size: 14px;
       text-align: center;
-      padding: 10px 0;
     }
 
     /* =========================
-       錯誤提示
+       驗證
     ========================= */
 
     .validation-message {
       display: none;
-      margin-bottom: 15px;
+      margin-top: 8px;
       padding: 12px 14px;
       border-radius: 13px;
       background: var(--danger-bg);
@@ -660,7 +673,7 @@
     }
 
     /* =========================
-       底部按鈕
+       底部
     ========================= */
 
     .bottom-nav {
@@ -688,14 +701,6 @@
       color: white;
     }
 
-    .nav-button:active {
-      transform: translateY(1px);
-    }
-
-    /* =========================
-       Footer
-    ========================= */
-
     footer {
       padding: 26px 4px 8px;
       text-align: center;
@@ -705,32 +710,36 @@
     }
 
     /* =========================
-       RWD
+       手機
     ========================= */
 
     @media (max-width: 560px) {
+
       .page {
         padding: 28px 14px 22px;
-      }
-
-      .hero {
-        padding-left: 3px;
-        padding-right: 3px;
-        padding-bottom: 25px;
       }
 
       .section-card {
         padding: 19px 15px;
       }
 
-      .field-grid,
-      .card-grid {
+      .income-card-grid,
+      .detail-card-grid,
+      .card-grid,
+      .field-grid {
         grid-template-columns: 1fr 1fr;
       }
 
+      .income-card,
+      .detail-income-card,
       .mini-card,
       .asset-card {
         padding: 14px;
+      }
+
+      .income-card-title,
+      .detail-income-card-title {
+        font-size: 17px;
       }
 
       .mini-card-title,
@@ -763,16 +772,12 @@
     }
 
     @media (max-width: 390px) {
-      .card-grid {
-        grid-template-columns: 1fr;
-      }
 
+      .income-card-grid,
+      .detail-card-grid,
+      .card-grid,
       .field-grid {
         grid-template-columns: 1fr;
-      }
-
-      .field.full {
-        grid-column: auto;
       }
 
       .chart-layout {
@@ -790,64 +795,98 @@
 
 <body>
 
-  <main class="page">
+<main class="page">
 
-    <!-- =========================
-         頁首
-    ========================= -->
+  <!-- =========================
+       頁首
+  ========================= -->
 
-    <header class="hero">
-      <div class="brand">自由倒數 試算工具</div>
+  <header class="hero">
 
-      <div class="page-number">02</div>
-      <h1 class="page-title">財務資料</h1>
+    <div class="brand">
+      自由倒數 試算工具
+    </div>
 
-      <div class="hero-intro">
-        <p class="hero-intro-main">先看看，你現在的財務狀況</p>
-        <p class="hero-intro-sub">不用一次填得很精準，先填出大概就可以</p>
-      </div>
-    </header>
+    <div class="page-number">
+      02
+    </div>
+
+    <h1 class="page-title">
+      財務資料
+    </h1>
+
+    <div class="hero-intro">
+      <p class="hero-intro-main">
+        先看看，你現在的財務狀況
+      </p>
+
+      <p class="hero-intro-sub">
+        不用一次填得很精準，先填出大概就可以
+      </p>
+    </div>
+
+  </header>
 
 
-    <!-- =========================
-         ① 收入
-    ========================= -->
+  <!-- =========================
+       ① 收入
+  ========================= -->
 
-    <section class="section">
-      <div class="section-card">
+  <section class="section">
 
-        <div class="section-head">
-          <h2 class="section-title">💰 每月平均收入</h2>
+    <div class="section-card">
 
-          <div class="mode-switch">
-            <button
-              type="button"
-              class="mode-button active"
-              data-income-mode="quick"
-            >
-              ⚡ 快速填寫
-            </button>
+      <div class="section-head">
 
-            <button
-              type="button"
-              class="mode-button"
-              data-income-mode="detail"
-            >
-              📋 詳細填寫
-            </button>
-          </div>
+        <h2 class="section-title">
+          💰 每月平均收入
+        </h2>
+
+        <div class="mode-switch">
+
+          <button
+            type="button"
+            class="mode-button active"
+            data-income-mode="quick"
+          >
+            ⚡ 快速填寫
+          </button>
+
+          <button
+            type="button"
+            class="mode-button"
+            data-income-mode="detail"
+          >
+            📋 詳細填寫
+          </button>
+
         </div>
 
+      </div>
 
-        <!-- 快速填寫 -->
 
-        <div id="incomeQuick" class="income-panel active">
+      <!-- 快速填寫 -->
 
-          <div class="field-grid">
+      <div
+        id="incomeQuick"
+        class="income-panel active"
+      >
+
+        <div class="income-card-grid">
+
+          <div class="income-card">
+
+            <h3 class="income-card-title">
+              💼 工作收入
+            </h3>
 
             <div class="field">
-              <label class="field-label" for="quickWorkIncome">
-                工作收入
+
+              <label
+                class="field-label"
+                for="quickWorkIncome"
+              >
+                金額
               </label>
 
               <input
@@ -860,17 +899,26 @@
                 data-finance-input
                 placeholder="例如 40,000"
               >
+
             </div>
 
+          </div>
+
+
+          <div class="income-card">
+
+            <h3 class="income-card-title">
+              📈 被動收入
+            </h3>
 
             <div class="field">
-              <label class="field-label" for="quickPassiveIncome">
-                被動收入
-              </label>
 
-              <div class="field-help">
-                例如：股息、基金配息、租金
-              </div>
+              <label
+                class="field-label"
+                for="quickPassiveIncome"
+              >
+                金額
+              </label>
 
               <input
                 id="quickPassiveIncome"
@@ -880,25 +928,39 @@
                 autocomplete="off"
                 data-money
                 data-finance-input
-                placeholder="例如 10,000"
+                placeholder="例如：股息、基金配息、租金"
               >
+
             </div>
 
           </div>
 
         </div>
 
+      </div>
 
-        <!-- 詳細填寫 -->
 
-        <div id="incomeDetail" class="income-panel">
+      <!-- 詳細填寫 -->
 
-          <h3 class="sub-heading">💼 主動收入</h3>
+      <div
+        id="incomeDetail"
+        class="income-panel"
+      >
 
-          <div class="field-grid">
+        <div class="detail-card-grid">
+
+          <div class="detail-income-card">
+
+            <h3 class="detail-income-card-title">
+              💼 主動收入
+            </h3>
 
             <div class="field">
-              <label class="field-label" for="detailSalary">
+
+              <label
+                class="field-label"
+                for="detailSalary"
+              >
                 薪資／工作收入
               </label>
 
@@ -912,10 +974,16 @@
                 data-finance-input
                 placeholder="例如 40,000"
               >
+
             </div>
 
+
             <div class="field">
-              <label class="field-label" for="detailOtherActive">
+
+              <label
+                class="field-label"
+                for="detailOtherActive"
+              >
                 其他收入
               </label>
 
@@ -929,17 +997,24 @@
                 data-finance-input
                 placeholder="例如 5,000"
               >
+
             </div>
 
           </div>
 
 
-          <h3 class="sub-heading">📈 被動收入</h3>
+          <div class="detail-income-card">
 
-          <div class="field-grid">
+            <h3 class="detail-income-card-title">
+              📈 被動收入
+            </h3>
 
             <div class="field">
-              <label class="field-label" for="detailInvestment">
+
+              <label
+                class="field-label"
+                for="detailInvestment"
+              >
                 投資收益
               </label>
 
@@ -953,10 +1028,16 @@
                 data-finance-input
                 placeholder="例如 8,000"
               >
+
             </div>
 
+
             <div class="field">
-              <label class="field-label" for="detailInterest">
+
+              <label
+                class="field-label"
+                for="detailInterest"
+              >
                 利息收入
               </label>
 
@@ -970,10 +1051,16 @@
                 data-finance-input
                 placeholder="例如 1,000"
               >
+
             </div>
 
+
             <div class="field">
-              <label class="field-label" for="detailRent">
+
+              <label
+                class="field-label"
+                for="detailRent"
+              >
                 租金收入
               </label>
 
@@ -987,10 +1074,16 @@
                 data-finance-input
                 placeholder="例如 15,000"
               >
+
             </div>
 
+
             <div class="field">
-              <label class="field-label" for="detailOtherPassive">
+
+              <label
+                class="field-label"
+                for="detailOtherPassive"
+              >
                 其他收入
               </label>
 
@@ -1004,936 +1097,6 @@
                 data-finance-input
                 placeholder="例如 2,000"
               >
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- 系統計算結果 -->
-
-        <div class="result-box">
-
-          <h3 class="result-title">📊 系統計算結果</h3>
-
-          <div class="result-list">
-
-            <div class="result-row">
-              <span class="result-label">主動收入</span>
-              <strong id="activeIncomeResult" class="result-value">
-                0
-              </strong>
-            </div>
-
-            <div class="result-row">
-              <span class="result-label">被動收入</span>
-              <strong id="passiveIncomeResult" class="result-value">
-                0
-              </strong>
-            </div>
-
-            <div class="result-row total">
-              <span class="result-label">每月平均收入</span>
-              <strong id="totalIncomeResult" class="result-value">
-                0
-              </strong>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =========================
-         ② 負債
-    ========================= -->
-
-    <section class="section">
-      <div class="section-card">
-
-        <div class="section-head">
-          <h2 class="section-title">💳 負債</h2>
-          <p class="section-description">先填目前還剩多少，以及每月實際還款</p>
-        </div>
-
-        <div class="card-grid">
-
-          <!-- 房貸 -->
-          <div class="mini-card">
-            <h3 class="mini-card-title">🏠 房貸</h3>
-
-            <div class="field">
-              <label class="field-label" for="homeLoanBalance">
-                剩餘負債
-              </label>
-
-              <input
-                id="homeLoanBalance"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 3,000,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="homeLoanPayment">
-                每月還款
-              </label>
-
-              <input
-                id="homeLoanPayment"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 16,000"
-              >
-            </div>
-          </div>
-
-
-          <!-- 信貸 -->
-          <div class="mini-card">
-            <h3 class="mini-card-title">💳 信貸</h3>
-
-            <div class="field">
-              <label class="field-label" for="personalLoanBalance">
-                剩餘負債
-              </label>
-
-              <input
-                id="personalLoanBalance"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 500,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="personalLoanPayment">
-                每月還款
-              </label>
-
-              <input
-                id="personalLoanPayment"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 10,000"
-              >
-            </div>
-          </div>
-
-
-          <!-- 車貸 -->
-          <div class="mini-card">
-            <h3 class="mini-card-title">🚗 車貸</h3>
-
-            <div class="field">
-              <label class="field-label" for="carLoanBalance">
-                剩餘負債
-              </label>
-
-              <input
-                id="carLoanBalance"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 100,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="carLoanPayment">
-                每月還款
-              </label>
-
-              <input
-                id="carLoanPayment"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 5,000"
-              >
-            </div>
-          </div>
-
-
-          <!-- 其他貸款 -->
-          <div class="mini-card">
-            <h3 class="mini-card-title">📄 其他貸款</h3>
-
-            <div class="field">
-              <label class="field-label" for="otherLoanBalance">
-                剩餘負債
-              </label>
-
-              <input
-                id="otherLoanBalance"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 100,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="otherLoanPayment">
-                每月還款
-              </label>
-
-              <input
-                id="otherLoanPayment"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 5,000"
-              >
-            </div>
-          </div>
-
-        </div>
-
-
-        <div class="result-box">
-
-          <h3 class="result-title">📊 系統計算結果</h3>
-
-          <div class="result-list">
-
-            <div class="result-row">
-              <span class="result-label">目前剩餘負債</span>
-              <strong id="totalDebtBalance" class="result-value">
-                0
-              </strong>
-            </div>
-
-            <div class="result-row">
-              <span class="result-label">每月貸款還款</span>
-              <strong id="totalDebtPayment" class="result-value">
-                0
-              </strong>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =========================
-         ③ 支出
-    ========================= -->
-
-    <section class="section">
-      <div class="section-card">
-
-        <div class="section-head">
-          <h2 class="section-title">💸 每月支出</h2>
-          <p class="section-description">填你平常一個月大約會花多少</p>
-        </div>
-
-
-        <!-- 固定支出 -->
-
-        <div class="expense-group">
-
-          <h3 class="expense-group-title">📌 固定支出</h3>
-
-          <div class="field-grid">
-
-            <div class="field">
-              <label class="field-label" for="rentExpense">
-                房租
-              </label>
-
-              <input
-                id="rentExpense"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 15,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="insuranceExpense">
-                保險費
-              </label>
-
-              <input
-                id="insuranceExpense"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 5,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="taxExpense">
-                稅金
-              </label>
-
-              <input
-                id="taxExpense"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 2,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="telecomExpense">
-                電信＋家用網路
-              </label>
-
-              <input
-                id="telecomExpense"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 1,500"
-              >
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="utilitiesExpense">
-                水電瓦斯
-              </label>
-
-              <input
-                id="utilitiesExpense"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 2,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="field-label" for="otherFixedExpense">
-                其他
-              </label>
-
-              <input
-                id="otherFixedExpense"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 1,000"
-              >
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- 生活支出 -->
-
-        <div class="expense-group">
-
-          <h3 class="expense-group-title">🌿 生活支出</h3>
-
-          <div class="field-grid">
-
-            <div class="field">
-              <label class="field-label" for="foodExpense">
-                伙食費
-              </label>
-
-              <input
-                id="foodExpense"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 8,000"
-              >
-            </div>
-
-
-            <div class="field">
-              <label class="field-label" for="careExpense">
-                扶養／照顧費
-              </label>
-
-              <input
-                id="careExpense"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 5,000"
-              >
-
-              <div id="dependentHelp" class="dependent-help"></div>
-            </div>
-
-
-            <div class="field">
-              <label class="field-label" for="transportExpense">
-                交通費
-              </label>
-
-              <input
-                id="transportExpense"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 2,000"
-              >
-            </div>
-
-
-            <div class="field">
-              <label class="field-label" for="vehicleMaintenanceExpense">
-                汽機車保養維修費
-              </label>
-
-              <input
-                id="vehicleMaintenanceExpense"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 1,000"
-              >
-            </div>
-
-
-            <div class="field">
-              <label class="field-label" for="shoppingExpense">
-                治裝／購物
-              </label>
-
-              <input
-                id="shoppingExpense"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 3,000"
-              >
-            </div>
-
-
-            <div class="field">
-              <label class="field-label" for="entertainmentExpense">
-                娛樂／旅遊
-              </label>
-
-              <input
-                id="entertainmentExpense"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 3,000"
-              >
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =========================
-         ④ 每月現金流
-    ========================= -->
-
-    <section class="section">
-      <div class="section-card cashflow-box">
-
-        <div class="section-head">
-          <h2 class="section-title">🌱 每月現金流</h2>
-        </div>
-
-        <div class="cashflow-main">
-
-          <div class="cashflow-equation">
-
-            <div class="cashflow-row">
-              <span class="cashflow-label">每月平均收入</span>
-              <strong id="cashflowIncome" class="cashflow-value">
-                0
-              </strong>
-            </div>
-
-            <div class="cashflow-row">
-              <span class="cashflow-label">每月總支出（含貸款支出）</span>
-              <strong id="cashflowExpense" class="cashflow-value">
-                0
-              </strong>
-            </div>
-
-            <div class="cashflow-divider"></div>
-
-            <div class="cashflow-row cashflow-result">
-              <span class="cashflow-label">每月可支配餘額</span>
-              <strong id="cashflowBalance" class="cashflow-value">
-                0
-              </strong>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =========================
-         ⑤ 資產
-    ========================= -->
-
-    <section class="section">
-      <div class="section-card">
-
-        <div class="section-head">
-          <h2 class="section-title">📊 資產</h2>
-          <p class="section-description">填目前資產金額，以及你預估的年報酬率</p>
-        </div>
-
-        <div class="card-grid">
-
-          <!-- 活存 -->
-          <div class="asset-card">
-
-            <h3 class="asset-card-title">💵 活存</h3>
-
-            <div class="field">
-              <label class="field-label" for="cashAsset">
-                金額
-              </label>
-
-              <input
-                id="cashAsset"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 100,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="rate-label" for="cashRate">
-                年報酬率
-              </label>
-
-              <div class="rate-example">例如 1%</div>
-
-              <div class="input-wrap">
-                <input
-                  id="cashRate"
-                  class="text-input percent-input"
-                  type="text"
-                  inputmode="decimal"
-                  autocomplete="off"
-                  data-rate
-                  data-finance-input
-                  placeholder="1"
-                >
-                <span class="suffix">%</span>
-              </div>
-            </div>
-
-          </div>
-
-
-          <!-- 定存 -->
-          <div class="asset-card">
-
-            <h3 class="asset-card-title">🏦 定存</h3>
-
-            <div class="field">
-              <label class="field-label" for="timeDepositAsset">
-                金額
-              </label>
-
-              <input
-                id="timeDepositAsset"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 500,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="rate-label" for="timeDepositRate">
-                年報酬率
-              </label>
-
-              <div class="rate-example">例如 1.5%</div>
-
-              <div class="input-wrap">
-                <input
-                  id="timeDepositRate"
-                  class="text-input percent-input"
-                  type="text"
-                  inputmode="decimal"
-                  autocomplete="off"
-                  data-rate
-                  data-finance-input
-                  placeholder="1.5"
-                >
-                <span class="suffix">%</span>
-              </div>
-            </div>
-
-          </div>
-
-
-          <!-- 投資 -->
-          <div class="asset-card">
-
-            <h3 class="asset-card-title">📈 投資（股票／ETF／基金）</h3>
-
-            <div class="field">
-              <label class="field-label" for="investmentAsset">
-                金額
-              </label>
-
-              <input
-                id="investmentAsset"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 2,000,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="rate-label" for="investmentRate">
-                年報酬率
-              </label>
-
-              <div class="rate-example">例如 5%</div>
-
-              <div class="input-wrap">
-                <input
-                  id="investmentRate"
-                  class="text-input percent-input"
-                  type="text"
-                  inputmode="decimal"
-                  autocomplete="off"
-                  data-rate
-                  data-finance-input
-                  placeholder="5"
-                >
-                <span class="suffix">%</span>
-              </div>
-            </div>
-
-          </div>
-
-
-          <!-- 儲蓄險 -->
-          <div class="asset-card">
-
-            <h3 class="asset-card-title">🛡️ 儲蓄險保價金</h3>
-
-            <div class="field">
-              <label class="field-label" for="savingsInsuranceAsset">
-                金額
-              </label>
-
-              <input
-                id="savingsInsuranceAsset"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 500,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="rate-label" for="savingsInsuranceRate">
-                年報酬率
-              </label>
-
-              <div class="rate-example">例如 2%</div>
-
-              <div class="input-wrap">
-                <input
-                  id="savingsInsuranceRate"
-                  class="text-input percent-input"
-                  type="text"
-                  inputmode="decimal"
-                  autocomplete="off"
-                  data-rate
-                  data-finance-input
-                  placeholder="2"
-                >
-                <span class="suffix">%</span>
-              </div>
-            </div>
-
-          </div>
-
-
-          <!-- 房地產 -->
-          <div class="asset-card">
-
-            <h3 class="asset-card-title">🏠 房地產</h3>
-
-            <div class="field">
-              <label class="field-label" for="realEstateAsset">
-                金額
-              </label>
-
-              <input
-                id="realEstateAsset"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 5,000,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="rate-label" for="realEstateRate">
-                年報酬率
-              </label>
-
-              <div class="rate-example">例如 2%</div>
-
-              <div class="input-wrap">
-                <input
-                  id="realEstateRate"
-                  class="text-input percent-input"
-                  type="text"
-                  inputmode="decimal"
-                  autocomplete="off"
-                  data-rate
-                  data-finance-input
-                  placeholder="2"
-                >
-                <span class="suffix">%</span>
-              </div>
-            </div>
-
-          </div>
-
-
-          <!-- 其他資產 -->
-          <div class="asset-card">
-
-            <h3 class="asset-card-title">📦 其他資產</h3>
-
-            <div class="field">
-              <label class="field-label" for="otherAsset">
-                金額
-              </label>
-
-              <input
-                id="otherAsset"
-                class="text-input money-input"
-                type="text"
-                inputmode="numeric"
-                autocomplete="off"
-                data-money
-                data-finance-input
-                placeholder="例如 100,000"
-              >
-            </div>
-
-            <div class="field">
-              <label class="rate-label" for="otherAssetRate">
-                年報酬率
-              </label>
-
-              <div class="rate-example">例如 3%</div>
-
-              <div class="input-wrap">
-                <input
-                  id="otherAssetRate"
-                  class="text-input percent-input"
-                  type="text"
-                  inputmode="decimal"
-                  autocomplete="off"
-                  data-rate
-                  data-finance-input
-                  placeholder="3"
-                >
-                <span class="suffix">%</span>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- 資產總額 -->
-
-        <div class="result-box">
-
-          <h3 class="result-title">📊 系統計算結果</h3>
-
-          <div class="result-list">
-
-            <div class="result-row total">
-              <span class="result-label">目前資產總額</span>
-              <strong id="totalAssetResult" class="result-value">
-                0
-              </strong>
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- 加權年報酬率 -->
-
-        <div id="weightedReturnBox" class="weighted-return">
-
-          <div class="weighted-label">
-            加權年報酬率
-          </div>
-
-          <div id="weightedReturnResult" class="weighted-value">
-            0%
-          </div>
-
-        </div>
-
-
-        <!-- 資產配置 -->
-
-        <div class="chart-section">
-
-          <h3 class="chart-title">🧩 資產配置</h3>
-
-          <div class="chart-box">
-
-            <div class="chart-layout">
-
-              <div
-                id="allAssetDonut"
-                class="donut"
-                aria-label="資產配置圖"
-              >
-                <div class="donut-center">
-                  全部資產
-                </div>
-              </div>
-
-              <div id="allAssetLegend" class="legend"></div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <!-- 可投資資產配置 -->
-
-        <div class="chart-section">
-
-          <h3 class="chart-title">📈 可投資資產配置</h3>
-
-          <div class="chart-box">
-
-            <div class="chart-layout">
-
-              <div
-                id="investableDonut"
-                class="donut"
-                aria-label="可投資資產配置圖"
-              >
-                <div class="donut-center">
-                  不含房產
-                </div>
-              </div>
-
-              <div id="investableLegend" class="legend"></div>
 
             </div>
 
@@ -1942,589 +1105,1910 @@
         </div>
 
       </div>
-    </section>
 
 
-    <!-- =========================
-         下一步驗證
-    ========================= -->
+      <!-- 收入計算 -->
 
-    <div id="validationMessage" class="validation-message">
-      請先填寫一些財務資料，再進入下一步
+      <div class="result-box">
+
+        <h3 class="result-title">
+          📊 系統計算結果
+        </h3>
+
+        <div class="result-list">
+
+          <div class="result-row">
+            <span class="result-label">
+              主動收入
+            </span>
+
+            <strong
+              id="activeIncomeResult"
+              class="result-value"
+            >
+              0
+            </strong>
+          </div>
+
+
+          <div class="result-row">
+            <span class="result-label">
+              被動收入
+            </span>
+
+            <strong
+              id="passiveIncomeResult"
+              class="result-value"
+            >
+              0
+            </strong>
+          </div>
+
+
+          <div class="result-row total">
+            <span class="result-label">
+              每月平均收入
+            </span>
+
+            <strong
+              id="totalIncomeResult"
+              class="result-value"
+            >
+              0
+            </strong>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
 
+  </section>
 
-    <!-- =========================
-         底部導航
-    ========================= -->
 
-    <nav class="bottom-nav">
+  <!-- =========================
+       ② 負債
+  ========================= -->
 
-      <button
-        type="button"
-        id="backButton"
-        class="nav-button"
+  <section class="section">
+
+    <div class="section-card">
+
+      <div class="section-head">
+
+        <h2 class="section-title">
+          💳 負債
+        </h2>
+
+        <p class="section-description">
+          先填目前還剩多少，以及每月實際還款
+        </p>
+
+      </div>
+
+
+      <div class="card-grid">
+
+        <div class="mini-card">
+
+          <h3 class="mini-card-title">
+            🏠 房貸
+          </h3>
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="homeLoanBalance"
+            >
+              剩餘負債
+            </label>
+
+            <input
+              id="homeLoanBalance"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              data-money
+              data-finance-input
+              placeholder="例如 3,000,000"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="homeLoanPayment"
+            >
+              每月還款
+            </label>
+
+            <input
+              id="homeLoanPayment"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              data-money
+              data-finance-input
+              placeholder="例如 16,000"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="mini-card">
+
+          <h3 class="mini-card-title">
+            💳 信貸
+          </h3>
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="personalLoanBalance"
+            >
+              剩餘負債
+            </label>
+
+            <input
+              id="personalLoanBalance"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              data-money
+              data-finance-input
+              placeholder="例如 500,000"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="personalLoanPayment"
+            >
+              每月還款
+            </label>
+
+            <input
+              id="personalLoanPayment"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              data-money
+              data-finance-input
+              placeholder="例如 10,000"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="mini-card">
+
+          <h3 class="mini-card-title">
+            🚗 車貸
+          </h3>
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="carLoanBalance"
+            >
+              剩餘負債
+            </label>
+
+            <input
+              id="carLoanBalance"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              data-money
+              data-finance-input
+              placeholder="例如 100,000"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="carLoanPayment"
+            >
+              每月還款
+            </label>
+
+            <input
+              id="carLoanPayment"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              data-money
+              data-finance-input
+              placeholder="例如 5,000"
+            >
+
+          </div>
+
+        </div>
+
+
+        <div class="mini-card">
+
+          <h3 class="mini-card-title">
+            📄 其他貸款
+          </h3>
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="otherLoanBalance"
+            >
+              剩餘負債
+            </label>
+
+            <input
+              id="otherLoanBalance"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              data-money
+              data-finance-input
+              placeholder="例如 100,000"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="otherLoanPayment"
+            >
+              每月還款
+            </label>
+
+            <input
+              id="otherLoanPayment"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              autocomplete="off"
+              data-money
+              data-finance-input
+              placeholder="例如 5,000"
+            >
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="result-box">
+
+        <h3 class="result-title">
+          📊 系統計算結果
+        </h3>
+
+        <div class="result-list">
+
+          <div class="result-row">
+            <span class="result-label">
+              目前剩餘負債
+            </span>
+
+            <strong
+              id="totalDebtBalance"
+              class="result-value"
+            >
+              0
+            </strong>
+          </div>
+
+
+          <div class="result-row">
+            <span class="result-label">
+              每月貸款還款
+            </span>
+
+            <strong
+              id="totalDebtPayment"
+              class="result-value"
+            >
+              0
+            </strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ③ 支出
+  ========================= -->
+
+  <section class="section">
+
+    <div class="section-card">
+
+      <div class="section-head">
+
+        <h2 class="section-title">
+          💸 每月支出
+        </h2>
+
+        <p class="section-description">
+          填你平常一個月大約會花多少
+        </p>
+
+      </div>
+
+
+      <div class="expense-group">
+
+        <h3 class="expense-group-title">
+          📌 固定支出
+        </h3>
+
+        <div class="field-grid">
+
+          <div class="field">
+            <label class="field-label" for="rentExpense">
+              房租
+            </label>
+
+            <input
+              id="rentExpense"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 15,000"
+            >
+          </div>
+
+
+          <div class="field">
+            <label class="field-label" for="insuranceExpense">
+              保險費
+            </label>
+
+            <input
+              id="insuranceExpense"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 5,000"
+            >
+          </div>
+
+
+          <div class="field">
+            <label class="field-label" for="taxExpense">
+              稅金
+            </label>
+
+            <input
+              id="taxExpense"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 2,000"
+            >
+          </div>
+
+
+          <div class="field">
+            <label class="field-label" for="telecomExpense">
+              電信＋家用網路
+            </label>
+
+            <input
+              id="telecomExpense"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 1,500"
+            >
+          </div>
+
+
+          <div class="field">
+            <label class="field-label" for="utilitiesExpense">
+              水電瓦斯
+            </label>
+
+            <input
+              id="utilitiesExpense"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 2,000"
+            >
+          </div>
+
+
+          <div class="field">
+            <label class="field-label" for="otherFixedExpense">
+              其他
+            </label>
+
+            <input
+              id="otherFixedExpense"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 1,000"
+            >
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="expense-group">
+
+        <h3 class="expense-group-title">
+          🌿 生活支出
+        </h3>
+
+        <div class="field-grid">
+
+          <div class="field">
+            <label class="field-label" for="foodExpense">
+              伙食費
+            </label>
+
+            <input
+              id="foodExpense"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 8,000"
+            >
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="careExpense"
+            >
+              扶養／照顧費
+            </label>
+
+            <input
+              id="careExpense"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 5,000"
+            >
+
+            <div
+              id="dependentHelp"
+              class="dependent-help"
+            ></div>
+
+          </div>
+
+
+          <div class="field">
+            <label class="field-label" for="transportExpense">
+              交通費
+            </label>
+
+            <input
+              id="transportExpense"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 2,000"
+            >
+          </div>
+
+
+          <div class="field">
+            <label
+              class="field-label"
+              for="vehicleMaintenanceExpense"
+            >
+              汽機車保養維修費
+            </label>
+
+            <input
+              id="vehicleMaintenanceExpense"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 1,000"
+            >
+          </div>
+
+
+          <div class="field">
+            <label class="field-label" for="shoppingExpense">
+              治裝／購物
+            </label>
+
+            <input
+              id="shoppingExpense"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 3,000"
+            >
+          </div>
+
+
+          <div class="field">
+            <label
+              class="field-label"
+              for="entertainmentExpense"
+            >
+              娛樂／旅遊
+            </label>
+
+            <input
+              id="entertainmentExpense"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 3,000"
+            >
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ④ 每月現金流
+  ========================= -->
+
+  <section class="section">
+
+    <div class="section-card">
+
+      <div class="section-head">
+        <h2 class="section-title">
+          🌱 每月現金流
+        </h2>
+      </div>
+
+
+      <div class="cashflow-main">
+
+        <div class="cashflow-equation">
+
+          <div class="cashflow-row">
+
+            <span class="cashflow-label">
+              每月平均收入
+            </span>
+
+            <strong
+              id="cashflowIncome"
+              class="cashflow-value"
+            >
+              0
+            </strong>
+
+          </div>
+
+
+          <div class="cashflow-row">
+
+            <span class="cashflow-label">
+              每月總支出（含貸款支出）
+            </span>
+
+            <strong
+              id="cashflowExpense"
+              class="cashflow-value"
+            >
+              0
+            </strong>
+
+          </div>
+
+
+          <div class="cashflow-divider"></div>
+
+
+          <div class="cashflow-row cashflow-result">
+
+            <span class="cashflow-label">
+              每月可支配餘額
+            </span>
+
+            <strong
+              id="cashflowBalance"
+              class="cashflow-value"
+            >
+              0
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ⑤ 資產
+  ========================= -->
+
+  <section class="section">
+
+    <div class="section-card">
+
+      <div class="section-head">
+
+        <h2 class="section-title">
+          📊 資產
+        </h2>
+
+        <p class="section-description">
+          填目前資產金額，以及你預估的年報酬率
+        </p>
+
+      </div>
+
+
+      <div class="card-grid">
+
+        <!-- 活存 -->
+
+        <div class="asset-card">
+
+          <h3 class="asset-card-title">
+            💵 活存
+          </h3>
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="cashAsset"
+            >
+              金額
+            </label>
+
+            <input
+              id="cashAsset"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 100,000"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="rate-label"
+              for="cashRate"
+            >
+              年報酬率
+            </label>
+
+            <div class="input-wrap">
+
+              <input
+                id="cashRate"
+                class="text-input percent-input"
+                type="text"
+                inputmode="decimal"
+                data-rate
+                data-finance-input
+                placeholder="1"
+              >
+
+              <span class="suffix">
+                %
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- 定存 -->
+
+        <div class="asset-card">
+
+          <h3 class="asset-card-title">
+            🏦 定存
+          </h3>
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="timeDepositAsset"
+            >
+              金額
+            </label>
+
+            <input
+              id="timeDepositAsset"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 500,000"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="rate-label"
+              for="timeDepositRate"
+            >
+              年報酬率
+            </label>
+
+            <div class="input-wrap">
+
+              <input
+                id="timeDepositRate"
+                class="text-input percent-input"
+                type="text"
+                inputmode="decimal"
+                data-rate
+                data-finance-input
+                placeholder="1.5"
+              >
+
+              <span class="suffix">
+                %
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- 投資 -->
+
+        <div class="asset-card">
+
+          <h3 class="asset-card-title">
+            📈 投資（股票／ETF／基金）
+          </h3>
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="investmentAsset"
+            >
+              金額
+            </label>
+
+            <input
+              id="investmentAsset"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 2,000,000"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="rate-label"
+              for="investmentRate"
+            >
+              年報酬率
+            </label>
+
+            <div class="input-wrap">
+
+              <input
+                id="investmentRate"
+                class="text-input percent-input"
+                type="text"
+                inputmode="decimal"
+                data-rate
+                data-finance-input
+                placeholder="5"
+              >
+
+              <span class="suffix">
+                %
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- 儲蓄險 -->
+
+        <div class="asset-card">
+
+          <h3 class="asset-card-title">
+            🛡️ 儲蓄險保價金
+          </h3>
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="savingsInsuranceAsset"
+            >
+              金額
+            </label>
+
+            <input
+              id="savingsInsuranceAsset"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 500,000"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="rate-label"
+              for="savingsInsuranceRate"
+            >
+              年報酬率
+            </label>
+
+            <div class="input-wrap">
+
+              <input
+                id="savingsInsuranceRate"
+                class="text-input percent-input"
+                type="text"
+                inputmode="decimal"
+                data-rate
+                data-finance-input
+                placeholder="2"
+              >
+
+              <span class="suffix">
+                %
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- 房地產 -->
+
+        <div class="asset-card">
+
+          <h3 class="asset-card-title">
+            🏠 房地產
+          </h3>
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="realEstateAsset"
+            >
+              金額
+            </label>
+
+            <input
+              id="realEstateAsset"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 5,000,000"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="rate-label"
+              for="realEstateRate"
+            >
+              年報酬率
+            </label>
+
+            <div class="input-wrap">
+
+              <input
+                id="realEstateRate"
+                class="text-input percent-input"
+                type="text"
+                inputmode="decimal"
+                data-rate
+                data-finance-input
+                placeholder="2"
+              >
+
+              <span class="suffix">
+                %
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- 其他 -->
+
+        <div class="asset-card">
+
+          <h3 class="asset-card-title">
+            📦 其他資產
+          </h3>
+
+          <div class="field">
+
+            <label
+              class="field-label"
+              for="otherAsset"
+            >
+              金額
+            </label>
+
+            <input
+              id="otherAsset"
+              class="text-input money-input"
+              type="text"
+              inputmode="numeric"
+              data-money
+              data-finance-input
+              placeholder="例如 100,000"
+            >
+
+          </div>
+
+
+          <div class="field">
+
+            <label
+              class="rate-label"
+              for="otherAssetRate"
+            >
+              年報酬率
+            </label>
+
+            <div class="input-wrap">
+
+              <input
+                id="otherAssetRate"
+                class="text-input percent-input"
+                type="text"
+                inputmode="decimal"
+                data-rate
+                data-finance-input
+                placeholder="3"
+              >
+
+              <span class="suffix">
+                %
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- 資產總額 -->
+
+      <div class="result-box">
+
+        <h3 class="result-title">
+          📊 系統計算結果
+        </h3>
+
+        <div class="result-list">
+
+          <div class="result-row total">
+
+            <span class="result-label">
+              目前資產總額
+            </span>
+
+            <strong
+              id="totalAssetResult"
+              class="result-value"
+            >
+              0
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- 加權報酬率 -->
+
+      <div
+        id="weightedReturnBox"
+        class="weighted-return"
       >
-        上一步
-      </button>
 
-      <button
-        type="button"
-        id="nextButton"
-        class="nav-button next"
-      >
-        下一步
-      </button>
+        <div class="weighted-label">
+          加權年報酬率
+        </div>
 
-    </nav>
+        <div
+          id="weightedReturnResult"
+          class="weighted-value"
+        >
+          0%
+        </div>
 
+        <div
+          id="weightedReturnDetail"
+          class="weighted-detail"
+        ></div>
 
-    <footer>
-      © 2026 自由倒數｜試算工具
-    </footer>
-
-  </main>
-
-
-  <script>
-    /* =========================================================
-       基本設定
-    ========================================================= */
-
-    const FINANCE_KEY = "freedomCountdownFinance";
-    const BASIC_KEY = "freedomCountdownBasic";
+      </div>
 
 
-    /* =========================================================
-       工具函式
-    ========================================================= */
+      <!-- 全部資產配置 -->
 
-    function safeParseStorage(key) {
-      try {
-        const raw = localStorage.getItem(key);
-        if (!raw) return {};
-        const data = JSON.parse(raw);
-        return data && typeof data === "object" ? data : {};
-      } catch (error) {
+      <div class="chart-section">
+
+        <h3 class="chart-title">
+          🧩 資產配置
+        </h3>
+
+        <div class="chart-box">
+
+          <div class="chart-layout">
+
+            <div
+              id="allAssetDonut"
+              class="donut"
+            >
+              <div class="donut-center">
+                全部資產
+              </div>
+            </div>
+
+            <div
+              id="allAssetLegend"
+              class="legend"
+            ></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- 可投資資產 -->
+
+      <div class="chart-section">
+
+        <h3 class="chart-title">
+          📈 可投資資產配置
+        </h3>
+
+        <div class="chart-box">
+
+          <div class="chart-layout">
+
+            <div
+              id="investableDonut"
+              class="donut"
+            >
+              <div class="donut-center">
+                不含房產
+              </div>
+            </div>
+
+            <div
+              id="investableLegend"
+              class="legend"
+            ></div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       驗證
+  ========================= -->
+
+  <div
+    id="validationMessage"
+    class="validation-message"
+  >
+    請先填寫一些財務資料，再進入下一步
+  </div>
+
+
+  <!-- =========================
+       導航
+  ========================= -->
+
+  <nav class="bottom-nav">
+
+    <button
+      type="button"
+      id="backButton"
+      class="nav-button"
+    >
+      上一步
+    </button>
+
+    <button
+      type="button"
+      id="nextButton"
+      class="nav-button next"
+    >
+      下一步
+    </button>
+
+  </nav>
+
+
+  <footer>
+    © 2026 自由倒數｜試算工具
+  </footer>
+
+</main>
+
+
+<script>
+
+  /* =========================================================
+     儲存設定
+  ========================================================= */
+
+  const FINANCE_KEY =
+    "freedomCountdownFinance";
+
+  const BASIC_KEY =
+    "freedomCountdownBasic";
+
+
+  /* =========================================================
+     LocalStorage
+  ========================================================= */
+
+  function safeParseStorage(key) {
+
+    try {
+
+      const raw =
+        localStorage.getItem(key);
+
+      if (!raw) {
         return {};
       }
+
+      const data =
+        JSON.parse(raw);
+
+      return data &&
+        typeof data === "object"
+        ? data
+        : {};
+
+    } catch (error) {
+
+      return {};
+
     }
 
+  }
 
-    function saveFinanceData(data) {
-      try {
-        localStorage.setItem(FINANCE_KEY, JSON.stringify(data));
-      } catch (error) {
-        // 儲存失敗時不阻斷頁面操作
-      }
+
+  function saveFinanceData(data) {
+
+    try {
+
+      localStorage.setItem(
+        FINANCE_KEY,
+        JSON.stringify(data)
+      );
+
+    } catch (error) {
+      // 不讓儲存錯誤影響頁面
     }
 
+  }
 
-    function parseMoney(value) {
-      if (value === undefined || value === null) return 0;
 
-      const cleaned = String(value)
+  /* =========================================================
+     數字處理
+  ========================================================= */
+
+  function parseMoney(value) {
+
+    if (
+      value === undefined ||
+      value === null ||
+      value === ""
+    ) {
+      return 0;
+    }
+
+    const cleaned =
+      String(value)
         .replace(/,/g, "")
-        .replace(/[^\d.-]/g, "");
+        .replace(/[^\d]/g, "");
 
-      const number = Number(cleaned);
-
-      if (!Number.isFinite(number)) {
-        return 0;
-      }
-
-      return Math.round(number);
+    if (cleaned === "") {
+      return 0;
     }
 
+    return Number(cleaned);
+  }
 
-    function formatMoney(value) {
-      const number = parseMoney(value);
 
-      return new Intl.NumberFormat("zh-TW", {
+  function formatMoney(value) {
+
+    return new Intl.NumberFormat(
+      "zh-TW",
+      {
         maximumFractionDigits: 0
-      }).format(number);
+      }
+    ).format(
+      parseMoney(value)
+    );
+
+  }
+
+
+  function parseRate(value) {
+
+    if (
+      value === undefined ||
+      value === null ||
+      value === ""
+    ) {
+      return null;
     }
 
-
-    function parseRate(value) {
-      if (value === undefined || value === null) return null;
-
-      const cleaned = String(value)
+    const cleaned =
+      String(value)
         .replace(/%/g, "")
-        .replace(/,/g, "")
         .trim();
 
-      if (cleaned === "") {
-        return null;
-      }
-
-      const number = Number(cleaned);
-
-      if (!Number.isFinite(number)) {
-        return null;
-      }
-
-      return number;
+    if (cleaned === "") {
+      return null;
     }
 
+    const number =
+      Number(cleaned);
 
-    function formatRate(value) {
-      const number = parseRate(value);
+    return Number.isFinite(number)
+      ? number
+      : null;
 
-      if (number === null) {
-        return "";
-      }
-
-      return String(number);
-    }
+  }
 
 
-    /* =========================================================
-       金額輸入：自動千分位
-    ========================================================= */
+  /* =========================================================
+     金額輸入
+  ========================================================= */
 
-    function formatMoneyInput(input) {
-      const raw = input.value.trim();
+  document
+    .querySelectorAll("[data-money]")
+    .forEach(input => {
 
-      if (raw === "") {
-        input.value = "";
-        return;
-      }
+      input.addEventListener(
+        "input",
+        () => {
 
-      input.value = formatMoney(raw);
-    }
-
-
-    document.querySelectorAll("[data-money]").forEach((input) => {
-
-      input.addEventListener("input", () => {
-
-        // 輸入時只保留數字
-        const cursorAtEnd =
-          input.selectionStart === input.value.length;
-
-        input.value = input.value.replace(/[^\d]/g, "");
-
-        // 輸入數字後立即加入千分位
-        if (input.value !== "") {
-          input.value = formatMoney(input.value);
-        }
-
-        if (cursorAtEnd) {
-          input.setSelectionRange(
-            input.value.length,
-            input.value.length
-          );
-        }
-
-        updateAll();
-        saveCurrentDataSilently();
-      });
-
-
-      input.addEventListener("blur", () => {
-        formatMoneyInput(input);
-        updateAll();
-        saveCurrentDataSilently();
-      });
-
-    });
-
-
-    /* =========================================================
-       年報酬率輸入
-       固定 % 在輸入框外面
-    ========================================================= */
-
-    document.querySelectorAll("[data-rate]").forEach((input) => {
-
-      input.addEventListener("input", () => {
-
-        // 使用者只需要輸入數字與小數點
-        input.value = input.value.replace(/[^\d.]/g, "");
-
-        // 避免出現兩個小數點
-        const parts = input.value.split(".");
-
-        if (parts.length > 2) {
           input.value =
-            parts[0] + "." + parts.slice(1).join("");
+            input.value.replace(
+              /[^\d]/g,
+              ""
+            );
+
+          if (input.value !== "") {
+
+            input.value =
+              formatMoney(input.value);
+
+          }
+
+          updateAll();
+
+          saveCurrentDataSilently();
+
         }
-
-        updateAll();
-        saveCurrentDataSilently();
-      });
+      );
 
 
-      input.addEventListener("blur", () => {
-        input.value = formatRate(input.value);
-        updateAll();
-        saveCurrentDataSilently();
-      });
+      input.addEventListener(
+        "blur",
+        () => {
+
+          if (input.value !== "") {
+
+            input.value =
+              formatMoney(input.value);
+
+          }
+
+          updateAll();
+
+          saveCurrentDataSilently();
+
+        }
+      );
 
     });
 
 
-    /* =========================================================
-       收入模式
-    ========================================================= */
+  /* =========================================================
+     報酬率輸入
+  ========================================================= */
 
-    let incomeMode = "quick";
+  document
+    .querySelectorAll("[data-rate]")
+    .forEach(input => {
 
-    const incomeButtons =
-      document.querySelectorAll("[data-income-mode]");
+      input.addEventListener(
+        "input",
+        () => {
 
-    const incomeQuick =
-      document.getElementById("incomeQuick");
+          input.value =
+            input.value.replace(
+              /[^\d.]/g,
+              ""
+            );
 
-    const incomeDetail =
-      document.getElementById("incomeDetail");
+          const parts =
+            input.value.split(".");
+
+          if (parts.length > 2) {
+
+            input.value =
+              parts[0] +
+              "." +
+              parts.slice(1).join("");
+
+          }
+
+          updateAll();
+
+          saveCurrentDataSilently();
+
+        }
+      );
 
 
-    incomeButtons.forEach((button) => {
+      input.addEventListener(
+        "blur",
+        () => {
 
-      button.addEventListener("click", () => {
+          if (
+            parseRate(input.value) !== null
+          ) {
+
+            input.value =
+              String(
+                parseRate(input.value)
+              );
+
+          }
+
+          updateAll();
+
+          saveCurrentDataSilently();
+
+        }
+      );
+
+    });
+
+
+  /* =========================================================
+     收入模式
+  ========================================================= */
+
+  let incomeMode = "quick";
+
+  const incomeButtons =
+    document.querySelectorAll(
+      "[data-income-mode]"
+    );
+
+  const incomeQuick =
+    document.getElementById(
+      "incomeQuick"
+    );
+
+  const incomeDetail =
+    document.getElementById(
+      "incomeDetail"
+    );
+
+
+  incomeButtons.forEach(button => {
+
+    button.addEventListener(
+      "click",
+      () => {
 
         incomeMode =
           button.dataset.incomeMode;
 
-        incomeButtons.forEach((item) => {
+        incomeButtons.forEach(item => {
+
           item.classList.toggle(
             "active",
-            item.dataset.incomeMode === incomeMode
+            item.dataset.incomeMode ===
+            incomeMode
           );
+
         });
+
 
         incomeQuick.classList.toggle(
           "active",
           incomeMode === "quick"
         );
 
+
         incomeDetail.classList.toggle(
           "active",
           incomeMode === "detail"
         );
 
+
         updateAll();
+
         saveCurrentDataSilently();
-      });
 
-    });
-
-
-    /* =========================================================
-       取得收入
-    ========================================================= */
-
-    function getIncome() {
-
-      if (incomeMode === "quick") {
-
-        const active =
-          parseMoney(
-            document.getElementById("quickWorkIncome").value
-          );
-
-        const passive =
-          parseMoney(
-            document.getElementById("quickPassiveIncome").value
-          );
-
-        return {
-          active,
-          passive,
-          total: active + passive
-        };
       }
+    );
 
+  });
+
+
+  /* =========================================================
+     收入計算
+  ========================================================= */
+
+  function getIncome() {
+
+    if (incomeMode === "quick") {
 
       const active =
         parseMoney(
-          document.getElementById("detailSalary").value
-        )
-        +
-        parseMoney(
-          document.getElementById("detailOtherActive").value
+          document.getElementById(
+            "quickWorkIncome"
+          ).value
         );
-
 
       const passive =
         parseMoney(
-          document.getElementById("detailInvestment").value
-        )
-        +
-        parseMoney(
-          document.getElementById("detailInterest").value
-        )
-        +
-        parseMoney(
-          document.getElementById("detailRent").value
-        )
-        +
-        parseMoney(
-          document.getElementById("detailOtherPassive").value
+          document.getElementById(
+            "quickPassiveIncome"
+          ).value
         );
-
 
       return {
         active,
         passive,
-        total: active + passive
+        total:
+          active + passive
       };
+
     }
 
 
-    /* =========================================================
-       負債
-    ========================================================= */
-
-    function getDebt() {
-
-      const balances = [
-        "homeLoanBalance",
-        "personalLoanBalance",
-        "carLoanBalance",
-        "otherLoanBalance"
-      ];
-
-      const payments = [
-        "homeLoanPayment",
-        "personalLoanPayment",
-        "carLoanPayment",
-        "otherLoanPayment"
-      ];
+    const active =
+      parseMoney(
+        document.getElementById(
+          "detailSalary"
+        ).value
+      )
+      +
+      parseMoney(
+        document.getElementById(
+          "detailOtherActive"
+        ).value
+      );
 
 
-      const totalBalance =
-        balances.reduce((sum, id) => {
-          return sum +
-            parseMoney(document.getElementById(id).value);
-        }, 0);
+    const passive =
+      parseMoney(
+        document.getElementById(
+          "detailInvestment"
+        ).value
+      )
+      +
+      parseMoney(
+        document.getElementById(
+          "detailInterest"
+        ).value
+      )
+      +
+      parseMoney(
+        document.getElementById(
+          "detailRent"
+        ).value
+      )
+      +
+      parseMoney(
+        document.getElementById(
+          "detailOtherPassive"
+        ).value
+      );
 
 
-      const totalPayment =
-        payments.reduce((sum, id) => {
-          return sum +
-            parseMoney(document.getElementById(id).value);
-        }, 0);
+    return {
+      active,
+      passive,
+      total:
+        active + passive
+    };
+
+  }
 
 
-      return {
-        totalBalance,
-        totalPayment
-      };
-    }
+  /* =========================================================
+     負債
+  ========================================================= */
+
+  const debtBalanceIds = [
+    "homeLoanBalance",
+    "personalLoanBalance",
+    "carLoanBalance",
+    "otherLoanBalance"
+  ];
 
 
-    /* =========================================================
-       支出
-    ========================================================= */
-
-    const fixedExpenseIds = [
-      "rentExpense",
-      "insuranceExpense",
-      "taxExpense",
-      "telecomExpense",
-      "utilitiesExpense",
-      "otherFixedExpense"
-    ];
+  const debtPaymentIds = [
+    "homeLoanPayment",
+    "personalLoanPayment",
+    "carLoanPayment",
+    "otherLoanPayment"
+  ];
 
 
-    const livingExpenseIds = [
-      "foodExpense",
-      "careExpense",
-      "transportExpense",
-      "vehicleMaintenanceExpense",
-      "shoppingExpense",
-      "entertainmentExpense"
-    ];
+  function sumInputs(ids) {
 
-
-    function sumFields(ids) {
-
-      return ids.reduce((sum, id) => {
+    return ids.reduce(
+      (sum, id) => {
 
         const element =
           document.getElementById(id);
 
-        return sum + parseMoney(element.value);
+        return sum +
+          parseMoney(element.value);
 
-      }, 0);
+      },
+      0
+    );
+
+  }
+
+
+  function getDebt() {
+
+    return {
+
+      totalBalance:
+        sumInputs(debtBalanceIds),
+
+      totalPayment:
+        sumInputs(debtPaymentIds)
+
+    };
+
+  }
+
+
+  /* =========================================================
+     支出
+  ========================================================= */
+
+  const fixedExpenseIds = [
+    "rentExpense",
+    "insuranceExpense",
+    "taxExpense",
+    "telecomExpense",
+    "utilitiesExpense",
+    "otherFixedExpense"
+  ];
+
+
+  const livingExpenseIds = [
+    "foodExpense",
+    "careExpense",
+    "transportExpense",
+    "vehicleMaintenanceExpense",
+    "shoppingExpense",
+    "entertainmentExpense"
+  ];
+
+
+  function getExpenses() {
+
+    const fixed =
+      sumInputs(fixedExpenseIds);
+
+    const living =
+      sumInputs(livingExpenseIds);
+
+    return {
+
+      fixed,
+
+      living,
+
+      total:
+        fixed + living
+
+    };
+
+  }
+
+
+  /* =========================================================
+     直接讀取 basic.html 的 supportCount
+  ========================================================= */
+
+  function getDependentCount() {
+
+    const basicData =
+      safeParseStorage(
+        BASIC_KEY
+      );
+
+
+    /*
+      basic.html 的正式欄位：
+      hasSupport
+      supportCount
+    */
+
+    const hasSupport =
+      basicData.hasSupport === true;
+
+
+    const supportCount =
+      Number(
+        basicData.supportCount
+      );
+
+
+    if (
+      hasSupport &&
+      Number.isFinite(supportCount) &&
+      supportCount > 0
+    ) {
+
+      return Math.floor(
+        supportCount
+      );
+
     }
 
 
-    function getExpenses() {
+    return 0;
 
-      const fixed =
-        sumFields(fixedExpenseIds);
+  }
 
-      const living =
-        sumFields(livingExpenseIds);
 
-      return {
-        fixed,
-        living,
-        total: fixed + living
-      };
+  function updateDependentHelp() {
+
+    const count =
+      getDependentCount();
+
+    const help =
+      document.getElementById(
+        "dependentHelp"
+      );
+
+
+    if (count > 0) {
+
+      help.textContent =
+        `目前需要撫養 ${count} 人`;
+
+      help.style.display =
+        "block";
+
+    } else {
+
+      help.textContent =
+        "";
+
+      help.style.display =
+        "none";
+
     }
 
-
-    /* =========================================================
-       基本資料 → 撫養人數
-    ========================================================= */
-
-    function getDependentCount() {
-
-      const basicData =
-        safeParseStorage(BASIC_KEY);
+  }
 
 
-      const possibleValues = [
+  /* =========================================================
+     資產
+  ========================================================= */
 
-        basicData.supportCount,
+  const assetDefinitions = [
 
-        basicData.dependentCount,
+    {
+      name: "活存",
+      amountId: "cashAsset",
+      rateId: "cashRate",
+      color: "#6F927D"
+    },
 
-        basicData.dependents,
+    {
+      name: "定存",
+      amountId: "timeDepositAsset",
+      rateId: "timeDepositRate",
+      color: "#A9BDAF"
+    },
 
-        basicData.supportPeople,
+    {
+      name: "投資",
+      amountId: "investmentAsset",
+      rateId: "investmentRate",
+      color: "#D1B66B"
+    },
 
-        basicData.careCount,
+    {
+      name: "儲蓄險保價金",
+      amountId: "savingsInsuranceAsset",
+      rateId: "savingsInsuranceRate",
+      color: "#B89B62"
+    },
 
-        basicData.data &&
-          basicData.data.supportCount,
+    {
+      name: "房地產",
+      amountId: "realEstateAsset",
+      rateId: "realEstateRate",
+      color: "#927D63",
+      realEstate: true
+    },
 
-        basicData.data &&
-          basicData.data.dependentCount,
-
-        basicData.data &&
-          basicData.data.dependents,
-
-        basicData.support &&
-          basicData.support.count,
-
-        basicData.dependents &&
-          typeof basicData.dependents === "object"
-          ? basicData.dependents.count
-          : undefined
-
-      ];
-
-
-      for (const value of possibleValues) {
-
-        if (
-          value !== undefined &&
-          value !== null &&
-          value !== ""
-        ) {
-
-          const number = Number(value);
-
-          if (
-            Number.isFinite(number) &&
-            number > 0
-          ) {
-            return Math.floor(number);
-          }
-        }
-      }
-
-
-      return 0;
+    {
+      name: "其他資產",
+      amountId: "otherAsset",
+      rateId: "otherAssetRate",
+      color: "#8EA59A"
     }
 
-
-    function updateDependentHelp() {
-
-      const count =
-        getDependentCount();
-
-      const help =
-        document.getElementById("dependentHelp");
+  ];
 
 
-      if (count > 0) {
+  function getAssets() {
 
-        help.textContent =
-          `目前需要撫養 ${count} 人`;
-
-        help.style.display = "block";
-
-      } else {
-
-        // 沒有撫養人數就完全不顯示提示
-        help.textContent = "";
-        help.style.display = "none";
-      }
-    }
-
-
-    /* =========================================================
-       資產
-    ========================================================= */
-
-    const assetDefinitions = [
-
-      {
-        name: "活存",
-        amountId: "cashAsset",
-        rateId: "cashRate",
-        color: "#6F927D"
-      },
-
-      {
-        name: "定存",
-        amountId: "timeDepositAsset",
-        rateId: "timeDepositRate",
-        color: "#A9BDAF"
-      },
-
-      {
-        name: "投資",
-        amountId: "investmentAsset",
-        rateId: "investmentRate",
-        color: "#D1B66B"
-      },
-
-      {
-        name: "儲蓄險",
-        amountId: "savingsInsuranceAsset",
-        rateId: "savingsInsuranceRate",
-        color: "#B89B62"
-      },
-
-      {
-        name: "房地產",
-        amountId: "realEstateAsset",
-        rateId: "realEstateRate",
-        color: "#927D63",
-        realEstate: true
-      },
-
-      {
-        name: "其他資產",
-        amountId: "otherAsset",
-        rateId: "otherAssetRate",
-        color: "#8EA59A"
-      }
-
-    ];
-
-
-    function getAssets() {
-
-      return assetDefinitions.map((asset) => {
+    return assetDefinitions.map(
+      asset => {
 
         const amount =
           parseMoney(
-            document.getElementById(asset.amountId).value
+            document.getElementById(
+              asset.amountId
+            ).value
           );
+
 
         const rate =
           parseRate(
-            document.getElementById(asset.rateId).value
+            document.getElementById(
+              asset.rateId
+            ).value
           );
+
 
         return {
           ...asset,
@@ -2532,1099 +3016,1262 @@
           rate
         };
 
-      });
+      }
+    );
 
-    }
+  }
 
 
-    /* =========================================================
-       Donut 圖
-    ========================================================= */
+  /* =========================================================
+     加權報酬率
+  ========================================================= */
 
-    function renderDonut(
-      donutElement,
-      legendElement,
-      items,
-      centerText
+  function calculateWeightedReturn(
+    assets
+  ) {
+
+    /*
+      只有：
+      1. 有資產金額
+      2. 有填年報酬率
+
+      才會被納入計算。
+    */
+
+    const included =
+      assets.filter(
+        asset =>
+          asset.amount > 0 &&
+          asset.rate !== null
+      );
+
+
+    if (
+      included.length === 0
     ) {
 
-      const validItems =
-        items.filter(
-          item => item.amount > 0
-        );
+      return null;
+
+    }
 
 
-      const total =
-        validItems.reduce(
-          (sum, item) => sum + item.amount,
-          0
-        );
+    const totalAmount =
+      included.reduce(
+        (sum, asset) =>
+          sum + asset.amount,
+        0
+      );
 
 
-      donutElement.innerHTML =
-        `<div class="donut-center">${centerText}</div>`;
+    if (totalAmount <= 0) {
+      return null;
+    }
 
 
-      if (total <= 0) {
-
-        donutElement.style.background =
-          "#EDEAE2";
-
-        legendElement.innerHTML =
-          `<div class="chart-empty">尚未填寫資產</div>`;
-
-        return;
-      }
+    const weighted =
+      included.reduce(
+        (sum, asset) =>
+          sum +
+          asset.amount *
+          asset.rate,
+        0
+      ) / totalAmount;
 
 
-      let current = 0;
+    return {
+      rate: weighted,
+      assets: included
+    };
 
-      const gradients = [];
+  }
 
 
-      validItems.forEach((item) => {
+  /* =========================================================
+     Donut
+  ========================================================= */
+
+  function renderDonut(
+    donut,
+    legend,
+    items,
+    centerText
+  ) {
+
+    const valid =
+      items.filter(
+        item =>
+          item.amount > 0
+      );
+
+
+    const total =
+      valid.reduce(
+        (sum, item) =>
+          sum + item.amount,
+        0
+      );
+
+
+    donut.innerHTML =
+      `<div class="donut-center">${centerText}</div>`;
+
+
+    if (total <= 0) {
+
+      donut.style.background =
+        "#EDEAE2";
+
+      legend.innerHTML =
+        `<div class="chart-empty">尚未填寫資產</div>`;
+
+      return;
+
+    }
+
+
+    let current = 0;
+
+    const gradients = [];
+
+
+    valid.forEach(item => {
+
+      const percent =
+        item.amount /
+        total *
+        100;
+
+      const start =
+        current;
+
+      const end =
+        current + percent;
+
+      gradients.push(
+        `${item.color} ${start}% ${end}%`
+      );
+
+      current = end;
+
+    });
+
+
+    donut.style.background =
+      `conic-gradient(${gradients.join(", ")})`;
+
+
+    legend.innerHTML =
+      valid.map(item => {
 
         const percent =
-          item.amount / total * 100;
+          item.amount /
+          total *
+          100;
 
-        const start =
-          current;
+        return `
+          <div class="legend-row">
 
-        const end =
-          current + percent;
+            <div class="legend-name">
 
-        gradients.push(
-          `${item.color} ${start}% ${end}%`
-        );
+              <span
+                class="legend-dot"
+                style="background:${item.color}"
+              ></span>
 
-        current = end;
-
-      });
-
-
-      donutElement.style.background =
-        `conic-gradient(${gradients.join(", ")})`;
-
-
-      legendElement.innerHTML =
-        validItems.map((item) => {
-
-          const percent =
-            item.amount / total * 100;
-
-          return `
-            <div class="legend-row">
-              <div class="legend-name">
-                <span
-                  class="legend-dot"
-                  style="background:${item.color}"
-                ></span>
-                <span>${item.name}</span>
-              </div>
-
-              <span class="legend-percent">
-                ${percent.toFixed(1)}%
+              <span>
+                ${item.name}
               </span>
+
             </div>
-          `;
 
-        }).join("");
-    }
+            <span class="legend-percent">
+              ${percent.toFixed(1)}%
+            </span>
 
+          </div>
+        `;
 
-    /* =========================================================
-       加權年報酬率
-    ========================================================= */
+      }).join("");
 
-    function calculateWeightedReturn(assets) {
-
-      const validAssets =
-        assets.filter(
-          asset =>
-            asset.amount > 0 &&
-            asset.rate !== null
-        );
+  }
 
 
-      if (validAssets.length === 0) {
-        return null;
-      }
+  /* =========================================================
+     更新畫面
+  ========================================================= */
+
+  function updateAll() {
+
+    /* 收入 */
+
+    const income =
+      getIncome();
 
 
-      const amountTotal =
-        validAssets.reduce(
-          (sum, asset) => sum + asset.amount,
-          0
-        );
-
-
-      if (amountTotal <= 0) {
-        return null;
-      }
-
-
-      const weighted =
-        validAssets.reduce(
-          (sum, asset) => {
-            return sum +
-              asset.amount * asset.rate;
-          },
-          0
-        ) / amountTotal;
-
-
-      return weighted;
-    }
-
-
-    /* =========================================================
-       更新所有計算
-    ========================================================= */
-
-    function updateAll() {
-
-      /* 收入 */
-
-      const income =
-        getIncome();
-
-
-      document.getElementById(
-        "activeIncomeResult"
-      ).textContent =
-        formatMoney(income.active);
-
-
-      document.getElementById(
-        "passiveIncomeResult"
-      ).textContent =
-        formatMoney(income.passive);
-
-
-      document.getElementById(
-        "totalIncomeResult"
-      ).textContent =
-        formatMoney(income.total);
-
-
-      /* 負債 */
-
-      const debt =
-        getDebt();
-
-
-      document.getElementById(
-        "totalDebtBalance"
-      ).textContent =
-        formatMoney(debt.totalBalance);
-
-
-      document.getElementById(
-        "totalDebtPayment"
-      ).textContent =
-        formatMoney(debt.totalPayment);
-
-
-      /* 支出 */
-
-      const expenses =
-        getExpenses();
-
-
-      /*
-        每月總支出包含：
-        固定支出
-        + 生活支出
-        + 每月貸款還款
-      */
-
-      const totalMonthlyOutflow =
-        expenses.total +
-        debt.totalPayment;
-
-
-      /* 現金流 */
-
-      const disposable =
-        income.total -
-        totalMonthlyOutflow;
-
-
-      document.getElementById(
-        "cashflowIncome"
-      ).textContent =
-        formatMoney(income.total);
-
-
-      document.getElementById(
-        "cashflowExpense"
-      ).textContent =
-        formatMoney(totalMonthlyOutflow);
-
-
-      const cashflowElement =
-        document.getElementById(
-          "cashflowBalance"
-        );
-
-
-      cashflowElement.textContent =
-        formatMoney(Math.abs(disposable));
-
-
-      cashflowElement.classList.toggle(
-        "negative",
-        disposable < 0
+    document.getElementById(
+      "activeIncomeResult"
+    ).textContent =
+      formatMoney(
+        income.active
       );
 
 
-      if (disposable < 0) {
-
-        cashflowElement.textContent =
-          "-" + formatMoney(Math.abs(disposable));
-
-      }
-
-
-      /* 資產 */
-
-      const assets =
-        getAssets();
+    document.getElementById(
+      "passiveIncomeResult"
+    ).textContent =
+      formatMoney(
+        income.passive
+      );
 
 
-      const totalAssets =
-        assets.reduce(
-          (sum, asset) =>
-            sum + asset.amount,
-          0
-        );
+    document.getElementById(
+      "totalIncomeResult"
+    ).textContent =
+      formatMoney(
+        income.total
+      );
 
 
+    /* 負債 */
+
+    const debt =
+      getDebt();
+
+
+    document.getElementById(
+      "totalDebtBalance"
+    ).textContent =
+      formatMoney(
+        debt.totalBalance
+      );
+
+
+    document.getElementById(
+      "totalDebtPayment"
+    ).textContent =
+      formatMoney(
+        debt.totalPayment
+      );
+
+
+    /* 支出 */
+
+    const expenses =
+      getExpenses();
+
+
+    const totalOutflow =
+      expenses.total +
+      debt.totalPayment;
+
+
+    /* 現金流 */
+
+    const disposable =
+      income.total -
+      totalOutflow;
+
+
+    document.getElementById(
+      "cashflowIncome"
+    ).textContent =
+      formatMoney(
+        income.total
+      );
+
+
+    document.getElementById(
+      "cashflowExpense"
+    ).textContent =
+      formatMoney(
+        totalOutflow
+      );
+
+
+    const cashflow =
       document.getElementById(
-        "totalAssetResult"
-      ).textContent =
-        formatMoney(totalAssets);
-
-
-      /* 加權年報酬率 */
-
-      const weightedReturn =
-        calculateWeightedReturn(assets);
-
-
-      const weightedBox =
-        document.getElementById(
-          "weightedReturnBox"
-        );
-
-
-      const weightedResult =
-        document.getElementById(
-          "weightedReturnResult"
-        );
-
-
-      if (weightedReturn === null) {
-
-        weightedBox.classList.remove("show");
-
-      } else {
-
-        weightedBox.classList.add("show");
-
-        weightedResult.textContent =
-          `${weightedReturn.toFixed(2)}%`;
-      }
-
-
-      /* 資產配置 */
-
-      renderDonut(
-
-        document.getElementById(
-          "allAssetDonut"
-        ),
-
-        document.getElementById(
-          "allAssetLegend"
-        ),
-
-        assets,
-
-        "全部資產"
-
+        "cashflowBalance"
       );
 
 
-      /* 可投資資產：排除房地產 */
-
-      const investableAssets =
-        assets.filter(
-          asset => !asset.realEstate
-        );
+    cashflow.classList.toggle(
+      "negative",
+      disposable < 0
+    );
 
 
-      renderDonut(
+    cashflow.textContent =
+      disposable < 0
+        ? "-" +
+          formatMoney(
+            Math.abs(disposable)
+          )
+        : formatMoney(
+            disposable
+          );
 
-        document.getElementById(
-          "investableDonut"
-        ),
 
-        document.getElementById(
-          "investableLegend"
-        ),
+    /* 資產 */
 
-        investableAssets,
+    const assets =
+      getAssets();
 
-        "不含房產"
 
+    const totalAssets =
+      assets.reduce(
+        (sum, asset) =>
+          sum + asset.amount,
+        0
       );
 
 
-      /* 撫養人數提示 */
+    document.getElementById(
+      "totalAssetResult"
+    ).textContent =
+      formatMoney(
+        totalAssets
+      );
 
-      updateDependentHelp();
+
+    /* 加權報酬率 */
+
+    const weighted =
+      calculateWeightedReturn(
+        assets
+      );
+
+
+    const weightedBox =
+      document.getElementById(
+        "weightedReturnBox"
+      );
+
+
+    const weightedResult =
+      document.getElementById(
+        "weightedReturnResult"
+      );
+
+
+    const weightedDetail =
+      document.getElementById(
+        "weightedReturnDetail"
+      );
+
+
+    if (!weighted) {
+
+      weightedBox.classList.remove(
+        "show"
+      );
+
+      weightedDetail.textContent =
+        "";
+
+    } else {
+
+      weightedBox.classList.add(
+        "show"
+      );
+
+
+      weightedResult.textContent =
+        `${weighted.rate.toFixed(2)}%`;
+
+
+      const names =
+        weighted.assets.map(
+          asset => asset.name
+        );
+
+
+      weightedDetail.textContent =
+        `本次納入：${names.join("、")}；未填年報酬率的資產不列入計算`;
+
     }
 
 
-    /* =========================================================
-       收集資料
-    ========================================================= */
+    /* 全部資產 */
 
-    function collectFinanceData() {
+    renderDonut(
 
-      return {
+      document.getElementById(
+        "allAssetDonut"
+      ),
 
-        income: {
+      document.getElementById(
+        "allAssetLegend"
+      ),
 
-          mode: incomeMode,
+      assets,
 
-          quick: {
+      "全部資產"
 
-            work:
-              parseMoney(
-                document.getElementById(
-                  "quickWorkIncome"
-                ).value
-              ),
-
-            passive:
-              parseMoney(
-                document.getElementById(
-                  "quickPassiveIncome"
-                ).value
-              )
-
-          },
-
-          detail: {
-
-            salary:
-              parseMoney(
-                document.getElementById(
-                  "detailSalary"
-                ).value
-              ),
-
-            otherActive:
-              parseMoney(
-                document.getElementById(
-                  "detailOtherActive"
-                ).value
-              ),
-
-            investment:
-              parseMoney(
-                document.getElementById(
-                  "detailInvestment"
-                ).value
-              ),
-
-            interest:
-              parseMoney(
-                document.getElementById(
-                  "detailInterest"
-                ).value
-              ),
-
-            rent:
-              parseMoney(
-                document.getElementById(
-                  "detailRent"
-                ).value
-              ),
-
-            otherPassive:
-              parseMoney(
-                document.getElementById(
-                  "detailOtherPassive"
-                ).value
-              )
-
-          }
-
-        },
+    );
 
 
-        debt: {
+    /* 可投資資產排除房地產 */
 
-          homeBalance:
+    const investable =
+      assets.filter(
+        asset =>
+          !asset.realEstate
+      );
+
+
+    renderDonut(
+
+      document.getElementById(
+        "investableDonut"
+      ),
+
+      document.getElementById(
+        "investableLegend"
+      ),
+
+      investable,
+
+      "不含房產"
+
+    );
+
+
+    /* 撫養人數 */
+
+    updateDependentHelp();
+
+  }
+
+
+  /* =========================================================
+     收集資料
+  ========================================================= */
+
+  function collectFinanceData() {
+
+    return {
+
+      income: {
+
+        mode:
+          incomeMode,
+
+        quick: {
+
+          work:
             parseMoney(
               document.getElementById(
-                "homeLoanBalance"
+                "quickWorkIncome"
               ).value
             ),
 
-          homePayment:
+          passive:
             parseMoney(
               document.getElementById(
-                "homeLoanPayment"
-              ).value
-            ),
-
-          personalBalance:
-            parseMoney(
-              document.getElementById(
-                "personalLoanBalance"
-              ).value
-            ),
-
-          personalPayment:
-            parseMoney(
-              document.getElementById(
-                "personalLoanPayment"
-              ).value
-            ),
-
-          carBalance:
-            parseMoney(
-              document.getElementById(
-                "carLoanBalance"
-              ).value
-            ),
-
-          carPayment:
-            parseMoney(
-              document.getElementById(
-                "carLoanPayment"
-              ).value
-            ),
-
-          otherBalance:
-            parseMoney(
-              document.getElementById(
-                "otherLoanBalance"
-              ).value
-            ),
-
-          otherPayment:
-            parseMoney(
-              document.getElementById(
-                "otherLoanPayment"
+                "quickPassiveIncome"
               ).value
             )
 
         },
 
+        detail: {
 
-        expenses: {
+          salary:
+            parseMoney(
+              document.getElementById(
+                "detailSalary"
+              ).value
+            ),
+
+          otherActive:
+            parseMoney(
+              document.getElementById(
+                "detailOtherActive"
+              ).value
+            ),
+
+          investment:
+            parseMoney(
+              document.getElementById(
+                "detailInvestment"
+              ).value
+            ),
+
+          interest:
+            parseMoney(
+              document.getElementById(
+                "detailInterest"
+              ).value
+            ),
 
           rent:
             parseMoney(
               document.getElementById(
-                "rentExpense"
+                "detailRent"
               ).value
             ),
 
-          insurance:
+          otherPassive:
             parseMoney(
               document.getElementById(
-                "insuranceExpense"
+                "detailOtherPassive"
+              ).value
+            )
+
+        }
+
+      },
+
+
+      debt: {
+
+        homeBalance:
+          parseMoney(
+            document.getElementById(
+              "homeLoanBalance"
+            ).value
+          ),
+
+        homePayment:
+          parseMoney(
+            document.getElementById(
+              "homeLoanPayment"
+            ).value
+          ),
+
+        personalBalance:
+          parseMoney(
+            document.getElementById(
+              "personalLoanBalance"
+            ).value
+          ),
+
+        personalPayment:
+          parseMoney(
+            document.getElementById(
+              "personalLoanPayment"
+            ).value
+          ),
+
+        carBalance:
+          parseMoney(
+            document.getElementById(
+              "carLoanBalance"
+            ).value
+          ),
+
+        carPayment:
+          parseMoney(
+            document.getElementById(
+              "carLoanPayment"
+            ).value
+          ),
+
+        otherBalance:
+          parseMoney(
+            document.getElementById(
+              "otherLoanBalance"
+            ).value
+          ),
+
+        otherPayment:
+          parseMoney(
+            document.getElementById(
+              "otherLoanPayment"
+            ).value
+          )
+
+      },
+
+
+      expenses: {
+
+        rent:
+          parseMoney(
+            document.getElementById(
+              "rentExpense"
+            ).value
+          ),
+
+        insurance:
+          parseMoney(
+            document.getElementById(
+              "insuranceExpense"
+            ).value
+          ),
+
+        tax:
+          parseMoney(
+            document.getElementById(
+              "taxExpense"
+            ).value
+          ),
+
+        telecom:
+          parseMoney(
+            document.getElementById(
+              "telecomExpense"
+            ).value
+          ),
+
+        utilities:
+          parseMoney(
+            document.getElementById(
+              "utilitiesExpense"
+            ).value
+          ),
+
+        otherFixed:
+          parseMoney(
+            document.getElementById(
+              "otherFixedExpense"
+            ).value
+          ),
+
+        food:
+          parseMoney(
+            document.getElementById(
+              "foodExpense"
+            ).value
+          ),
+
+        care:
+          parseMoney(
+            document.getElementById(
+              "careExpense"
+            ).value
+          ),
+
+        transport:
+          parseMoney(
+            document.getElementById(
+              "transportExpense"
+            ).value
+          ),
+
+        vehicleMaintenance:
+          parseMoney(
+            document.getElementById(
+              "vehicleMaintenanceExpense"
+            ).value
+          ),
+
+        shopping:
+          parseMoney(
+            document.getElementById(
+              "shoppingExpense"
+            ).value
+          ),
+
+        entertainment:
+          parseMoney(
+            document.getElementById(
+              "entertainmentExpense"
+            ).value
+          )
+
+      },
+
+
+      assets: {
+
+        cash: {
+
+          amount:
+            parseMoney(
+              document.getElementById(
+                "cashAsset"
               ).value
             ),
 
-          tax:
-            parseMoney(
+          rate:
+            parseRate(
               document.getElementById(
-                "taxExpense"
-              ).value
-            ),
-
-          telecom:
-            parseMoney(
-              document.getElementById(
-                "telecomExpense"
-              ).value
-            ),
-
-          utilities:
-            parseMoney(
-              document.getElementById(
-                "utilitiesExpense"
-              ).value
-            ),
-
-          otherFixed:
-            parseMoney(
-              document.getElementById(
-                "otherFixedExpense"
-              ).value
-            ),
-
-          food:
-            parseMoney(
-              document.getElementById(
-                "foodExpense"
-              ).value
-            ),
-
-          care:
-            parseMoney(
-              document.getElementById(
-                "careExpense"
-              ).value
-            ),
-
-          transport:
-            parseMoney(
-              document.getElementById(
-                "transportExpense"
-              ).value
-            ),
-
-          vehicleMaintenance:
-            parseMoney(
-              document.getElementById(
-                "vehicleMaintenanceExpense"
-              ).value
-            ),
-
-          shopping:
-            parseMoney(
-              document.getElementById(
-                "shoppingExpense"
-              ).value
-            ),
-
-          entertainment:
-            parseMoney(
-              document.getElementById(
-                "entertainmentExpense"
+                "cashRate"
               ).value
             )
 
         },
 
 
-        assets: {
+        timeDeposit: {
 
-          cash: {
-            amount:
-              parseMoney(
-                document.getElementById(
-                  "cashAsset"
-                ).value
-              ),
-            rate:
-              parseRate(
-                document.getElementById(
-                  "cashRate"
-                ).value
-              )
-          },
+          amount:
+            parseMoney(
+              document.getElementById(
+                "timeDepositAsset"
+              ).value
+            ),
 
-          timeDeposit: {
-            amount:
-              parseMoney(
-                document.getElementById(
-                  "timeDepositAsset"
-                ).value
-              ),
-            rate:
-              parseRate(
-                document.getElementById(
-                  "timeDepositRate"
-                ).value
-              )
-          },
+          rate:
+            parseRate(
+              document.getElementById(
+                "timeDepositRate"
+              ).value
+            )
 
-          investment: {
-            amount:
-              parseMoney(
-                document.getElementById(
-                  "investmentAsset"
-                ).value
-              ),
-            rate:
-              parseRate(
-                document.getElementById(
-                  "investmentRate"
-                ).value
-              )
-          },
+        },
 
-          savingsInsurance: {
-            amount:
-              parseMoney(
-                document.getElementById(
-                  "savingsInsuranceAsset"
-                ).value
-              ),
-            rate:
-              parseRate(
-                document.getElementById(
-                  "savingsInsuranceRate"
-                ).value
-              )
-          },
 
-          realEstate: {
-            amount:
-              parseMoney(
-                document.getElementById(
-                  "realEstateAsset"
-                ).value
-              ),
-            rate:
-              parseRate(
-                document.getElementById(
-                  "realEstateRate"
-                ).value
-              )
-          },
+        investment: {
 
-          other: {
-            amount:
-              parseMoney(
-                document.getElementById(
-                  "otherAsset"
-                ).value
-              ),
-            rate:
-              parseRate(
-                document.getElementById(
-                  "otherAssetRate"
-                ).value
-              )
-          }
+          amount:
+            parseMoney(
+              document.getElementById(
+                "investmentAsset"
+              ).value
+            ),
+
+          rate:
+            parseRate(
+              document.getElementById(
+                "investmentRate"
+              ).value
+            )
+
+        },
+
+
+        savingsInsurance: {
+
+          amount:
+            parseMoney(
+              document.getElementById(
+                "savingsInsuranceAsset"
+              ).value
+            ),
+
+          rate:
+            parseRate(
+              document.getElementById(
+                "savingsInsuranceRate"
+              ).value
+            )
+
+        },
+
+
+        realEstate: {
+
+          amount:
+            parseMoney(
+              document.getElementById(
+                "realEstateAsset"
+              ).value
+            ),
+
+          rate:
+            parseRate(
+              document.getElementById(
+                "realEstateRate"
+              ).value
+            )
+
+        },
+
+
+        other: {
+
+          amount:
+            parseMoney(
+              document.getElementById(
+                "otherAsset"
+              ).value
+            ),
+
+          rate:
+            parseRate(
+              document.getElementById(
+                "otherAssetRate"
+              ).value
+            )
 
         }
 
-      };
-    }
-
-
-    /* =========================================================
-       靜默儲存
-    ========================================================= */
-
-    function saveCurrentDataSilently() {
-
-      const data =
-        collectFinanceData();
-
-      saveFinanceData(data);
-    }
-
-
-    /* =========================================================
-       載入資料
-    ========================================================= */
-
-    function setInputValue(id, value, formatter) {
-
-      const element =
-        document.getElementById(id);
-
-      if (!element) return;
-
-      if (
-        value === undefined ||
-        value === null ||
-        value === ""
-      ) {
-        element.value = "";
-        return;
       }
+
+    };
+
+  }
+
+
+  /* =========================================================
+     靜默存檔
+  ========================================================= */
+
+  function saveCurrentDataSilently() {
+
+    saveFinanceData(
+      collectFinanceData()
+    );
+
+  }
+
+
+  /* =========================================================
+     載入資料
+  ========================================================= */
+
+  function setValue(
+    id,
+    value,
+    type = "money"
+  ) {
+
+    const element =
+      document.getElementById(id);
+
+
+    if (!element) {
+      return;
+    }
+
+
+    if (
+      value === undefined ||
+      value === null ||
+      value === ""
+    ) {
 
       element.value =
-        formatter === "rate"
-          ? formatRate(value)
-          : formatMoney(value);
+        "";
+
+      return;
+
     }
 
 
-    function loadFinanceData() {
+    if (type === "rate") {
 
-      const data =
-        safeParseStorage(FINANCE_KEY);
+      element.value =
+        String(value);
 
+    } else {
 
-      /* 收入模式 */
+      element.value =
+        formatMoney(value);
 
-      if (
-        data.income &&
-        (
-          data.income.mode === "quick" ||
-          data.income.mode === "detail"
-        )
-      ) {
+    }
 
-        incomeMode =
-          data.income.mode;
-      }
+  }
 
 
-      incomeButtons.forEach((button) => {
+  function loadFinanceData() {
+
+    const data =
+      safeParseStorage(
+        FINANCE_KEY
+      );
+
+
+    /* 收入模式 */
+
+    if (
+      data.income &&
+      (
+        data.income.mode === "quick" ||
+        data.income.mode === "detail"
+      )
+    ) {
+
+      incomeMode =
+        data.income.mode;
+
+    }
+
+
+    incomeButtons.forEach(
+      button => {
 
         button.classList.toggle(
           "active",
-          button.dataset.incomeMode === incomeMode
+          button.dataset.incomeMode ===
+          incomeMode
         );
 
-      });
+      }
+    );
 
 
-      incomeQuick.classList.toggle(
-        "active",
-        incomeMode === "quick"
+    incomeQuick.classList.toggle(
+      "active",
+      incomeMode === "quick"
+    );
+
+
+    incomeDetail.classList.toggle(
+      "active",
+      incomeMode === "detail"
+    );
+
+
+    /* 快速收入 */
+
+    const quick =
+      data.income?.quick || {};
+
+
+    setValue(
+      "quickWorkIncome",
+      quick.work
+    );
+
+
+    setValue(
+      "quickPassiveIncome",
+      quick.passive
+    );
+
+
+    /* 詳細收入 */
+
+    const detail =
+      data.income?.detail || {};
+
+
+    setValue(
+      "detailSalary",
+      detail.salary
+    );
+
+
+    setValue(
+      "detailOtherActive",
+      detail.otherActive
+    );
+
+
+    setValue(
+      "detailInvestment",
+      detail.investment
+    );
+
+
+    setValue(
+      "detailInterest",
+      detail.interest
+    );
+
+
+    setValue(
+      "detailRent",
+      detail.rent
+    );
+
+
+    setValue(
+      "detailOtherPassive",
+      detail.otherPassive
+    );
+
+
+    /* 負債 */
+
+    const debt =
+      data.debt || {};
+
+
+    setValue(
+      "homeLoanBalance",
+      debt.homeBalance
+    );
+
+    setValue(
+      "homeLoanPayment",
+      debt.homePayment
+    );
+
+    setValue(
+      "personalLoanBalance",
+      debt.personalBalance
+    );
+
+    setValue(
+      "personalLoanPayment",
+      debt.personalPayment
+    );
+
+    setValue(
+      "carLoanBalance",
+      debt.carBalance
+    );
+
+    setValue(
+      "carLoanPayment",
+      debt.carPayment
+    );
+
+    setValue(
+      "otherLoanBalance",
+      debt.otherBalance
+    );
+
+    setValue(
+      "otherLoanPayment",
+      debt.otherPayment
+    );
+
+
+    /* 支出 */
+
+    const expenses =
+      data.expenses || {};
+
+
+    setValue(
+      "rentExpense",
+      expenses.rent
+    );
+
+    setValue(
+      "insuranceExpense",
+      expenses.insurance
+    );
+
+    setValue(
+      "taxExpense",
+      expenses.tax
+    );
+
+    setValue(
+      "telecomExpense",
+      expenses.telecom
+    );
+
+    setValue(
+      "utilitiesExpense",
+      expenses.utilities
+    );
+
+    setValue(
+      "otherFixedExpense",
+      expenses.otherFixed
+    );
+
+    setValue(
+      "foodExpense",
+      expenses.food
+    );
+
+    setValue(
+      "careExpense",
+      expenses.care
+    );
+
+    setValue(
+      "transportExpense",
+      expenses.transport
+    );
+
+    setValue(
+      "vehicleMaintenanceExpense",
+      expenses.vehicleMaintenance
+    );
+
+    setValue(
+      "shoppingExpense",
+      expenses.shopping
+    );
+
+    setValue(
+      "entertainmentExpense",
+      expenses.entertainment
+    );
+
+
+    /* 資產 */
+
+    const assets =
+      data.assets || {};
+
+
+    setValue(
+      "cashAsset",
+      assets.cash?.amount
+    );
+
+    setValue(
+      "cashRate",
+      assets.cash?.rate,
+      "rate"
+    );
+
+
+    setValue(
+      "timeDepositAsset",
+      assets.timeDeposit?.amount
+    );
+
+    setValue(
+      "timeDepositRate",
+      assets.timeDeposit?.rate,
+      "rate"
+    );
+
+
+    setValue(
+      "investmentAsset",
+      assets.investment?.amount
+    );
+
+    setValue(
+      "investmentRate",
+      assets.investment?.rate,
+      "rate"
+    );
+
+
+    setValue(
+      "savingsInsuranceAsset",
+      assets.savingsInsurance?.amount
+    );
+
+    setValue(
+      "savingsInsuranceRate",
+      assets.savingsInsurance?.rate,
+      "rate"
+    );
+
+
+    setValue(
+      "realEstateAsset",
+      assets.realEstate?.amount
+    );
+
+    setValue(
+      "realEstateRate",
+      assets.realEstate?.rate,
+      "rate"
+    );
+
+
+    setValue(
+      "otherAsset",
+      assets.other?.amount
+    );
+
+    setValue(
+      "otherAssetRate",
+      assets.other?.rate,
+      "rate"
+    );
+
+  }
+
+
+  /* =========================================================
+     判斷是否完全空白
+  ========================================================= */
+
+  function hasAnyFinanceInput() {
+
+    const inputs =
+      document.querySelectorAll(
+        "[data-finance-input]"
       );
 
-      incomeDetail.classList.toggle(
-        "active",
-        incomeMode === "detail"
-      );
 
+    return Array.from(
+      inputs
+    ).some(
+      input =>
+        input.value.trim() !== ""
+    );
 
-      /* 快速收入 */
+  }
 
-      const quick =
-        data.income?.quick || {};
 
-      setInputValue(
-        "quickWorkIncome",
-        quick.work
-      );
+  /* =========================================================
+     上一步
+  ========================================================= */
 
-      setInputValue(
-        "quickPassiveIncome",
-        quick.passive
-      );
-
-
-      /* 詳細收入 */
-
-      const detail =
-        data.income?.detail || {};
-
-      setInputValue(
-        "detailSalary",
-        detail.salary
-      );
-
-      setInputValue(
-        "detailOtherActive",
-        detail.otherActive
-      );
-
-      setInputValue(
-        "detailInvestment",
-        detail.investment
-      );
-
-      setInputValue(
-        "detailInterest",
-        detail.interest
-      );
-
-      setInputValue(
-        "detailRent",
-        detail.rent
-      );
-
-      setInputValue(
-        "detailOtherPassive",
-        detail.otherPassive
-      );
-
-
-      /* 負債 */
-
-      const debt =
-        data.debt || {};
-
-      setInputValue(
-        "homeLoanBalance",
-        debt.homeBalance
-      );
-
-      setInputValue(
-        "homeLoanPayment",
-        debt.homePayment
-      );
-
-      setInputValue(
-        "personalLoanBalance",
-        debt.personalBalance
-      );
-
-      setInputValue(
-        "personalLoanPayment",
-        debt.personalPayment
-      );
-
-      setInputValue(
-        "carLoanBalance",
-        debt.carBalance
-      );
-
-      setInputValue(
-        "carLoanPayment",
-        debt.carPayment
-      );
-
-      setInputValue(
-        "otherLoanBalance",
-        debt.otherBalance
-      );
-
-      setInputValue(
-        "otherLoanPayment",
-        debt.otherPayment
-      );
-
-
-      /* 支出 */
-
-      const expenses =
-        data.expenses || {};
-
-      setInputValue(
-        "rentExpense",
-        expenses.rent
-      );
-
-      setInputValue(
-        "insuranceExpense",
-        expenses.insurance
-      );
-
-      setInputValue(
-        "taxExpense",
-        expenses.tax
-      );
-
-      setInputValue(
-        "telecomExpense",
-        expenses.telecom
-      );
-
-      setInputValue(
-        "utilitiesExpense",
-        expenses.utilities
-      );
-
-      setInputValue(
-        "otherFixedExpense",
-        expenses.otherFixed
-      );
-
-      setInputValue(
-        "foodExpense",
-        expenses.food
-      );
-
-      setInputValue(
-        "careExpense",
-        expenses.care
-      );
-
-      setInputValue(
-        "transportExpense",
-        expenses.transport
-      );
-
-      setInputValue(
-        "vehicleMaintenanceExpense",
-        expenses.vehicleMaintenance
-      );
-
-      setInputValue(
-        "shoppingExpense",
-        expenses.shopping
-      );
-
-      setInputValue(
-        "entertainmentExpense",
-        expenses.entertainment
-      );
-
-
-      /* 資產 */
-
-      const assets =
-        data.assets || {};
-
-
-      setInputValue(
-        "cashAsset",
-        assets.cash?.amount
-      );
-
-      setInputValue(
-        "cashRate",
-        assets.cash?.rate,
-        "rate"
-      );
-
-
-      setInputValue(
-        "timeDepositAsset",
-        assets.timeDeposit?.amount
-      );
-
-      setInputValue(
-        "timeDepositRate",
-        assets.timeDeposit?.rate,
-        "rate"
-      );
-
-
-      setInputValue(
-        "investmentAsset",
-        assets.investment?.amount
-      );
-
-      setInputValue(
-        "investmentRate",
-        assets.investment?.rate,
-        "rate"
-      );
-
-
-      setInputValue(
-        "savingsInsuranceAsset",
-        assets.savingsInsurance?.amount
-      );
-
-      setInputValue(
-        "savingsInsuranceRate",
-        assets.savingsInsurance?.rate,
-        "rate"
-      );
-
-
-      setInputValue(
-        "realEstateAsset",
-        assets.realEstate?.amount
-      );
-
-      setInputValue(
-        "realEstateRate",
-        assets.realEstate?.rate,
-        "rate"
-      );
-
-
-      setInputValue(
-        "otherAsset",
-        assets.other?.amount
-      );
-
-      setInputValue(
-        "otherAssetRate",
-        assets.other?.rate,
-        "rate"
-      );
-
-    }
-
-
-    /* =========================================================
-       判斷是否完全沒填
-    ========================================================= */
-
-    function hasAnyFinanceInput() {
-
-      const inputs =
-        document.querySelectorAll(
-          "[data-finance-input]"
-        );
-
-
-      return Array.from(inputs).some(
-        input => input.value.trim() !== ""
-      );
-    }
-
-
-    /* =========================================================
-       上一步
-    ========================================================= */
-
-    document
-      .getElementById("backButton")
-      .addEventListener("click", () => {
+  document
+    .getElementById("backButton")
+    .addEventListener(
+      "click",
+      () => {
 
         saveCurrentDataSilently();
 
         window.location.href =
           "basic.html";
 
-      });
+      }
+    );
 
 
-    /* =========================================================
-       下一步
-    ========================================================= */
+  /* =========================================================
+     下一步
+  ========================================================= */
 
-    document
-      .getElementById("nextButton")
-      .addEventListener("click", () => {
+  document
+    .getElementById("nextButton")
+    .addEventListener(
+      "click",
+      () => {
 
-        const validation =
+        const message =
           document.getElementById(
             "validationMessage"
           );
 
 
-        if (!hasAnyFinanceInput()) {
+        if (
+          !hasAnyFinanceInput()
+        ) {
 
-          validation.classList.add("show");
+          message.classList.add(
+            "show"
+          );
 
-          window.scrollTo({
-            top: 0,
-            behavior: "smooth"
+          message.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
           });
 
           return;
+
         }
 
 
-        validation.classList.remove("show");
+        message.classList.remove(
+          "show"
+        );
 
 
         saveCurrentDataSilently();
 
 
-        /*
-          03 自由目標
-        */
         window.location.href =
           "goal.html";
 
-      });
+      }
+    );
 
 
-    /* =========================================================
-       初始化
-    ========================================================= */
+  /* =========================================================
+     離開頁面前再存一次
+     ========================================================= */
 
-    loadFinanceData();
+  window.addEventListener(
+    "beforeunload",
+    () => {
 
-    updateAll();
+      saveCurrentDataSilently();
 
-  </script>
+    }
+  );
+
+
+  /* =========================================================
+     初始化
+  ========================================================= */
+
+  loadFinanceData();
+
+  updateAll();
+
+</script>
 
 </body>
 </html>
