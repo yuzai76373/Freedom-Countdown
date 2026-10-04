@@ -1160,13 +1160,18 @@ function updateAge() {
        生日
     ================================================== */
     birthDate.addEventListener(
-      "change",
-      function () {
-        clearBirthDateError();
-        updateAge();
-        saveData();
-      }
-    );
+  "change",
+  () => {
+    /* 更新畫面上的日期 */
+    updateBirthDateDisplay();
+    /* 更新目前年齡 */
+    updateAge();
+    /* 清除錯誤 */
+    clearBirthDateError();
+    /* 儲存資料 */
+    saveData();
+  }
+);
     /* ==================================================
        撫養選擇
     ================================================== */
