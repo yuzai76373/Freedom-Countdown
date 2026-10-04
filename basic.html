@@ -914,55 +914,75 @@
       document.getElementById("birthDateError");
     const supportCountError =
       document.getElementById("supportCountError");
-    /* ==================================================
-       年齡
-    ================================================== */
-    function calculateAge(dateString) {
-      if (!dateString) {
-        return null;
-      }
-      const birth =
-        new Date(dateString + "T00:00:00");
-      if (
-        Number.isNaN(birth.getTime())
-      ) {
-        return null;
-      }
-      const today =
-        new Date();
-      let age =
-        today.getFullYear() -
-        birth.getFullYear();
-      const monthDifference =
-        today.getMonth() -
-        birth.getMonth();
-      if (
-        monthDifference < 0 ||
-        (
-          monthDifference === 0 &&
-          today.getDate() < birth.getDate()
-        )
-      ) {
-        age--;
-      }
-      return age;
-    }
-    function updateAge() {
-      const age =
-        calculateAge(
-          birthDate.value
-        );
-      if (
-        age === null ||
-        age < 0 ||
-        age > 120
-      ) {
-        ageNumber.textContent = "—";
-        return;
-      }
-      ageNumber.textContent =
-        age + " 歲";
-    }
+  /* ==================================================
+   出生年月日
+================================================== */
+function formatBirthDate(dateString) {
+  if (!dateString) {
+    return "選擇出生年月日";
+  }
+  const parts = dateString.split("-");
+  if (parts.length !== 3) {
+    return "選擇出生年月日";
+  }
+  return `${parts[0]} / ${parts[1]} / ${parts[2]}`;
+}
+function updateBirthDateDisplay() {
+  const displayText =
+    formatBirthDate(birthDate.value);
+  birthDateDisplay.innerHTML = `
+    <span>${displayText}</span>
+    <span
+      class="birth-calendar-icon"
+      aria-hidden="true"
+    >📆</span>
+  `;
+}
+/* ==================================================
+   年齡
+================================================== */
+function calculateAge(dateString) {
+  if (!dateString) {
+    return null;
+  }
+  const birth =
+    new Date(dateString + "T00:00:00");
+  if (Number.isNaN(birth.getTime())) {
+    return null;
+  }
+  const today =
+    new Date();
+  let age =
+    today.getFullYear() -
+    birth.getFullYear();
+  const monthDifference =
+    today.getMonth() -
+    birth.getMonth();
+  if (
+    monthDifference < 0 ||
+    (
+      monthDifference === 0 &&
+      today.getDate() < birth.getDate()
+    )
+  ) {
+    age--;
+  }
+  return age;
+}
+function updateAge() {
+  const age =
+    calculateAge(birthDate.value);
+  if (
+    age === null ||
+    age < 0 ||
+    age > 120
+  ) {
+    ageNumber.textContent = "—";
+    return;
+  }
+  ageNumber.textContent =
+    age + " 歲";
+}
     /* ==================================================
        取得目前資料
     ================================================== */
