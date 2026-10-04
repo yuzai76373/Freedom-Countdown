@@ -334,33 +334,39 @@
         rgba(94, 128, 107, 0.09);
     }
 
+    /* 姓名提醒 */
+
+    .validation-message {
+      display: none;
+
+      margin-top: 6px;
+
+      color: #B7654F;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      line-height: 1.4;
+    }
+
+    .validation-message.show {
+      display: block;
+    }
+
+    .input-error {
+      border-color: #C9826B !important;
+
+      box-shadow:
+        0 0 0 4px
+        rgba(201, 130, 107, 0.08) !important;
+    }
+
     /* ------------------------------
        出生年月日
     ------------------------------ */
 
-    .birth-row {
-      display: grid;
-
-      grid-template-columns:
-        1.25fr
-        0.85fr
-        0.85fr;
-
-      gap: 8px;
-
-      width: 100%;
-    }
-
-    .birth-select {
-      position: relative;
-
-      min-width: 0;
-    }
-
-    .birth-select select {
-      appearance: none;
-      -webkit-appearance: none;
-
+    .birth-input {
       display: block;
 
       width: 100%;
@@ -368,9 +374,7 @@
 
       padding:
         0
-        30px
-        0
-        12px;
+        14px;
 
       border:
         1px solid
@@ -382,35 +386,23 @@
 
       color: var(--text);
 
-      font-size: 16px;
+      font-size: 18px;
 
       font-weight: 700;
 
+      line-height: 1.4;
+
       outline: none;
 
-      cursor: pointer;
-
       text-align: center;
+
+      transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
     }
 
-    .birth-select::after {
-      content: "⌄";
-
-      position: absolute;
-
-      right: 10px;
-      top: 50%;
-
-      transform: translateY(-58%);
-
-      color: var(--green);
-
-      font-size: 16px;
-
-      pointer-events: none;
-    }
-
-    .birth-select select:focus {
+    .birth-input:focus {
       border-color:
         rgba(94, 128, 107, 0.55);
 
@@ -421,18 +413,24 @@
         rgba(94, 128, 107, 0.09);
     }
 
-    .birth-unit {
-      display: block;
-
-      margin-top: 4px;
-
-      color: var(--muted);
-
-      font-size: 11px;
-
-      font-weight: 650;
-
+    .birth-input::-webkit-date-and-time-value {
       text-align: center;
+    }
+
+    .birth-input::-webkit-datetime-edit {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      height: 100%;
+    }
+
+    .birth-input::-webkit-calendar-picker-indicator {
+      opacity: 0.65;
+
+      cursor: pointer;
     }
 
     /* ------------------------------
@@ -641,23 +639,55 @@
     }
 
     /* ------------------------------
-       下一步
+       底部按鈕
     ------------------------------ */
 
-    .next-button {
+    .navigation {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr;
+
+      gap: 9px;
+
+      margin-top: 11px;
+    }
+
+    .nav-button {
       display: flex;
 
       align-items: center;
       justify-content: center;
 
-      width: 100%;
-
       min-height: 51px;
-
-      margin-top: 11px;
 
       border-radius: 999px;
 
+      text-decoration: none;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+      letter-spacing: 0.02em;
+
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .back-button {
+      background: #F9FAF6;
+
+      color: var(--muted);
+
+      border:
+        1px solid
+        rgba(83, 111, 97, 0.16);
+    }
+
+    .next-button {
       background:
         linear-gradient(
           135deg,
@@ -667,32 +697,16 @@
 
       color: #FFFFFF;
 
-      text-decoration: none;
-
-      font-size: 16px;
-
-      font-weight: 800;
-
-      letter-spacing: 0.04em;
-
       box-shadow:
         0 9px 20px
         rgba(68, 104, 84, 0.2);
-
-      transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
     }
 
-    .next-button:hover {
+    .nav-button:hover {
       transform: translateY(-2px);
-
-      box-shadow:
-        0 12px 25px
-        rgba(68, 104, 84, 0.25);
     }
 
-    .next-button:active {
+    .nav-button:active {
       transform: translateY(1px);
     }
 
@@ -767,21 +781,14 @@
       }
 
       .text-input,
-      .birth-select select {
+      .birth-input {
         height: 48px;
 
         border-radius: 15px;
-
-        font-size: 15px;
       }
 
-      .birth-row {
-        gap: 6px;
-      }
-
-      .birth-select select {
-        padding-left: 7px;
-        padding-right: 23px;
+      .birth-input {
+        font-size: 17px;
       }
 
       .age-box {
@@ -834,12 +841,10 @@
         height: 34px;
       }
 
-      .next-button {
+      .nav-button {
         min-height: 48px;
 
-        margin-top: 9px;
-
-        font-size: 15px;
+        font-size: 14px;
       }
 
       .footer {
@@ -882,7 +887,7 @@
         margin-top: 8px;
       }
 
-      .next-button {
+      .navigation {
         margin-top: 8px;
       }
 
@@ -898,9 +903,9 @@
     @media (prefers-reduced-motion: reduce) {
 
       .text-input,
-      .birth-select select,
+      .birth-input,
       .choice-button,
-      .next-button {
+      .nav-button {
         transition: none;
       }
     }
@@ -970,59 +975,38 @@
             autocomplete="name"
           >
 
+          <div
+            id="nicknameError"
+            class="validation-message"
+          >
+            ⚠️ 請先輸入姓名或暱稱
+          </div>
+
         </div>
 
 
         <!-- 出生年月日 -->
         <div class="field">
 
-          <label class="field-label">
+          <label
+            class="field-label"
+            for="birthDate"
+          >
             出生年月日 🎂
           </label>
 
-          <div class="birth-row">
+          <input
+            id="birthDate"
+            class="birth-input"
+            type="date"
+            value="1994-01-01"
+          >
 
-            <div class="birth-select">
-
-              <select
-                id="birthYear"
-                aria-label="出生年份"
-              ></select>
-
-              <span class="birth-unit">
-                年
-              </span>
-
-            </div>
-
-
-            <div class="birth-select">
-
-              <select
-                id="birthMonth"
-                aria-label="出生月份"
-              ></select>
-
-              <span class="birth-unit">
-                月
-              </span>
-
-            </div>
-
-
-            <div class="birth-select">
-
-              <select
-                id="birthDay"
-                aria-label="出生日期"
-              ></select>
-
-              <span class="birth-unit">
-                日
-              </span>
-
-            </div>
-
+          <div
+            id="birthDateError"
+            class="validation-message"
+          >
+            ⚠️ 請先選擇出生年月日
           </div>
 
 
@@ -1122,18 +1106,37 @@
 
           </div>
 
+          <div
+            id="supportCountError"
+            class="validation-message"
+          >
+            ⚠️ 請輸入需要撫養的人數
+          </div>
+
         </div>
 
       </section>
 
 
-      <!-- 下一步 -->
-      <a
-        class="next-button"
-        href="finance.html"
-      >
-        下一步 →
-      </a>
+      <!-- 底部導覽 -->
+      <div class="navigation">
+
+        <a
+          class="nav-button back-button"
+          href="index.html"
+        >
+          ← 回到首頁
+        </a>
+
+        <a
+          id="nextButton"
+          class="nav-button next-button"
+          href="finance.html"
+        >
+          下一步 →
+        </a>
+
+      </div>
 
 
       <!-- 著作權 -->
@@ -1147,236 +1150,24 @@
 
 
   <script>
-    /* ------------------------------
-       出生年月日
-       預設：1994 / 01 / 01
-    ------------------------------ */
 
-    const birthYear =
-      document.getElementById("birthYear");
+    /* ==================================================
+       基本資料儲存
+       這組資料會供後面的 finance.html 使用
+    ================================================== */
 
-    const birthMonth =
-      document.getElementById("birthMonth");
+    const STORAGE_KEY =
+      "freedomCountdownBasic";
 
-    const birthDay =
-      document.getElementById("birthDay");
+
+    const nickname =
+      document.getElementById("nickname");
+
+    const birthDate =
+      document.getElementById("birthDate");
 
     const ageNumber =
       document.getElementById("ageNumber");
-
-
-    const defaultYear = 1994;
-    const defaultMonth = 1;
-    const defaultDay = 1;
-
-
-    /* 年份 */
-
-    for (
-      let year = 2026;
-      year >= 1900;
-      year--
-    ) {
-
-      const option =
-        document.createElement("option");
-
-      option.value = year;
-      option.textContent = year;
-
-      if (year === defaultYear) {
-        option.selected = true;
-      }
-
-      birthYear.appendChild(option);
-    }
-
-
-    /* 月份 */
-
-    for (
-      let month = 1;
-      month <= 12;
-      month++
-    ) {
-
-      const option =
-        document.createElement("option");
-
-      option.value = month;
-      option.textContent =
-        String(month).padStart(2, "0");
-
-      if (month === defaultMonth) {
-        option.selected = true;
-      }
-
-      birthMonth.appendChild(option);
-    }
-
-
-    function getDaysInMonth(
-      year,
-      month
-    ) {
-
-      return new Date(
-        year,
-        month,
-        0
-      ).getDate();
-    }
-
-
-    function updateDays(
-      selectedDay = defaultDay
-    ) {
-
-      const year =
-        Number(birthYear.value);
-
-      const month =
-        Number(birthMonth.value);
-
-      const totalDays =
-        getDaysInMonth(
-          year,
-          month
-        );
-
-      const currentDay =
-        Number(selectedDay);
-
-
-      birthDay.innerHTML = "";
-
-
-      for (
-        let day = 1;
-        day <= totalDays;
-        day++
-      ) {
-
-        const option =
-          document.createElement("option");
-
-        option.value = day;
-
-        option.textContent =
-          String(day).padStart(2, "0");
-
-
-        if (
-          day === currentDay &&
-          currentDay <= totalDays
-        ) {
-          option.selected = true;
-        }
-
-        birthDay.appendChild(option);
-      }
-    }
-
-
-    updateDays(defaultDay);
-
-
-    /* ------------------------------
-       計算年齡
-    ------------------------------ */
-
-    function calculateAge() {
-
-      const year =
-        Number(birthYear.value);
-
-      const month =
-        Number(birthMonth.value);
-
-      const day =
-        Number(birthDay.value);
-
-
-      const today =
-        new Date();
-
-
-      let age =
-        today.getFullYear() -
-        year;
-
-
-      const birthdayThisYear =
-        new Date(
-          today.getFullYear(),
-          month - 1,
-          day
-        );
-
-
-      if (
-        today < birthdayThisYear
-      ) {
-        age--;
-      }
-
-
-      if (
-        age >= 0 &&
-        age <= 120
-      ) {
-
-        ageNumber.textContent =
-          age + " 歲";
-
-      } else {
-
-        ageNumber.textContent =
-          "—";
-      }
-    }
-
-
-    birthYear.addEventListener(
-      "change",
-      function () {
-
-        const oldDay =
-          Number(birthDay.value);
-
-        updateDays(oldDay);
-
-        calculateAge();
-      }
-    );
-
-
-    birthMonth.addEventListener(
-      "change",
-      function () {
-
-        const oldDay =
-          Number(birthDay.value);
-
-        updateDays(oldDay);
-
-        calculateAge();
-      }
-    );
-
-
-    birthDay.addEventListener(
-      "change",
-      calculateAge
-    );
-
-
-    calculateAge();
-
-
-    /* ------------------------------
-       撫養人數
-    ------------------------------ */
 
     const noSupport =
       document.getElementById("noSupport");
@@ -1396,6 +1187,384 @@
     const plusButton =
       document.getElementById("plusButton");
 
+    const nextButton =
+      document.getElementById("nextButton");
+
+    const nicknameError =
+      document.getElementById("nicknameError");
+
+    const birthDateError =
+      document.getElementById("birthDateError");
+
+    const supportCountError =
+      document.getElementById("supportCountError");
+
+
+    /* ==================================================
+       年齡
+    ================================================== */
+
+    function calculateAge(dateString) {
+
+      if (!dateString) {
+        return null;
+      }
+
+      const birth =
+        new Date(dateString + "T00:00:00");
+
+      if (
+        Number.isNaN(birth.getTime())
+      ) {
+        return null;
+      }
+
+      const today =
+        new Date();
+
+      let age =
+        today.getFullYear() -
+        birth.getFullYear();
+
+      const monthDifference =
+        today.getMonth() -
+        birth.getMonth();
+
+      if (
+        monthDifference < 0 ||
+        (
+          monthDifference === 0 &&
+          today.getDate() < birth.getDate()
+        )
+      ) {
+        age--;
+      }
+
+      return age;
+    }
+
+
+    function updateAge() {
+
+      const age =
+        calculateAge(
+          birthDate.value
+        );
+
+      if (
+        age === null ||
+        age < 0 ||
+        age > 120
+      ) {
+        ageNumber.textContent = "—";
+        return;
+      }
+
+      ageNumber.textContent =
+        age + " 歲";
+    }
+
+
+    /* ==================================================
+       取得目前資料
+    ================================================== */
+
+    function getCurrentData() {
+
+      const rawCount =
+        countInput.value.trim();
+
+      let supportCountValue = "";
+
+      if (
+        rawCount !== ""
+      ) {
+
+        const number =
+          Number(rawCount);
+
+        if (
+          Number.isInteger(number) &&
+          number >= 1 &&
+          number <= 20
+        ) {
+          supportCountValue = number;
+        }
+      }
+
+      return {
+
+        nickname:
+          nickname.value.trim(),
+
+        birthDate:
+          birthDate.value,
+
+        hasSupport:
+          hasSupport.classList.contains("active"),
+
+        supportCount:
+          supportCountValue
+      };
+    }
+
+
+    /* ==================================================
+       無感自動保存
+    ================================================== */
+
+    function saveData() {
+
+      const data =
+        getCurrentData();
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(data)
+      );
+    }
+
+
+    /* ==================================================
+       載入資料
+    ================================================== */
+
+    function loadData() {
+
+      const saved =
+        localStorage.getItem(
+          STORAGE_KEY
+        );
+
+      if (!saved) {
+
+        updateAge();
+
+        return;
+      }
+
+
+      try {
+
+        const data =
+          JSON.parse(saved);
+
+
+        if (
+          typeof data.nickname === "string"
+        ) {
+
+          nickname.value =
+            data.nickname;
+        }
+
+
+        if (
+          typeof data.birthDate === "string" &&
+          data.birthDate
+        ) {
+
+          birthDate.value =
+            data.birthDate;
+        }
+
+
+        if (
+          data.hasSupport === true
+        ) {
+
+          hasSupport.classList.add("active");
+
+          noSupport.classList.remove("active");
+
+          supportCount.classList.add("show");
+
+        } else {
+
+          noSupport.classList.add("active");
+
+          hasSupport.classList.remove("active");
+
+          supportCount.classList.remove("show");
+        }
+
+
+        if (
+          Number.isInteger(data.supportCount) &&
+          data.supportCount >= 1 &&
+          data.supportCount <= 20
+        ) {
+
+          countInput.value =
+            data.supportCount;
+
+        } else {
+
+          countInput.value = 1;
+        }
+
+
+      } catch (error) {
+
+        console.log(
+          "基本資料讀取失敗"
+        );
+      }
+
+
+      updateAge();
+    }
+
+
+    /* ==================================================
+       清除錯誤
+    ================================================== */
+
+    function clearNicknameError() {
+
+      nicknameError.classList.remove("show");
+
+      nickname.classList.remove("input-error");
+    }
+
+
+    function clearBirthDateError() {
+
+      birthDateError.classList.remove("show");
+
+      birthDate.classList.remove("input-error");
+    }
+
+
+    function clearSupportCountError() {
+
+      supportCountError.classList.remove("show");
+
+      countInput.classList.remove("input-error");
+    }
+
+
+    /* ==================================================
+       驗證
+    ================================================== */
+
+    function validateForm() {
+
+      let valid = true;
+
+
+      /* 姓名 */
+
+      if (
+        !nickname.value.trim()
+      ) {
+
+        nicknameError.classList.add("show");
+
+        nickname.classList.add("input-error");
+
+        valid = false;
+
+      } else {
+
+        clearNicknameError();
+      }
+
+
+      /* 生日 */
+
+      if (
+        !birthDate.value
+      ) {
+
+        birthDateError.classList.add("show");
+
+        birthDate.classList.add("input-error");
+
+        valid = false;
+
+      } else {
+
+        clearBirthDateError();
+      }
+
+
+      /* 撫養人數 */
+
+      if (
+        hasSupport.classList.contains("active")
+      ) {
+
+        const raw =
+          countInput.value.trim();
+
+        const count =
+          Number(raw);
+
+
+        if (
+          raw === "" ||
+          !Number.isInteger(count) ||
+          count < 1 ||
+          count > 20
+        ) {
+
+          supportCountError.classList.add("show");
+
+          countInput.classList.add("input-error");
+
+          valid = false;
+
+        } else {
+
+          clearSupportCountError();
+        }
+
+      } else {
+
+        clearSupportCountError();
+      }
+
+
+      return valid;
+    }
+
+
+    /* ==================================================
+       姓名
+    ================================================== */
+
+    nickname.addEventListener(
+      "input",
+      function () {
+
+        clearNicknameError();
+
+        saveData();
+      }
+    );
+
+
+    /* ==================================================
+       生日
+    ================================================== */
+
+    birthDate.addEventListener(
+      "change",
+      function () {
+
+        clearBirthDateError();
+
+        updateAge();
+
+        saveData();
+      }
+    );
+
+
+    /* ==================================================
+       撫養選擇
+    ================================================== */
 
     noSupport.addEventListener(
       "click",
@@ -1406,6 +1575,10 @@
         hasSupport.classList.remove("active");
 
         supportCount.classList.remove("show");
+
+        clearSupportCountError();
+
+        saveData();
       }
     );
 
@@ -1420,23 +1593,40 @@
 
         supportCount.classList.add("show");
 
-        countInput.focus();
+
+        if (
+          !countInput.value ||
+          Number(countInput.value) < 1
+        ) {
+
+          countInput.value = 1;
+        }
+
+
+        clearSupportCountError();
+
+        saveData();
       }
     );
 
 
+    /* ==================================================
+       撫養人數
+    ================================================== */
+
     function updateCount(value) {
 
       let number =
-        parseInt(value, 10);
-
+        Number(value);
 
       if (
-        Number.isNaN(number)
+        !Number.isFinite(number)
       ) {
         number = 1;
       }
 
+      number =
+        Math.round(number);
 
       number =
         Math.max(
@@ -1447,8 +1637,12 @@
           )
         );
 
+      countInput.value =
+        number;
 
-      countInput.value = number;
+      clearSupportCountError();
+
+      saveData();
     }
 
 
@@ -1457,7 +1651,7 @@
       function () {
 
         updateCount(
-          Number(countInput.value) - 1
+          Number(countInput.value || 1) - 1
         );
       }
     );
@@ -1468,8 +1662,19 @@
       function () {
 
         updateCount(
-          Number(countInput.value) + 1
+          Number(countInput.value || 1) + 1
         );
+      }
+    );
+
+
+    countInput.addEventListener(
+      "input",
+      function () {
+
+        clearSupportCountError();
+
+        saveData();
       }
     );
 
@@ -1478,22 +1683,110 @@
       "change",
       function () {
 
-        updateCount(
-          this.value
-        );
+        const raw =
+          countInput.value.trim();
+
+        if (
+          raw === ""
+        ) {
+
+          saveData();
+
+          return;
+        }
+
+
+        const number =
+          Number(raw);
+
+
+        if (
+          Number.isInteger(number) &&
+          number >= 1 &&
+          number <= 20
+        ) {
+
+          countInput.value =
+            number;
+        }
+
+
+        saveData();
       }
     );
 
 
-    countInput.addEventListener(
-      "blur",
-      function () {
+    /* ==================================================
+       下一步
+    ================================================== */
 
-        updateCount(
-          this.value
-        );
+    nextButton.addEventListener(
+      "click",
+      function (event) {
+
+        /*
+          先保存
+          即使驗證失敗，也不會清掉已輸入資料
+        */
+
+        saveData();
+
+
+        if (
+          !validateForm()
+        ) {
+
+          event.preventDefault();
+
+
+          const firstError =
+            document.querySelector(
+              ".input-error"
+            );
+
+
+          if (
+            firstError
+          ) {
+
+            firstError.scrollIntoView({
+              behavior: "smooth",
+              block: "center"
+            });
+
+
+            setTimeout(
+              function () {
+
+                firstError.focus();
+
+              },
+              250
+            );
+          }
+
+
+          return;
+        }
+
+
+        /*
+          驗證成功
+          supportCount 已經存在 localStorage
+          finance.html 可以直接讀取
+        */
+
+        saveData();
       }
     );
+
+
+    /* ==================================================
+       啟動
+    ================================================== */
+
+    loadData();
+
   </script>
 
 </body>
