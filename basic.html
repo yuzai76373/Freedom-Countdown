@@ -1002,22 +1002,59 @@
         </div>
 
 
-        <!-- 出生年月日 -->
-        <div class="field">
+      <!-- 出生年月日 -->
+<div class="field">
 
-          <label
-            class="field-label"
-            for="birthDate"
-          >
-            出生年月日
-          </label>
+  <label
+    class="field-label"
+    for="birthDate"
+  >
+    出生年月日
+  </label>
 
-          <input
-            id="birthDate"
-            class="birth-input"
-            type="date"
-            value="1994-01-01"
-          >
+  <div class="birth-wrapper">
+
+    <input
+      id="birthDate"
+      class="birth-input"
+      type="date"
+      value="1994-01-01"
+    >
+
+    <span
+      class="birth-calendar-icon"
+      aria-hidden="true"
+    >
+      📅
+    </span>
+
+  </div>
+
+  <div
+    id="birthDateError"
+    class="validation-message"
+  >
+    ⚠️ 請先選擇出生年月日
+  </div>
+
+
+  <!-- 目前年齡 -->
+  <div class="age-box">
+
+    <div class="age-label">
+      目前年齡
+    </div>
+
+    <div
+      id="ageNumber"
+      class="age-number"
+    >
+      32 歲
+    </div>
+
+  </div>
+
+</div>
 
           <div
             id="birthDateError"
