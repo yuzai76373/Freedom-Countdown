@@ -366,13 +366,20 @@
    出生年月日
 ------------------------------ */
 
+.birth-wrapper {
+  position: relative;
+
+  width: 100%;
+  height: 51px;
+}
+
 .birth-input {
   display: block;
 
   width: 100%;
   height: 51px;
 
-  padding: 0 16px;
+  padding: 0 50px 0 16px;
 
   border:
     1px solid
@@ -384,21 +391,54 @@
 
   color: var(--text);
 
-  font-size: 16px;
+  font-size: 20px;
 
-  font-weight: 600;
+  font-weight: 700;
 
-  line-height: normal;
+  line-height: 51px;
 
   outline: none;
 
-  -webkit-appearance: auto;
-  appearance: auto;
+  text-align: center;
+
+  -webkit-appearance: none;
+  appearance: none;
 
   transition:
     border-color 0.18s ease,
     box-shadow 0.18s ease,
     background 0.18s ease;
+}
+
+/* 隱藏 iPhone 原生日期圖示 */
+.birth-input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  left: 0;
+  top: 0;
+
+  cursor: pointer;
+}
+
+/* 自己放日期圖示 */
+.birth-calendar-icon {
+  position: absolute;
+
+  right: 16px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  font-size: 20px;
+
+  line-height: 1;
+
+  pointer-events: none;
 }
 
 .birth-input:focus {
@@ -410,12 +450,6 @@
   box-shadow:
     0 0 0 4px
     rgba(94, 128, 107, 0.09);
-}
-
-.birth-input::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-
-  opacity: 1;
 }
 
     /* ------------------------------
