@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#F6F2E9">
-  <meta name="description" content="自由倒數｜基本資料">
-  <title>自由倒數｜基本資料</title>
+  <title>基本資料｜自由倒數｜試算工具</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
     :root {
       --bg: #F6F2E9;
       --paper: #FFFDF8;
@@ -26,187 +19,114 @@
       --muted: #748078;
       --border: rgba(83, 111, 97, 0.14);
       --shadow:
-        0 16px 38px rgba(59, 76, 67, 0.09),
-        0 3px 10px rgba(59, 76, 67, 0.04);
+        0 10px 30px rgba(65, 77, 69, 0.08);
     }
-    html,
-    body {
-      width: 100%;
-      min-height: 100%;
+    * {
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
     }
     body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(
+          circle at top left,
+          rgba(228, 238, 231, 0.65),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at bottom right,
+          rgba(245, 231, 217, 0.5),
+          transparent 30%
+        ),
+        var(--bg);
+      color: var(--text);
       font-family:
         -apple-system,
         BlinkMacSystemFont,
+        "Segoe UI",
         "Noto Sans TC",
         "PingFang TC",
         "Microsoft JhengHei",
         sans-serif;
-      background:
-        radial-gradient(
-          circle at 92% 4%,
-          rgba(218, 231, 222, 0.7) 0,
-          rgba(218, 231, 222, 0.25) 12%,
-          transparent 27%
-        ),
-        var(--bg);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-    }
-    button,
-    input {
-      font: inherit;
-    }
-    button {
-      -webkit-tap-highlight-color: transparent;
     }
     .page {
-      position: relative;
-      min-height: 100vh;
-      overflow: hidden;
-    }
-    /* ------------------------------
-       裝飾
-    ------------------------------ */
-    .decor {
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .decor-1 {
-      width: 150px;
-      height: 150px;
-      top: -70px;
-      right: -55px;
-      background: rgba(204, 222, 211, 0.48);
-    }
-    .decor-2 {
-      width: 90px;
-      height: 90px;
-      left: -45px;
-      bottom: 55px;
-      background: rgba(239, 224, 205, 0.5);
-    }
-    .decor-3 {
-      width: 34px;
-      height: 34px;
-      left: 8%;
-      top: 22%;
-      background: rgba(221, 233, 225, 0.75);
-    }
-    /* ------------------------------
-       主容器
-    ------------------------------ */
-    .container {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-      max-width: 720px;
-      min-height: 100vh;
+      width: min(720px, calc(100% - 32px));
       margin: 0 auto;
-      padding:
-        22px
-        18px
-        10px;
-      display: flex;
-      flex-direction: column;
+      padding: 24px 0 40px;
     }
-    /* ------------------------------
-       網站名稱
-    ------------------------------ */
+    /* ===== Header ===== */
+    .header {
+      margin-bottom: 24px;
+    }
     .brand {
-      text-align: center;
-    }
-    .brand-title {
       color: var(--green-dark);
-      font-size: clamp(20px, 5.4vw, 27px);
+      font-size: 15px;
       font-weight: 800;
-      letter-spacing: 0.04em;
-      line-height: 1.3;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
     }
-    /* ------------------------------
-       頁面標題
-    ------------------------------ */
-    .page-heading {
-      margin-top: 13px;
-      text-align: center;
-    }
-    .step-number {
-      color: var(--green);
-      font-size: clamp(17px, 4.5vw, 21px);
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      line-height: 1.2;
-    }
-    .page-title {
-      margin-top: 2px;
+    .step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: var(--green-soft);
       color: var(--green-dark);
-      font-size: clamp(29px, 8vw, 39px);
-      font-weight: 850;
-      line-height: 1.2;
-      letter-spacing: 0.02em;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
     }
-    .page-subtitle {
-      margin-top: 7px;
+    h1 {
+      margin: 12px 0 6px;
+      color: var(--green-dark);
+      font-size: clamp(28px, 7vw, 38px);
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+    .subtitle {
+      margin: 0;
       color: var(--muted);
-      font-size: clamp(14px, 3.8vw, 17px);
-      font-weight: 500;
-      line-height: 1.5;
-      letter-spacing: 0.02em;
+      font-size: 14px;
+      line-height: 1.7;
     }
-    /* ------------------------------
-       內容卡片
-    ------------------------------ */
-    .form-card {
-      margin-top: 15px;
-      padding:
-        19px
-        17px
-        18px;
-      border-radius: 27px;
-      background:
-        linear-gradient(
-          145deg,
-          rgba(255, 255, 252, 0.98),
-          rgba(251, 250, 243, 0.98)
-        );
-      border: 1px solid rgba(100, 126, 112, 0.16);
+    /* ===== Card ===== */
+    .card {
+      padding: 24px;
+      background: rgba(255, 253, 248, 0.94);
+      border: 1px solid rgba(83, 111, 97, 0.1);
+      border-radius: 24px;
       box-shadow: var(--shadow);
     }
     .section-title {
+      margin-bottom: 22px;
       color: var(--green-dark);
-      font-size: clamp(20px, 5.2vw, 24px);
+      font-size: 18px;
       font-weight: 800;
-      line-height: 1.3;
     }
-    /* ------------------------------
-       欄位
-    ------------------------------ */
+    /* ===== Field ===== */
     .field {
-      margin-top: 13px;
+      margin-bottom: 24px;
+    }
+    .field:last-child {
+      margin-bottom: 0;
     }
     .field-label {
       display: block;
-      margin-bottom: 7px;
+      margin-bottom: 9px;
       color: var(--text);
-      font-size: clamp(15px, 4vw, 17px);
-      font-weight: 750;
-      line-height: 1.4;
+      font-size: 14px;
+      font-weight: 800;
     }
-    /* ------------------------------
-       姓名
-    ------------------------------ */
     .text-input {
       display: block;
       width: 100%;
       height: 51px;
-      padding:
-        0
-        16px;
-      border:
-        1px solid
-        rgba(83, 111, 97, 0.18);
+      padding: 0 16px;
+      border: 1px solid rgba(83, 111, 97, 0.18);
       border-radius: 17px;
       background: #F9FAF6;
       color: var(--text);
@@ -214,30 +134,97 @@
       font-weight: 600;
       outline: none;
       transition:
-        border-color 0.18s ease,
-        box-shadow 0.18s ease,
-        background 0.18s ease;
-    }
-    .text-input::placeholder {
-      color: #A1AAA4;
-      font-weight: 500;
+        border-color .18s ease,
+        box-shadow .18s ease,
+        background .18s ease;
     }
     .text-input:focus {
-      border-color:
-        rgba(94, 128, 107, 0.55);
+      border-color: rgba(94, 128, 107, 0.5);
       background: #FFFFFF;
       box-shadow:
-        0 0 0 4px
-        rgba(94, 128, 107, 0.09);
+        0 0 0 3px rgba(94, 128, 107, 0.08);
     }
-    /* 姓名提醒 */
+    .text-input::placeholder {
+      color: #A5ADA8;
+      font-weight: 500;
+    }
+    /* ===== Birth Date ===== */
+    .birth-wrapper {
+      position: relative;
+      width: 100%;
+      height: 51px;
+      border: 1px solid rgba(83, 111, 97, 0.18);
+      border-radius: 17px;
+      background: #F9FAF6;
+      overflow: hidden;
+      transition:
+        border-color .18s ease,
+        box-shadow .18s ease,
+        background .18s ease;
+    }
+    /*
+      日期＋📆 做成同一組
+      整組一起置中
+    */
+    .birth-display {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      color: var(--text);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .birth-calendar-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      line-height: 1;
+      pointer-events: none;
+    }
+    /*
+      真正的 date input
+      覆蓋整個欄位，負責叫出手機原生日期選擇器
+    */
+    .birth-input {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      outline: none;
+      opacity: 0.01;
+      cursor: pointer;
+      z-index: 2;
+    }
+    .birth-wrapper:focus-within {
+      border-color: rgba(94, 128, 107, 0.5);
+      background: #FFFFFF;
+      box-shadow:
+        0 0 0 3px rgba(94, 128, 107, 0.08);
+    }
+    .birth-wrapper.input-error {
+      border-color: #C9826B !important;
+      box-shadow:
+        0 0 0 3px rgba(201, 130, 107, 0.08) !important;
+    }
+    /* ===== Validation ===== */
     .validation-message {
       display: none;
-      margin-top: 6px;
-      color: #B7654F;
-      font-size: 13px;
-      font-weight: 700;
-      line-height: 1.4;
+      margin-top: 7px;
+      color: #B66D58;
+      font-size: 12px;
+      line-height: 1.5;
+      font-weight: 600;
     }
     .validation-message.show {
       display: block;
@@ -245,598 +232,369 @@
     .input-error {
       border-color: #C9826B !important;
       box-shadow:
-        0 0 0 4px
-        rgba(201, 130, 107, 0.08) !important;
+        0 0 0 3px rgba(201, 130, 107, 0.08) !important;
     }
-    /* ------------------------------
-       出生年月日
-    ------------------------------ */
-    .birth-wrapper {
-      position: relative;
-      width: 100%;
-      height: 51px;
-    }
-    .birth-input {
-      display: block;
-      width: 100%;
-      max-width: none;
-      min-width: 0;
-      height: 51px;
-      padding:
-        0 48px 0 16px;
-      border:
-        1px solid
-        rgba(83, 111, 97, 0.18);
-      border-radius: 17px;
-      background: #F9FAF6;
-      color: var(--text);
-      font-size: 16px;
-      font-weight: 600;
-      line-height: normal;
-      outline: none;
-      text-align: center;
-      -webkit-appearance: none;
-      appearance: none;
-      transition:
-        border-color 0.18s ease,
-        box-shadow 0.18s ease,
-        background 0.18s ease;
-    }
-    .birth-input:focus {
-      border-color:
-        rgba(94, 128, 107, 0.55);
-      background: #FFFFFF;
-      box-shadow:
-        0 0 0 4px
-        rgba(94, 128, 107, 0.09);
-    }
-    .birth-input::-webkit-calendar-picker-indicator {
-      opacity: 0;
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-    }
-    .birth-calendar-icon {
-      position: absolute;
-      right: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 19px;
-      line-height: 1;
-      pointer-events: none;
-    }
-    /* ------------------------------
-       目前年齡
-    ------------------------------ */
+    /* ===== Age Box ===== */
     .age-box {
-      margin-top: 11px;
-      padding:
-        10px
-        14px;
-      border-radius: 18px;
-      background: var(--green-soft);
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: 17px;
+      background: var(--gold-soft);
       text-align: center;
     }
     .age-label {
-      color: var(--green);
-      font-size: 14px;
-      font-weight: 750;
-      line-height: 1.3;
+      margin-bottom: 4px;
+      color: var(--gold-text);
+      font-size: 12px;
+      font-weight: 700;
     }
     .age-number {
-      margin-top: 1px;
       color: var(--green-dark);
-      font-size: clamp(27px, 7vw, 34px);
-      font-weight: 850;
-      line-height: 1.15;
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.2;
     }
-    /* ------------------------------
-       撫養人數
-    ------------------------------ */
-    .support-section {
-      margin-top: 13px;
-    }
-    .support-choice {
+    /* ===== Support ===== */
+    .support-options {
       display: grid;
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-      gap: 9px;
-      margin-top: 7px;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
-    .choice-button {
-      min-height: 48px;
-      border:
-        1px solid
-        rgba(83, 111, 97, 0.16);
-      border-radius: 16px;
+    .support-button {
+      height: 51px;
+      border: 1px solid rgba(83, 111, 97, 0.18);
+      border-radius: 17px;
       background: #F9FAF6;
       color: var(--text);
-      font-size: 16px;
-      font-weight: 750;
+      font-size: 15px;
+      font-weight: 800;
       cursor: pointer;
       transition:
-        transform 0.18s ease,
-        background 0.18s ease,
-        border-color 0.18s ease,
-        box-shadow 0.18s ease;
+        background .18s ease,
+        border-color .18s ease,
+        color .18s ease,
+        transform .12s ease;
     }
-    .choice-button.active {
+    .support-button:active {
+      transform: scale(0.98);
+    }
+    .support-button.active {
+      border-color: var(--green);
       background: var(--green-soft);
-      border-color:
-        rgba(94, 128, 107, 0.42);
       color: var(--green-dark);
-      box-shadow:
-        0 5px 14px
-        rgba(68, 104, 84, 0.08);
     }
     .support-count {
       display: none;
-      margin-top: 9px;
-      padding:
-        9px
-        12px;
+      margin-top: 14px;
+      padding: 16px;
       border-radius: 17px;
-      background: #F7F3EC;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
+      background: #F9FAF6;
+      border: 1px solid rgba(83, 111, 97, 0.1);
     }
     .support-count.show {
-      display: flex;
+      display: block;
     }
-    .count-label {
+    .count-title {
+      margin-bottom: 10px;
       color: var(--text);
-      font-size: 15px;
-      font-weight: 750;
-      white-space: nowrap;
+      font-size: 13px;
+      font-weight: 800;
     }
-    .counter {
+    .count-control {
       display: flex;
       align-items: center;
-      gap: 7px;
+      width: 100%;
+      height: 48px;
+      border: 1px solid rgba(83, 111, 97, 0.18);
+      border-radius: 15px;
+      background: #FFFFFF;
+      overflow: hidden;
     }
-    .counter-button {
-      width: 37px;
-      height: 37px;
-      flex: 0 0 37px;
-      border: none;
-      border-radius: 50%;
-      background: var(--green-soft);
+    .count-button {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+      border: 0;
+      background: transparent;
       color: var(--green-dark);
-      font-size: 21px;
-      font-weight: 800;
-      line-height: 1;
+      font-size: 22px;
+      font-weight: 700;
       cursor: pointer;
     }
     .count-input {
-      width: 48px;
-      height: 37px;
-      border:
-        1px solid
-        rgba(83, 111, 97, 0.18);
-      border-radius: 11px;
-      background: #FFFFFF;
-      color: var(--green-dark);
-      font-size: 17px;
-      font-weight: 800;
-      text-align: center;
+      min-width: 0;
+      flex: 1;
+      height: 48px;
+      border: 0;
       outline: none;
+      background: transparent;
+      color: var(--text);
+      text-align: center;
+      font-size: 18px;
+      font-weight: 800;
     }
-    .count-input:focus {
-      border-color:
-        rgba(94, 128, 107, 0.55);
-      box-shadow:
-        0 0 0 3px
-        rgba(94, 128, 107, 0.09);
-    }
-    .count-unit {
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: 700;
-      margin-left: -3px;
-    }
-    /* ------------------------------
-       底部按鈕
-    ------------------------------ */
-    .navigation {
+    /* ===== Bottom Navigation ===== */
+    .bottom-nav {
       display: grid;
-      grid-template-columns:
-        1fr
-        1fr;
-      gap: 9px;
-      margin-top: 11px;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
     }
     .nav-button {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 51px;
-      border-radius: 999px;
+      min-height: 50px;
+      border-radius: 17px;
       text-decoration: none;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
-      letter-spacing: 0.02em;
       transition:
-        transform 0.18s ease,
-        box-shadow 0.18s ease;
-    }
-    .back-button {
-      background: #F9FAF6;
-      color: var(--muted);
-      border:
-        1px solid
-        rgba(83, 111, 97, 0.16);
-    }
-    .next-button {
-      background:
-        linear-gradient(
-          135deg,
-          #5D806A,
-          #466C58
-        );
-      color: #FFFFFF;
-      box-shadow:
-        0 9px 20px
-        rgba(68, 104, 84, 0.2);
-    }
-    .nav-button:hover {
-      transform: translateY(-2px);
+        transform .12s ease,
+        opacity .18s ease;
     }
     .nav-button:active {
-      transform: translateY(1px);
+      transform: scale(0.98);
     }
-    /* ------------------------------
-       Footer
-    ------------------------------ */
+    .nav-back {
+      border: 1px solid rgba(83, 111, 97, 0.16);
+      background: rgba(255, 253, 248, 0.85);
+      color: var(--green-dark);
+    }
+    .nav-next {
+      border: 1px solid var(--green);
+      background: var(--green);
+      color: #FFFFFF;
+    }
+    /* ===== Footer ===== */
     .footer {
-      margin-top: 7px;
-      padding-top: 0;
+      margin-top: 24px;
+      color: #9AA39E;
       text-align: center;
-      color: #89938D;
       font-size: 11px;
-      letter-spacing: 0.05em;
     }
-    /* ------------------------------
-       小手機
-    ------------------------------ */
+    /* ===== Mobile ===== */
     @media (max-width: 380px) {
-      .container {
-        padding:
-          18px
-          12px
-          7px;
+      .page {
+        width: min(720px, calc(100% - 24px));
+        padding-top: 18px;
       }
-      .page-heading {
-        margin-top: 10px;
-      }
-      .page-title {
-        font-size: 28px;
-      }
-      .page-subtitle {
-        margin-top: 5px;
-        font-size: 13.5px;
-      }
-      .form-card {
-        margin-top: 11px;
-        padding:
-          16px
-          13px
-          14px;
-        border-radius: 23px;
-      }
-      .section-title {
-        font-size: 19px;
-      }
-      .field {
-        margin-top: 10px;
-      }
-      .field-label {
-        margin-bottom: 5px;
-        font-size: 15px;
+      .card {
+        padding: 20px 18px;
+        border-radius: 21px;
       }
       .text-input,
-      .birth-input {
+      .birth-wrapper {
         height: 48px;
         border-radius: 15px;
       }
-      .birth-wrapper {
-        height: 48px;
-      }
-      .birth-input {
-        font-size: 16px;
+      .birth-display {
+        font-size: 21px;
+        gap: 4px;
       }
       .birth-calendar-icon {
-        right: 14px;
-        font-size: 18px;
+        font-size: 21px;
       }
-      .age-box {
-        margin-top: 8px;
-        padding:
-          8px
-          10px;
+      .birth-input {
+        height: 48px;
       }
-      .age-number {
-        font-size: 29px;
-      }
-      .support-section {
-        margin-top: 10px;
-      }
-      .support-choice {
-        margin-top: 5px;
-      }
-      .choice-button {
-        min-height: 45px;
-        font-size: 15px;
-      }
-      .support-count {
-        margin-top: 7px;
-        padding:
-          7px
-          9px;
-      }
-      .count-label {
-        font-size: 14px;
-      }
-      .counter-button {
-        width: 34px;
-        height: 34px;
-        flex-basis: 34px;
-      }
-      .count-input {
-        width: 44px;
-        height: 34px;
-      }
-      .nav-button {
-        min-height: 48px;
-        font-size: 14px;
-      }
-      .footer {
-        margin-top: 5px;
-        font-size: 10px;
-      }
-    }
-    /* ------------------------------
-       較矮螢幕
-    ------------------------------ */
-    @media (max-height: 700px) {
-      .container {
-        padding-top: 13px;
-      }
-      .page-heading {
-        margin-top: 8px;
-      }
-      .page-subtitle {
-        margin-top: 4px;
-      }
-      .form-card {
-        margin-top: 9px;
-        padding-top: 14px;
-        padding-bottom: 12px;
-      }
-      .field {
-        margin-top: 8px;
-      }
-      .support-section {
-        margin-top: 8px;
-      }
-      .navigation {
-        margin-top: 8px;
-      }
-      .footer {
-        margin-top: 4px;
-      }
-    }
-    /* ------------------------------
-       減少動畫
-    ------------------------------ */
-    @media (prefers-reduced-motion: reduce) {
-      .text-input,
-      .birth-input,
-      .choice-button,
-      .nav-button {
-        transition: none;
+      .support-button {
+        height: 48px;
+        border-radius: 15px;
       }
     }
   </style>
 </head>
 <body>
   <main class="page">
-<div class="decor decor-1"></div>
-<div class="decor decor-2"></div>
-<div class="decor decor-3"></div>
-<div class="container">
-  <!-- 網站名稱 -->
-  <header class="brand">
-    <div class="brand-title">
-      自由倒數｜試算工具
-    </div>
-  </header>
-  <!-- 頁面標題 -->
-  <section class="page-heading">
-    <div class="step-number">
-      01
-    </div>
-    <h1 class="page-title">
-      基本資料
-    </h1>
-    <p class="page-subtitle">
-      輸入基本資料，開始探索你的未來
-    </p>
-  </section>
-  <!-- 你的起點 -->
-  <section class="form-card">
-    <h2 class="section-title">
-      📍 你的起點
-    </h2>
-    <!-- 姓名／暱稱 -->
-    <div class="field">
-      <label
-        class="field-label"
-        for="nickname"
-      >
-        姓名／暱稱
-      </label>
-      <input
-        id="nickname"
-        class="text-input"
-        type="text"
-        placeholder="輸入你的名字或暱稱"
-        maxlength="20"
-        autocomplete="name"
-      >
-      <div
-        id="nicknameError"
-        class="validation-message"
-      >
-        ⚠️ 請先輸入姓名或暱稱
+    <!-- ===== Header ===== -->
+    <header class="header">
+      <div class="brand">
+        自由倒數｜試算工具
       </div>
-    </div>
-    <!-- 出生年月日 -->
-    <div class="field">
-      <label
-        class="field-label"
-        for="birthDate"
-      >
-        出生年月日
-      </label>
-      <div class="birth-wrapper">
+      <div class="step">
+        STEP 01
+      </div>
+      <h1>
+        基本資料
+      </h1>
+      <p class="subtitle">
+        輸入基本資料，開始探索你的未來
+      </p>
+    </header>
+    <!-- ===== Main Card ===== -->
+    <section class="card">
+      <div class="section-title">
+        📍 你的起點
+      </div>
+      <!-- ===== 姓名／暱稱 ===== -->
+      <div class="field">
+        <label
+          class="field-label"
+          for="nickname"
+        >
+          姓名／暱稱
+        </label>
         <input
-          id="birthDate"
-          class="birth-input"
-          type="date"
-          value="1994-01-01"
+          id="nickname"
+          class="text-input"
+          type="text"
+          placeholder="輸入你的姓名或暱稱"
+          autocomplete="name"
         >
-        <span
-          class="birth-calendar-icon"
-          aria-hidden="true"
+        <div
+          id="nicknameError"
+          class="validation-message"
         >
-          📅
-        </span>
+          ⚠️ 請先輸入姓名／暱稱
+        </div>
       </div>
-      <div
-        id="birthDateError"
-        class="validation-message"
-      >
-        ⚠️ 請先選擇出生年月日
-      </div>
-      <!-- 目前年齡 -->
-      <div class="age-box">
-        <div class="age-label">
-          目前年齡
+      <!-- ===== 出生年月日 ===== -->
+      <div class="field">
+        <label
+          class="field-label"
+          for="birthDate"
+        >
+          出生年月日
+        </label>
+        <div
+          class="birth-wrapper"
+          id="birthWrapper"
+        >
+          <div
+            id="birthDateDisplay"
+            class="birth-display"
+          >
+            <span>1994 / 01 / 01</span>
+            <span
+              class="birth-calendar-icon"
+              aria-hidden="true"
+            >
+              📆
+            </span>
+          </div>
+          <input
+            id="birthDate"
+            class="birth-input"
+            type="date"
+            value="1994-01-01"
+            aria-label="出生年月日"
+          >
         </div>
         <div
-          id="ageNumber"
-          class="age-number"
+          id="birthDateError"
+          class="validation-message"
         >
-          32 歲
+          ⚠️ 請先選擇出生年月日
+        </div>
+        <div class="age-box">
+          <div class="age-label">
+            目前年齡
+          </div>
+          <div
+            id="ageNumber"
+            class="age-number"
+          >
+            32 歲
+          </div>
         </div>
       </div>
-    </div>
-    <!-- 目前需要撫養人數 -->
-    <div class="support-section">
-      <label class="field-label">
-        目前需要撫養人數
-      </label>
-      <div class="support-choice">
-        <button
-          type="button"
-          id="noSupport"
-          class="choice-button active"
-        >
-          沒有
-        </button>
-        <button
-          type="button"
-          id="hasSupport"
-          class="choice-button"
-        >
-          有
-        </button>
-      </div>
-      <!-- 撫養人數 -->
-      <div
-        id="supportCount"
-        class="support-count"
-      >
-        <span class="count-label">
-          需要撫養幾位？
-        </span>
-        <div class="counter">
+      <!-- ===== 撫養人數 ===== -->
+      <div class="field">
+        <label class="field-label">
+          是否有需要撫養的人？
+        </label>
+        <div class="support-options">
           <button
             type="button"
-            id="minusButton"
-            class="counter-button"
-            aria-label="減少撫養人數"
+            id="noSupport"
+            class="support-button active"
           >
-            −
+            沒有
           </button>
-          <input
-            id="countInput"
-            class="count-input"
-            type="number"
-            min="1"
-            max="20"
-            value="1"
-            inputmode="numeric"
-            aria-label="需要撫養人數"
-          >
-          <span class="count-unit">
-            位
-          </span>
           <button
             type="button"
-            id="plusButton"
-            class="counter-button"
-            aria-label="增加撫養人數"
+            id="hasSupport"
+            class="support-button"
           >
-            ＋
+            有
           </button>
         </div>
+        <div
+          id="supportCount"
+          class="support-count"
+        >
+          <div class="count-title">
+            需要撫養幾人？
+          </div>
+          <div class="count-control">
+            <button
+              type="button"
+              id="minusButton"
+              class="count-button"
+              aria-label="減少撫養人數"
+            >
+              −
+            </button>
+            <input
+              id="countInput"
+              class="count-input"
+              type="number"
+              min="1"
+              max="20"
+              value="1"
+              inputmode="numeric"
+            >
+            <button
+              type="button"
+              id="plusButton"
+              class="count-button"
+              aria-label="增加撫養人數"
+            >
+              ＋
+            </button>
+          </div>
+          <div
+            id="supportCountError"
+            class="validation-message"
+          >
+            ⚠️ 請輸入 1～20 人
+          </div>
+        </div>
       </div>
-      <div
-        id="supportCountError"
-        class="validation-message"
+    </section>
+    <!-- ===== Navigation ===== -->
+    <nav class="bottom-nav">
+      <a
+        class="nav-button nav-back"
+        href="index.html"
       >
-        ⚠️ 請輸入需要撫養的人數
-      </div>
-    </div>
-  </section>
-  <!-- 底部導覽 -->
-  <div class="navigation">
-    <a
-      class="nav-button back-button"
-      href="index.html"
-    >
-      ← 回到首頁
-    </a>
-    <a
-      id="nextButton"
-      class="nav-button next-button"
-      href="finance.html"
-    >
-      下一步 →
-    </a>
-  </div>
-  <!-- 著作權 -->
-  <footer class="footer">
-    © 2026 TY Chen
-  </footer>
-</div>
+        ← 回到首頁
+      </a>
+      <a
+        class="nav-button nav-next"
+        href="finance.html"
+        id="nextButton"
+      >
+        下一步 →
+      </a>
+    </nav>
+    <footer class="footer">
+      © 2026 TY Chen
+    </footer>
   </main>
   <script>
-    /* ==================================================
-       基本資料儲存
-       這組資料會供後面的 finance.html 使用
-    ================================================== */
-    const STORAGE_KEY =
-      "freedomCountdownBasic";
+    /* ===== Storage ===== */
+    const STORAGE_KEY = "freedomCountdownBasic";
+    /* ===== Elements ===== */
     const nickname =
       document.getElementById("nickname");
     const birthDate =
       document.getElementById("birthDate");
+    const birthWrapper =
+      document.getElementById("birthWrapper");
+    const birthDateDisplay =
+      document.getElementById("birthDateDisplay");
     const ageNumber =
       document.getElementById("ageNumber");
     const noSupport =
@@ -859,18 +617,39 @@
       document.getElementById("birthDateError");
     const supportCountError =
       document.getElementById("supportCountError");
-    /* ==================================================
-       年齡
-    ================================================== */
+    /* ===== 出生日期顯示 ===== */
+    function formatBirthDate(dateString) {
+      if (!dateString) {
+        return "選擇出生年月日";
+      }
+      const parts =
+        dateString.split("-");
+      if (parts.length !== 3) {
+        return "選擇出生年月日";
+      }
+      return `${parts[0]} / ${parts[1]} / ${parts[2]}`;
+    }
+    function updateBirthDateDisplay() {
+      const displayText =
+        formatBirthDate(birthDate.value);
+      birthDateDisplay.innerHTML = `
+        <span>${displayText}</span>
+        <span
+          class="birth-calendar-icon"
+          aria-hidden="true"
+        >
+          📆
+        </span>
+      `;
+    }
+    /* ===== 年齡計算 ===== */
     function calculateAge(dateString) {
       if (!dateString) {
         return null;
       }
       const birth =
         new Date(dateString + "T00:00:00");
-      if (
-        Number.isNaN(birth.getTime())
-      ) {
+      if (Number.isNaN(birth.getTime())) {
         return null;
       }
       const today =
@@ -894,9 +673,7 @@
     }
     function updateAge() {
       const age =
-        calculateAge(
-          birthDate.value
-        );
+        calculateAge(birthDate.value);
       if (
         age === null ||
         age < 0 ||
@@ -908,26 +685,10 @@
       ageNumber.textContent =
         age + " 歲";
     }
-    /* ==================================================
-       取得目前資料
-    ================================================== */
+    /* ===== Data ===== */
     function getCurrentData() {
-      const rawCount =
-        countInput.value.trim();
-      let supportCountValue = "";
-      if (
-        rawCount !== ""
-      ) {
-        const number =
-          Number(rawCount);
-        if (
-          Number.isInteger(number) &&
-          number >= 1 &&
-          number <= 20
-        ) {
-          supportCountValue = number;
-        }
-      }
+      const count =
+        parseInt(countInput.value, 10);
       return {
         nickname:
           nickname.value.trim(),
@@ -936,12 +697,14 @@
         hasSupport:
           hasSupport.classList.contains("active"),
         supportCount:
-          supportCountValue
+          hasSupport.classList.contains("active") &&
+          Number.isInteger(count) &&
+          count >= 1 &&
+          count <= 20
+            ? count
+            : ""
       };
     }
-    /* ==================================================
-       無感自動保存
-    ================================================== */
     function saveData() {
       const data =
         getCurrentData();
@@ -950,37 +713,29 @@
         JSON.stringify(data)
       );
     }
-    /* ==================================================
-       載入資料
-    ================================================== */
     function loadData() {
       const saved =
-        localStorage.getItem(
-          STORAGE_KEY
-        );
+        localStorage.getItem(STORAGE_KEY);
       if (!saved) {
+        updateBirthDateDisplay();
         updateAge();
         return;
       }
       try {
         const data =
           JSON.parse(saved);
-        if (
-          typeof data.nickname === "string"
-        ) {
+        /* 暱稱 */
+        if (typeof data.nickname === "string") {
           nickname.value =
             data.nickname;
         }
-        if (
-          typeof data.birthDate === "string" &&
-          data.birthDate
-        ) {
+        /* 出生日期 */
+        if (typeof data.birthDate === "string") {
           birthDate.value =
             data.birthDate;
         }
-        if (
-          data.hasSupport === true
-        ) {
+        /* 撫養狀態 */
+        if (data.hasSupport) {
           hasSupport.classList.add("active");
           noSupport.classList.remove("active");
           supportCount.classList.add("show");
@@ -989,6 +744,7 @@
           hasSupport.classList.remove("active");
           supportCount.classList.remove("show");
         }
+        /* 撫養人數 */
         if (
           Number.isInteger(data.supportCount) &&
           data.supportCount >= 1 &&
@@ -996,52 +752,44 @@
         ) {
           countInput.value =
             data.supportCount;
-        } else {
-          countInput.value = 1;
         }
       } catch (error) {
-        console.log(
-          "基本資料讀取失敗"
+        console.warn(
+          "讀取基本資料失敗",
+          error
         );
       }
+      updateBirthDateDisplay();
       updateAge();
     }
-    /* ==================================================
-       清除錯誤
-    ================================================== */
+    /* ===== Error ===== */
     function clearNicknameError() {
       nicknameError.classList.remove("show");
       nickname.classList.remove("input-error");
     }
     function clearBirthDateError() {
       birthDateError.classList.remove("show");
-      birthDate.classList.remove("input-error");
+      birthWrapper.classList.remove("input-error");
     }
     function clearSupportCountError() {
       supportCountError.classList.remove("show");
       countInput.classList.remove("input-error");
     }
-    /* ==================================================
-       驗證
-    ================================================== */
+    /* ===== Validate ===== */
     function validateForm() {
       let valid = true;
-      /* 姓名 */
-      if (
-        !nickname.value.trim()
-      ) {
+      /* 暱稱 */
+      if (!nickname.value.trim()) {
         nicknameError.classList.add("show");
         nickname.classList.add("input-error");
         valid = false;
       } else {
         clearNicknameError();
       }
-      /* 生日 */
-      if (
-        !birthDate.value
-      ) {
+      /* 出生年月日 */
+      if (!birthDate.value) {
         birthDateError.classList.add("show");
-        birthDate.classList.add("input-error");
+        birthWrapper.classList.add("input-error");
         valid = false;
       } else {
         clearBirthDateError();
@@ -1050,12 +798,9 @@
       if (
         hasSupport.classList.contains("active")
       ) {
-        const raw =
-          countInput.value.trim();
         const count =
-          Number(raw);
+          parseInt(countInput.value, 10);
         if (
-          raw === "" ||
           !Number.isInteger(count) ||
           count < 1 ||
           count > 20
@@ -1071,33 +816,26 @@
       }
       return valid;
     }
-    /* ==================================================
-       姓名
-    ================================================== */
+    /* ===== Events ===== */
     nickname.addEventListener(
       "input",
-      function () {
+      () => {
         clearNicknameError();
         saveData();
       }
     );
-    /* ==================================================
-       生日
-    ================================================== */
     birthDate.addEventListener(
       "change",
-      function () {
-        clearBirthDateError();
+      () => {
+        updateBirthDateDisplay();
         updateAge();
+        clearBirthDateError();
         saveData();
       }
     );
-    /* ==================================================
-       撫養選擇
-    ================================================== */
     noSupport.addEventListener(
       "click",
-      function () {
+      () => {
         noSupport.classList.add("active");
         hasSupport.classList.remove("active");
         supportCount.classList.remove("show");
@@ -1107,139 +845,96 @@
     );
     hasSupport.addEventListener(
       "click",
-      function () {
+      () => {
         hasSupport.classList.add("active");
         noSupport.classList.remove("active");
         supportCount.classList.add("show");
-        if (
-          !countInput.value ||
-          Number(countInput.value) < 1
-        ) {
-          countInput.value = 1;
-        }
+        saveData();
+      }
+    );
+    minusButton.addEventListener(
+      "click",
+      () => {
+        let value =
+          parseInt(countInput.value, 10) || 1;
+        value =
+          Math.max(1, value - 1);
+        countInput.value =
+          value;
         clearSupportCountError();
         saveData();
       }
     );
-    /* ==================================================
-       撫養人數
-    ================================================== */
-    function updateCount(value) {
-      let number =
-        Number(value);
-      if (
-        !Number.isFinite(number)
-      ) {
-        number = 1;
-      }
-      number =
-        Math.round(number);
-      number =
-        Math.max(
-          1,
-          Math.min(
-            20,
-            number
-          )
-        );
-      countInput.value =
-        number;
-      clearSupportCountError();
-      saveData();
-    }
-    minusButton.addEventListener(
-      "click",
-      function () {
-        updateCount(
-          Number(countInput.value || 1) - 1
-        );
-      }
-    );
     plusButton.addEventListener(
       "click",
-      function () {
-        updateCount(
-          Number(countInput.value || 1) + 1
-        );
+      () => {
+        let value =
+          parseInt(countInput.value, 10) || 1;
+        value =
+          Math.min(20, value + 1);
+        countInput.value =
+          value;
+        clearSupportCountError();
+        saveData();
       }
     );
     countInput.addEventListener(
       "input",
-      function () {
+      () => {
         clearSupportCountError();
         saveData();
       }
     );
     countInput.addEventListener(
       "change",
-      function () {
-        const raw =
-          countInput.value.trim();
-        if (
-          raw === ""
-        ) {
-          saveData();
-          return;
+      () => {
+        let value =
+          parseInt(countInput.value, 10);
+        if (Number.isNaN(value)) {
+          value = 1;
         }
-        const number =
-          Number(raw);
-        if (
-          Number.isInteger(number) &&
-          number >= 1 &&
-          number <= 20
-        ) {
-          countInput.value =
-            number;
-        }
+        value =
+          Math.max(1, Math.min(20, value));
+        countInput.value =
+          value;
+        clearSupportCountError();
         saveData();
       }
     );
-    /* ==================================================
-       下一步
-    ================================================== */
     nextButton.addEventListener(
       "click",
-      function (event) {
-        /*
-          先保存
-          即使驗證失敗，也不會清掉已輸入資料
-        */
-        saveData();
-        if (
-          !validateForm()
-        ) {
+      (event) => {
+        const valid =
+          validateForm();
+        if (!valid) {
           event.preventDefault();
           const firstError =
             document.querySelector(
               ".input-error"
             );
-          if (
-            firstError
-          ) {
+          if (firstError) {
             firstError.scrollIntoView({
               behavior: "smooth",
               block: "center"
             });
-            setTimeout(
-              function () {
+            setTimeout(() => {
+              if (
+                firstError === birthWrapper
+              ) {
+                birthDate.focus();
+              } else if (
+                typeof firstError.focus === "function"
+              ) {
                 firstError.focus();
-              },
-              250
-            );
+              }
+            }, 250);
           }
           return;
         }
-        /*
-          驗證成功
-          supportCount 已經存在 localStorage
-          finance.html 可以直接讀取
-        */
         saveData();
       }
     );
-    /* ==================================================
-       啟動
-    ================================================== */
+    /* ===== 初始化 ===== */
     loadData();
   </script>
 </body>
