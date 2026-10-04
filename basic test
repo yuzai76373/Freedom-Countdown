@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#F6F2E9">
+  <meta name="description" content="自由倒數｜基本資料">
+  <title>自由倒數｜基本資料</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #F6F2E9;
+      --paper: #FFFDF8;
+
+      --green-dark: #29483B;
+      --green: #5E806B;
+      --green-soft: #E4EEE7;
+
+      --peach-soft: #F5E7D9;
+      --peach-text: #9A6E4D;
+
+      --gold-soft: #F2EBD5;
+      --gold-text: #8B7540;
+
+      --text: #2D3934;
+      --muted: #748078;
+
+      --border: rgba(83, 111, 97, 0.14);
+
+      --shadow:
+        0 16px 38px rgba(59, 76, 67, 0.09),
+        0 3px 10px rgba(59, 76, 67, 0.04);
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Noto Sans TC",
+        "PingFang TC",
+        "Microsoft JhengHei",
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 92% 4%,
+          rgba(218, 231, 222, 0.7) 0,
+          rgba(218, 231, 222, 0.25) 12%,
+          transparent 27%
+        ),
+        var(--bg);
+
+      color: var(--text);
+
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .page {
+      position: relative;
+
+      min-height: 100vh;
+
+      overflow: hidden;
+    }
+
+    /* ------------------------------
+       裝飾
+    ------------------------------ */
+
+    .decor {
+      position: absolute;
+
+      border-radius: 50%;
+
+      pointer-events: none;
+
+      z-index: 0;
+    }
+
+    .decor-1 {
+      width: 150px;
+      height: 150px;
+
+      top: -70px;
+      right: -55px;
+
+      background: rgba(204, 222, 211, 0.48);
+    }
+
+    .decor-2 {
+      width: 90px;
+      height: 90px;
+
+      left: -45px;
+      bottom: 55px;
+
+      background: rgba(239, 224, 205, 0.5);
+    }
+
+    .decor-3 {
+      width: 34px;
+      height: 34px;
+
+      left: 8%;
+      top: 22%;
+
+      background: rgba(221, 233, 225, 0.75);
+    }
+
+    /* ------------------------------
+       主容器
+    ------------------------------ */
+
+    .container {
+      position: relative;
+
+      z-index: 1;
+
+      width: 100%;
+      max-width: 720px;
+
+      min-height: 100vh;
+
+      margin: 0 auto;
+
+      padding:
+        22px
+        18px
+        10px;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ------------------------------
+       網站名稱
+    ------------------------------ */
+
+    .brand {
+      text-align: center;
+    }
+
+    .brand-title {
+      color: var(--green-dark);
+
+      font-size: clamp(20px, 5.4vw, 27px);
+
+      font-weight: 800;
+
+      letter-spacing: 0.04em;
+
+      line-height: 1.3;
+    }
+
+    /* ------------------------------
+       頁面標題
+    ------------------------------ */
+
+    .page-heading {
+      margin-top: 13px;
+
+      text-align: center;
+    }
+
+    .step-number {
+      color: var(--green);
+
+      font-size: clamp(17px, 4.5vw, 21px);
+
+      font-weight: 800;
+
+      letter-spacing: 0.04em;
+
+      line-height: 1.2;
+    }
+
+    .page-title {
+      margin-top: 2px;
+
+      color: var(--green-dark);
+
+      font-size: clamp(29px, 8vw, 39px);
+
+      font-weight: 850;
+
+      line-height: 1.2;
+
+      letter-spacing: 0.02em;
+    }
+
+    .page-subtitle {
+      margin-top: 7px;
+
+      color: var(--muted);
+
+      font-size: clamp(14px, 3.8vw, 17px);
+
+      font-weight: 500;
+
+      line-height: 1.5;
+
+      letter-spacing: 0.02em;
+    }
+
+    /* ------------------------------
+       內容卡片
+    ------------------------------ */
+
+    .form-card {
+      margin-top: 15px;
+
+      padding:
+        19px
+        17px
+        18px;
+
+      border-radius: 27px;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255, 255, 252, 0.98),
+          rgba(251, 250, 243, 0.98)
+        );
+
+      border: 1px solid rgba(100, 126, 112, 0.16);
+
+      box-shadow: var(--shadow);
+    }
+
+    .section-title {
+      color: var(--green-dark);
+
+      font-size: clamp(20px, 5.2vw, 24px);
+
+      font-weight: 800;
+
+      line-height: 1.3;
+    }
+
+    /* ------------------------------
+       欄位
+    ------------------------------ */
+
+    .field {
+      margin-top: 13px;
+    }
+
+    .field-label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: var(--text);
+
+      font-size: clamp(15px, 4vw, 17px);
+
+      font-weight: 750;
+
+      line-height: 1.4;
+    }
+
+    /* ------------------------------
+       姓名
+    ------------------------------ */
+
+    .text-input {
+      display: block;
+
+      width: 100%;
+      height: 51px;
+
+      padding:
+        0
+        16px;
+
+      border:
+        1px solid
+        rgba(83, 111, 97, 0.18);
+
+      border-radius: 17px;
+
+      background: #F9FAF6;
+
+      color: var(--text);
+
+      font-size: 16px;
+
+      font-weight: 600;
+
+      outline: none;
+
+      transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+    }
+
+    .text-input::placeholder {
+      color: #A1AAA4;
+
+      font-weight: 500;
+    }
+
+    .text-input:focus {
+      border-color:
+        rgba(94, 128, 107, 0.55);
+
+      background: #FFFFFF;
+
+      box-shadow:
+        0 0 0 4px
+        rgba(94, 128, 107, 0.09);
+    }
+
+    /* 姓名提醒 */
+
+    .validation-message {
+      display: none;
+
+      margin-top: 6px;
+
+      color: #B7654F;
+
+      font-size: 13px;
+
+      font-weight: 700;
+
+      line-height: 1.4;
+    }
+
+    .validation-message.show {
+      display: block;
+    }
+
+    .input-error {
+      border-color: #C9826B !important;
+
+      box-shadow:
+        0 0 0 4px
+        rgba(201, 130, 107, 0.08) !important;
+    }
+
+    /* ------------------------------
+       出生年月日
+    ------------------------------ */
+
+    .birth-input {
+      display: block;
+
+      width: 100%;
+      height: 51px;
+
+      padding:
+        0
+        14px;
+
+      border:
+        1px solid
+        rgba(83, 111, 97, 0.18);
+
+      border-radius: 17px;
+
+      background: #F9FAF6;
+
+      color: var(--text);
+
+      font-size: 18px;
+
+      font-weight: 700;
+
+      line-height: 1.4;
+
+      outline: none;
+
+      text-align: center;
+
+      transition:
+        border-color 0.18s ease,
+        box-shadow 0.18s ease,
+        background 0.18s ease;
+    }
+
+    .birth-input:focus {
+      border-color:
+        rgba(94, 128, 107, 0.55);
+
+      background: #FFFFFF;
+
+      box-shadow:
+        0 0 0 4px
+        rgba(94, 128, 107, 0.09);
+    }
+
+    .birth-input::-webkit-date-and-time-value {
+      text-align: center;
+    }
+
+    .birth-input::-webkit-datetime-edit {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      height: 100%;
+    }
+
+    .birth-input::-webkit-calendar-picker-indicator {
+      opacity: 0.65;
+
+      cursor: pointer;
+    }
+
+    /* ------------------------------
+       目前年齡
+    ------------------------------ */
+
+    .age-box {
+      margin-top: 11px;
+
+      padding:
+        10px
+        14px;
+
+      border-radius: 18px;
+
+      background: var(--green-soft);
+
+      text-align: center;
+    }
+
+    .age-label {
+      color: var(--green);
+
+      font-size: 14px;
+
+      font-weight: 750;
+
+      line-height: 1.3;
+    }
+
+    .age-number {
+      margin-top: 1px;
+
+      color: var(--green-dark);
+
+      font-size: clamp(27px, 7vw, 34px);
+
+      font-weight: 850;
+
+      line-height: 1.15;
+    }
+
+    /* ------------------------------
+       撫養人數
+    ------------------------------ */
+
+    .support-section {
+      margin-top: 13px;
+    }
+
+    .support-choice {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+      gap: 9px;
+
+      margin-top: 7px;
+    }
+
+    .choice-button {
+      min-height: 48px;
+
+      border:
+        1px solid
+        rgba(83, 111, 97, 0.16);
+
+      border-radius: 16px;
+
+      background: #F9FAF6;
+
+      color: var(--text);
+
+      font-size: 16px;
+
+      font-weight: 750;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.18s ease,
+        background 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .choice-button.active {
+      background: var(--green-soft);
+
+      border-color:
+        rgba(94, 128, 107, 0.42);
+
+      color: var(--green-dark);
+
+      box-shadow:
+        0 5px 14px
+        rgba(68, 104, 84, 0.08);
+    }
+
+    .support-count {
+      display: none;
+
+      margin-top: 9px;
+
+      padding:
+        9px
+        12px;
+
+      border-radius: 17px;
+
+      background: #F7F3EC;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 10px;
+    }
+
+    .support-count.show {
+      display: flex;
+    }
+
+    .count-label {
+      color: var(--text);
+
+      font-size: 15px;
+
+      font-weight: 750;
+
+      white-space: nowrap;
+    }
+
+    .counter {
+      display: flex;
+
+      align-items: center;
+
+      gap: 7px;
+    }
+
+    .counter-button {
+      width: 37px;
+      height: 37px;
+
+      flex: 0 0 37px;
+
+      border: none;
+
+      border-radius: 50%;
+
+      background: var(--green-soft);
+
+      color: var(--green-dark);
+
+      font-size: 21px;
+
+      font-weight: 800;
+
+      line-height: 1;
+
+      cursor: pointer;
+    }
+
+    .count-input {
+      width: 48px;
+      height: 37px;
+
+      border:
+        1px solid
+        rgba(83, 111, 97, 0.18);
+
+      border-radius: 11px;
+
+      background: #FFFFFF;
+
+      color: var(--green-dark);
+
+      font-size: 17px;
+
+      font-weight: 800;
+
+      text-align: center;
+
+      outline: none;
+    }
+
+    .count-input:focus {
+      border-color:
+        rgba(94, 128, 107, 0.55);
+
+      box-shadow:
+        0 0 0 3px
+        rgba(94, 128, 107, 0.09);
+    }
+
+    .count-unit {
+      color: var(--muted);
+
+      font-size: 14px;
+
+      font-weight: 700;
+
+      margin-left: -3px;
+    }
+
+    /* ------------------------------
+       底部按鈕
+    ------------------------------ */
+
+    .navigation {
+      display: grid;
+
+      grid-template-columns:
+        1fr
+        1fr;
+
+      gap: 9px;
+
+      margin-top: 11px;
+    }
+
+    .nav-button {
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      min-height: 51px;
+
+      border-radius: 999px;
+
+      text-decoration: none;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+      letter-spacing: 0.02em;
+
+      transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease;
+    }
+
+    .back-button {
+      background: #F9FAF6;
+
+      color: var(--muted);
+
+      border:
+        1px solid
+        rgba(83, 111, 97, 0.16);
+    }
+
+    .next-button {
+      background:
+        linear-gradient(
+          135deg,
+          #5D806A,
+          #466C58
+        );
+
+      color: #FFFFFF;
+
+      box-shadow:
+        0 9px 20px
+        rgba(68, 104, 84, 0.2);
+    }
+
+    .nav-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .nav-button:active {
+      transform: translateY(1px);
+    }
+
+    /* ------------------------------
+       Footer
+    ------------------------------ */
+
+    .footer {
+      margin-top: 7px;
+
+      padding-top: 0;
+
+      text-align: center;
+
+      color: #89938D;
+
+      font-size: 11px;
+
+      letter-spacing: 0.05em;
+    }
+
+    /* ------------------------------
+       小手機
+    ------------------------------ */
+
+    @media (max-width: 380px) {
+
+      .container {
+        padding:
+          18px
+          12px
+          7px;
+      }
+
+      .page-heading {
+        margin-top: 10px;
+      }
+
+      .page-title {
+        font-size: 28px;
+      }
+
+      .page-subtitle {
+        margin-top: 5px;
+
+        font-size: 13.5px;
+      }
+
+      .form-card {
+        margin-top: 11px;
+
+        padding:
+          16px
+          13px
+          14px;
+
+        border-radius: 23px;
+      }
+
+      .section-title {
+        font-size: 19px;
+      }
+
+      .field {
+        margin-top: 10px;
+      }
+
+      .field-label {
+        margin-bottom: 5px;
+
+        font-size: 15px;
+      }
+
+      .text-input,
+      .birth-input {
+        height: 48px;
+
+        border-radius: 15px;
+      }
+
+      .birth-input {
+        font-size: 17px;
+      }
+
+      .age-box {
+        margin-top: 8px;
+
+        padding:
+          8px
+          10px;
+      }
+
+      .age-number {
+        font-size: 29px;
+      }
+
+      .support-section {
+        margin-top: 10px;
+      }
+
+      .support-choice {
+        margin-top: 5px;
+      }
+
+      .choice-button {
+        min-height: 45px;
+
+        font-size: 15px;
+      }
+
+      .support-count {
+        margin-top: 7px;
+
+        padding:
+          7px
+          9px;
+      }
+
+      .count-label {
+        font-size: 14px;
+      }
+
+      .counter-button {
+        width: 34px;
+        height: 34px;
+
+        flex-basis: 34px;
+      }
+
+      .count-input {
+        width: 44px;
+        height: 34px;
+      }
+
+      .nav-button {
+        min-height: 48px;
+
+        font-size: 14px;
+      }
+
+      .footer {
+        margin-top: 5px;
+
+        font-size: 10px;
+      }
+    }
+
+    /* ------------------------------
+       較矮螢幕
+    ------------------------------ */
+
+    @media (max-height: 700px) {
+
+      .container {
+        padding-top: 13px;
+      }
+
+      .page-heading {
+        margin-top: 8px;
+      }
+
+      .page-subtitle {
+        margin-top: 4px;
+      }
+
+      .form-card {
+        margin-top: 9px;
+
+        padding-top: 14px;
+        padding-bottom: 12px;
+      }
+
+      .field {
+        margin-top: 8px;
+      }
+
+      .support-section {
+        margin-top: 8px;
+      }
+
+      .navigation {
+        margin-top: 8px;
+      }
+
+      .footer {
+        margin-top: 4px;
+      }
+    }
+
+    /* ------------------------------
+       減少動畫
+    ------------------------------ */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .text-input,
+      .birth-input,
+      .choice-button,
+      .nav-button {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="page">
+
+    <div class="decor decor-1"></div>
+    <div class="decor decor-2"></div>
+    <div class="decor decor-3"></div>
+
+    <div class="container">
+
+      <!-- 網站名稱 -->
+      <header class="brand">
+        <div class="brand-title">
+          自由倒數｜試算工具
+        </div>
+      </header>
+
+
+      <!-- 頁面標題 -->
+      <section class="page-heading">
+
+        <div class="step-number">
+          01
+        </div>
+
+        <h1 class="page-title">
+          基本資料
+        </h1>
+
+        <p class="page-subtitle">
+          輸入基本資料，開始探索你的未來
+        </p>
+
+      </section>
+
+
+      <!-- 你的起點 -->
+      <section class="form-card">
+
+        <h2 class="section-title">
+          📍 你的起點
+        </h2>
+
+
+        <!-- 姓名／暱稱 -->
+        <div class="field">
+
+          <label
+            class="field-label"
+            for="nickname"
+          >
+            姓名／暱稱
+          </label>
+
+          <input
+            id="nickname"
+            class="text-input"
+            type="text"
+            placeholder="輸入你的名字或暱稱"
+            maxlength="20"
+            autocomplete="name"
+          >
+
+          <div
+            id="nicknameError"
+            class="validation-message"
+          >
+            ⚠️ 請先輸入姓名或暱稱
+          </div>
+
+        </div>
+
+
+        <!-- 出生年月日 -->
+        <div class="field">
+
+          <label
+            class="field-label"
+            for="birthDate"
+          >
+            出生年月日 🎂
+          </label>
+
+          <input
+            id="birthDate"
+            class="birth-input"
+            type="date"
+            value="1994-01-01"
+          >
+
+          <div
+            id="birthDateError"
+            class="validation-message"
+          >
+            ⚠️ 請先選擇出生年月日
+          </div>
+
+
+          <!-- 目前年齡 -->
+          <div class="age-box">
+
+            <div class="age-label">
+              目前年齡
+            </div>
+
+            <div
+              id="ageNumber"
+              class="age-number"
+            >
+              32 歲
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- 目前需要撫養人數 -->
+        <div class="support-section">
+
+          <label class="field-label">
+            目前需要撫養人數
+          </label>
+
+          <div class="support-choice">
+
+            <button
+              type="button"
+              id="noSupport"
+              class="choice-button active"
+            >
+              沒有
+            </button>
+
+            <button
+              type="button"
+              id="hasSupport"
+              class="choice-button"
+            >
+              有
+            </button>
+
+          </div>
+
+
+          <!-- 撫養人數 -->
+          <div
+            id="supportCount"
+            class="support-count"
+          >
+
+            <span class="count-label">
+              需要撫養幾位？
+            </span>
+
+            <div class="counter">
+
+              <button
+                type="button"
+                id="minusButton"
+                class="counter-button"
+                aria-label="減少撫養人數"
+              >
+                −
+              </button>
+
+              <input
+                id="countInput"
+                class="count-input"
+                type="number"
+                min="1"
+                max="20"
+                value="1"
+                inputmode="numeric"
+                aria-label="需要撫養人數"
+              >
+
+              <span class="count-unit">
+                位
+              </span>
+
+              <button
+                type="button"
+                id="plusButton"
+                class="counter-button"
+                aria-label="增加撫養人數"
+              >
+                ＋
+              </button>
+
+            </div>
+
+          </div>
+
+          <div
+            id="supportCountError"
+            class="validation-message"
+          >
+            ⚠️ 請輸入需要撫養的人數
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- 底部導覽 -->
+      <div class="navigation">
+
+        <a
+          class="nav-button back-button"
+          href="index.html"
+        >
+          ← 回到首頁
+        </a>
+
+        <a
+          id="nextButton"
+          class="nav-button next-button"
+          href="finance.html"
+        >
+          下一步 →
+        </a>
+
+      </div>
+
+
+      <!-- 著作權 -->
+      <footer class="footer">
+        © 2026 TY Chen
+      </footer>
+
+    </div>
+
+  </main>
+
+
+  <script>
+
+    /* ==================================================
+       基本資料儲存
+       這組資料會供後面的 finance.html 使用
+    ================================================== */
+
+    const STORAGE_KEY =
+      "freedomCountdownBasic";
+
+
+    const nickname =
+      document.getElementById("nickname");
+
+    const birthDate =
+      document.getElementById("birthDate");
+
+    const ageNumber =
+      document.getElementById("ageNumber");
+
+    const noSupport =
+      document.getElementById("noSupport");
+
+    const hasSupport =
+      document.getElementById("hasSupport");
+
+    const supportCount =
+      document.getElementById("supportCount");
+
+    const countInput =
+      document.getElementById("countInput");
+
+    const minusButton =
+      document.getElementById("minusButton");
+
+    const plusButton =
+      document.getElementById("plusButton");
+
+    const nextButton =
+      document.getElementById("nextButton");
+
+    const nicknameError =
+      document.getElementById("nicknameError");
+
+    const birthDateError =
+      document.getElementById("birthDateError");
+
+    const supportCountError =
+      document.getElementById("supportCountError");
+
+
+    /* ==================================================
+       年齡
+    ================================================== */
+
+    function calculateAge(dateString) {
+
+      if (!dateString) {
+        return null;
+      }
+
+      const birth =
+        new Date(dateString + "T00:00:00");
+
+      if (
+        Number.isNaN(birth.getTime())
+      ) {
+        return null;
+      }
+
+      const today =
+        new Date();
+
+      let age =
+        today.getFullYear() -
+        birth.getFullYear();
+
+      const monthDifference =
+        today.getMonth() -
+        birth.getMonth();
+
+      if (
+        monthDifference < 0 ||
+        (
+          monthDifference === 0 &&
+          today.getDate() < birth.getDate()
+        )
+      ) {
+        age--;
+      }
+
+      return age;
+    }
+
+
+    function updateAge() {
+
+      const age =
+        calculateAge(
+          birthDate.value
+        );
+
+      if (
+        age === null ||
+        age < 0 ||
+        age > 120
+      ) {
+        ageNumber.textContent = "—";
+        return;
+      }
+
+      ageNumber.textContent =
+        age + " 歲";
+    }
+
+
+    /* ==================================================
+       取得目前資料
+    ================================================== */
+
+    function getCurrentData() {
+
+      const rawCount =
+        countInput.value.trim();
+
+      let supportCountValue = "";
+
+      if (
+        rawCount !== ""
+      ) {
+
+        const number =
+          Number(rawCount);
+
+        if (
+          Number.isInteger(number) &&
+          number >= 1 &&
+          number <= 20
+        ) {
+          supportCountValue = number;
+        }
+      }
+
+      return {
+
+        nickname:
+          nickname.value.trim(),
+
+        birthDate:
+          birthDate.value,
+
+        hasSupport:
+          hasSupport.classList.contains("active"),
+
+        supportCount:
+          supportCountValue
+      };
+    }
+
+
+    /* ==================================================
+       無感自動保存
+    ================================================== */
+
+    function saveData() {
+
+      const data =
+        getCurrentData();
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(data)
+      );
+    }
+
+
+    /* ==================================================
+       載入資料
+    ================================================== */
+
+    function loadData() {
+
+      const saved =
+        localStorage.getItem(
+          STORAGE_KEY
+        );
+
+      if (!saved) {
+
+        updateAge();
+
+        return;
+      }
+
+
+      try {
+
+        const data =
+          JSON.parse(saved);
+
+
+        if (
+          typeof data.nickname === "string"
+        ) {
+
+          nickname.value =
+            data.nickname;
+        }
+
+
+        if (
+          typeof data.birthDate === "string" &&
+          data.birthDate
+        ) {
+
+          birthDate.value =
+            data.birthDate;
+        }
+
+
+        if (
+          data.hasSupport === true
+        ) {
+
+          hasSupport.classList.add("active");
+
+          noSupport.classList.remove("active");
+
+          supportCount.classList.add("show");
+
+        } else {
+
+          noSupport.classList.add("active");
+
+          hasSupport.classList.remove("active");
+
+          supportCount.classList.remove("show");
+        }
+
+
+        if (
+          Number.isInteger(data.supportCount) &&
+          data.supportCount >= 1 &&
+          data.supportCount <= 20
+        ) {
+
+          countInput.value =
+            data.supportCount;
+
+        } else {
+
+          countInput.value = 1;
+        }
+
+
+      } catch (error) {
+
+        console.log(
+          "基本資料讀取失敗"
+        );
+      }
+
+
+      updateAge();
+    }
+
+
+    /* ==================================================
+       清除錯誤
+    ================================================== */
+
+    function clearNicknameError() {
+
+      nicknameError.classList.remove("show");
+
+      nickname.classList.remove("input-error");
+    }
+
+
+    function clearBirthDateError() {
+
+      birthDateError.classList.remove("show");
+
+      birthDate.classList.remove("input-error");
+    }
+
+
+    function clearSupportCountError() {
+
+      supportCountError.classList.remove("show");
+
+      countInput.classList.remove("input-error");
+    }
+
+
+    /* ==================================================
+       驗證
+    ================================================== */
+
+    function validateForm() {
+
+      let valid = true;
+
+
+      /* 姓名 */
+
+      if (
+        !nickname.value.trim()
+      ) {
+
+        nicknameError.classList.add("show");
+
+        nickname.classList.add("input-error");
+
+        valid = false;
+
+      } else {
+
+        clearNicknameError();
+      }
+
+
+      /* 生日 */
+
+      if (
+        !birthDate.value
+      ) {
+
+        birthDateError.classList.add("show");
+
+        birthDate.classList.add("input-error");
+
+        valid = false;
+
+      } else {
+
+        clearBirthDateError();
+      }
+
+
+      /* 撫養人數 */
+
+      if (
+        hasSupport.classList.contains("active")
+      ) {
+
+        const raw =
+          countInput.value.trim();
+
+        const count =
+          Number(raw);
+
+
+        if (
+          raw === "" ||
+          !Number.isInteger(count) ||
+          count < 1 ||
+          count > 20
+        ) {
+
+          supportCountError.classList.add("show");
+
+          countInput.classList.add("input-error");
+
+          valid = false;
+
+        } else {
+
+          clearSupportCountError();
+        }
+
+      } else {
+
+        clearSupportCountError();
+      }
+
+
+      return valid;
+    }
+
+
+    /* ==================================================
+       姓名
+    ================================================== */
+
+    nickname.addEventListener(
+      "input",
+      function () {
+
+        clearNicknameError();
+
+        saveData();
+      }
+    );
+
+
+    /* ==================================================
+       生日
+    ================================================== */
+
+    birthDate.addEventListener(
+      "change",
+      function () {
+
+        clearBirthDateError();
+
+        updateAge();
+
+        saveData();
+      }
+    );
+
+
+    /* ==================================================
+       撫養選擇
+    ================================================== */
+
+    noSupport.addEventListener(
+      "click",
+      function () {
+
+        noSupport.classList.add("active");
+
+        hasSupport.classList.remove("active");
+
+        supportCount.classList.remove("show");
+
+        clearSupportCountError();
+
+        saveData();
+      }
+    );
+
+
+    hasSupport.addEventListener(
+      "click",
+      function () {
+
+        hasSupport.classList.add("active");
+
+        noSupport.classList.remove("active");
+
+        supportCount.classList.add("show");
+
+
+        if (
+          !countInput.value ||
+          Number(countInput.value) < 1
+        ) {
+
+          countInput.value = 1;
+        }
+
+
+        clearSupportCountError();
+
+        saveData();
+      }
+    );
+
+
+    /* ==================================================
+       撫養人數
+    ================================================== */
+
+    function updateCount(value) {
+
+      let number =
+        Number(value);
+
+      if (
+        !Number.isFinite(number)
+      ) {
+        number = 1;
+      }
+
+      number =
+        Math.round(number);
+
+      number =
+        Math.max(
+          1,
+          Math.min(
+            20,
+            number
+          )
+        );
+
+      countInput.value =
+        number;
+
+      clearSupportCountError();
+
+      saveData();
+    }
+
+
+    minusButton.addEventListener(
+      "click",
+      function () {
+
+        updateCount(
+          Number(countInput.value || 1) - 1
+        );
+      }
+    );
+
+
+    plusButton.addEventListener(
+      "click",
+      function () {
+
+        updateCount(
+          Number(countInput.value || 1) + 1
+        );
+      }
+    );
+
+
+    countInput.addEventListener(
+      "input",
+      function () {
+
+        clearSupportCountError();
+
+        saveData();
+      }
+    );
+
+
+    countInput.addEventListener(
+      "change",
+      function () {
+
+        const raw =
+          countInput.value.trim();
+
+        if (
+          raw === ""
+        ) {
+
+          saveData();
+
+          return;
+        }
+
+
+        const number =
+          Number(raw);
+
+
+        if (
+          Number.isInteger(number) &&
+          number >= 1 &&
+          number <= 20
+        ) {
+
+          countInput.value =
+            number;
+        }
+
+
+        saveData();
+      }
+    );
+
+
+    /* ==================================================
+       下一步
+    ================================================== */
+
+    nextButton.addEventListener(
+      "click",
+      function (event) {
+
+        /*
+          先保存
+          即使驗證失敗，也不會清掉已輸入資料
+        */
+
+        saveData();
+
+
+        if (
+          !validateForm()
+        ) {
+
+          event.preventDefault();
+
+
+          const firstError =
+            document.querySelector(
+              ".input-error"
+            );
+
+
+          if (
+            firstError
+          ) {
+
+            firstError.scrollIntoView({
+              behavior: "smooth",
+              block: "center"
+            });
+
+
+            setTimeout(
+              function () {
+
+                firstError.focus();
+
+              },
+              250
+            );
+          }
+
+
+          return;
+        }
+
+
+        /*
+          驗證成功
+          supportCount 已經存在 localStorage
+          finance.html 可以直接讀取
+        */
+
+        saveData();
+      }
+    );
+
+
+    /* ==================================================
+       啟動
+    ================================================== */
+
+    loadData();
+
+  </script>
+
+</body>
+</html>
