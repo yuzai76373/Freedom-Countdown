@@ -1,1 +1,2401 @@
-1
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>自由倒數｜財務資料</title>
+
+  <style>
+    :root {
+      --bg: #F6F2E9;
+      --paper: #FFFDF8;
+      --green-dark: #29483B;
+      --green: #5E806B;
+      --green-soft: #E4EEE7;
+      --gold-soft: #F2EBD5;
+      --gold-text: #8B7540;
+      --text: #33443C;
+      --muted: #7A847E;
+      --line: #E4E0D5;
+      --danger: #B45F5F;
+      --danger-soft: #F6E7E5;
+      --shadow: 0 8px 24px rgba(41, 72, 59, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Noto Sans TC",
+        "PingFang TC",
+        "Microsoft JhengHei",
+        sans-serif;
+      line-height: 1.6;
+    }
+
+    .page {
+      width: min(720px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 32px 0 50px;
+    }
+
+    .header {
+      margin-bottom: 28px;
+    }
+
+    .brand {
+      color: var(--green-dark);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .page-number {
+      color: var(--gold-text);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 2px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--green-dark);
+      font-size: 32px;
+      line-height: 1.25;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .section {
+      margin-top: 30px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--green-dark);
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      background: var(--green-soft);
+      color: var(--green-dark);
+      font-size: 14px;
+    }
+
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .card + .card {
+      margin-top: 12px;
+    }
+
+    .card-title {
+      color: var(--green-dark);
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 13px;
+    }
+
+    .mode-switch {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      background: #F0ECE2;
+      padding: 5px;
+      border-radius: 14px;
+      margin-bottom: 14px;
+    }
+
+    .mode-btn {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 8px;
+      background: transparent;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .mode-btn.active {
+      background: var(--paper);
+      color: var(--green-dark);
+      box-shadow: 0 2px 8px rgba(41, 72, 59, 0.08);
+    }
+
+    .quick-grid,
+    .detail-grid,
+    .loan-grid,
+    .expense-grid,
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .mini-card {
+      background: #FBF9F3;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 14px;
+    }
+
+    .mini-title {
+      color: var(--green-dark);
+      font-weight: 800;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .detail-group {
+      background: #FBF9F3;
+      border: 1px solid var(--line);
+      border-radius: 15px;
+      padding: 14px;
+    }
+
+    .detail-group-title {
+      color: var(--green-dark);
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .field {
+      margin-bottom: 12px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    .field-label {
+      display: block;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .input-wrap {
+      position: relative;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: white;
+      color: var(--green-dark);
+      font-size: 16px;
+      padding: 11px 12px;
+      outline: none;
+    }
+
+    input[type="number"]:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(94, 128, 107, 0.12);
+    }
+
+    .input-prefix {
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 14px;
+      pointer-events: none;
+    }
+
+    .has-prefix {
+      padding-left: 30px !important;
+    }
+
+    .return-row {
+      margin-top: 8px;
+    }
+
+    .return-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .result-card {
+      margin-top: 14px;
+      background: var(--green-soft);
+      border: 1px solid #D2E2D8;
+      border-radius: 17px;
+      padding: 16px;
+    }
+
+    .result-title {
+      color: var(--green-dark);
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .result-item {
+      background: rgba(255, 255, 255, 0.62);
+      border-radius: 12px;
+      padding: 11px 8px;
+      text-align: center;
+    }
+
+    .result-label {
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 3px;
+    }
+
+    .result-value {
+      color: var(--green-dark);
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .loan-card {
+      background: var(--paper);
+    }
+
+    .loan-icon {
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    .loan-name {
+      color: var(--green-dark);
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .expense-group-title {
+      color: var(--green-dark);
+      font-size: 16px;
+      font-weight: 800;
+      margin: 20px 0 10px;
+    }
+
+    .expense-group-title:first-child {
+      margin-top: 0;
+    }
+
+    .support-note {
+      background: var(--gold-soft);
+      color: var(--gold-text);
+      border-radius: 10px;
+      padding: 8px 10px;
+      font-size: 12px;
+      line-height: 1.5;
+      margin-bottom: 9px;
+    }
+
+    .cashflow {
+      margin-top: 14px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 17px;
+      box-shadow: var(--shadow);
+    }
+
+    .cashflow-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .cashflow-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .cashflow-label {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .cashflow-value {
+      color: var(--green-dark);
+      font-size: 17px;
+      font-weight: 800;
+      text-align: right;
+    }
+
+    .cashflow-row.highlight {
+      margin-top: 5px;
+      padding-top: 14px;
+    }
+
+    .cashflow-row.highlight .cashflow-label,
+    .cashflow-row.highlight .cashflow-value {
+      color: var(--green-dark);
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .cashflow-value.negative {
+      color: var(--danger) !important;
+    }
+
+    .asset-card {
+      background: var(--paper);
+    }
+
+    .asset-icon {
+      font-size: 21px;
+      margin-bottom: 4px;
+    }
+
+    .asset-name {
+      color: var(--green-dark);
+      font-size: 15px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .asset-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.4;
+    }
+
+    .weighted-box {
+      margin-top: 14px;
+      background: var(--gold-soft);
+      border: 1px solid #E7DDBD;
+      border-radius: 16px;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .weighted-label {
+      color: var(--gold-text);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .weighted-value {
+      color: var(--green-dark);
+      font-size: 25px;
+      font-weight: 900;
+      margin-top: 2px;
+    }
+
+    .weighted-note {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 2px;
+    }
+
+    .chart-card {
+      margin-top: 14px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 17px;
+      box-shadow: var(--shadow);
+    }
+
+    .chart-title {
+      color: var(--green-dark);
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 13px;
+    }
+
+    .chart-wrap {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .donut {
+      width: 145px;
+      height: 145px;
+      min-width: 145px;
+      border-radius: 50%;
+      background: #E8E4D9;
+      position: relative;
+    }
+
+    .donut::after {
+      content: "";
+      position: absolute;
+      inset: 28px;
+      background: var(--paper);
+      border-radius: 50%;
+    }
+
+    .legend {
+      flex: 1;
+      display: grid;
+      gap: 7px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex: 0 0 auto;
+    }
+
+    .legend-name {
+      flex: 1;
+      color: var(--text);
+    }
+
+    .legend-percent {
+      color: var(--green-dark);
+      font-weight: 800;
+    }
+
+    .empty-chart {
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+      padding: 30px 5px;
+      width: 100%;
+    }
+
+    .bottom-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 32px;
+    }
+
+    .nav-btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 13px;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .nav-btn.back {
+      background: #E9E5DA;
+      color: var(--green-dark);
+    }
+
+    .nav-btn.next {
+      background: var(--green-dark);
+      color: white;
+    }
+
+    .save-message {
+      text-align: center;
+      color: var(--green);
+      font-size: 12px;
+      margin-top: 10px;
+      min-height: 18px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        width: min(100% - 22px, 720px);
+        padding-top: 25px;
+      }
+
+      h1 {
+        font-size: 29px;
+      }
+
+      .quick-grid,
+      .detail-grid,
+      .loan-grid,
+      .expense-grid,
+      .asset-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+
+      .card {
+        padding: 14px;
+      }
+
+      .mini-card,
+      .detail-group {
+        padding: 12px;
+      }
+
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .result-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+      }
+
+      .chart-wrap {
+        flex-direction: column;
+      }
+
+      .donut {
+        width: 155px;
+        height: 155px;
+        min-width: 155px;
+      }
+
+      .legend {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .quick-grid,
+      .detail-grid,
+      .loan-grid,
+      .expense-grid,
+      .asset-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bottom-buttons {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <header class="header">
+      <div class="brand">自由倒數 試算工具</div>
+      <div class="page-number">02</div>
+      <h1>財務資料</h1>
+      <p class="subtitle">
+        先看看，你現在的財務狀況<br>
+        不用一次填得很精準
+      </p>
+    </header>
+
+    <!-- ① 收入 -->
+    <section class="section">
+      <div class="section-title">
+        <span class="section-number">01</span>
+        收入
+      </div>
+
+      <div class="card">
+        <div class="card-title">💰 每月平均收入</div>
+
+        <div class="mode-switch">
+          <button class="mode-btn active" id="incomeQuickBtn" type="button">
+            ⚡ 快速填寫
+          </button>
+          <button class="mode-btn" id="incomeDetailBtn" type="button">
+            📋 詳細填寫
+          </button>
+        </div>
+
+        <!-- 快速填寫 -->
+        <div id="incomeQuick">
+          <div class="quick-grid">
+
+            <div class="mini-card">
+              <div class="mini-title">💼 工作收入</div>
+              <div class="field">
+                <label class="field-label">每月平均</label>
+                <div class="input-wrap">
+                  <span class="input-prefix">$</span>
+                  <input
+                    class="has-prefix income-input"
+                    id="quickWorkIncome"
+                    type="number"
+                    min="0"
+                    placeholder="例如 40000"
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="mini-card">
+              <div class="mini-title">📈 被動收入</div>
+              <div class="field">
+                <label class="field-label">每月平均</label>
+                <div class="input-wrap">
+                  <span class="input-prefix">$</span>
+                  <input
+                    class="has-prefix income-input"
+                    id="quickPassiveIncome"
+                    type="number"
+                    min="0"
+                    placeholder="例如 10000"
+                  >
+                </div>
+              </div>
+
+              <div class="return-row">
+                <div class="return-label">年報酬率（選填）</div>
+                <input
+                  id="quickPassiveReturn"
+                  type="number"
+                  step="0.1"
+                  placeholder="例如 6"
+                >
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 詳細填寫 -->
+        <div id="incomeDetail" class="hidden">
+
+          <div class="detail-grid">
+
+            <div class="detail-group">
+              <div class="detail-group-title">💼 主動收入</div>
+
+              <div class="field">
+                <label class="field-label">薪資／工作收入</label>
+                <div class="input-wrap">
+                  <span class="input-prefix">$</span>
+                  <input
+                    class="has-prefix detail-income-input"
+                    id="detailWorkIncome"
+                    type="number"
+                    min="0"
+                    placeholder="每月平均"
+                  >
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label">其他收入</label>
+                <div class="input-wrap">
+                  <span class="input-prefix">$</span>
+                  <input
+                    class="has-prefix detail-income-input"
+                    id="detailOtherActiveIncome"
+                    type="number"
+                    min="0"
+                    placeholder="每月平均"
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div class="detail-group">
+              <div class="detail-group-title">📈 被動收入</div>
+
+              <div class="field">
+                <label class="field-label">投資收益</label>
+                <div class="input-wrap">
+                  <span class="input-prefix">$</span>
+                  <input
+                    class="has-prefix detail-passive-input"
+                    id="detailInvestmentIncome"
+                    type="number"
+                    min="0"
+                    placeholder="每月平均"
+                  >
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label">利息收入</label>
+                <div class="input-wrap">
+                  <span class="input-prefix">$</span>
+                  <input
+                    class="has-prefix detail-passive-input"
+                    id="detailInterestIncome"
+                    type="number"
+                    min="0"
+                    placeholder="每月平均"
+                  >
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label">租金收入</label>
+                <div class="input-wrap">
+                  <span class="input-prefix">$</span>
+                  <input
+                    class="has-prefix detail-passive-input"
+                    id="detailRentalIncome"
+                    type="number"
+                    min="0"
+                    placeholder="每月平均"
+                  >
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="field-label">其他收入</label>
+                <div class="input-wrap">
+                  <span class="input-prefix">$</span>
+                  <input
+                    class="has-prefix detail-passive-input"
+                    id="detailOtherPassiveIncome"
+                    type="number"
+                    min="0"
+                    placeholder="每月平均"
+                  >
+                </div>
+              </div>
+
+              <div class="return-row">
+                <div class="return-label">年報酬率（選填）</div>
+                <input
+                  id="detailPassiveReturn"
+                  type="number"
+                  step="0.1"
+                  placeholder="例如 6"
+                >
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="result-title">📊 系統計算結果</div>
+
+          <div class="result-grid">
+            <div class="result-item">
+              <div class="result-label">主動收入</div>
+              <div class="result-value" id="activeIncomeResult">NT$ 0</div>
+            </div>
+
+            <div class="result-item">
+              <div class="result-label">被動收入</div>
+              <div class="result-value" id="passiveIncomeResult">NT$ 0</div>
+            </div>
+
+            <div class="result-item">
+              <div class="result-label">每月平均收入</div>
+              <div class="result-value" id="totalIncomeResult">NT$ 0</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ② 負債 -->
+    <section class="section">
+      <div class="section-title">
+        <span class="section-number">02</span>
+        負債
+      </div>
+
+      <div class="loan-grid">
+
+        <div class="card loan-card">
+          <div class="loan-icon">🏠</div>
+          <div class="loan-name">房貸</div>
+
+          <div class="field">
+            <label class="field-label">剩餘負債</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix loan-balance"
+                id="homeLoanBalance"
+                type="number"
+                min="0"
+                placeholder="0"
+              >
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">每月還款</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix loan-payment"
+                id="homeLoanPayment"
+                type="number"
+                min="0"
+                placeholder="0"
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="card loan-card">
+          <div class="loan-icon">💳</div>
+          <div class="loan-name">信貸</div>
+
+          <div class="field">
+            <label class="field-label">剩餘負債</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix loan-balance"
+                id="personalLoanBalance"
+                type="number"
+                min="0"
+                placeholder="0"
+              >
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">每月還款</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix loan-payment"
+                id="personalLoanPayment"
+                type="number"
+                min="0"
+                placeholder="0"
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="card loan-card">
+          <div class="loan-icon">🛵</div>
+          <div class="loan-name">車貸</div>
+
+          <div class="field">
+            <label class="field-label">剩餘負債</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix loan-balance"
+                id="vehicleLoanBalance"
+                type="number"
+                min="0"
+                placeholder="0"
+              >
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">每月還款</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix loan-payment"
+                id="vehicleLoanPayment"
+                type="number"
+                min="0"
+                placeholder="0"
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="card loan-card">
+          <div class="loan-icon">📄</div>
+          <div class="loan-name">其他貸款</div>
+
+          <div class="field">
+            <label class="field-label">剩餘負債</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix loan-balance"
+                id="otherLoanBalance"
+                type="number"
+                min="0"
+                placeholder="0"
+              >
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label">每月還款</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix loan-payment"
+                id="otherLoanPayment"
+                type="number"
+                min="0"
+                placeholder="0"
+              >
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="result-card">
+        <div class="result-title">📊 系統計算結果</div>
+
+        <div class="result-grid">
+          <div class="result-item">
+            <div class="result-label">目前剩餘負債</div>
+            <div class="result-value" id="totalDebtResult">NT$ 0</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-label">每月貸款還款</div>
+            <div class="result-value" id="totalLoanPaymentResult">NT$ 0</div>
+          </div>
+
+          <div class="result-item">
+            <div class="result-label">貸款數量</div>
+            <div class="result-value" id="loanCountResult">0 筆</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ③ 支出 -->
+    <section class="section">
+      <div class="section-title">
+        <span class="section-number">03</span>
+        支出
+      </div>
+
+      <div class="card">
+
+        <div class="expense-group-title">固定支出</div>
+
+        <div class="expense-grid">
+
+          <div class="mini-card">
+            <div class="mini-title">🏠 房租</div>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix expense-input"
+                id="rentExpense"
+                type="number"
+                min="0"
+                placeholder="每月"
+              >
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-title">🛡️ 保險費</div>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix expense-input"
+                id="insuranceExpense"
+                type="number"
+                min="0"
+                placeholder="每月"
+              >
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-title">🧾 稅金</div>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix expense-input"
+                id="taxExpense"
+                type="number"
+                min="0"
+                placeholder="每月"
+              >
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-title">📱 電信＋家用網路</div>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix expense-input"
+                id="telecomExpense"
+                type="number"
+                min="0"
+                placeholder="每月"
+              >
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-title">💧 水電瓦斯</div>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix expense-input"
+                id="utilityExpense"
+                type="number"
+                min="0"
+                placeholder="每月"
+              >
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-title">📦 其他</div>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix expense-input"
+                id="otherFixedExpense"
+                type="number"
+                min="0"
+                placeholder="每月"
+              >
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="expense-group-title">生活支出</div>
+
+        <div class="expense-grid">
+
+          <div class="mini-card">
+            <div class="mini-title">🍚 伙食費</div>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix expense-input"
+                id="foodExpense"
+                type="number"
+                min="0"
+                placeholder="每月"
+              >
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-title">👨‍👩‍👧 扶養／照顧費</div>
+
+            <div class="support-note" id="supportNote">
+              正在讀取前一頁的撫養人數
+            </div>
+
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix expense-input"
+                id="supportExpense"
+                type="number"
+                min="0"
+                placeholder="每月"
+              >
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-title">🛵 交通費</div>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix expense-input"
+                id="transportExpense"
+                type="number"
+                min="0"
+                placeholder="每月"
+              >
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-title">🔧 汽機車保養維修費</div>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix expense-input"
+                id="vehicleMaintenanceExpense"
+                type="number"
+                min="0"
+                placeholder="每月"
+              >
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-title">🛍️ 治裝／購物</div>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix expense-input"
+                id="shoppingExpense"
+                type="number"
+                min="0"
+                placeholder="每月"
+              >
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <div class="mini-title">✈️ 娛樂／旅遊</div>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input
+                class="has-prefix expense-input"
+                id="entertainmentExpense"
+                type="number"
+                min="0"
+                placeholder="每月"
+              >
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="cashflow">
+        <div class="cashflow-row">
+          <div class="cashflow-label">每月平均收入</div>
+          <div class="cashflow-value" id="cashflowIncome">NT$ 0</div>
+        </div>
+
+        <div class="cashflow-row">
+          <div class="cashflow-label">每月生活／固定支出</div>
+          <div class="cashflow-value" id="cashflowExpense">NT$ 0</div>
+        </div>
+
+        <div class="cashflow-row">
+          <div class="cashflow-label">每月貸款支出</div>
+          <div class="cashflow-value" id="cashflowLoan">NT$ 0</div>
+        </div>
+
+        <div class="cashflow-row highlight">
+          <div class="cashflow-label">每月可支配餘額</div>
+          <div class="cashflow-value" id="cashflowBalance">NT$ 0</div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ④ 資產 -->
+    <section class="section">
+      <div class="section-title">
+        <span class="section-number">04</span>
+        資產
+      </div>
+
+      <div class="card">
+        <div class="card-title">💰 目前資產</div>
+
+        <div class="asset-grid">
+
+          <div class="mini-card asset-card">
+            <div class="asset-icon">💵</div>
+            <div class="asset-name">活存</div>
+
+            <div class="field">
+              <label class="field-label">資產金額</label>
+              <div class="input-wrap">
+                <span class="input-prefix">$</span>
+                <input
+                  class="has-prefix asset-amount"
+                  id="cashAsset"
+                  type="number"
+                  min="0"
+                  placeholder="0"
+                >
+              </div>
+            </div>
+
+            <div class="return-label">年報酬率（選填）</div>
+            <input
+              class="asset-return"
+              id="cashReturn"
+              type="number"
+              step="0.1"
+              placeholder="例如 1"
+            >
+          </div>
+
+
+          <div class="mini-card asset-card">
+            <div class="asset-icon">🏦</div>
+            <div class="asset-name">定存</div>
+
+            <div class="field">
+              <label class="field-label">資產金額</label>
+              <div class="input-wrap">
+                <span class="input-prefix">$</span>
+                <input
+                  class="has-prefix asset-amount"
+                  id="fixedDepositAsset"
+                  type="number"
+                  min="0"
+                  placeholder="0"
+                >
+              </div>
+            </div>
+
+            <div class="return-label">年報酬率（選填）</div>
+            <input
+              class="asset-return"
+              id="fixedDepositReturn"
+              type="number"
+              step="0.1"
+              placeholder="例如 2"
+            >
+          </div>
+
+
+          <div class="mini-card asset-card">
+            <div class="asset-icon">📈</div>
+            <div class="asset-name">投資（股票／ETF／基金）</div>
+
+            <div class="field">
+              <label class="field-label">資產金額</label>
+              <div class="input-wrap">
+                <span class="input-prefix">$</span>
+                <input
+                  class="has-prefix asset-amount"
+                  id="investmentAsset"
+                  type="number"
+                  min="0"
+                  placeholder="0"
+                >
+              </div>
+            </div>
+
+            <div class="return-label">年報酬率（選填）</div>
+            <input
+              class="asset-return"
+              id="investmentReturn"
+              type="number"
+              step="0.1"
+              placeholder="例如 6"
+            >
+          </div>
+
+
+          <div class="mini-card asset-card">
+            <div class="asset-icon">🛡️</div>
+            <div class="asset-name">儲蓄／投資型保單保價金</div>
+
+            <div class="field">
+              <label class="field-label">資產金額</label>
+              <div class="input-wrap">
+                <span class="input-prefix">$</span>
+                <input
+                  class="has-prefix asset-amount"
+                  id="insuranceAsset"
+                  type="number"
+                  min="0"
+                  placeholder="0"
+                >
+              </div>
+            </div>
+
+            <div class="return-label">年報酬率（選填）</div>
+            <input
+              class="asset-return"
+              id="insuranceReturn"
+              type="number"
+              step="0.1"
+              placeholder="例如 2.5"
+            >
+          </div>
+
+
+          <div class="mini-card asset-card">
+            <div class="asset-icon">🏠</div>
+            <div class="asset-name">房地產</div>
+
+            <div class="field">
+              <label class="field-label">資產金額</label>
+              <div class="input-wrap">
+                <span class="input-prefix">$</span>
+                <input
+                  class="has-prefix asset-amount"
+                  id="realEstateAsset"
+                  type="number"
+                  min="0"
+                  placeholder="0"
+                >
+              </div>
+            </div>
+
+            <div class="return-label">年報酬率（選填）</div>
+            <input
+              class="asset-return"
+              id="realEstateReturn"
+              type="number"
+              step="0.1"
+              placeholder="例如 2"
+            >
+
+            <div class="asset-note">
+              房地產會計入總資產，但不會計入可投資資產配置
+            </div>
+          </div>
+
+
+          <div class="mini-card asset-card">
+            <div class="asset-icon">📦</div>
+            <div class="asset-name">其他資產</div>
+
+            <div class="field">
+              <label class="field-label">資產金額</label>
+              <div class="input-wrap">
+                <span class="input-prefix">$</span>
+                <input
+                  class="has-prefix asset-amount"
+                  id="otherAsset"
+                  type="number"
+                  min="0"
+                  placeholder="0"
+                >
+              </div>
+            </div>
+
+            <div class="return-label">年報酬率（選填）</div>
+            <input
+              class="asset-return"
+              id="otherAssetReturn"
+              type="number"
+              step="0.1"
+              placeholder="例如 3"
+            >
+          </div>
+
+        </div>
+
+        <div class="result-card">
+          <div class="result-title">📊 資產統計</div>
+
+          <div class="result-grid">
+            <div class="result-item">
+              <div class="result-label">總資產</div>
+              <div class="result-value" id="totalAssetResult">NT$ 0</div>
+            </div>
+
+            <div class="result-item">
+              <div class="result-label">可投資資產</div>
+              <div class="result-value" id="investableAssetResult">NT$ 0</div>
+            </div>
+
+            <div class="result-item">
+              <div class="result-label">房地產</div>
+              <div class="result-value" id="realEstateResult">NT$ 0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="weighted-box hidden" id="weightedReturnBox">
+          <div class="weighted-label">📈 加權年報酬率</div>
+          <div class="weighted-value" id="weightedReturnResult">0%</div>
+          <div class="weighted-note">
+            依有填寫年報酬率的資產金額加權計算
+          </div>
+        </div>
+
+        <!-- 總資產配置 -->
+        <div class="chart-card">
+          <div class="chart-title">🥧 資產配置圖</div>
+
+          <div class="chart-wrap" id="totalAssetChart">
+            <div class="empty-chart">
+              填入資產後，這裡會顯示你的資產配置
+            </div>
+          </div>
+        </div>
+
+        <!-- 可投資資產配置 -->
+        <div class="chart-card">
+          <div class="chart-title">📊 可投資資產配置圖</div>
+
+          <div class="chart-wrap" id="investableAssetChart">
+            <div class="empty-chart">
+              填入資產後，這裡會顯示可投資資產配置<br>
+              <small>房地產不列入此圖</small>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <div class="save-message" id="saveMessage"></div>
+
+    <div class="bottom-buttons">
+      <button
+        class="nav-btn back"
+        id="backButton"
+        type="button"
+      >
+        ← 回到 01 基本資料
+      </button>
+
+      <button
+        class="nav-btn next"
+        id="nextButton"
+        type="button"
+      >
+        下一步：03 自由目標 →
+      </button>
+    </div>
+
+  </main>
+
+
+  <script>
+    const STORAGE_KEY = "freedomCountdownFinance";
+
+    const moneyFormatter = new Intl.NumberFormat("zh-TW");
+
+    function numberValue(id) {
+      const element = document.getElementById(id);
+
+      if (!element) {
+        return 0;
+      }
+
+      const value = parseFloat(element.value);
+
+      return Number.isFinite(value) && value >= 0 ? value : 0;
+    }
+
+    function formatMoney(value) {
+      return "NT$ " + moneyFormatter.format(Math.round(value || 0));
+    }
+
+    function setText(id, value) {
+      const element = document.getElementById(id);
+
+      if (element) {
+        element.textContent = value;
+      }
+    }
+
+
+    /* =========================
+       收入
+    ========================= */
+
+    let incomeMode = "quick";
+
+    const incomeQuickBtn = document.getElementById("incomeQuickBtn");
+    const incomeDetailBtn = document.getElementById("incomeDetailBtn");
+    const incomeQuick = document.getElementById("incomeQuick");
+    const incomeDetail = document.getElementById("incomeDetail");
+
+    incomeQuickBtn.addEventListener("click", function () {
+      incomeMode = "quick";
+
+      incomeQuick.classList.remove("hidden");
+      incomeDetail.classList.add("hidden");
+
+      incomeQuickBtn.classList.add("active");
+      incomeDetailBtn.classList.remove("active");
+
+      calculateAll();
+      saveData();
+    });
+
+    incomeDetailBtn.addEventListener("click", function () {
+      incomeMode = "detail";
+
+      incomeQuick.classList.add("hidden");
+      incomeDetail.classList.remove("hidden");
+
+      incomeQuickBtn.classList.remove("active");
+      incomeDetailBtn.classList.add("active");
+
+      calculateAll();
+      saveData();
+    });
+
+
+    function getIncomeResult() {
+      let activeIncome = 0;
+      let passiveIncome = 0;
+
+      if (incomeMode === "quick") {
+        activeIncome = numberValue("quickWorkIncome");
+        passiveIncome = numberValue("quickPassiveIncome");
+      } else {
+        activeIncome =
+          numberValue("detailWorkIncome") +
+          numberValue("detailOtherActiveIncome");
+
+        passiveIncome =
+          numberValue("detailInvestmentIncome") +
+          numberValue("detailInterestIncome") +
+          numberValue("detailRentalIncome") +
+          numberValue("detailOtherPassiveIncome");
+      }
+
+      return {
+        activeIncome,
+        passiveIncome,
+        totalIncome: activeIncome + passiveIncome
+      };
+    }
+
+
+    function calculateIncome() {
+      const result = getIncomeResult();
+
+      setText("activeIncomeResult", formatMoney(result.activeIncome));
+      setText("passiveIncomeResult", formatMoney(result.passiveIncome));
+      setText("totalIncomeResult", formatMoney(result.totalIncome));
+
+      return result;
+    }
+
+
+    /* =========================
+       負債
+    ========================= */
+
+    function calculateDebt() {
+      const balances = [
+        numberValue("homeLoanBalance"),
+        numberValue("personalLoanBalance"),
+        numberValue("vehicleLoanBalance"),
+        numberValue("otherLoanBalance")
+      ];
+
+      const payments = [
+        numberValue("homeLoanPayment"),
+        numberValue("personalLoanPayment"),
+        numberValue("vehicleLoanPayment"),
+        numberValue("otherLoanPayment")
+      ];
+
+      const totalBalance = balances.reduce(
+        (sum, value) => sum + value,
+        0
+      );
+
+      const totalPayment = payments.reduce(
+        (sum, value) => sum + value,
+        0
+      );
+
+      const loanCount = balances.filter(
+        (value, index) =>
+          value > 0 || payments[index] > 0
+      ).length;
+
+      setText(
+        "totalDebtResult",
+        formatMoney(totalBalance)
+      );
+
+      setText(
+        "totalLoanPaymentResult",
+        formatMoney(totalPayment)
+      );
+
+      setText(
+        "loanCountResult",
+        loanCount + " 筆"
+      );
+
+      return {
+        totalBalance,
+        totalPayment
+      };
+    }
+
+
+    /* =========================
+       撫養人數
+    ========================= */
+
+    function loadSupportCount() {
+      const supportNote =
+        document.getElementById("supportNote");
+
+      if (!supportNote) {
+        return;
+      }
+
+      let supportCount = 0;
+
+      try {
+        const raw =
+          localStorage.getItem("freedomCountdownBasic");
+
+        if (raw) {
+          const data = JSON.parse(raw);
+
+          if (
+            data &&
+            Number.isFinite(
+              Number(data.dependents)
+            )
+          ) {
+            supportCount =
+              Math.max(
+                0,
+                Number(data.dependents)
+              );
+          }
+        }
+      } catch (error) {
+        supportCount = 0;
+      }
+
+      if (supportCount > 0) {
+        supportNote.textContent =
+          "依前頁資料：目前需要撫養 " +
+          supportCount +
+          " 人";
+      } else {
+        supportNote.textContent =
+          "依前頁資料：目前沒有需要撫養的人";
+      }
+    }
+
+
+    /* =========================
+       支出
+    ========================= */
+
+    function calculateExpenses() {
+      const fixedExpense =
+        numberValue("rentExpense") +
+        numberValue("insuranceExpense") +
+        numberValue("taxExpense") +
+        numberValue("telecomExpense") +
+        numberValue("utilityExpense") +
+        numberValue("otherFixedExpense");
+
+      const livingExpense =
+        numberValue("foodExpense") +
+        numberValue("supportExpense") +
+        numberValue("transportExpense") +
+        numberValue("vehicleMaintenanceExpense") +
+        numberValue("shoppingExpense") +
+        numberValue("entertainmentExpense");
+
+      return {
+        fixedExpense,
+        livingExpense,
+        totalExpense: fixedExpense + livingExpense
+      };
+    }
+
+
+    /* =========================
+       資產
+    ========================= */
+
+    const assetDefinitions = [
+      {
+        id: "cashAsset",
+        returnId: "cashReturn",
+        name: "活存",
+        investable: true
+      },
+      {
+        id: "fixedDepositAsset",
+        returnId: "fixedDepositReturn",
+        name: "定存",
+        investable: true
+      },
+      {
+        id: "investmentAsset",
+        returnId: "investmentReturn",
+        name: "投資",
+        investable: true
+      },
+      {
+        id: "insuranceAsset",
+        returnId: "insuranceReturn",
+        name: "保單保價金",
+        investable: true
+      },
+      {
+        id: "realEstateAsset",
+        returnId: "realEstateReturn",
+        name: "房地產",
+        investable: false
+      },
+      {
+        id: "otherAsset",
+        returnId: "otherAssetReturn",
+        name: "其他資產",
+        investable: true
+      }
+    ];
+
+
+    function calculateAssets() {
+      let totalAssets = 0;
+      let investableAssets = 0;
+      let realEstate = 0;
+
+      let weightedNumerator = 0;
+      let weightedDenominator = 0;
+
+      const totalItems = [];
+      const investableItems = [];
+
+      assetDefinitions.forEach(function (asset) {
+        const amount =
+          numberValue(asset.id);
+
+        const returnElement =
+          document.getElementById(asset.returnId);
+
+        const returnRaw =
+          returnElement
+            ? returnElement.value.trim()
+            : "";
+
+        totalAssets += amount;
+
+        if (asset.investable) {
+          investableAssets += amount;
+        } else {
+          realEstate += amount;
+        }
+
+        if (amount > 0) {
+          totalItems.push({
+            name: asset.name,
+            amount
+          });
+
+          if (asset.investable) {
+            investableItems.push({
+              name: asset.name,
+              amount
+            });
+          }
+        }
+
+        /*
+          只有真的填寫年報酬率才加入加權計算。
+          空白不視為 0%。
+        */
+        if (amount > 0 && returnRaw !== "") {
+          const returnRate =
+            parseFloat(returnRaw);
+
+          if (Number.isFinite(returnRate)) {
+            weightedNumerator +=
+              amount * returnRate;
+
+            weightedDenominator += amount;
+          }
+        }
+      });
+
+      setText(
+        "totalAssetResult",
+        formatMoney(totalAssets)
+      );
+
+      setText(
+        "investableAssetResult",
+        formatMoney(investableAssets)
+      );
+
+      setText(
+        "realEstateResult",
+        formatMoney(realEstate)
+      );
+
+
+      const weightedBox =
+        document.getElementById(
+          "weightedReturnBox"
+        );
+
+      if (weightedDenominator > 0) {
+        const weightedReturn =
+          weightedNumerator /
+          weightedDenominator;
+
+        weightedBox.classList.remove("hidden");
+
+        setText(
+          "weightedReturnResult",
+          weightedReturn.toFixed(1) + "%"
+        );
+      } else {
+        weightedBox.classList.add("hidden");
+      }
+
+
+      renderChart(
+        "totalAssetChart",
+        totalItems,
+        totalAssets,
+        false
+      );
+
+      renderChart(
+        "investableAssetChart",
+        investableItems,
+        investableAssets,
+        true
+      );
+
+      return {
+        totalAssets,
+        investableAssets,
+        realEstate
+      };
+    }
+
+
+    /* =========================
+       配置圖
+    ========================= */
+
+    function renderChart(
+      containerId,
+      items,
+      total,
+      isInvestable
+    ) {
+      const container =
+        document.getElementById(containerId);
+
+      if (!container) {
+        return;
+      }
+
+      if (!items.length || total <= 0) {
+        container.innerHTML =
+          '<div class="empty-chart">' +
+          "填入資產後，這裡會顯示" +
+          (isInvestable
+            ? "可投資資產配置"
+            : "你的資產配置") +
+          (isInvestable
+            ? "<br><small>房地產不列入此圖</small>"
+            : "") +
+          "</div>";
+
+        return;
+      }
+
+      const colors = [
+        "#5E806B",
+        "#9BAF8D",
+        "#C8B77B",
+        "#789B8A",
+        "#B98E63",
+        "#A8A39A"
+      ];
+
+      let current = 0;
+      const gradientParts = [];
+
+      items.forEach(function (item, index) {
+        const percentage =
+          (item.amount / total) * 100;
+
+        const start = current;
+        const end = current + percentage;
+
+        gradientParts.push(
+          colors[index % colors.length] +
+          " " +
+          start +
+          "% " +
+          end +
+          "%"
+        );
+
+        current = end;
+      });
+
+      container.innerHTML = "";
+
+      const donut =
+        document.createElement("div");
+
+      donut.className = "donut";
+
+      donut.style.background =
+        "conic-gradient(" +
+        gradientParts.join(", ") +
+        ")";
+
+      container.appendChild(donut);
+
+      const legend =
+        document.createElement("div");
+
+      legend.className = "legend";
+
+      items.forEach(function (item, index) {
+        const percentage =
+          (item.amount / total) * 100;
+
+        const row =
+          document.createElement("div");
+
+        row.className = "legend-item";
+
+        row.innerHTML =
+          '<span class="legend-dot" style="background:' +
+          colors[index % colors.length] +
+          '"></span>' +
+          '<span class="legend-name">' +
+          item.name +
+          "</span>" +
+          '<span class="legend-percent">' +
+          percentage.toFixed(1) +
+          "%</span>";
+
+        legend.appendChild(row);
+      });
+
+      container.appendChild(legend);
+    }
+
+
+    /* =========================
+       每月可支配餘額
+    ========================= */
+
+    function calculateCashflow(
+      incomeResult,
+      expenseResult,
+      debtResult
+    ) {
+      const income =
+        incomeResult.totalIncome;
+
+      const expense =
+        expenseResult.totalExpense;
+
+      const loan =
+        debtResult.totalPayment;
+
+      const balance =
+        income - expense - loan;
+
+      setText(
+        "cashflowIncome",
+        formatMoney(income)
+      );
+
+      setText(
+        "cashflowExpense",
+        formatMoney(expense)
+      );
+
+      setText(
+        "cashflowLoan",
+        formatMoney(loan)
+      );
+
+      const balanceElement =
+        document.getElementById(
+          "cashflowBalance"
+        );
+
+      balanceElement.textContent =
+        formatMoney(balance);
+
+      balanceElement.classList.toggle(
+        "negative",
+        balance < 0
+      );
+    }
+
+
+    /* =========================
+       總計算
+    ========================= */
+
+    function calculateAll() {
+      const incomeResult =
+        calculateIncome();
+
+      const debtResult =
+        calculateDebt();
+
+      const expenseResult =
+        calculateExpenses();
+
+      calculateCashflow(
+        incomeResult,
+        expenseResult,
+        debtResult
+      );
+
+      calculateAssets();
+    }
+
+
+    /* =========================
+       儲存資料
+    ========================= */
+
+    function getInputValue(id) {
+      const element =
+        document.getElementById(id);
+
+      return element
+        ? element.value
+        : "";
+    }
+
+
+    function saveData(showMessage = false) {
+      const data = {
+        incomeMode,
+
+        income: {
+          quickWorkIncome:
+            getInputValue("quickWorkIncome"),
+
+          quickPassiveIncome:
+            getInputValue("quickPassiveIncome"),
+
+          quickPassiveReturn:
+            getInputValue("quickPassiveReturn"),
+
+          detailWorkIncome:
+            getInputValue("detailWorkIncome"),
+
+          detailOtherActiveIncome:
+            getInputValue("detailOtherActiveIncome"),
+
+          detailInvestmentIncome:
+            getInputValue("detailInvestmentIncome"),
+
+          detailInterestIncome:
+            getInputValue("detailInterestIncome"),
+
+          detailRentalIncome:
+            getInputValue("detailRentalIncome"),
+
+          detailOtherPassiveIncome:
+            getInputValue("detailOtherPassiveIncome"),
+
+          detailPassiveReturn:
+            getInputValue("detailPassiveReturn")
+        },
+
+        loans: {
+          homeLoanBalance:
+            getInputValue("homeLoanBalance"),
+
+          homeLoanPayment:
+            getInputValue("homeLoanPayment"),
+
+          personalLoanBalance:
+            getInputValue("personalLoanBalance"),
+
+          personalLoanPayment:
+            getInputValue("personalLoanPayment"),
+
+          vehicleLoanBalance:
+            getInputValue("vehicleLoanBalance"),
+
+          vehicleLoanPayment:
+            getInputValue("vehicleLoanPayment"),
+
+          otherLoanBalance:
+            getInputValue("otherLoanBalance"),
+
+          otherLoanPayment:
+            getInputValue("otherLoanPayment")
+        },
+
+        expenses: {
+          rentExpense:
+            getInputValue("rentExpense"),
+
+          insuranceExpense:
+            getInputValue("insuranceExpense"),
+
+          taxExpense:
+            getInputValue("taxExpense"),
+
+          telecomExpense:
+            getInputValue("telecomExpense"),
+
+          utilityExpense:
+            getInputValue("utilityExpense"),
+
+          otherFixedExpense:
+            getInputValue("otherFixedExpense"),
+
+          foodExpense:
+            getInputValue("foodExpense"),
+
+          supportExpense:
+            getInputValue("supportExpense"),
+
+          transportExpense:
+            getInputValue("transportExpense"),
+
+          vehicleMaintenanceExpense:
+            getInputValue("vehicleMaintenanceExpense"),
+
+          shoppingExpense:
+            getInputValue("shoppingExpense"),
+
+          entertainmentExpense:
+            getInputValue("entertainmentExpense")
+        },
+
+        assets: {}
+      };
+
+
+      assetDefinitions.forEach(function (asset) {
+        data.assets[asset.id] =
+          getInputValue(asset.id);
+
+        data.assets[asset.returnId] =
+          getInputValue(asset.returnId);
+      });
+
+
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify(data)
+        );
+
+        if (showMessage) {
+          const message =
+            document.getElementById(
+              "saveMessage"
+            );
+
+          message.textContent =
+            "✓ 已儲存";
+
+          setTimeout(function () {
+            message.textContent = "";
+          }, 1500);
+        }
+      } catch (error) {
+        console.warn(
+          "無法儲存財務資料",
+          error
+        );
+      }
+    }
+
+
+    /* =========================
+       載入資料
+    ========================= */
+
+    function setInputValue(id, value) {
+      const element =
+        document.getElementById(id);
+
+      if (
+        element &&
+        value !== undefined &&
+        value !== null
+      ) {
+        element.value = value;
+      }
+    }
+
+
+    function loadData() {
+      try {
+        const raw =
+          localStorage.getItem(STORAGE_KEY);
+
+        if (!raw) {
+          return;
+        }
+
+        const data =
+          JSON.parse(raw);
+
+        if (!data) {
+          return;
+        }
+
+        if (
+          data.incomeMode === "detail"
+        ) {
+          incomeMode = "detail";
+
+          incomeQuick.classList.add("hidden");
+          incomeDetail.classList.remove("hidden");
+
+          incomeQuickBtn.classList.remove("active");
+          incomeDetailBtn.classList.add("active");
+        }
+
+        const income =
+          data.income || {};
+
+        Object.keys(income).forEach(
+          function (key) {
+            setInputValue(
+              key,
+              income[key]
+            );
+          }
+        );
+
+
+        const loans =
+          data.loans || {};
+
+        Object.keys(loans).forEach(
+          function (key) {
+            setInputValue(
+              key,
+              loans[key]
+            );
+          }
+        );
+
+
+        const expenses =
+          data.expenses || {};
+
+        Object.keys(expenses).forEach(
+          function (key) {
+            setInputValue(
+              key,
+              expenses[key]
+            );
+          }
+        );
+
+
+        const assets =
+          data.assets || {};
+
+        Object.keys(assets).forEach(
+          function (key) {
+            setInputValue(
+              key,
+              assets[key]
+            );
+          }
+        );
+
+      } catch (error) {
+        console.warn(
+          "載入財務資料失敗",
+          error
+        );
+      }
+    }
+
+
+    /* =========================
+       自動儲存
+    ========================= */
+
+    document
+      .querySelectorAll("input")
+      .forEach(function (input) {
+
+        input.addEventListener(
+          "input",
+          function () {
+            calculateAll();
+            saveData();
+          }
+        );
+
+      });
+
+
+    /* =========================
+       導覽
+    ========================= */
+
+    document
+      .getElementById("backButton")
+      .addEventListener(
+        "click",
+        function () {
+          window.location.href =
+            "basic.html";
+        }
+      );
+
+
+    document
+      .getElementById("nextButton")
+      .addEventListener(
+        "click",
+        function () {
+          saveData(true);
+
+          window.location.href =
+            "goal.html";
+        }
+      );
+
+
+    /* =========================
+       啟動
+    ========================= */
+
+    loadData();
+    loadSupportCount();
+    calculateAll();
+  </script>
+
+</body>
+</html>
