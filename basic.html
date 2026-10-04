@@ -739,47 +739,57 @@
         ⚠️ 請先輸入姓名或暱稱
       </div>
     </div>
-    <!-- 出生年月日 -->
-    <div class="field">
-      <label
-        class="field-label"
-        for="birthDate"
+<!-- ===== 出生年月日 ===== -->
+<div class="field">
+  <label
+    class="field-label"
+    for="birthDate"
+  >
+    出生年月日
+  </label>
+  <div
+    class="birth-wrapper"
+    id="birthWrapper"
+  >
+    <div
+      id="birthDateDisplay"
+      class="birth-display"
+    >
+      <span>1994 / 01 / 01</span>
+      <span
+        class="birth-calendar-icon"
+        aria-hidden="true"
       >
-        出生年月日
-      </label>
-      <div class="birth-wrapper">
-        <input
-          id="birthDate"
-          class="birth-input"
-          type="date"
-          value="1994-01-01"
-        >
-        <span
-          class="birth-calendar-icon"
-          aria-hidden="true"
-        >
-          📅
-        </span>
-      </div>
-      <div
-        id="birthDateError"
-        class="validation-message"
-      >
-        ⚠️ 請先選擇出生年月日
-      </div>
-      <!-- 目前年齡 -->
-      <div class="age-box">
-        <div class="age-label">
-          目前年齡
-        </div>
-        <div
-          id="ageNumber"
-          class="age-number"
-        >
-          32 歲
-        </div>
-      </div>
+        📆
+      </span>
     </div>
+    <input
+      id="birthDate"
+      class="birth-input"
+      type="date"
+      value="1994-01-01"
+      aria-label="出生年月日"
+    >
+  </div>
+  <div
+    id="birthDateError"
+    class="validation-message"
+  >
+    ⚠️ 請先選擇出生年月日
+  </div>
+  <!-- ===== 目前年齡 ===== -->
+  <div class="age-box">
+    <div class="age-label">
+      目前年齡
+    </div>
+    <div
+      id="ageNumber"
+      class="age-number"
+    >
+      32 歲
+    </div>
+  </div>
+</div>
     <!-- 目前需要撫養人數 -->
     <div class="support-section">
       <label class="field-label">
