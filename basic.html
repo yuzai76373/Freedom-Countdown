@@ -1913,7 +1913,27 @@
         saveData();
       }
     );
+/* ==================================================
+   電腦版日期選擇器
+================================================== */
 
+birthWrapper.addEventListener(
+  "click",
+  function () {
+
+    if (
+      typeof birthDate.showPicker ===
+      "function"
+    ) {
+
+      try {
+        birthDate.showPicker();
+      } catch (error) {
+        /* 使用瀏覽器原生日期選擇器 */
+      }
+    }
+  }
+);
 
     /* ==================================================
        撫養選擇
