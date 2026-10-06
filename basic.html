@@ -451,6 +451,11 @@
       z-index: 1;
     }
 
+    .birth-display.is-placeholder {
+      color: #A1AAA4;
+      font-weight: 500;
+    }
+
     .birth-calendar-icon {
       display: inline-flex;
 
@@ -1369,6 +1374,8 @@
     const STORAGE_KEY =
       "freedomCountdownBasic";
 
+    let birthDateEdited = false;
+
 
     /* ==================================================
        取得畫面元件
@@ -1453,6 +1460,11 @@
         formatBirthDate(
           birthDate.value
         );
+
+      birthDateDisplay.classList.toggle(
+        "is-placeholder",
+        !birthDateEdited
+      );
 
       birthDateDisplay.innerHTML = `
         <span>
@@ -1577,6 +1589,9 @@
         birthDate:
           birthDate.value,
 
+        birthDateEdited:
+          birthDateEdited,
+
         hasSupport:
           hasSupport.classList.contains(
             "active"
@@ -1659,6 +1674,9 @@
           birthDate.value =
             data.birthDate;
         }
+
+        birthDateEdited =
+          data.birthDateEdited === true;
 
 
         /* 撫養人數選擇 */
@@ -1804,7 +1822,8 @@
       /* 生日 */
 
       if (
-        !birthDate.value
+        !birthDate.value ||
+        !birthDateEdited
       ) {
 
         birthDateError.classList.add(
@@ -1892,6 +1911,10 @@
     birthDate.addEventListener(
       "change",
       function () {
+
+        /* 使用者選過生日後，日期文字改回深色 */
+
+        birthDateEdited = true;
 
         /* 更新日期 */
 
