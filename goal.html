@@ -14,12 +14,21 @@
       --text: #344139;
       --muted: #7C8780;
       --border: rgba(94, 128, 107, 0.15);
+      --bg: #F7F4EE;
+      --card: #FFFEFB;
+      --green: #6F8B78;
+      --green-dark: #4E6858;
+      --green-light: #E9F0EA;
+      --text: #35423B;
+      --muted: #78827C;
+      --border: rgba(91, 119, 101, 0.16);
       --gold: #F4E9CF;
       --coral: #C9826C;
-      --blue: #7898A8;
-      --lavender: #9588B4;
+      --blue: #819BA8;
+      --lavender: #9387A7;
       --white: #FFFFFF;
       --shadow: 0 8px 24px rgba(72, 91, 79, 0.08);
+      --shadow: 0 9px 25px rgba(78, 94, 82, 0.08);
     }
     * {
       box-sizing: border-box;
@@ -128,6 +137,8 @@
         145deg,
         #FBFCF9,
         #F1F5F0
+        #FFFEFB,
+        #F8F6F0
       );
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
@@ -375,14 +386,14 @@
     .age-plan-box {
       margin: 18px 0 22px;
       padding: 17px;
-      border: 1px solid rgba(149, 136, 180, 0.25);
+      border: 1px solid rgba(111, 139, 120, 0.22);
       border-radius: 22px;
-      background: linear-gradient(135deg, #F4F0F8, #F9F3E9);
+      background: linear-gradient(135deg, #EEF3EE, #F8F3E9);
     }
     .age-plan-fields .field-group {
       margin-top: 0;
       padding: 11px;
-      border: 1px solid rgba(149, 136, 180, 0.14);
+      border: 1px solid rgba(111, 139, 120, 0.14);
       border-radius: 15px;
       background: rgba(255, 255, 255, 0.85);
     }
@@ -394,9 +405,9 @@
     .monthly-planning-box {
       margin-top: 18px;
       padding: 17px;
-      border: 1px solid rgba(120, 152, 168, 0.26);
+      border: 1px solid rgba(129, 155, 168, 0.24);
       border-radius: 23px;
-      background: linear-gradient(145deg, #EFF5F7, #F8F4EC);
+      background: linear-gradient(145deg, #EFF5F6, #F8F5EE);
       box-shadow: 0 7px 18px rgba(72, 91, 79, 0.06);
     }
     .monthly-planning-box .field-group {
@@ -503,11 +514,11 @@
     .monthly-total-box {
       margin-top: 14px;
       margin-bottom: 10px;
-      background: linear-gradient(135deg, #FFF4E9, #F9F1F8);
-      border-color: rgba(201, 130, 108, 0.22);
+      background: linear-gradient(135deg, #FFF3E9, #FBF5EC);
+      border-color: rgba(201, 130, 108, 0.24);
     }
     .monthly-total-box .calculation-title {
-      color: #A66A59;
+      color: #9E6654;
     }
     .calculation-box {
       margin-top: 17px;
@@ -517,8 +528,11 @@
         145deg,
         #E7F0E9,
         #F3F7F1
+        #EDF3ED,
+        #F7F8F3
       );
       border: 1px solid rgba(94, 128, 107, 0.13);
+      border: 1px solid rgba(91, 119, 101, 0.15);
     }
     .calculation-title {
       margin: 0;
@@ -548,8 +562,8 @@
       margin-top: 16px;
       padding: 20px 17px 17px;
       border-radius: 23px;
-      background: linear-gradient(145deg, #FFF5E9, #F5F0F8);
-      border: 1px solid rgba(201, 130, 108, 0.22);
+      background: linear-gradient(145deg, #FFF2E7, #FBF6EC);
+      border: 1px solid rgba(201, 130, 108, 0.25);
       box-shadow: 0 8px 22px rgba(120, 92, 87, 0.08);
       text-align: center;
     }
@@ -562,7 +576,7 @@
       padding: 5px 11px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.78);
-      color: #8F6C62;
+      color: #936B5C;
       font-size: 13px;
       font-weight: 800;
       letter-spacing: 0.03em;
@@ -574,7 +588,6 @@
       font-size: clamp(29px, 7.5vw, 36px);
       font-weight: 850;
       color: var(--green-dark);
-      color: #6F5A78;
       word-break: break-word;
     }
     .target-rule {
@@ -588,7 +601,8 @@
       margin-top: 12px;
       padding: 9px 11px;
       border-radius: 14px;
-      background: rgba(255, 255, 255, 0.76);
+      background: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(91, 119, 101, 0.12);
       color: var(--text);
       font-size: 13px;
       font-weight: 700;
@@ -636,6 +650,9 @@
       background: #E8ECE8;
       color: #66716A;
       border: 1px solid #D9DFDA;
+      background: #EAEDE9;
+      color: #5E6A62;
+      border: 1px solid #D9E0DA;
     }
     .next-button {
       background: var(--green);
