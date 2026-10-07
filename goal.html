@@ -187,7 +187,25 @@
     }
 
     .mode-label:hover {
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 9px 22px rgba(94, 128, 107, 0.13);
+    }
+
+    .mode-option input:checked + .mode-label {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 22px rgba(94, 128, 107, 0.16);
+    }
+
+    .mode-option input:checked + .mode-label::after {
+      content: "✓ 已選擇";
+      display: inline-block;
+      margin: 12px 0 0 27px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #D7E9DB;
+      color: var(--green-dark);
+      font-size: 12px;
+      font-weight: 800;
     }
 
     .mode-option input:checked + .mode-label {
@@ -260,6 +278,39 @@
       color: var(--text);
     }
 
+    .info-date-input {
+      width: 100%;
+      min-height: 38px;
+      border: 1px solid #D6DFD8;
+      border-radius: 11px;
+      padding: 4px 8px;
+      background: #FFFFFF;
+      color: var(--text);
+      font: inherit;
+    }
+
+    .info-date-input.is-example {
+      color: #A5ADA7;
+    }
+
+    .unit-input {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .unit-input .field-input {
+      flex: 1;
+      width: auto;
+      min-width: 0;
+    }
+
+    .field-unit {
+      flex: 0 0 auto;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
     /* ---------- Fields ---------- */
 
     .field-group {
@@ -310,7 +361,7 @@
     }
 
     .money-wrap .field-input {
-      padding-left: 40px;
+      padding-left: 14px;
     }
 
     .money-prefix {
@@ -351,6 +402,7 @@
     .return-label {
       display: block;
       padding: 13px 12px;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
       border-radius: 16px;
       border: 1.5px solid #D7E0D9;
       background: #FFFFFF;
@@ -364,6 +416,8 @@
     .return-option input:checked + .return-label {
       border-color: var(--green);
       background: var(--green-light);
+      box-shadow: 0 8px 18px rgba(94, 128, 107, 0.14);
+      transform: translateY(-2px);
     }
 
     .return-name {
@@ -615,7 +669,7 @@
 
             <p class="mode-description">
               不再依靠工作收入<br>
-              （用被動收入 cover 未來生活）
+              由累積的資產支應生活
             </p>
 
           </label>
@@ -645,8 +699,8 @@
             </div>
 
             <p class="mode-description">
-              降低工作量、保有部分收入<br>
-              （以資產 cover 部分生活費，同時保有工作收入）
+              減少工作量，保留部分工作收入<br>
+              由工作收入和資產一起支應生活
             </p>
 
           </label>
@@ -667,17 +721,19 @@
       <h2 class="section-title">您的基本資料</h2>
 
       <p class="section-description">
-        以下資料會從基本資料自動帶入
+        生日從 01 基本資料帶入；在這裡修改也會同步更新
       </p>
 
       <div class="info-grid">
 
         <div class="info-box">
-          <span class="info-label">出生年月日</span>
-          <span
-            class="info-value"
-            id="birthDateDisplay"
-          >—</span>
+          <label class="info-label" for="basicBirthDateInput">出生年月日（可修改）</label>
+          <input
+            class="info-date-input is-example"
+            id="basicBirthDateInput"
+            type="date"
+            aria-label="出生年月日，可在這裡修改"
+          >
         </div>
 
         <div class="info-box">
@@ -692,6 +748,26 @@
 
     </section>
 
+
+    <!-- 退休後固定收入，完全退休與半退休共用 -->
+    <section class="form-card">
+      <h2 class="section-title">退休後其他固定收入</h2>
+      <p class="section-description">
+        例如租金或年金；沒有就填 0。不要填已算在投資資產裡的配息或利息。
+      </p>
+      <div class="field-group">
+        <label class="field-label" for="otherRetirementIncome">每月其他固定收入 NT$</label>
+        <div class="money-wrap">
+          <input
+            id="otherRetirementIncome"
+            class="field-input money-input"
+            type="text"
+            inputmode="numeric"
+            placeholder="例如：0"
+          >
+        </div>
+      </div>
+    </section>
 
     <!-- =========================================================
          03. 完全退休設定
@@ -722,7 +798,8 @@
             預計退休年齡
           </label>
 
-          <input
+          <div class="unit-input">
+<input
             id="fullRetirementAge"
             class="field-input"
             type="number"
@@ -731,6 +808,8 @@
             max="100"
             placeholder="例如：60"
           >
+<span class="field-unit">歲</span>
+</div>
 
         </div>
 
@@ -743,16 +822,20 @@
           >
             預計壽命
           </label>
+          <p class="field-note">04 會用來顯示預計退休生活幾年</p>
 
-          <input
+          <div class="unit-input">
+<input
             id="fullLifeExpectancy"
             class="field-input"
             type="number"
             inputmode="numeric"
             min="40"
             max="120"
-            placeholder="例如：80"
+            placeholder="例如：85"
           >
+<span class="field-unit">歲</span>
+</div>
 
         </div>
 
@@ -767,12 +850,10 @@
           class="field-label"
           for="fullBasicExpense"
         >
-          每月基本生活費
+          每月基本生活費 NT$
         </label>
 
         <div class="money-wrap">
-
-          <span class="money-prefix">NT$</span>
 
           <input
             id="fullBasicExpense"
@@ -783,6 +864,7 @@
           >
 
         </div>
+        <p class="field-note">例如房貸、保險、醫療和日常必要開銷</p>
 
       </div>
 
@@ -795,12 +877,10 @@
           class="field-label"
           for="fullQualityExpense"
         >
-          每月品質生活費
+          每月品質生活費 NT$
         </label>
 
         <div class="money-wrap">
-
-          <span class="money-prefix">NT$</span>
 
           <input
             id="fullQualityExpense"
@@ -811,6 +891,7 @@
           >
 
         </div>
+        <p class="field-note">例如旅遊、娛樂、購物等想保留的生活</p>
 
       </div>
 
@@ -820,11 +901,11 @@
       <div class="field-group">
 
         <label class="field-label">
-          退休後預估年化報酬率
+          退休前預估年化報酬率
         </label>
 
         <p class="field-note">
-          僅作為退休後資產成長情境假設，不代表保證報酬
+          用於 04 估算退休前資產成長，不代表保證；不改變本頁的自由目標金額
         </p>
 
         <div class="return-options">
@@ -836,6 +917,7 @@
               id="fullReturnConservative"
               name="fullReturnRate"
               value="2"
+              checked
             >
 
             <label
@@ -895,6 +977,12 @@
       </div>
 
 
+      <div class="calculation-box">
+        <p class="calculation-title">每月需要由資產支應</p>
+        <div class="calculation-main" id="fullMonthlyGap">NT$ 0</div>
+        <p class="calculation-note">每月生活費 − 退休後其他固定收入（最低以 0 計算）</p>
+      </div>
+
       <div class="target-box">
 
         <span class="target-label">
@@ -909,7 +997,7 @@
         </div>
 
         <div class="target-rule">
-          年生活費 ÷ 4% FIRE 法則
+          每年需要由資產支應的金額 ÷ 4%<br>目標約為這筆年支出的 25 倍（粗略估算）<br>4% 法則常以約 30 年退休期作參考，不是保證
         </div>
 
       </div>
@@ -946,7 +1034,8 @@
             預計半退休年齡
           </label>
 
-          <input
+          <div class="unit-input">
+<input
             id="semiRetirementAge"
             class="field-input"
             type="number"
@@ -955,6 +1044,8 @@
             max="100"
             placeholder="例如：50"
           >
+<span class="field-unit">歲</span>
+</div>
 
         </div>
 
@@ -967,16 +1058,20 @@
           >
             預計壽命
           </label>
+          <p class="field-note">04 會用來顯示預計退休生活幾年</p>
 
-          <input
+          <div class="unit-input">
+<input
             id="semiLifeExpectancy"
             class="field-input"
             type="number"
             inputmode="numeric"
             min="40"
             max="120"
-            placeholder="例如：80"
+            placeholder="例如：85"
           >
+<span class="field-unit">歲</span>
+</div>
 
         </div>
 
@@ -991,7 +1086,7 @@
           class="field-label"
           for="semiWorkIncome"
         >
-          半退休後每月預估工作收入
+          半退休後每月預估工作收入 NT$
         </label>
 
         <p class="field-note">
@@ -999,8 +1094,6 @@
         </p>
 
         <div class="money-wrap">
-
-          <span class="money-prefix">NT$</span>
 
           <input
             id="semiWorkIncome"
@@ -1023,12 +1116,10 @@
           class="field-label"
           for="semiBasicExpense"
         >
-          每月基本生活費
+          每月基本生活費 NT$
         </label>
 
         <div class="money-wrap">
-
-          <span class="money-prefix">NT$</span>
 
           <input
             id="semiBasicExpense"
@@ -1039,6 +1130,7 @@
           >
 
         </div>
+        <p class="field-note">例如房貸、保險、醫療和日常必要開銷</p>
 
       </div>
 
@@ -1051,12 +1143,10 @@
           class="field-label"
           for="semiQualityExpense"
         >
-          每月品質生活費
+          每月品質生活費 NT$
         </label>
 
         <div class="money-wrap">
-
-          <span class="money-prefix">NT$</span>
 
           <input
             id="semiQualityExpense"
@@ -1067,6 +1157,7 @@
           >
 
         </div>
+        <p class="field-note">例如旅遊、娛樂、購物等想保留的生活</p>
 
       </div>
 
@@ -1076,11 +1167,11 @@
       <div class="field-group">
 
         <label class="field-label">
-          退休後預估年化報酬率
+          退休前預估年化報酬率
         </label>
 
         <p class="field-note">
-          僅作為退休後資產成長情境假設，不代表保證報酬
+          用於 04 估算退休前資產成長，不代表保證；不改變本頁的自由目標金額
         </p>
 
         <div class="return-options">
@@ -1092,6 +1183,7 @@
               id="semiReturnConservative"
               name="semiReturnRate"
               value="2"
+              checked
             >
 
             <label
@@ -1167,7 +1259,7 @@
         </div>
 
         <p class="calculation-note">
-          每月生活費 − 半退休後工作收入
+          每月生活費 − 半退休工作收入 − 其他固定收入（最低以 0 計算）
         </p>
 
       </div>
@@ -1189,7 +1281,7 @@
         </div>
 
         <div class="target-rule">
-          每月資產支應金額 × 12 ÷ 4% FIRE 法則
+          每年需要由資產支應的金額 ÷ 4%<br>目標約為這筆年支出的 25 倍（粗略估算）<br>4% 法則常以約 30 年退休期作參考，不是保證
         </div>
 
       </div>
@@ -1249,14 +1341,17 @@
     const semiSection =
       document.getElementById("semiRetirementSection");
 
-    const birthDateDisplay =
-      document.getElementById("birthDateDisplay");
+    const birthDateInput =
+      document.getElementById("basicBirthDateInput");
 
     const currentAgeDisplay =
       document.getElementById("currentAgeDisplay");
 
     const fullMonthlyExpense =
       document.getElementById("fullMonthlyExpense");
+
+    const fullMonthlyGap =
+      document.getElementById("fullMonthlyGap");
 
     const fullTargetValue =
       document.getElementById("fullTargetValue");
@@ -1412,14 +1507,21 @@
         basicData.birth ||
         "";
 
+      birthDateInput.value = birthDate;
 
-      birthDateDisplay.textContent =
-        formatBirthDate(birthDate);
+      const dateIsReal =
+        basicData.birthDateEdited === true ||
+        (birthDate && birthDate !== "1994-01-01");
 
+      birthDateInput.classList.toggle(
+        "is-example",
+        !dateIsReal
+      );
 
       const age =
-        calculateAge(birthDate);
-
+        dateIsReal
+          ? calculateAge(birthDate)
+          : null;
 
       currentAgeDisplay.textContent =
         age === null
@@ -1496,6 +1598,13 @@
 
     function calculateAll() {
 
+      const otherRetirementIncome =
+        parseMoney(
+          document.getElementById(
+            "otherRetirementIncome"
+          ).value
+        );
+
       /* ---------- Full Retirement ---------- */
 
       const fullBasic =
@@ -1517,12 +1626,21 @@
         fullBasic + fullQuality;
 
 
+      const fullGap =
+        Math.max(
+          0,
+          fullMonthly - otherRetirementIncome
+        );
+
       const fullTarget =
-        fullMonthly * 12 / 0.04;
+        fullGap * 12 / 0.04;
 
 
       fullMonthlyExpense.textContent =
         formatMoney(fullMonthly);
+
+      fullMonthlyGap.textContent =
+        formatMoney(fullGap);
 
       fullTargetValue.textContent =
         formatMoney(fullTarget);
@@ -1564,7 +1682,9 @@
       const semiGap =
         Math.max(
           0,
-          semiMonthly - semiWorkIncome
+          semiMonthly -
+          semiWorkIncome -
+          otherRetirementIncome
         );
 
 
@@ -1597,6 +1717,13 @@
         version: 1,
 
         retirementMode: mode,
+
+        otherRetirementIncome:
+          parseMoney(
+            document.getElementById(
+              "otherRetirementIncome"
+            ).value
+          ),
 
         full: {
 
@@ -1730,6 +1857,15 @@
       }
 
 
+      document.getElementById(
+        "otherRetirementIncome"
+      ).value =
+        data.otherRetirementIncome
+          ? Number(
+              data.otherRetirementIncome
+            ).toLocaleString("zh-TW")
+          : "";
+
       /* ---------- Full ---------- */
 
       if (data.full) {
@@ -1848,6 +1984,30 @@
     /* =========================================================
        Input Events
     ========================================================== */
+
+    birthDateInput.addEventListener(
+      "change",
+      function() {
+        birthDateInput.classList.remove("is-example");
+        const age = calculateAge(birthDateInput.value);
+        currentAgeDisplay.textContent =
+          age === null ? "—" : `${age} 歲`;
+
+        try {
+          const basicData = JSON.parse(
+            localStorage.getItem(BASIC_STORAGE_KEY) || "{}"
+          );
+          basicData.birthDate = birthDateInput.value;
+          basicData.birthDateEdited = true;
+          localStorage.setItem(
+            BASIC_STORAGE_KEY,
+            JSON.stringify(basicData)
+          );
+        } catch (error) {
+          console.warn("無法同步出生年月日", error);
+        }
+      }
+    );
 
     document
       .querySelectorAll(".money-input")
