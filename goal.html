@@ -391,6 +391,26 @@
       padding: 0 10px;
       border-radius: 12px;
     }
+    .semi-budget-box {
+      margin-top: 18px;
+      padding: 17px;
+      border: 1px solid rgba(120, 152, 168, 0.26);
+      border-radius: 23px;
+      background: linear-gradient(145deg, #EFF5F7, #F8F4EC);
+      box-shadow: 0 7px 18px rgba(72, 91, 79, 0.06);
+    }
+    .semi-budget-box .field-group {
+      margin-top: 13px;
+    }
+    .semi-budget-box .field-label {
+      font-size: 15px;
+    }
+    .semi-budget-box .field-input {
+      font-size: 15px;
+    }
+    .semi-budget-box .field-input::placeholder {
+      font-size: 14px;
+    }
     .expense-grid {
       margin-top: 17px;
       align-items: start;
@@ -401,12 +421,12 @@
     }
     .expense-grid .field-label {
       min-height: 42px;
-      font-size: 13px;
+      font-size: 15px;
       line-height: 1.45;
     }
     .expense-grid .field-input {
       padding: 0 9px;
-      font-size: 12px;
+      font-size: 15px;
     }
     .two-column {
       display: grid;
@@ -826,7 +846,7 @@
             type="text"
             inputmode="numeric"
             placeholder="例如：30000"
-            placeholder="房貸、保險、醫療等必要開銷"
+            placeholder="房貸、保險、醫療等"
           >
         </div>
         <p class="field-note">例如房貸、保險、醫療和日常必要開銷</p>
@@ -851,16 +871,13 @@
         </div>
         <p class="field-note">例如旅遊、娛樂、購物等想保留的生活</p>
       </div>
-      </div>
       <!-- 報酬率 -->
       <div class="field-group">
-      <div class="field-group return-rate-group">
         <label class="field-label">
           退休前預估年化報酬率
         </label>
         <p class="field-note">
           用於 04 估算退休前資產成長，不代表保證；不改變本頁的自由目標金額
-          會用在 04 的資產成長試算，結果僅供參考
         </p>
         <div class="return-options">
           <div class="return-option">
@@ -1022,6 +1039,7 @@
 </div>
         </div>
       </div>
+      <div class="semi-budget-box">
       <!-- 半退休後工作收入 -->
       <div class="field-group">
         <label
@@ -1059,7 +1077,7 @@
             type="text"
             inputmode="numeric"
             placeholder="例如：30000"
-            placeholder="房貸、保險、醫療等必要開銷"
+            placeholder="房貸、保險、醫療等"
           >
         </div>
         <p class="field-note">例如房貸、保險、醫療和日常必要開銷</p>
@@ -1084,31 +1102,14 @@
         </div>
         <p class="field-note">例如旅遊、娛樂、購物等想保留的生活</p>
       </div>
-      </div>
-      <!-- 每月生活費 -->
-      <div class="calculation-box monthly-total-box">
-        <p class="calculation-title">
-          每月退休生活費
-        </p>
-        <div
-          class="calculation-main"
-          id="semiMonthlyExpense"
-        >
-          NT$ 0
-        </div>
-        <p class="calculation-note">
-          基本生活費＋品質生活費
-        </p>
-      </div>
       <!-- 報酬率 -->
+      </div>
       <div class="field-group">
-      <div class="field-group return-rate-group">
         <label class="field-label">
           退休前預估年化報酬率
         </label>
         <p class="field-note">
           用於 04 估算退休前資產成長，不代表保證；不改變本頁的自由目標金額
-          會用在 04 的資產成長試算，結果僅供參考
         </p>
         <div class="return-options">
           <div class="return-option">
@@ -1146,6 +1147,7 @@
       </div>
       <!-- 每月生活費 -->
       <div class="calculation-box">
+      <div class="calculation-box monthly-total-box">
         <p class="calculation-title">
           每月退休生活費
         </p>
