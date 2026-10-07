@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>03 自由目標｜自由倒數｜試算工具</title>
-
   <style>
     :root {
       --bg: #F6F2E9;
@@ -20,11 +18,9 @@
       --white: #FFFFFF;
       --shadow: 0 8px 24px rgba(72, 91, 79, 0.08);
     }
-
     * {
       box-sizing: border-box;
     }
-
     body {
       margin: 0;
       min-height: 100vh;
@@ -39,30 +35,24 @@
         sans-serif;
       line-height: 1.6;
     }
-
     button,
     input,
     select {
       font: inherit;
     }
-
     a {
       color: inherit;
       text-decoration: none;
     }
-
     .page {
       width: min(100% - 28px, 620px);
       margin: 0 auto;
       padding: 28px 0 34px;
     }
-
     /* ---------- Brand ---------- */
-
     .brand {
       text-align: center;
     }
-
     .brand-title {
       color: var(--green-dark);
       font-size: clamp(20px, 5.4vw, 27px);
@@ -70,9 +60,7 @@
       letter-spacing: 0.04em;
       line-height: 1.3;
     }
-
     /* ---------- Progress ---------- */
-
     .progress-dots {
       display: flex;
       align-items: center;
@@ -81,7 +69,6 @@
       margin-top: 10px;
       margin-bottom: 18px;
     }
-
     .progress-dots .dot {
       display: block;
       width: 7px;
@@ -94,23 +81,18 @@
         background 0.18s ease;
       -webkit-tap-highlight-color: transparent;
     }
-
     .progress-dots .dot.active {
       background: var(--green);
       transform: scale(1.25);
     }
-
     .progress-dots .dot:hover {
       transform: scale(1.3);
     }
-
     /* ---------- Page Header ---------- */
-
     .page-heading {
       margin-top: 13px;
       text-align: center;
     }
-
     .step-number {
       color: var(--green);
       font-size: clamp(17px, 4.5vw, 21px);
@@ -118,7 +100,6 @@
       letter-spacing: 0.04em;
       line-height: 1.2;
     }
-
     .page-title {
       margin-top: 2px;
       color: var(--green-dark);
@@ -127,7 +108,6 @@
       line-height: 1.2;
       letter-spacing: 0.02em;
     }
-
     .page-subtitle {
       margin-top: 7px;
       color: var(--muted);
@@ -136,9 +116,7 @@
       line-height: 1.5;
       letter-spacing: 0.02em;
     }
-
     /* ---------- Section Card ---------- */
-
     .form-card {
       margin-top: 15px;
       padding: 20px 17px 18px;
@@ -151,42 +129,38 @@
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
     }
-
     .section-title {
       margin: 0;
       font-size: 18px;
       font-weight: 800;
       color: var(--text);
     }
-
     .section-description {
       margin: 5px 0 0;
       color: var(--muted);
       font-size: 13px;
     }
-
     /* ---------- Mode Selection ---------- */
-
     .mode-grid {
       display: grid;
       grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 11px;
       margin-top: 17px;
     }
-
     .mode-option {
       position: relative;
     }
-
     .mode-option input {
       position: absolute;
       opacity: 0;
       pointer-events: none;
     }
-
     .mode-label {
       display: block;
+      height: 100%;
       padding: 17px 16px;
+      padding: 17px 14px;
       border-radius: 20px;
       background: #FFFFFF;
       border: 1.5px solid #DCE4DE;
@@ -197,17 +171,14 @@
         box-shadow 0.18s ease,
         transform 0.18s ease;
     }
-
     .mode-label:hover {
       transform: translateY(-2px);
       box-shadow: 0 9px 22px rgba(94, 128, 107, 0.13);
     }
-
     .mode-option input:checked + .mode-label {
       transform: translateY(-2px);
       box-shadow: 0 10px 22px rgba(94, 128, 107, 0.16);
     }
-
     .mode-option input:checked + .mode-label::after {
       content: "✓ 已選擇";
       display: inline-block;
@@ -219,13 +190,11 @@
       font-size: 12px;
       font-weight: 800;
     }
-
     .mode-option input:checked + .mode-label {
       border-color: var(--green);
       background: var(--green-light);
       box-shadow: 0 5px 15px rgba(94, 128, 107, 0.10);
     }
-
     .mode-title {
       display: flex;
       align-items: center;
@@ -234,7 +203,6 @@
       font-weight: 800;
       color: var(--text);
     }
-
     .mode-radio {
       width: 18px;
       height: 18px;
@@ -243,7 +211,6 @@
       background: #FFFFFF;
       flex: 0 0 auto;
     }
-
     .mode-option input:checked + .mode-label .mode-radio {
       border-color: var(--green);
       background:
@@ -253,43 +220,36 @@
           transparent 5.5px
         );
     }
-
     .mode-description {
       margin: 9px 0 0 27px;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.65;
     }
-
     /* ---------- Personal Info ---------- */
-
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-top: 17px;
     }
-
     .info-box {
       padding: 13px 14px;
       border-radius: 17px;
       background: #F4F7F3;
       border: 1px solid rgba(94, 128, 107, 0.10);
     }
-
     .info-label {
       display: block;
       margin-bottom: 3px;
       color: var(--muted);
       font-size: 12px;
     }
-
     .info-value {
       font-size: 16px;
       font-weight: 700;
       color: var(--text);
     }
-
     .info-date-input {
       width: 100%;
       min-height: 38px;
@@ -300,35 +260,28 @@
       color: var(--text);
       font: inherit;
     }
-
     .info-date-input.is-example {
       color: #A5ADA7;
     }
-
     .unit-input {
       display: flex;
       align-items: center;
       gap: 9px;
     }
-
     .unit-input .field-input {
       flex: 1;
       width: auto;
       min-width: 0;
     }
-
     .field-unit {
       flex: 0 0 auto;
       color: var(--muted);
       font-weight: 750;
     }
-
     /* ---------- Fields ---------- */
-
     .field-group {
       margin-top: 16px;
     }
-
     .field-label {
       display: block;
       margin-bottom: 7px;
@@ -336,13 +289,11 @@
       font-weight: 700;
       color: var(--text);
     }
-
     .field-note {
       margin: -2px 0 7px;
       color: var(--muted);
       font-size: 12px;
     }
-
     .field-input,
     .field-select {
       width: 100%;
@@ -357,25 +308,20 @@
         border-color 0.18s ease,
         box-shadow 0.18s ease;
     }
-
     .field-input:focus,
     .field-select:focus {
       border-color: var(--green);
       box-shadow: 0 0 0 3px rgba(111, 143, 120, 0.10);
     }
-
     .field-input::placeholder {
       color: #A5ADA7;
     }
-
     .money-wrap {
       position: relative;
     }
-
     .money-wrap .field-input {
       padding-left: 14px;
     }
-
     .money-prefix {
       position: absolute;
       left: 14px;
@@ -385,32 +331,26 @@
       font-weight: 700;
       pointer-events: none;
     }
-
     .two-column {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
-
     /* ---------- Return Choice ---------- */
-
     .return-options {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-top: 8px;
     }
-
     .return-option {
       position: relative;
     }
-
     .return-option input {
       position: absolute;
       opacity: 0;
       pointer-events: none;
     }
-
     .return-label {
       display: block;
       padding: 13px 12px;
@@ -424,20 +364,17 @@
         border-color 0.18s ease,
         background 0.18s ease;
     }
-
     .return-option input:checked + .return-label {
       border-color: var(--green);
       background: var(--green-light);
       box-shadow: 0 8px 18px rgba(94, 128, 107, 0.14);
       transform: translateY(-2px);
     }
-
     .return-name {
       display: block;
       font-size: 14px;
       font-weight: 800;
     }
-
     .return-value {
       display: block;
       margin-top: 2px;
@@ -445,9 +382,7 @@
       font-size: 18px;
       font-weight: 800;
     }
-
     /* ---------- Calculation Box ---------- */
-
     .calculation-box {
       margin-top: 17px;
       padding: 17px;
@@ -459,14 +394,12 @@
       );
       border: 1px solid rgba(94, 128, 107, 0.13);
     }
-
     .calculation-title {
       margin: 0;
       font-size: 14px;
       font-weight: 800;
       color: var(--green-dark);
     }
-
     .calculation-main {
       margin-top: 8px;
       font-size: 25px;
@@ -474,14 +407,12 @@
       color: var(--text);
       letter-spacing: 0.01em;
     }
-
     .calculation-note {
       margin: 6px 0 0;
       color: var(--muted);
       font-size: 12px;
       line-height: 1.6;
     }
-
     .target-box {
       margin-top: 13px;
       padding: 17px;
@@ -490,13 +421,11 @@
       border: 1px solid rgba(94, 128, 107, 0.13);
       text-align: center;
     }
-
     .target-label {
       display: block;
       color: var(--muted);
       font-size: 12px;
     }
-
     .target-value {
       margin-top: 4px;
       font-size: 28px;
@@ -504,28 +433,22 @@
       color: var(--green-dark);
       word-break: break-word;
     }
-
     .target-rule {
       margin-top: 5px;
       color: var(--muted);
       font-size: 12px;
     }
-
     /* ---------- Hidden ---------- */
-
     .hidden {
       display: none !important;
     }
-
     /* ---------- Navigation ---------- */
-
     .navigation {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 9px;
       margin-top: 18px;
     }
-
     .nav-button {
       display: flex;
       align-items: center;
@@ -540,25 +463,20 @@
         box-shadow 0.18s ease;
       -webkit-tap-highlight-color: transparent;
     }
-
     .nav-button:active {
       transform: scale(0.98);
     }
-
     .back-button {
       background: #E8ECE8;
       color: #66716A;
       border: 1px solid #D9DFDA;
     }
-
     .next-button {
       background: var(--green);
       color: #FFFFFF;
       box-shadow: 0 7px 16px rgba(94, 128, 107, 0.18);
     }
-
     /* ---------- Footer ---------- */
-
     .footer {
       margin-top: 10px;
       padding-top: 0;
@@ -567,178 +485,130 @@
       font-size: 11px;
       letter-spacing: 0.05em;
     }
-
     /* ---------- Mobile ---------- */
-
     @media (max-width: 430px) {
       .page {
         width: min(100% - 22px, 620px);
         padding-top: 23px;
       }
-
       .page-number {
         font-size: 25px;
       }
-
       .form-card {
         padding: 18px 15px 17px;
         border-radius: 24px;
       }
-
       .info-grid,
       .two-column {
         gap: 8px;
       }
-
       .target-value {
         font-size: 25px;
       }
     }
   </style>
 </head>
-
 <body>
-
   <main class="page">
-
     <!-- ---------- Brand ---------- -->
-
     <div class="brand">
       <div class="brand-title">自由倒數｜試算工具</div>
     </div>
-
     <!-- ---------- Progress ---------- -->
-
     <nav class="progress-dots" aria-label="頁面進度">
       <a
         href="basic.html"
         class="dot"
         aria-label="基本資料"
       ></a>
-
       <a
         href="finance.html"
         class="dot"
         aria-label="財務資料"
       ></a>
-
       <a
         href="goal.html"
         class="dot active"
         aria-label="自由目標"
         aria-current="page"
       ></a>
-
       <a
         href="countdown.html"
         class="dot"
         aria-label="自由倒數"
       ></a>
     </nav>
-
     <!-- ---------- Page Header ---------- -->
-
     <div class="page-heading">
       <div class="step-number">03</div>
       <div class="page-title">自由目標</div>
       <div class="page-subtitle">先定義，什麼是你想要的自由</div>
     </div>
-
-
     <!-- =========================================================
          01. 選擇自由階段
     ========================================================== -->
-
     <section class="form-card">
-
       <h2 class="section-title">我的自由目標</h2>
-
       <p class="section-description">
         先選擇您想達成的人生階段
       </p>
-
       <div class="mode-grid">
-
         <!-- 完全退休 -->
-
         <div class="mode-option">
-
           <input
             type="radio"
             id="fullRetirement"
             name="retirementMode"
             value="full"
           >
-
           <label
             for="fullRetirement"
             class="mode-label"
           >
-
             <div class="mode-title">
               <span class="mode-radio"></span>
               <span>完全退休</span>
             </div>
-
             <p class="mode-description">
               不再依靠工作收入<br>
               由累積的資產支應生活
             </p>
-
           </label>
-
         </div>
-
-
         <!-- 半退休 -->
-
         <div class="mode-option">
-
           <input
             type="radio"
             id="semiRetirement"
             name="retirementMode"
             value="semi"
           >
-
           <label
             for="semiRetirement"
             class="mode-label"
           >
-
             <div class="mode-title">
               <span class="mode-radio"></span>
               <span>半退休</span>
             </div>
-
             <p class="mode-description">
               減少工作量，保留部分工作收入<br>
               由工作收入和資產一起支應生活
             </p>
-
           </label>
-
         </div>
-
       </div>
-
     </section>
-
-
     <!-- =========================================================
          02. 個人資料
     ========================================================== -->
-
     <section class="form-card">
-
       <h2 class="section-title">您的基本資料</h2>
-
       <p class="section-description">
         生日從 01 基本資料帶入；在這裡修改也會同步更新
+        生日會從 01 基本資料自動帶入
       </p>
-
       <div class="info-grid">
-
         <div class="info-box">
           <label class="info-label" for="basicBirthDateInput">出生年月日（可修改）</label>
           <input
@@ -747,8 +617,9 @@
             type="date"
             aria-label="出生年月日，可在這裡修改"
           >
+          <span class="info-label">出生年月日</span>
+          <span class="info-value" id="basicBirthDateDisplay">尚未填寫</span>
         </div>
-
         <div class="info-box">
           <span class="info-label">目前年齡</span>
           <span
@@ -756,12 +627,8 @@
             id="currentAgeDisplay"
           >—</span>
         </div>
-
       </div>
-
     </section>
-
-
     <!-- 退休後固定收入，完全退休與半退休共用 -->
     <section class="form-card">
       <h2 class="section-title">退休後其他固定收入</h2>
@@ -781,36 +648,26 @@
         </div>
       </div>
     </section>
-
     <!-- =========================================================
          03. 完全退休設定
     ========================================================== -->
-
     <section
       class="form-card"
       id="fullRetirementSection"
     >
-
       <h2 class="section-title">完全退休設定</h2>
-
       <p class="section-description">
         設定您希望完全離開工作的時間與生活需求
       </p>
-
-
       <!-- 退休年齡 / 預計壽命 -->
-
       <div class="two-column">
-
         <div class="field-group">
-
           <label
             class="field-label"
             for="fullRetirementAge"
           >
             預計退休年齡
           </label>
-
           <div class="unit-input">
 <input
             id="fullRetirementAge"
@@ -823,12 +680,8 @@
           >
 <span class="field-unit">歲</span>
 </div>
-
         </div>
-
-
         <div class="field-group">
-
           <label
             class="field-label"
             for="fullLifeExpectancy"
@@ -836,7 +689,6 @@
             預計壽命
           </label>
           <p class="field-note">04 會用來顯示預計退休生活幾年</p>
-
           <div class="unit-input">
 <input
             id="fullLifeExpectancy"
@@ -849,25 +701,17 @@
           >
 <span class="field-unit">歲</span>
 </div>
-
         </div>
-
       </div>
-
-
       <!-- 基本生活費 -->
-
       <div class="field-group">
-
         <label
           class="field-label"
           for="fullBasicExpense"
         >
           每月基本生活費 NT$
         </label>
-
         <div class="money-wrap">
-
           <input
             id="fullBasicExpense"
             class="field-input money-input"
@@ -875,26 +719,18 @@
             inputmode="numeric"
             placeholder="例如：30000"
           >
-
         </div>
         <p class="field-note">例如房貸、保險、醫療和日常必要開銷</p>
-
       </div>
-
-
       <!-- 品質生活費 -->
-
       <div class="field-group">
-
         <label
           class="field-label"
           for="fullQualityExpense"
         >
           每月品質生活費 NT$
         </label>
-
         <div class="money-wrap">
-
           <input
             id="fullQualityExpense"
             class="field-input money-input"
@@ -902,29 +738,19 @@
             inputmode="numeric"
             placeholder="例如：20000"
           >
-
         </div>
         <p class="field-note">例如旅遊、娛樂、購物等想保留的生活</p>
-
       </div>
-
-
       <!-- 報酬率 -->
-
       <div class="field-group">
-
         <label class="field-label">
           退休前預估年化報酬率
         </label>
-
         <p class="field-note">
           用於 04 估算退休前資產成長，不代表保證；不改變本頁的自由目標金額
         </p>
-
         <div class="return-options">
-
           <div class="return-option">
-
             <input
               type="radio"
               id="fullReturnConservative"
@@ -932,7 +758,6 @@
               value="2"
               checked
             >
-
             <label
               for="fullReturnConservative"
               class="return-label"
@@ -940,19 +765,14 @@
               <span class="return-name">保守</span>
               <span class="return-value">2%</span>
             </label>
-
           </div>
-
-
           <div class="return-option">
-
             <input
               type="radio"
               id="fullReturnOptimistic"
               name="fullReturnRate"
               value="5"
             >
-
             <label
               for="fullReturnOptimistic"
               class="return-label"
@@ -960,93 +780,64 @@
               <span class="return-name">積極</span>
               <span class="return-value">5%</span>
             </label>
-
           </div>
-
         </div>
-
       </div>
-
-
       <!-- 計算結果 -->
-
       <div class="calculation-box">
-
         <p class="calculation-title">
           每月退休生活費
         </p>
-
         <div
           class="calculation-main"
           id="fullMonthlyExpense"
         >
           NT$ 0
         </div>
-
         <p class="calculation-note">
           基本生活費＋品質生活費
         </p>
-
       </div>
-
-
       <div class="calculation-box">
         <p class="calculation-title">每月需要由資產支應</p>
         <div class="calculation-main" id="fullMonthlyGap">NT$ 0</div>
         <p class="calculation-note">每月生活費 − 退休後其他固定收入（最低以 0 計算）</p>
       </div>
-
       <div class="target-box">
-
         <span class="target-label">
           您的自由目標
         </span>
-
         <div
           class="target-value"
           id="fullTargetValue"
         >
           NT$ 0
         </div>
-
         <div class="target-rule">
           每年需要由資產支應的金額 ÷ 4%<br>目標約為這筆年支出的 25 倍（粗略估算）<br>4% 法則常以約 30 年退休期作參考，不是保證
         </div>
-
       </div>
-
     </section>
-
-
     <!-- =========================================================
          04. 半退休設定
     ========================================================== -->
-
     <section
       class="form-card hidden"
       id="semiRetirementSection"
     >
-
       <h2 class="section-title">半退休設定</h2>
-
       <p class="section-description">
         降低工作量，同時保有部分工作收入
       </p>
-
-
       <!-- 半退休年齡 / 預計壽命 -->
-
       <div class="two-column">
-
         <div class="field-group">
-
           <label
             class="field-label"
             for="semiRetirementAge"
           >
             預計半退休年齡
           </label>
-
           <div class="unit-input">
 <input
             id="semiRetirementAge"
@@ -1059,12 +850,8 @@
           >
 <span class="field-unit">歲</span>
 </div>
-
         </div>
-
-
         <div class="field-group">
-
           <label
             class="field-label"
             for="semiLifeExpectancy"
@@ -1072,7 +859,6 @@
             預計壽命
           </label>
           <p class="field-note">04 會用來顯示預計退休生活幾年</p>
-
           <div class="unit-input">
 <input
             id="semiLifeExpectancy"
@@ -1085,29 +871,20 @@
           >
 <span class="field-unit">歲</span>
 </div>
-
         </div>
-
       </div>
-
-
       <!-- 半退休後工作收入 -->
-
       <div class="field-group">
-
         <label
           class="field-label"
           for="semiWorkIncome"
         >
           半退休後每月預估工作收入 NT$
         </label>
-
         <p class="field-note">
           這裡填寫半退休後預計保有的工作收入，不會直接沿用目前收入
         </p>
-
         <div class="money-wrap">
-
           <input
             id="semiWorkIncome"
             class="field-input money-input"
@@ -1115,25 +892,17 @@
             inputmode="numeric"
             placeholder="例如：30000"
           >
-
         </div>
-
       </div>
-
-
       <!-- 基本生活費 -->
-
       <div class="field-group">
-
         <label
           class="field-label"
           for="semiBasicExpense"
         >
           每月基本生活費 NT$
         </label>
-
         <div class="money-wrap">
-
           <input
             id="semiBasicExpense"
             class="field-input money-input"
@@ -1141,26 +910,18 @@
             inputmode="numeric"
             placeholder="例如：30000"
           >
-
         </div>
         <p class="field-note">例如房貸、保險、醫療和日常必要開銷</p>
-
       </div>
-
-
       <!-- 品質生活費 -->
-
       <div class="field-group">
-
         <label
           class="field-label"
           for="semiQualityExpense"
         >
           每月品質生活費 NT$
         </label>
-
         <div class="money-wrap">
-
           <input
             id="semiQualityExpense"
             class="field-input money-input"
@@ -1168,29 +929,19 @@
             inputmode="numeric"
             placeholder="例如：20000"
           >
-
         </div>
         <p class="field-note">例如旅遊、娛樂、購物等想保留的生活</p>
-
       </div>
-
-
       <!-- 報酬率 -->
-
       <div class="field-group">
-
         <label class="field-label">
           退休前預估年化報酬率
         </label>
-
         <p class="field-note">
           用於 04 估算退休前資產成長，不代表保證；不改變本頁的自由目標金額
         </p>
-
         <div class="return-options">
-
           <div class="return-option">
-
             <input
               type="radio"
               id="semiReturnConservative"
@@ -1198,7 +949,6 @@
               value="2"
               checked
             >
-
             <label
               for="semiReturnConservative"
               class="return-label"
@@ -1206,19 +956,14 @@
               <span class="return-name">保守</span>
               <span class="return-value">2%</span>
             </label>
-
           </div>
-
-
           <div class="return-option">
-
             <input
               type="radio"
               id="semiReturnOptimistic"
               name="semiReturnRate"
               value="5"
             >
-
             <label
               for="semiReturnOptimistic"
               class="return-label"
@@ -1226,93 +971,63 @@
               <span class="return-name">積極</span>
               <span class="return-value">5%</span>
             </label>
-
           </div>
-
         </div>
-
       </div>
-
-
       <!-- 每月生活費 -->
-
       <div class="calculation-box">
-
         <p class="calculation-title">
           每月退休生活費
         </p>
-
         <div
           class="calculation-main"
           id="semiMonthlyExpense"
         >
           NT$ 0
         </div>
-
         <p class="calculation-note">
           基本生活費＋品質生活費
         </p>
-
       </div>
-
-
       <!-- 每月資產支應 -->
-
       <div class="calculation-box">
-
         <p class="calculation-title">
           每月需要由資產支應
         </p>
-
         <div
           class="calculation-main"
           id="semiMonthlyGap"
         >
           NT$ 0
         </div>
-
         <p class="calculation-note">
           每月生活費 − 半退休工作收入 − 其他固定收入（最低以 0 計算）
         </p>
-
       </div>
-
-
       <!-- 自由目標 -->
-
       <div class="target-box">
-
         <span class="target-label">
           您的自由目標
         </span>
-
         <div
           class="target-value"
           id="semiTargetValue"
         >
           NT$ 0
         </div>
-
         <div class="target-rule">
           每年需要由資產支應的金額 ÷ 4%<br>目標約為這筆年支出的 25 倍（粗略估算）<br>4% 法則常以約 30 年退休期作參考，不是保證
         </div>
-
       </div>
-
     </section>
-
-
     <!-- ---------- Navigation ---------- -->
-
     <div class="navigation">
-
       <a
         href="finance.html"
         class="nav-button back-button"
       >
         ← 上一步
       </a>
-
       <a
         href="countdown.html"
         id="nextButton"
@@ -1320,131 +1035,86 @@
       >
         下一步 →
       </a>
-
     </div>
-
-
     <div class="footer">
       © 2026 TY Chen
     </div>
-
   </main>
-
-
   <script>
-
     /* =========================================================
        Storage
     ========================================================== */
-
     const STORAGE_KEY = "freeCountdown_goal_v1";
     const BASIC_STORAGE_KEY = "freedomCountdownBasic";
-
-
     /* =========================================================
        Elements
     ========================================================== */
-
     const fullRetirement = document.getElementById("fullRetirement");
     const semiRetirement = document.getElementById("semiRetirement");
-
     const fullSection =
       document.getElementById("fullRetirementSection");
-
     const semiSection =
       document.getElementById("semiRetirementSection");
-
     const birthDateInput =
       document.getElementById("basicBirthDateInput");
-
+    const birthDateDisplay =
+      document.getElementById("basicBirthDateDisplay");
     const currentAgeDisplay =
       document.getElementById("currentAgeDisplay");
-
     const fullMonthlyExpense =
       document.getElementById("fullMonthlyExpense");
-
     const fullMonthlyGap =
       document.getElementById("fullMonthlyGap");
-
     const fullTargetValue =
       document.getElementById("fullTargetValue");
-
     const semiMonthlyExpense =
       document.getElementById("semiMonthlyExpense");
-
     const semiMonthlyGap =
       document.getElementById("semiMonthlyGap");
-
     const semiTargetValue =
       document.getElementById("semiTargetValue");
-
-
     /* =========================================================
        Helpers
     ========================================================== */
-
     function parseMoney(value) {
-
       if (value === undefined || value === null) {
         return 0;
       }
-
       return Number(
         String(value)
           .replace(/,/g, "")
           .replace(/[^\d.-]/g, "")
       ) || 0;
-
     }
-
-
     function formatMoney(value) {
-
       const number = Math.round(Number(value) || 0);
-
       return "NT$ " + number.toLocaleString("zh-TW");
-
     }
-
-
     function formatInputMoney(input) {
-
       const raw = String(input.value || "")
         .replace(/,/g, "")
         .replace(/[^\d]/g, "");
-
       if (!raw) {
         input.value = "";
         return;
       }
-
       input.value = Number(raw).toLocaleString("zh-TW");
-
     }
-
-
     function calculateAge(birthDate) {
-
       if (!birthDate) {
         return null;
       }
-
       const birth = new Date(birthDate + "T00:00:00");
-
       if (Number.isNaN(birth.getTime())) {
         return null;
       }
-
       const today = new Date();
-
       let age =
         today.getFullYear() -
         birth.getFullYear();
-
       const monthDifference =
         today.getMonth() -
         birth.getMonth();
-
       if (
         monthDifference < 0 ||
         (
@@ -1454,244 +1124,169 @@
       ) {
         age--;
       }
-
       return age;
-
     }
-
-
     function formatBirthDate(value) {
-
       if (!value) {
         return "—";
       }
-
       const date = new Date(value + "T00:00:00");
-
       if (Number.isNaN(date.getTime())) {
         return "—";
       }
-
       const year = date.getFullYear();
       const month = String(
         date.getMonth() + 1
       ).padStart(2, "0");
-
       const day = String(
         date.getDate()
       ).padStart(2, "0");
-
       return `${year}/${month}/${day}`;
-
     }
-
-
     /* =========================================================
        Basic Data
     ========================================================== */
-
     function loadBasicData() {
-
       let basicData = null;
-
       try {
-
         basicData =
           JSON.parse(
             localStorage.getItem(
               BASIC_STORAGE_KEY
             ) || "null"
           );
-
       } catch (error) {
-
         basicData = null;
-
       }
-
-
       if (!basicData) {
         return;
       }
-
-
       const birthDate =
         basicData.birthDate ||
         basicData.birth ||
         "";
-
       birthDateInput.value = birthDate;
-
+      birthDateDisplay.textContent =
+        birthDate
+          ? birthDate.replaceAll("-", "/")
+          : "尚未填寫";
       const dateIsReal =
         basicData.birthDateEdited === true ||
         (birthDate && birthDate !== "1994-01-01");
-
       birthDateInput.classList.toggle(
         "is-example",
         !dateIsReal
       );
-
       const age =
         dateIsReal
           ? calculateAge(birthDate)
           : null;
-
       currentAgeDisplay.textContent =
         age === null
           ? "—"
           : `${age} 歲`;
-
     }
-
-
     /* =========================================================
        Mode
     ========================================================== */
-
     function getMode() {
-
       const checked =
         document.querySelector(
           'input[name="retirementMode"]:checked'
         );
-
       return checked
         ? checked.value
         : "full";
-
     }
-
-
     function updateMode() {
-
       const mode = getMode();
-
       if (mode === "semi") {
-
         fullSection.classList.add("hidden");
         semiSection.classList.remove("hidden");
-
       } else {
-
         semiSection.classList.add("hidden");
         fullSection.classList.remove("hidden");
-
       }
-
       calculateAll();
       saveData();
-
     }
-
-
     /* =========================================================
        Return Rate
     ========================================================== */
-
     function getSelectedReturnRate(mode) {
-
       const selector =
         mode === "semi"
           ? 'input[name="semiReturnRate"]:checked'
           : 'input[name="fullReturnRate"]:checked';
-
       const checked =
         document.querySelector(selector);
-
       return checked
         ? Number(checked.value)
         : 2;
-
     }
-
-
     /* =========================================================
        Calculations
     ========================================================== */
-
     function calculateAll() {
-
       const otherRetirementIncome =
         parseMoney(
           document.getElementById(
             "otherRetirementIncome"
           ).value
         );
-
       /* ---------- Full Retirement ---------- */
-
       const fullBasic =
         parseMoney(
           document.getElementById(
             "fullBasicExpense"
           ).value
         );
-
       const fullQuality =
         parseMoney(
           document.getElementById(
             "fullQualityExpense"
           ).value
         );
-
-
       const fullMonthly =
         fullBasic + fullQuality;
-
-
       const fullGap =
         Math.max(
           0,
           fullMonthly - otherRetirementIncome
         );
-
       const fullTarget =
         fullGap * 12 / 0.04;
-
-
       fullMonthlyExpense.textContent =
         formatMoney(fullMonthly);
-
       fullMonthlyGap.textContent =
         formatMoney(fullGap);
-
       fullTargetValue.textContent =
         formatMoney(fullTarget);
-
-
       /* ---------- Semi Retirement ---------- */
-
       const semiBasic =
         parseMoney(
           document.getElementById(
             "semiBasicExpense"
           ).value
         );
-
       const semiQuality =
         parseMoney(
           document.getElementById(
             "semiQualityExpense"
           ).value
         );
-
       const semiWorkIncome =
         parseMoney(
           document.getElementById(
             "semiWorkIncome"
           ).value
         );
-
-
       const semiMonthly =
         semiBasic + semiQuality;
-
-
       /*
        * 如果工作收入高於生活費，
        * 資產支應需求最低以 0 計算。
        */
-
       const semiGap =
         Math.max(
           0,
@@ -1699,177 +1294,118 @@
           semiWorkIncome -
           otherRetirementIncome
         );
-
-
       const semiTarget =
         semiGap * 12 / 0.04;
-
-
       semiMonthlyExpense.textContent =
         formatMoney(semiMonthly);
-
       semiMonthlyGap.textContent =
         formatMoney(semiGap);
-
       semiTargetValue.textContent =
         formatMoney(semiTarget);
-
     }
-
-
     /* =========================================================
        Save
     ========================================================== */
-
     function saveData() {
-
       const mode = getMode();
-
       const data = {
-
         version: 1,
-
         retirementMode: mode,
-
         otherRetirementIncome:
           parseMoney(
             document.getElementById(
               "otherRetirementIncome"
             ).value
           ),
-
         full: {
-
           retirementAge:
             document.getElementById(
               "fullRetirementAge"
             ).value,
-
           lifeExpectancy:
             document.getElementById(
               "fullLifeExpectancy"
             ).value,
-
           basicExpense:
             parseMoney(
               document.getElementById(
                 "fullBasicExpense"
               ).value
             ),
-
           qualityExpense:
             parseMoney(
               document.getElementById(
                 "fullQualityExpense"
               ).value
             ),
-
           returnRate:
             getSelectedReturnRate("full")
-
         },
-
-
         semi: {
-
           retirementAge:
             document.getElementById(
               "semiRetirementAge"
             ).value,
-
           lifeExpectancy:
             document.getElementById(
               "semiLifeExpectancy"
             ).value,
-
           workIncome:
             parseMoney(
               document.getElementById(
                 "semiWorkIncome"
               ).value
             ),
-
           basicExpense:
             parseMoney(
               document.getElementById(
                 "semiBasicExpense"
               ).value
             ),
-
           qualityExpense:
             parseMoney(
               document.getElementById(
                 "semiQualityExpense"
               ).value
             ),
-
           returnRate:
             getSelectedReturnRate("semi")
-
         }
-
       };
-
-
       localStorage.setItem(
         STORAGE_KEY,
         JSON.stringify(data)
       );
-
     }
-
-
     /* =========================================================
        Load
     ========================================================== */
-
     function loadData() {
-
       let data = null;
-
       try {
-
         data =
           JSON.parse(
             localStorage.getItem(
               STORAGE_KEY
             ) || "null"
           );
-
       } catch (error) {
-
         data = null;
-
       }
-
-
       if (!data) {
-
         /*
          * 第一次進入頁面，
          * 預設使用完全退休。
          */
-
         fullRetirement.checked = true;
-
         return;
-
       }
-
-
       /* ---------- Mode ---------- */
-
       if (data.retirementMode === "semi") {
-
         semiRetirement.checked = true;
-
       } else {
-
         fullRetirement.checked = true;
-
       }
-
-
       document.getElementById(
         "otherRetirementIncome"
       ).value =
@@ -1878,21 +1414,16 @@
               data.otherRetirementIncome
             ).toLocaleString("zh-TW")
           : "";
-
       /* ---------- Full ---------- */
-
       if (data.full) {
-
         document.getElementById(
           "fullRetirementAge"
         ).value =
           data.full.retirementAge || "";
-
         document.getElementById(
           "fullLifeExpectancy"
         ).value =
           data.full.lifeExpectancy || "";
-
         document.getElementById(
           "fullBasicExpense"
         ).value =
@@ -1901,7 +1432,6 @@
                 data.full.basicExpense
               ).toLocaleString("zh-TW")
             : "";
-
         document.getElementById(
           "fullQualityExpense"
         ).value =
@@ -1910,41 +1440,28 @@
                 data.full.qualityExpense
               ).toLocaleString("zh-TW")
             : "";
-
-
         if (
           Number(data.full.returnRate) === 5
         ) {
-
           document.getElementById(
             "fullReturnOptimistic"
           ).checked = true;
-
         } else {
-
           document.getElementById(
             "fullReturnConservative"
           ).checked = true;
-
         }
-
       }
-
-
       /* ---------- Semi ---------- */
-
       if (data.semi) {
-
         document.getElementById(
           "semiRetirementAge"
         ).value =
           data.semi.retirementAge || "";
-
         document.getElementById(
           "semiLifeExpectancy"
         ).value =
           data.semi.lifeExpectancy || "";
-
         document.getElementById(
           "semiWorkIncome"
         ).value =
@@ -1953,7 +1470,6 @@
                 data.semi.workIncome
               ).toLocaleString("zh-TW")
             : "";
-
         document.getElementById(
           "semiBasicExpense"
         ).value =
@@ -1962,7 +1478,6 @@
                 data.semi.basicExpense
               ).toLocaleString("zh-TW")
             : "";
-
         document.getElementById(
           "semiQualityExpense"
         ).value =
@@ -1971,33 +1486,22 @@
                 data.semi.qualityExpense
               ).toLocaleString("zh-TW")
             : "";
-
-
         if (
           Number(data.semi.returnRate) === 5
         ) {
-
           document.getElementById(
             "semiReturnOptimistic"
           ).checked = true;
-
         } else {
-
           document.getElementById(
             "semiReturnConservative"
           ).checked = true;
-
         }
-
       }
-
     }
-
-
     /* =========================================================
        Input Events
     ========================================================== */
-
     birthDateInput.addEventListener(
       "change",
       function() {
@@ -2005,7 +1509,6 @@
         const age = calculateAge(birthDateInput.value);
         currentAgeDisplay.textContent =
           age === null ? "—" : `${age} 歲`;
-
         try {
           const basicData = JSON.parse(
             localStorage.getItem(BASIC_STORAGE_KEY) || "{}"
@@ -2021,87 +1524,61 @@
         }
       }
     );
-
     document
       .querySelectorAll(".money-input")
       .forEach(function(input) {
-
         input.addEventListener(
           "input",
           function() {
-
             formatInputMoney(input);
             calculateAll();
             saveData();
-
           }
         );
-
       });
-
-
     document
       .querySelectorAll(
         'input[type="number"]'
       )
       .forEach(function(input) {
-
         input.addEventListener(
           "input",
           function() {
-
             calculateAll();
             saveData();
-
           }
         );
-
       });
-
-
     document
       .querySelectorAll(
         'input[name="retirementMode"]'
       )
       .forEach(function(input) {
-
         input.addEventListener(
           "change",
           updateMode
         );
-
       });
-
-
     document
       .querySelectorAll(
         'input[name="fullReturnRate"], input[name="semiReturnRate"]'
       )
       .forEach(function(input) {
-
         input.addEventListener(
           "change",
           function() {
-
             calculateAll();
             saveData();
-
           }
         );
-
       });
-
-
     /* =========================================================
        Initial
     ========================================================== */
-
     loadBasicData();
     loadData();
     updateMode();
     calculateAll();
-
   </script>
-
 </body>
 </html>
