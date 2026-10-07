@@ -391,7 +391,7 @@
       padding: 0 10px;
       border-radius: 12px;
     }
-    .semi-budget-box {
+    .monthly-planning-box {
       margin-top: 18px;
       padding: 17px;
       border: 1px solid rgba(120, 152, 168, 0.26);
@@ -399,16 +399,16 @@
       background: linear-gradient(145deg, #EFF5F7, #F8F4EC);
       box-shadow: 0 7px 18px rgba(72, 91, 79, 0.06);
     }
-    .semi-budget-box .field-group {
+    .monthly-planning-box .field-group {
       margin-top: 13px;
     }
-    .semi-budget-box .field-label {
+    .monthly-planning-box .field-label {
       font-size: 15px;
     }
-    .semi-budget-box .field-input {
+    .monthly-planning-box .field-input {
       font-size: 15px;
     }
-    .semi-budget-box .field-input::placeholder {
+    .monthly-planning-box .field-input::placeholder {
       font-size: 14px;
     }
     .expense-grid {
@@ -545,24 +545,64 @@
       border-radius: 20px;
       background: #FFFFFF;
       border: 1px solid rgba(94, 128, 107, 0.13);
+      margin-top: 16px;
+      padding: 20px 17px 17px;
+      border-radius: 23px;
+      background: linear-gradient(145deg, #FFF5E9, #F5F0F8);
+      border: 1px solid rgba(201, 130, 108, 0.22);
+      box-shadow: 0 8px 22px rgba(120, 92, 87, 0.08);
       text-align: center;
     }
     .target-label {
       display: block;
       color: var(--muted);
       font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.78);
+      color: #8F6C62;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
     }
     .target-value {
       margin-top: 4px;
       font-size: 28px;
+      margin-top: 8px;
+      font-size: clamp(29px, 7.5vw, 36px);
       font-weight: 850;
       color: var(--green-dark);
+      color: #6F5A78;
       word-break: break-word;
     }
     .target-rule {
       margin-top: 5px;
+.target-method {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+      padding: 9px 11px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.76);
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .target-method-label {
       color: var(--muted);
       font-size: 12px;
+      font-weight: 600;
+    }
+    .target-note {
+      margin: 9px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.5;
     }
     /* ---------- Hidden ---------- */
     .hidden {
@@ -783,10 +823,13 @@
       id="fullRetirementSection"
     >
       <h2 class="section-title">完全退休設定</h2>
+      <h2 class="section-title">規劃你的退休生活</h2>
       <p class="section-description">
         設定您希望完全離開工作的時間與生活需求
+        不再依靠工作收入，看看需要準備多少資產，才能過想要的生活。
       </p>
       <!-- 退休年齡 / 預計壽命 -->
+      <!-- 退休時間規劃 -->
       <div class="two-column">
         <div class="field-group">
           <label
@@ -807,8 +850,26 @@
           >
 <span class="field-unit">歲</span>
 </div>
+      <div class="age-plan-box">
+        <div class="two-column age-plan-fields">
+          <div class="field-group">
+            <label class="field-label" for="fullRetirementAge">預計退休年齡</label>
+            <div class="unit-input">
+              <input id="fullRetirementAge" class="field-input" type="number" inputmode="numeric" min="18" max="100" placeholder="例如：60">
+              <span class="field-unit">歲</span>
+            </div>
+          </div>
+          <div class="field-group">
+            <label class="field-label" for="fullLifeExpectancy">預計壽命</label>
+            <div class="unit-input">
+              <input id="fullLifeExpectancy" class="field-input" type="number" inputmode="numeric" min="40" max="120" placeholder="例如：85">
+              <span class="field-unit">歲</span>
+            </div>
+          </div>
         </div>
+      </div>
         <div class="field-group">
+<div class="monthly-planning-box">
           <label
             class="field-label"
             for="fullLifeExpectancy"
@@ -816,6 +877,7 @@
             預計壽命
           </label>
           <p class="field-note">04 會用來顯示預計退休生活幾年</p>
+      <div class="two-column expense-grid">
           <div class="unit-input">
 <input
             id="fullLifeExpectancy"
@@ -830,7 +892,6 @@
 </div>
         </div>
       </div>
-      <div class="two-column expense-grid">
       <!-- 基本生活費 -->
       <div class="field-group">
         <label
@@ -872,10 +933,12 @@
         <p class="field-note">例如旅遊、娛樂、購物等想保留的生活</p>
       </div>
       <!-- 報酬率 -->
+      </div>
       <div class="field-group">
         <label class="field-label">
           退休前預估年化報酬率
         </label>
+            </div>
         <p class="field-note">
           用於 04 估算退休前資產成長，不代表保證；不改變本頁的自由目標金額
         </p>
@@ -933,6 +996,7 @@
         <p class="calculation-title">每月需要由資產支應</p>
         <div class="calculation-main" id="fullMonthlyGap">NT$ 0</div>
         <p class="calculation-note">每月生活費 − 退休後其他固定收入（最低以 0 計算）</p>
+        <p class="calculation-note">退休後生活費由資產支應</p>
       </div>
       <div class="target-box">
         <span class="target-label">
@@ -946,7 +1010,11 @@
         </div>
         <div class="target-rule">
           每年需要由資產支應的金額 ÷ 4%<br>目標約為這筆年支出的 25 倍（粗略估算）<br>4% 法則常以約 30 年退休期作參考，不是保證
+        <div class="target-method">
+          <span class="target-method-label">計算方式</span>
+          <span>每年需由資產支應金額 ÷ 4%</span>
         </div>
+        <p class="target-note">約為年度需求的 25 倍；4% 法則為粗估參考。</p>
       </div>
     </section>
     <!-- =========================================================
@@ -1039,7 +1107,7 @@
 </div>
         </div>
       </div>
-      <div class="semi-budget-box">
+      <div class="monthly-planning-box">
       <!-- 半退休後工作收入 -->
       <div class="field-group">
         <label
@@ -1190,7 +1258,11 @@
         </div>
         <div class="target-rule">
           每年需要由資產支應的金額 ÷ 4%<br>目標約為這筆年支出的 25 倍（粗略估算）<br>4% 法則常以約 30 年退休期作參考，不是保證
+        <div class="target-method">
+          <span class="target-method-label">計算方式</span>
+          <span>每年需由資產支應金額 ÷ 4%</span>
         </div>
+        <p class="target-note">約為年度需求的 25 倍；4% 法則為粗估參考。</p>
       </div>
     </section>
     <!-- ---------- Navigation ---------- -->
